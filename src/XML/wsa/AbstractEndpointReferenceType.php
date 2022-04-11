@@ -189,8 +189,8 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 
         return new static(
             array_pop($address),
-            !empty($referenceParameters) : array_pop($referenceParameters) : null,
-            !empty($metadata) : array_pop($metadata) : null,
+            !empty($referenceParameters) ? array_pop($referenceParameters) : null,
+            !empty($metadata) ? array_pop($metadata) : null,
             $children
         );
     }
