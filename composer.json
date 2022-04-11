@@ -1,6 +1,6 @@
 {
-    "name": "tvdijen/ws-trust",
-    "description": "WS-Trust PHP library",
+    "name": "tvdijen/ws-security",
+    "description": "WS-Security PHP library",
     "license": "LGPL-2.1-or-later",
     "authors": [
         {
@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\WSTrust\\": "src/"
+            "SimpleSAML\\WSSecurity\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\WSTrust\\": "tests/"
+            "SimpleSAML\\Test\\WSSecurity\\": "tests/"
         }
     },
     "extra": {

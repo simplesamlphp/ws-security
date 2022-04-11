@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\WSTrust;
+namespace SimpleSAML\WSSecurity;
 
 /**
- * Class holding constants relevant for WS-Trust.
+ * Class holding constants relevant for WS-Security.
  *
- * @package tvdijen/ws-trust
+ * @package tvdijen/ws-security
  */
 
 class Constants

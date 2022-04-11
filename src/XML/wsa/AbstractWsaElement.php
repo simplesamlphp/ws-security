@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\WSTrust\XML\wsa;
+namespace SimpleSAML\WSSecurity\XML\wsa;
 
 use SimpleSAML\XML\AbstractXMLElement;
-use SimpleSAML\WSTrust\Constants;
+use SimpleSAML\WSSecurity\Constants;
 
 /**
  * Abstract class to be implemented by all the classes in this namespace
  *
- * @package tvdijen/ws-trust
+ * @package tvdijen/ws-security
  */
 abstract class AbstractWsaElement extends AbstractXMLElement
 {
