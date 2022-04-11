@@ -10,7 +10,8 @@ A PHP library for WS-Security related functionality.
 
 ## Before you use it
 
-**DO NOT USE THIS LIBRARY UNLESS YOU ARE INTIMATELY FAMILIAR WITH THE WS-SECURITY SPECIFICATION.**
+**DO NOT USE THIS LIBRARY UNLESS YOU ARE INTIMATELY FAMILIAR
+WITH THE WS-SECURITY SPECIFICATION.**
 
 If you are not familiar with the WS-Security specification and are simply looking
 to connect your application using WS-Security, you should probably use
