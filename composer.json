@@ -23,12 +23,12 @@
     },
     "autoload": {
         "psr-4": {
-            "SimpleSAML\\WS-Trust\\": "src/"
+            "SimpleSAML\\WSTrust\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\WS-Trust\\": "tests/"
+            "SimpleSAML\\Test\\WSTrust\\": "tests/"
         }
     },
     "extra": {

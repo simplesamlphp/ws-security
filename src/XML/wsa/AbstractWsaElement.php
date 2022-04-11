@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\WS-Trust\XML\wsa;
+namespace SimpleSAML\WSTrust\XML\wsa;
 
 use SimpleSAML\XML\AbstractXMLElement;
-use SimpleSAML\WS-Trust\Constants;
+use SimpleSAML\WSTrust\Constants;
 
 /**
  * Abstract class to be implemented by all the classes in this namespace

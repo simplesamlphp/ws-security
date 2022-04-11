@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\WS-Trust\XML\wsa;
+namespace SimpleSAML\WSTrust\XML\wsa;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
@@ -21,7 +21,7 @@ use function sprintf;
  * This class can be used in two different ways:
  *
  *   - You can extend the class without extending the constructor. Then you can use the methods available and the
- *     class will generate an element with the same name as the extending class (e.g. \SimpleSAML\WS-Trust\wsa\EndpointReference).
+ *     class will generate an element with the same name as the extending class (e.g. \SimpleSAML\WSTrust\wsa\EndpointReference).
  *
  *   - Alternatively, you may want to extend the type to add new attributes. In that
  *     case, you cannot use this class normally, as if you change the signature of the constructor, you cannot call
@@ -42,21 +42,21 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * The address for this endpoint.
      *
-     * @var \SimpleSAML\WS-Trust\XML\wsa\Address
+     * @var \SimpleSAML\WSTrust\XML\wsa\Address
      */
     protected Address $address;
 
     /**
      * The ReferenceParameters.
      *
-     * @var \SimpleSAML\WS-Trust\XML\wsa\ReferenceParameters
+     * @var \SimpleSAML\WSTrust\XML\wsa\ReferenceParameters
      */
     protected ?ReferenceParameters $referenceParameters;
 
     /**
      * The Metadata.
      *
-     * @var \SimpleSAML\WS-Trust\XML\wsa\Metadata
+     * @var \SimpleSAML\WSTrust\XML\wsa\Metadata
      */
     protected ?Metadata $metadata;
 
@@ -64,9 +64,9 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * EndpointReferenceType constructor.
      *
-     * @param \SimpleSAML\WS-Trust\XML\wsa\Address $address
-     * @param \SimpleSAML\WS-Trust\XML\wsa\ReferenceParameters|null $referenceParameters
-     * @param \SimpleSAML\WS-Trust\XML\wsa\Metadata|null $metadata
+     * @param \SimpleSAML\WSTrust\XML\wsa\Address $address
+     * @param \SimpleSAML\WSTrust\XML\wsa\ReferenceParameters|null $referenceParameters
+     * @param \SimpleSAML\WSTrust\XML\wsa\Metadata|null $metadata
      * @param \SimpleSAML\XML\Chunk[] $children
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException
@@ -87,7 +87,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Collect the value of the address property.
      *
-     * @return \SimpleSAML\WS-Trust\XML\wsa\Address|null
+     * @return \SimpleSAML\WSTrust\XML\wsa\Address|null
      */
     public function getAddress(): ?Address
     {
@@ -98,7 +98,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Set the value of the address property.
      *
-     * @param \SimpleSAML\WS-Trust\XML\wsa\Address|null $binding
+     * @param \SimpleSAML\WSTrust\XML\wsa\Address|null $binding
      */
     protected function setAddress(?Address $address): void
     {
@@ -109,7 +109,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Collect the value of the referenceParameters property.
      *
-     * @return \SimpleSAML\WS-Trust\XML\wsa\ReferenceParameters|null
+     * @return \SimpleSAML\WSTrust\XML\wsa\ReferenceParameters|null
      */
     public function getReferenceParameters(): ?ReferenceParameters
     {
@@ -120,7 +120,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Set the value of the referenceParameters property.
      *
-     * @param \SimpleSAML\WS-Trust\XML\wsa\ReferenceParameters|null $referenceParameters
+     * @param \SimpleSAML\WSTrust\XML\wsa\ReferenceParameters|null $referenceParameters
      */
     protected function setReferenceParameters(?ReferenceParameters $referenceParameters): void
     {
@@ -131,7 +131,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Collect the value of the metadata property.
      *
-     * @return \SimpleSAML\WS-Trust\XML\wsa\Metadata|null
+     * @return \SimpleSAML\WSTrust\XML\wsa\Metadata|null
      */
     public function getMetadata(): ?Metadata
     {
@@ -142,7 +142,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Set the value of the metadata property.
      *
-     * @param \SimpleSAML\WS-Trust\XML\wsa\Metadata|null $metadata
+     * @param \SimpleSAML\WSTrust\XML\wsa\Metadata|null $metadata
      */
     protected function setMetadata(?Metadata $metadata): void
     {

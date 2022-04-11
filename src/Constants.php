@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\WS-Trust;
+namespace SimpleSAML\WSTrust;
 
 /**
  * Class holding constants relevant for WS-Trust.
