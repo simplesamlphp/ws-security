@@ -9,7 +9,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Constants;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 
 use function array_pop;
@@ -18,21 +17,13 @@ use function sprintf;
 /**
  * Class representing WS-addressing EndpointReferenceType.
  *
- * This class can be used in two different ways:
- *
- *   - You can extend the class without extending the constructor. Then you can use the methods available and the
- *     class will generate an element with the same name as the extending class (e.g. \SimpleSAML\WSSecurity\wsa\EndpointReference).
- *
- *   - Alternatively, you may want to extend the type to add new attributes. In that
- *     case, you cannot use this class normally, as if you change the signature of the constructor, you cannot call
- *     fromXML() in this class. In order to process an XML document, you can use the get*Attribute() static methods
- *     from AbstractXMLElement, and reimplement the fromXML() method with them to suit your new constructor.
+ * You can extend the class without extending the constructor. Then you can use the methods available and the
+ * class will generate an element with the same name as the extending class (e.g. \SimpleSAML\WSSecurity\wsa\EndpointReference).
  *
  * @package tvdijen/ws-security
  */
 abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 {
-    use ExtendableAttributesTrait;
     use ExtendableElementTrait;
 
     /** The namespace-attribute for the xs:any element */
@@ -71,7 +62,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException
      */
-    public function __construct(
+    final public function __construct(
         Address $address,
         array $referenceParameters = null,
         array $metadata = null,
