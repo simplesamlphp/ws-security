@@ -9,21 +9,21 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\WSSecurity\Constants;
-use SimpleSAML\WSSecurity\XML\wsa\Address;
+use SimpleSAML\WSSecurity\XML\wsa\MessageID;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function dirname;
 use function strval;
 
 /**
- * Tests for wsa:Address.
+ * Tests for wsa:MessageID.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\Address
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\MessageID
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractMdElement
  * @package tvdijen/ws-security
  */
-final class AddressTest extends TestCase
+final class MessageIDTest extends TestCase
 {
     use SerializableXMLTestTrait;
 
@@ -32,10 +32,10 @@ final class AddressTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->testedClass = Address::class;
+        $this->testedClass = MessageID::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wsa_Address.xml'
+            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wsa_MessageID.xml'
         );
     }
 
@@ -44,18 +44,18 @@ final class AddressTest extends TestCase
 
 
     /**
-     * Test creating an Address object from scratch.
+     * Test creating an MessageID object from scratch.
      */
     public function testMarshalling(): void
     {
         $attr1 = $this->xmlRepresentation->createAttributeNS(Constants::NS_SOAP, 'soapenv:mustUnderstand');
         $attr1->value = '1';
 
-        $address = new Address('https://login.microsoftonline.com/login.srf', [$attr1]);
+        $msgId = new MessageID('https://login.microsoftonline.com/login.srf', [$attr1]);
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($address)
+            strval($msgId)
         );
     }
 
@@ -64,14 +64,14 @@ final class AddressTest extends TestCase
 
 
     /**
-     * Test creating a Address from XML.
+     * Test creating a MessageID from XML.
      */
     public function testUnmarshalling(): void
     {
-        $address = Address::fromXML($this->xmlRepresentation->documentElement);
+        $msgId = MessageID::fromXML($this->xmlRepresentation->documentElement);
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($address)
+            strval($msgId)
         );
     }
 }

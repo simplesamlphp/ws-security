@@ -36,4 +36,9 @@ class Constants
      * The namespace for WS-Security utilities protocol.
      */
     public const NS_SEC_UTIL = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd';
+
+    /**
+     * The namespace for the SOAP protocol.
+     */
+    public const NS_SOAP = 'http://schemas.xmlsoap.org/soap/envelope/';
 }
