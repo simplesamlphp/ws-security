@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Test\XML\SerializableXMLTestTrait;
+use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wsa\To;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -25,7 +25,7 @@ use function strval;
  */
 final class ToTest extends TestCase
 {
-    use SerializableXMLTestTrait;
+    use SerializableElementTestTrait;
 
 
     /**

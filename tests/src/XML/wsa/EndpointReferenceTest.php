@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Test\XML\SerializableXMLTestTrait;
+use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
@@ -26,7 +26,7 @@ use function strval;
  */
 final class EndpointReferenceTest extends TestCase
 {
-    use SerializableXMLTestTrait;
+    use SerializableElementTestTrait;
 
 
     /**
