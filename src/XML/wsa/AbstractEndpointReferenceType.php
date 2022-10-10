@@ -72,7 +72,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     final public function __construct(
         Address $address,
         array $referenceParameters = [],
-        array $metadata = null,
+        array $metadata = [],
         array $children = [],
         array $namespacedAttributes = []
     ) {
