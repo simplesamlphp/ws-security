@@ -10,7 +10,7 @@ use SimpleSAML\WSSecurity\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Constants;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\XMLStringElementTrait;
+use SimpleSAML\XML\StringElementTrait;
 
 use function filter_var;
 
@@ -25,7 +25,7 @@ use function filter_var;
 abstract class AbstractAttributedURIType extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
-    use XMLStringElementTrait;
+    use StringElementTrait;
 
     /** The namespace-attribute for the xs:any element */
     public const NAMESPACE = Constants::XS_ANY_NS_OTHER;
