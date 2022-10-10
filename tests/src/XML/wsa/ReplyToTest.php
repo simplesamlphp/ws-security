@@ -9,21 +9,22 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Test\XML\SerializableXMLTestTrait;
 use SimpleSAML\WSSecurity\Constants;
-use SimpleSAML\WSSecurity\XML\wsa\Action;
+use SimpleSAML\WSSecurity\XML\wsa\Address;
+use SimpleSAML\WSSecurity\XML\wsa\ReplyTo;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function dirname;
 use function strval;
 
 /**
- * Tests for wsa:Action.
+ * Tests for wsa:ReplyTo.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\Action
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\ReplyTo
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractMdElement
  * @package tvdijen/ws-security
  */
-final class ActionTest extends TestCase
+final class ReplyToTest extends TestCase
 {
     use SerializableXMLTestTrait;
 
@@ -32,10 +33,10 @@ final class ActionTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->testedClass = Action::class;
+        $this->testedClass = ReplyTo::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wsa_Action.xml'
+        $this->xmlRepresentation = DOMDocumentFactory::FromFile(
+            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wsa_ReplyTo.xml'
         );
     }
 
@@ -44,18 +45,23 @@ final class ActionTest extends TestCase
 
 
     /**
-     * Test creating an Action object from scratch.
+     * Test creating an ReplyTo object from scratch.
      */
     public function testMarshalling(): void
     {
         $attr1 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:test');
         $attr1->value = 'value';
+        $attr2 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:attr');
+        $attr2->value = 'value';
 
-        $action = new Action('https://login.microsoftonline.com/login.srf', [$attr1]);
+        $replyTo = new ReplyTo(
+            new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
+            [$attr1],
+        );
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($action)
+            strval($replyTo)
         );
     }
 
@@ -64,14 +70,14 @@ final class ActionTest extends TestCase
 
 
     /**
-     * Test creating a Action from XML.
+     * Test creating a ReplyTo from XML.
      */
     public function testUnmarshalling(): void
     {
-        $action = Action::fromXML($this->xmlRepresentation->documentElement);
+        $replyTo = ReplyTo::fromXML($this->xmlRepresentation->documentElement);
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($action)
+            strval($replyTo)
         );
     }
 }

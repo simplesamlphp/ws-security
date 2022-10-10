@@ -48,8 +48,8 @@ final class ProblemIRITest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = $this->xmlRepresentation->createAttributeNS(Constants::NS_SOAP, 'soapenv:mustUnderstand');
-        $attr1->value = '1';
+        $attr1 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:attr');
+        $attr1->value = 'value';
 
         $problemIri = new ProblemIRI('https://login.microsoftonline.com/login.srf', [$attr1]);
 

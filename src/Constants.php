@@ -40,5 +40,5 @@ class Constants
     /**
      * The namespace for the SOAP protocol.
      */
-    public const NS_SOAP = 'http://schemas.xmlsoap.org/soap/envelope/';
+    public const NS_SOAP = 'http://schemas.xmlsoap.org/soap/envelope';
 }

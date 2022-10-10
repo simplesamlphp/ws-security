@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsa;
 
+use DOMAttr;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Constants;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XML\Exception\MissingElementException;
+use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 
 use function array_pop;
@@ -24,6 +28,7 @@ use function sprintf;
  */
 abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 {
+    use ExtendableAttributesTrait;
     use ExtendableElementTrait;
 
     /** The namespace-attribute for the xs:any element */
@@ -59,6 +64,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
      * @param \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters|null $referenceParameters
      * @param \SimpleSAML\WSSecurity\XML\wsa\Metadata|null $metadata
      * @param \SimpleSAML\XML\Chunk[] $children
+     * @param \DOMAttr[] $namespacedAttributes
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException
      */
@@ -66,12 +72,14 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
         Address $address,
         array $referenceParameters = null,
         array $metadata = null,
-        array $children = []
+        array $children = [],
+        array $namespacedAttributes = []
     ) {
         $this->setAddress($address);
-        $this->setReferenceParameters($referenceParameteres);
+        $this->setReferenceParameters($referenceParameters);
         $this->setMetadata($metadata);
-        $this->setChildren($children);
+        $this->setElements($children);
+        $this->setAttributesNS($namespacedAttributes);
     }
 
 
@@ -196,7 +204,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
-        $e->toXML($this->address);
+        $this->address->toXML($e);
 
         if ($this->referenceParameters !== null) {
             $this->referenceParameters->toXML($e);
