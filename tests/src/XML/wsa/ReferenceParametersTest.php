@@ -21,7 +21,7 @@ use function strval;
  * @covers \SimpleSAML\SOAP\XML\env\ReferenceParameters
  * @covers \SimpleSAML\SOAP\XML\env\AbstractSoapElement
  *
- * @package simplesamlphp/xml-soap
+ * @package tvdijen/ws-security
  */
 final class ReferenceParametersTest extends TestCase
 {

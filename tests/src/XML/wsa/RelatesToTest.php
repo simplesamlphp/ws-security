@@ -8,42 +8,33 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\XML\SerializableElementTestTrait;
-use SimpleSAML\WSSecurity\XML\wsa\Metadata;
-use SimpleSAML\XML\Chunk;
+use SimpleSAML\WSSecurity\XML\wsa\RelatesTo;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function dirname;
 use function strval;
 
 /**
- * Class \SimpleSAML\SOAP\XML\env\MetadataTest
+ * Class \SimpleSAML\SOAP\XML\env\RelatesToTest
  *
- * @covers \SimpleSAML\SOAP\XML\env\Metadata
+ * @covers \SimpleSAML\SOAP\XML\env\RelatesTo
  * @covers \SimpleSAML\SOAP\XML\env\AbstractSoapElement
  *
  * @package tvdijen/ws-security
  */
-final class MetadataTest extends TestCase
+final class RelatesToTest extends TestCase
 {
     use SerializableElementTestTrait;
-
-    /** @var \DOMElement $MetadataContent */
-    private DOMElement $metadataContent;
-
 
     /**
      */
     protected function setUp(): void
     {
-        $this->testedClass = Metadata::class;
+        $this->testedClass = RelatesTo::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wsa_Metadata.xml'
+            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wsa_RelatesTo.xml'
         );
-
-        $this->metadataContent = DOMDocumentFactory::fromString(
-            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
-        )->documentElement;
     }
 
 
@@ -54,12 +45,12 @@ final class MetadataTest extends TestCase
         $domAttr = $this->xmlRepresentation->createAttributeNS('urn:test:something', 'test:attr1');
         $domAttr->value = 'testval1';
 
-        $metadata = new Metadata([new Chunk($this->metadataContent)], [$domAttr]);
-        $this->assertFalse($metadata->isEmptyElement());
+        $relatesTo = new RelatesTo('http://www.w3.org/2005/08/addressing/reply', [$domAttr]);
+        $this->assertFalse($relatesTo->isEmptyElement());
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
-            strval($metadata)
+            strval($relatesTo)
         );
     }
 
@@ -68,12 +59,12 @@ final class MetadataTest extends TestCase
      */
     public function testMarshallingWithNoContent(): void
     {
-        $metadata = new Metadata([], []);
+        $relatesTo = new RelatesTo(null, []);
         $this->assertEquals(
-            '<wsa:Metadata xmlns:wsa="http://www.w3.org/2005/08/addressing"/>',
-            strval($metadata)
+            '<wsa:RelatesTo xmlns:wsa="http://www.w3.org/2005/08/addressing"/>',
+            strval($relatesTo)
         );
-        $this->assertTrue($metadata->isEmptyElement());
+        $this->assertTrue($relatesTo->isEmptyElement());
     }
 
 
@@ -81,13 +72,11 @@ final class MetadataTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $metadata = Metadata::fromXML($this->xmlRepresentation->documentElement);
+        $relatesTo = RelatesTo::fromXML($this->xmlRepresentation->documentElement);
+        $this->assertFalse($relatesTo->isEmptyElement());
+        $this->assertEquals('http://www.w3.org/2005/08/addressing/reply', $relatesTo->getRelationshipType());
 
-        $elements = $metadata->getElements();
-        $this->assertFalse($metadata->isEmptyElement());
-        $this->assertCount(1, $elements);
-
-        $attributes = $metadata->getAttributesNS();
+        $attributes = $relatesTo->getAttributesNS();
         $this->assertCount(1, $attributes);
 
         $attribute = end($attributes);
