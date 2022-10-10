@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 /**
  * An attributed URI
  *
- * @package tvdijen/ws-trust
+ * @package tvdijen/ws-security
  */
 final class MessageID extends AbstractAttributedURIType
 {

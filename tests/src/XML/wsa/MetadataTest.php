@@ -16,10 +16,10 @@ use function dirname;
 use function strval;
 
 /**
- * Class \SimpleSAML\SOAP\XML\env\MetadataTest
+ * Class \SimpleSAML\WSSecurity\XML\env\MetadataTest
  *
- * @covers \SimpleSAML\SOAP\XML\env\Metadata
- * @covers \SimpleSAML\SOAP\XML\env\AbstractSoapElement
+ * @covers \SimpleSAML\WSSecurity\XML\env\Metadata
+ * @covers \SimpleSAML\WSSecurity\XML\env\AbstractWsaElement
  *
  * @package tvdijen/ws-security
  */

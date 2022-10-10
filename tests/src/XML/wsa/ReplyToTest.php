@@ -21,7 +21,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsa\ReplyTo
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractMdElement
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package tvdijen/ws-security
  */
 final class ReplyToTest extends TestCase

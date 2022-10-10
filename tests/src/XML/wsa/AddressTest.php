@@ -20,7 +20,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsa\Address
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractMdElement
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package tvdijen/ws-security
  */
 final class AddressTest extends TestCase

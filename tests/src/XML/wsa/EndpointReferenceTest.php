@@ -21,7 +21,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsa\EndpointReference
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractMdElement
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstracWsaElement
  * @package tvdijen/ws-security
  */
 final class EndpointReferenceTest extends TestCase

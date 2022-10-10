@@ -20,7 +20,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsa\Action
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractMdElement
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstracWsaElement
  * @package tvdijen/ws-security
  */
 final class ActionTest extends TestCase

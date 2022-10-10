@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 /**
  * An endpoint reference
  *
- * @package tvdijen/ws-trust
+ * @package tvdijen/ws-security
  */
 final class ReplyTo extends AbstractEndpointReferenceType
 {
