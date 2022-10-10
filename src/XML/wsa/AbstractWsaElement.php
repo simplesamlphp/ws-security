@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsa;
 
-use SimpleSAML\XML\AbstractXMLElement;
+use SimpleSAML\XML\AbstractElement;
 use SimpleSAML\WSSecurity\Constants;
 
 /**
@@ -12,7 +12,7 @@ use SimpleSAML\WSSecurity\Constants;
  *
  * @package tvdijen/ws-security
  */
-abstract class AbstractWsaElement extends AbstractXMLElement
+abstract class AbstractWsaElement extends AbstractElement
 {
     /** @var string */
     public const NS = Constants::NS_ADDR;
