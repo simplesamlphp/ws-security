@@ -7,8 +7,8 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 use DOMAttr;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\Constants;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -32,7 +32,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     use ExtendableElementTrait;
 
     /** The namespace-attribute for the xs:any element */
-    public const NAMESPACE = Constants::XS_ANY_NS_OTHER;
+    public const NAMESPACE = C::XS_ANY_NS_OTHER;
 
 
     /**
@@ -45,24 +45,24 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * The ReferenceParameters.
      *
-     * @var \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters
+     * @var \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters[]
      */
-    protected ?ReferenceParameters $referenceParameters;
+    protected array $referenceParameters;
 
     /**
      * The Metadata.
      *
-     * @var \SimpleSAML\WSSecurity\XML\wsa\Metadata
+     * @var \SimpleSAML\WSSecurity\XML\wsa\Metadata[]
      */
-    protected ?Metadata $metadata;
+    protected array $metadata;
 
 
     /**
      * EndpointReferenceType constructor.
      *
      * @param \SimpleSAML\WSSecurity\XML\wsa\Address $address
-     * @param \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters|null $referenceParameters
-     * @param \SimpleSAML\WSSecurity\XML\wsa\Metadata|null $metadata
+     * @param \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters[] $referenceParameters
+     * @param \SimpleSAML\WSSecurity\XML\wsa\Metadata[] $metadata
      * @param \SimpleSAML\XML\Chunk[] $children
      * @param \DOMAttr[] $namespacedAttributes
      *
@@ -70,7 +70,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
      */
     final public function __construct(
         Address $address,
-        array $referenceParameters = null,
+        array $referenceParameters = [],
         array $metadata = null,
         array $children = [],
         array $namespacedAttributes = []
@@ -108,9 +108,9 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Collect the value of the referenceParameters property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters|null
+     * @return \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters[]
      */
-    public function getReferenceParameters(): ?ReferenceParameters
+    public function getReferenceParameters(): array
     {
         return $this->referenceParameters;
     }
@@ -119,10 +119,11 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Set the value of the referenceParameters property.
      *
-     * @param \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters|null $referenceParameters
+     * @param \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters[] $referenceParameters
      */
-    protected function setReferenceParameters(?ReferenceParameters $referenceParameters): void
+    protected function setReferenceParameters(array $referenceParameters): void
     {
+        Assert::allIsInstanceOf($referenceParameters, ReferenceParameters::class);
         $this->referenceParameters = $referenceParameters;
     }
 
@@ -130,9 +131,9 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Collect the value of the metadata property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\wsa\Metadata|null
+     * @return \SimpleSAML\WSSecurity\XML\wsa\Metadata[]
      */
-    public function getMetadata(): ?Metadata
+    public function getMetadata(): array
     {
         return $this->metadata;
     }
@@ -141,10 +142,11 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Set the value of the metadata property.
      *
-     * @param \SimpleSAML\WSSecurity\XML\wsa\Metadata|null $metadata
+     * @param \SimpleSAML\WSSecurity\XML\wsa\Metadata[] $metadata
      */
-    protected function setMetadata(?Metadata $metadata): void
+    protected function setMetadata(array $metadata): void
     {
+        Assert::allIsInstanceOf($metadata, Metadata::class);
         $this->metadata = $metadata;
     }
 
@@ -175,11 +177,13 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
         Assert::maxCount($address, 1, TooManyElementsException::class);
 
         $referenceParameters = ReferenceParameters::getChildrenOfClass($xml);
-        Assert::maxCount($referenceParameters, 1, TooManyElementsException::class);
+        $metadata = Metadata::getChildrenOfClass($xml);
 
         $children = [];
         foreach ($xml->childNodes as $child) {
             if (!($child instanceof DOMElement)) {
+                continue;
+            } else if ($child->namespaceURI === C::NS_ADDR) {
                 continue;
             }
 
@@ -188,9 +192,10 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 
         return new static(
             array_pop($address),
-            !empty($referenceParameters) ? array_pop($referenceParameters) : null,
-            !empty($metadata) ? array_pop($metadata) : null,
-            $children
+            $referenceParameters,
+            $metadata,
+            $children,
+            self::getAttributesNSFromXML($xml),
         );
     }
 
@@ -204,14 +209,19 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
-        $this->address->toXML($e);
 
-        if ($this->referenceParameters !== null) {
-            $this->referenceParameters->toXML($e);
+        foreach ($this->getAttributesNS() as $attr) {
+            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
         }
 
-        if ($this->metadata !== null) {
-            $this->metadata->toXML($e);
+        $this->address->toXML($e);
+
+        foreach ($this->referenceParameters as $referenceParameters) {
+            $referenceParameters->toXML($e);
+        }
+
+        foreach ($this->metadata as $metadata) {
+            $metadata->toXML($e);
         }
 
         foreach ($this->getElements() as $child) {

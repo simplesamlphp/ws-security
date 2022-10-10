@@ -49,12 +49,18 @@ final class FromTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:test');
+        $attr1 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:attr');
         $attr1->value = 'value';
-        $attr2 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:attr');
+        $attr2 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:test');
         $attr2->value = 'value';
 
-        $from = new From(new Address('https://login.microsoftonline.com/login.srf', [$attr2]), [$attr1]);
+        $from = new From(
+            new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
+            [],
+            [],
+            [],
+            [$attr1],
+        );
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
