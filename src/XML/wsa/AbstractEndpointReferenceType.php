@@ -21,8 +21,9 @@ use function sprintf;
 /**
  * Class representing WS-addressing EndpointReferenceType.
  *
- * You can extend the class without extending the constructor. Then you can use the methods available and the
- * class will generate an element with the same name as the extending class (e.g. \SimpleSAML\WSSecurity\wsa\EndpointReference).
+ * You can extend the class without extending the constructor. Then you can use the methods available
+ * and the class will generate an element with the same name as the extending class
+ * (e.g. \SimpleSAML\WSSecurity\wsa\EndpointReference).
  *
  * @package tvdijen/ws-security
  */
@@ -159,8 +160,10 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
      * @param \DOMElement $xml The XML element we should load.
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException if the qualified name of the supplied element is wrong
-     * @throws \SimpleSAML\XML\Exception\MissingAttributeException if the supplied element is missing any of the mandatory attributes
+     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     *   if the qualified name of the supplied element is wrong
+     * @throws \SimpleSAML\XML\Exception\MissingAttributeException
+     *   if the supplied element is missing any of the mandatory attributes
      */
     public static function fromXML(DOMElement $xml): static
     {
@@ -183,7 +186,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
         foreach ($xml->childNodes as $child) {
             if (!($child instanceof DOMElement)) {
                 continue;
-            } else if ($child->namespaceURI === C::NS_ADDR) {
+            } elseif ($child->namespaceURI === C::NS_ADDR) {
                 continue;
             }
 

@@ -84,4 +84,3 @@ final class ReplyToTest extends TestCase
         );
     }
 }
-

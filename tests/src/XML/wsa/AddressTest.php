@@ -75,4 +75,3 @@ final class AddressTest extends TestCase
         );
     }
 }
-
