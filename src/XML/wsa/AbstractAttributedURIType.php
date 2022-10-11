@@ -53,12 +53,7 @@ abstract class AbstractAttributedURIType extends AbstractWsaElement
      */
     protected function validateContent(string $content): void
     {
-        Assert::notEmpty($content);
-        Assert::false(
-            !filter_var($content, FILTER_VALIDATE_URL),
-            $this->getQualifiedName() . ' is not a valid URL.',
-            ProtocolViolationException::class,
-        );
+        Assert::validURI($content, ProtocolViolationException::class);
     }
 
 
