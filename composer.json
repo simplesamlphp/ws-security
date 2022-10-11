@@ -28,7 +28,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "SimpleSAML\\Test\\WSSecurity\\": "tests/"
+            "SimpleSAML\\Test\\WSSecurity\\": "tests/WSSecurity/"
         }
     },
     "extra": {
