@@ -1,0 +1,1 @@
+<wsa:RetryAfter xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:test="value">1234567890</wsa:RetryAfter>
