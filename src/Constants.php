@@ -41,4 +41,33 @@ class Constants extends \SimpleSAML\XMLSecurity\Constants
      * The namespace for the SOAP protocol.
      */
     public const NS_SOAP = 'http://schemas.xmlsoap.org/soap/envelope';
+
+    /**
+     * The schema-defined wsa fault codes
+     */
+    public const WSA_FAULT_INVALID_ADDRESSING_HEADER = 'InvalidAddressingHeader';
+    public const WSA_FAULT_INVALID_ADDRESS = 'InvalidAddress';
+    public const WSA_FAULT_INVALID_EPR = 'InvalidEPR';
+    public const WSA_FAULT_INVALID_CARDINALITY = 'InvalidCardinality';
+    public const WSA_FAULT_MISSING_ADDRESS_IN_EPR = 'MissingAddressInEPR';
+    public const WSA_FAULT_DUPLICATE_MESSAGEID = 'DupicateMessageID';
+    public const WSA_FAULT_ACTION_MISMATCH = 'ActionMismatch';
+    public const WSA_FAULT_MESSAGE_ADDRESSING_HEADER_REQUIRED = 'MessageAddressingHeaderRequired';
+    public const WSA_FAULT_DESTINATION_UNREACHABLE = 'DestinationUnreachable';
+    public const WSA_FAULT_ACTION_NOT_SUPPORTED = 'ActionNotSupported';
+    public const WSA_FAULT_ENDPOINT_UNAVAILABLE = 'EndpointUnavailable';
+
+    public const FAULT_CODES = [
+        self::WSA_FAULT_INVALID_ADDRESSING_HEADER,
+        self::WSA_FAULT_INVALID_ADDRESS,
+        self::WSA_FAULT_INVALID_EPR,
+        self::WSA_FAULT_INVALID_CARDINALITY,
+        self::WSA_FAULT_MISSING_ADDRESS_IN_EPR,
+        self::WSA_FAULT_DUPLICATE_MESSAGEID,
+        self::WSA_FAULT_ACTION_MISMATCH,
+        self::WSA_FAULT_MESSAGE_ADDRESSING_HEADER_REQUIRED,
+        self::WSA_FAULT_DESTINATION_UNREACHABLE,
+        self::WSA_FAULT_ACTION_NOT_SUPPORTED,
+        self::WSA_FAULT_ENDPOINT_UNAVAILABLE,
+    ];
 }
