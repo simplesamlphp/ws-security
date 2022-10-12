@@ -6,10 +6,12 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\ReferenceIdentifierTrait;
+use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\WSSecurity\XML\ReferenceIdentifierTrait;
 
 /**
  * @package tvdijen/ws-security
@@ -18,6 +20,9 @@ final class ContextData extends AbstractWstElement
 {
     use ExtendableElementTrait;
     use ReferenceIdentifierTrait;
+
+    /** @var string|array */
+    public const NAMESPACE = C::XS_ANY_NS_ANY;
 
 
     /**
@@ -48,7 +53,7 @@ final class ContextData extends AbstractWstElement
         Assert::same($xml->namespaceURI, ContextData::NS, InvalidDOMElementException::class);
 
         /** @psalm-var string $refId */
-        $refId = self::getAttribute($xml, 'RefId');
+        $refId = self::getAttribute($xml, 'RefID');
 
         $children = [];
         foreach ($xml->childNodes as $node) {
@@ -70,7 +75,7 @@ final class ContextData extends AbstractWstElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('RefId', $this->refId);
+        $e->setAttribute('RefID', $this->refId);
 
         /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
         foreach ($this->getElements() as $elt) {
