@@ -1,0 +1,1 @@
+<wst:TextChallengeResponse xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200802" RefId="http://docs.oasis-open.org/ws-sx/ws-trust/200802/challenge/PIN" xmlns:test="urn:x-simplesamlphp:namespace" test:attr1="testval1">654321</wst:TextChallengeResponse>

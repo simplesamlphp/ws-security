@@ -65,4 +65,9 @@ class Constants extends \SimpleSAML\XMLSecurity\Constants
         self::WSA_FAULT_ACTION_NOT_SUPPORTED,
         self::WSA_FAULT_ENDPOINT_UNAVAILABLE,
     ];
+
+    /**
+     */
+    public const WST_REFID_PIN = 'http://docs.oasis-open.org/ws-sx/ws-trust/200802/challenge/PIN';
+    public const WST_REFID_OTP = 'http://docs.oasis-open.org/ws-sx/ws-trust/200802/challenge/OTP';
 }
