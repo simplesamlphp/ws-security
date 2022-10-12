@@ -87,9 +87,9 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Collect the value of the address property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\wsa\Address|null
+     * @return \SimpleSAML\WSSecurity\XML\wsa\Address
      */
-    public function getAddress(): ?Address
+    public function getAddress(): Address
     {
         return $this->address;
     }
@@ -98,9 +98,9 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Set the value of the address property.
      *
-     * @param \SimpleSAML\WSSecurity\XML\wsa\Address|null $binding
+     * @param \SimpleSAML\WSSecurity\XML\wsa\Address $binding
      */
-    protected function setAddress(?Address $address): void
+    protected function setAddress(Address $address): void
     {
         $this->address = $address;
     }
@@ -228,6 +228,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
         }
 
         foreach ($this->getElements() as $child) {
+            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
             $e->appendChild($e->ownerDocument->importNode($child->toXML(), true));
         }
 
