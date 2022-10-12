@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
+use SimpleSAML\Test\XML\SchemaValidationTestTrait;
 use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\XML\wsa\RetryAfter;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -24,6 +25,7 @@ use function strval;
  */
 final class RetryAfterTest extends TestCase
 {
+    use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
 
@@ -32,6 +34,8 @@ final class RetryAfterTest extends TestCase
     protected function setUp(): void
     {
         $this->testedClass = RetryAfter::class;
+
+        $this->schema = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wsa_RetryAfter.xml'

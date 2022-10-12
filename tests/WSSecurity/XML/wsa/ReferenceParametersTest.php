@@ -7,6 +7,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\Test\XML\SchemaValidationTestTrait;
 use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
 use SimpleSAML\XML\Chunk;
@@ -25,6 +26,7 @@ use function strval;
  */
 final class ReferenceParametersTest extends TestCase
 {
+    use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
     /** @var \DOMElement $referenceParametersContent */
@@ -36,6 +38,8 @@ final class ReferenceParametersTest extends TestCase
     protected function setUp(): void
     {
         $this->testedClass = ReferenceParameters::class;
+
+        $this->schema = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wsa_ReferenceParameters.xml'
