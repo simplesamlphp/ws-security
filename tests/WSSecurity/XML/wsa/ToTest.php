@@ -8,7 +8,7 @@ use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Test\XML\SerializableElementTestTrait;
-use SimpleSAML\WSSecurity\Constants;
+use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\To;
 use SimpleSAML\XML\DOMDocumentFactory;
 
@@ -48,8 +48,8 @@ final class ToTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = $this->xmlRepresentation->createAttributeNS(Constants::NS_SOAP, 'soapenv:mustUnderstand');
-        $attr1->value = '1';
+        $attr1 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:attr');
+        $attr1->value = 'test';
 
         $to = new To('https://login.microsoftonline.com/login.srf', [$attr1]);
 

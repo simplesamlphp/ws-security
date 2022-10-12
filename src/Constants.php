@@ -38,11 +38,6 @@ class Constants extends \SimpleSAML\XMLSecurity\Constants
     public const NS_SEC_UTIL = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd';
 
     /**
-     * The namespace for the SOAP protocol.
-     */
-    public const NS_SOAP = 'http://schemas.xmlsoap.org/soap/envelope';
-
-    /**
      * The schema-defined wsa fault codes
      */
     public const WSA_FAULT_INVALID_ADDRESSING_HEADER = 'InvalidAddressingHeader';

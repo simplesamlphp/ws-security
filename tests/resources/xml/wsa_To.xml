@@ -1,1 +1,1 @@
-<wsa:To xmlns:wsa="http://www.w3.org/2005/08/addressing" soapenv:mustUnderstand="1" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope">https://login.microsoftonline.com/login.srf</wsa:To>
+<wsa:To xmlns:wsa="http://www.w3.org/2005/08/addressing" ssp:attr="test" xmlns:ssp="urn:x-simplesamlphp:namespace">https://login.microsoftonline.com/login.srf</wsa:To>

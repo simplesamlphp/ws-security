@@ -8,7 +8,7 @@ use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Test\XML\SerializableElementTestTrait;
-use SimpleSAML\WSSecurity\Constants;
+use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
 use SimpleSAML\XML\DOMDocumentFactory;
 
@@ -48,7 +48,7 @@ final class MessageIDTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = $this->xmlRepresentation->createAttributeNS(Constants::NS_SOAP, 'soapenv:mustUnderstand');
+        $attr1 = $this->xmlRepresentation->createAttributeNS(C::NS_SOAP_ENV, 'soapenv:mustUnderstand');
         $attr1->value = '1';
 
         $msgId = new MessageID('https://login.microsoftonline.com/login.srf', [$attr1]);
