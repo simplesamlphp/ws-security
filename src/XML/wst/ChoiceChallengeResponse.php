@@ -8,14 +8,14 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\WSSecurity\XML\ReferenceIdentifierTrait;
 
 /**
  * @package tvdijen/ws-security
  */
 final class ChoiceChallengeResponse extends AbstractWstElement
 {
-    /** @var string */
-    protected string $refId;
+    use ReferenceIdentifierTrait;
 
     /** @var \SimpleSAML\WSSecurity\XML\wst\ChoiceSelected[] */
     protected array $choiceSelected;
@@ -31,25 +31,6 @@ final class ChoiceChallengeResponse extends AbstractWstElement
     {
         $this->setRefId($refId);
         $this->setChoiceSelected($choiceSelected);
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getRefId(): string
-    {
-        return $this->refId;
-    }
-
-
-    /**
-     * @param string $refId
-     */
-    private function setRefId(string $refId): void
-    {
-        Assert::validURI($refId, SchemaViolationException::class);
-        $this->refId = $refId;
     }
 
 
