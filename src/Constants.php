@@ -30,7 +30,7 @@ class Constants extends \SimpleSAML\XMLSecurity\Constants
     /**
      * The namespace for WS-Trust protocol.
      */
-    public const NS_TRUST = 'http://schemas.xmlsoap.org/ws/2005/02/trust';
+    public const NS_TRUST = 'http://docs.oasis-open.org/ws-sx/ws-trust/200802';
 
     /**
      * The namespace for WS-Security utilities protocol.

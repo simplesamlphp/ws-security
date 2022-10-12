@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\WSSecurity\XML\wsa;
+namespace SimpleSAML\WSSecurity\XML\wst;
 
 use SimpleSAML\XML\AbstractElement;
 use SimpleSAML\WSSecurity\Constants as C;
@@ -12,11 +12,11 @@ use SimpleSAML\WSSecurity\Constants as C;
  *
  * @package tvdijen/ws-security
  */
-abstract class AbstractWsaElement extends AbstractElement
+abstract class AbstractWstElement extends AbstractElement
 {
     /** @var string */
-    public const NS = C::NS_ADDR;
+    public const NS = C::NS_TRUST;
 
     /** @var string */
-    public const NS_PREFIX = 'wsa';
+    public const NS_PREFIX = 'wst';
 }
