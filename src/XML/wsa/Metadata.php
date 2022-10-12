@@ -94,9 +94,11 @@ final class Metadata extends AbstractWsaElement
             $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
         }
 
+        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->elements as $child) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
-            $e->appendChild($e->ownerDocument->importNode($child->toXML(), true));
+            if (!$child->isEmptyElement()) {
+                $child->toXML($e);
+            }
         }
 
         return $e;

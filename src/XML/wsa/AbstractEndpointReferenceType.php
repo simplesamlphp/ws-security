@@ -227,9 +227,11 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
             $metadata->toXML($e);
         }
 
+        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
-            $e->appendChild($e->ownerDocument->importNode($child->toXML(), true));
+            if (!$child->isEmptyElement()) {
+                $child->toXML($e);
+            }
         }
 
         return $e;
