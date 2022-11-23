@@ -49,7 +49,7 @@ final class ChoiceChallenge extends AbstractWstElement
         array $namespacedAttributes = []
     ) {
         $this->setRefId($refId);
-        $this->exactlyOne($exactlyOne);
+        $this->setExactlyOne($exactlyOne);
         $this->setLabel($label);
         $this->setChoice($choice);
         $this->setAttributesNS($namespacedAttributes);
@@ -145,7 +145,7 @@ final class ChoiceChallenge extends AbstractWstElement
         $choice = Choice::getChildrenOfClass($xml);
         Assert::maxCount($choice, 1, TooManyElementsException::class);
 
-        return new static($refId, $label, array_pop($choice), self::getAttributesNSFromXML($xml));
+        return new static($refId, $exactlyOne, $label, array_pop($choice), self::getAttributesNSFromXML($xml));
     }
 
 
