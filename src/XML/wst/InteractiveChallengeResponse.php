@@ -81,7 +81,7 @@ final class InteractiveChallengeResponse extends AbstractWstElement
      */
     public function isEmptyElement(): bool
     {
-        return is_null($this->elements) && empty($this->namespacedAttributes);
+        return empty($this->getElements()) && empty($this->getAttributesNS());
     }
 
 

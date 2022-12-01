@@ -134,7 +134,7 @@ final class Choice extends AbstractWstElement
             $e->setAttribute('Label', $this->getLabel());
         }
 
-        $this->getImage()->toXML($e);
+        $this->getImage()?->toXML($e);
 
         foreach ($this->getAttributesNS() as $attr) {
             $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);

@@ -86,8 +86,11 @@ final class Image extends AbstractWstElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('MimeType', $this->getMimeType());
         $e->textContent = $this->getContent();
+
+        if ($this->getMimeType() !== null) {
+            $e->setAttribute('MimeType', $this->getMimeType());
+        }
 
         return $e;
     }

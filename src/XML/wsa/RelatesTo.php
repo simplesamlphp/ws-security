@@ -106,7 +106,7 @@ final class RelatesTo extends AbstractWsaElement
         $e = $this->instantiateParentElement($parent);
 
         if ($this->getRelationshipType() !== null) {
-            $e->setAttribute('RelationshipType', $this->RelationshipType);
+            $e->setAttribute('RelationshipType', $this->getRelationshipType());
         }
 
         foreach ($this->getAttributesNS() as $attr) {

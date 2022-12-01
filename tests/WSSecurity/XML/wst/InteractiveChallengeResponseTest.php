@@ -88,7 +88,10 @@ final class InteractiveChallengeResponseTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $interactiveChallengeResponse = InteractiveChallengeResponse::fromXML($this->xmlRepresentation->documentElement);
+        $interactiveChallengeResponse = InteractiveChallengeResponse::fromXML(
+            $this->xmlRepresentation->documentElement
+        )
+;
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
             strval($interactiveChallengeResponse)

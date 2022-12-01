@@ -159,10 +159,11 @@ final class ChoiceChallenge extends AbstractWstElement
     {
         $e = $this->instantiateParentElement($parent);
         $e->setAttribute('RefId', $this->getRefId());
-        $e->setAttribute('ExactlyOne', $this->getExactlyOne());
+        $e->setAttribute('ExactlyOne', strval($this->getExactlyOne()));
 
-        if ($this->getLabel() !== null) {
-            $e->setAttribute('Label', $this->getLabel());
+        $label = $this->getLabel();
+        if ($label !== null) {
+            $e->setAttribute('Label', $label);
         }
 
         $this->getChoice()?->toXML($e);
