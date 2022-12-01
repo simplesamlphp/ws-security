@@ -85,7 +85,7 @@ final class ChoiceChallengeResponse extends AbstractWstElement
         $e = $this->instantiateParentElement($parent);
         $e->setAttribute('RefId', $this->refId);
 
-        foreach ($this->choiceSelected as $choiceSelected) {
+        foreach ($this->getChoiceSelected() as $choiceSelected) {
             $choiceSelected->toXML($e);
         }
 

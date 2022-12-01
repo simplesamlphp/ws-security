@@ -59,7 +59,7 @@ final class ChoiceSelected extends AbstractWstElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('RefId', $this->refId);
+        $e->setAttribute('RefId', $this->getRefId());
 
         return $e;
     }

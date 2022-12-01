@@ -130,13 +130,11 @@ final class Choice extends AbstractWstElement
         $e = $this->instantiateParentElement($parent);
         $e->setAttribute('RefId', $this->refId);
 
-        if ($this->label !== null) {
-            $e->setAttribute('Label', $this->label);
+        if ($this->getLabel() !== null) {
+            $e->setAttribute('Label', $this->getLabel());
         }
 
-        if ($this->image !== null) {
-            $this->image->toXML($e);
-        }
+        $this->getImage()->toXML($e);
 
         foreach ($this->getAttributesNS() as $attr) {
             $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);

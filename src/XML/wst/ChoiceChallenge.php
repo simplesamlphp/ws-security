@@ -158,16 +158,14 @@ final class ChoiceChallenge extends AbstractWstElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('RefId', $this->refId);
-        $e->setAttribute('ExactlyOne', $this->exactlyOne);
+        $e->setAttribute('RefId', $this->getRefId());
+        $e->setAttribute('ExactlyOne', $this->getExactlyOne());
 
-        if ($this->label !== null) {
-            $e->setAttribute('Label', $this->label);
+        if ($this->getLabel() !== null) {
+            $e->setAttribute('Label', $this->getLabel());
         }
 
-        if ($this->choice !== null) {
-            $this->choice->toXML($e);
-        }
+        $this->getChoice()?->toXML($e);
 
         foreach ($this->getAttributesNS() as $attr) {
             $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);

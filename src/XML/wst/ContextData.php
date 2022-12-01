@@ -75,7 +75,7 @@ final class ContextData extends AbstractWstElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('RefID', $this->refId);
+        $e->setAttribute('RefID', $this->getRefId());
 
         /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
         foreach ($this->getElements() as $elt) {

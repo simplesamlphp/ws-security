@@ -95,7 +95,7 @@ final class Metadata extends AbstractWsaElement
         }
 
         /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
-        foreach ($this->elements as $child) {
+        foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {
                 $child->toXML($e);
             }

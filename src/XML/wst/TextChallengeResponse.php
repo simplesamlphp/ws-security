@@ -71,7 +71,7 @@ final class TextChallengeResponse extends AbstractWstElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('RefId', $this->refId);
+        $e->setAttribute('RefId', $this->getRefId());
         $e->textContent = $this->getContent();
 
         foreach ($this->getAttributesNS() as $attr) {

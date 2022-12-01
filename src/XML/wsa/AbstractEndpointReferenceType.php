@@ -217,13 +217,13 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
             $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
         }
 
-        $this->address->toXML($e);
+        $this->getAddress()->toXML($e);
 
-        foreach ($this->referenceParameters as $referenceParameters) {
+        foreach ($this->getReferenceParameters() as $referenceParameters) {
             $referenceParameters->toXML($e);
         }
 
-        foreach ($this->metadata as $metadata) {
+        foreach ($this->getMetadata() as $metadata) {
             $metadata->toXML($e);
         }
 
