@@ -52,8 +52,8 @@ final class ProblemIRITest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:attr');
-        $attr1->value = 'value';
+        $attr1 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:attr1');
+        $attr1->value = 'value1';
 
         $problemIri = new ProblemIRI('https://login.microsoftonline.com/login.srf', [$attr1]);
 

@@ -55,8 +55,8 @@ final class MetadataTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:test:something', 'test:attr1');
-        $domAttr->value = 'testval1';
+        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:attr1');
+        $domAttr->value = 'value1';
 
         $metadata = new Metadata([new Chunk($this->metadataContent)], [$domAttr]);
         $this->assertFalse($metadata->isEmptyElement());
@@ -95,8 +95,7 @@ final class MetadataTest extends TestCase
         $this->assertCount(1, $attributes);
 
         $attribute = end($attributes);
-        $this->assertEquals('test:attr1', $attribute['qualifiedName']);
-        $this->assertEquals('urn:test:something', $attribute['namespaceURI']);
-        $this->assertEquals('testval1', $attribute['value']);
+        $this->assertEquals('ssp:attr1', $attribute['qualifiedName']);
+        $this->assertEquals('value1', $attribute['value']);
     }
 }

@@ -1,3 +1,14 @@
-<wsa:From xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr="value">
-  <wsa:Address ssp:test="value">https://login.microsoftonline.com/login.srf</wsa:Address>
+<wsa:From xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:test1="value1">
+  <wsa:Address ssp:test2="value2">https://login.microsoftonline.com/login.srf</wsa:Address>
+  <wsa:ReferenceParameters xmlns:wsa="http://www.w3.org/2005/08/addressing" ssp:test4="value4">
+    <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+      <m:Item>Pears</m:Item>
+    </m:GetPrice>
+  </wsa:ReferenceParameters>
+  <wsa:Metadata ssp:test3="value3">
+    <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+      <m:Item>Apples</m:Item>
+    </m:GetPrice>
+  </wsa:Metadata>
+  <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>
 </wsa:From>
