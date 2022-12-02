@@ -17,7 +17,10 @@ final class Image extends AbstractWstElement
 {
     use Base64ElementTrait;
 
-    /** @var string */
+    /**
+     * Even though the schema doesn't mark this as required, the 2012 errata does.
+     * @var string
+      */
     protected string $mimeType;
 
 
@@ -39,7 +42,7 @@ final class Image extends AbstractWstElement
      *
      * @return string
      */
-    public function getMimeType(): ?string
+    public function getMimeType(): string
     {
         return $this->mimeType;
     }
@@ -87,10 +90,7 @@ final class Image extends AbstractWstElement
     {
         $e = $this->instantiateParentElement($parent);
         $e->textContent = $this->getContent();
-
-        if ($this->getMimeType() !== null) {
-            $e->setAttribute('MimeType', $this->getMimeType());
-        }
+        $e->setAttribute('MimeType', $this->getMimeType());
 
         return $e;
     }
