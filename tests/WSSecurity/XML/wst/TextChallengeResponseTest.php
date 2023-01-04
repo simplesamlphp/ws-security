@@ -35,10 +35,10 @@ final class TextChallengeResponseTest extends TestCase
     {
         $this->testedClass = TextChallengeResponse::class;
 
-        $this->schema = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/schemas/ws-trust.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-trust.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wst_TextChallengeResponse.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wst_TextChallengeResponse.xml'
         );
     }
 

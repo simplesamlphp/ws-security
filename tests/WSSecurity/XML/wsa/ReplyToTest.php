@@ -51,10 +51,10 @@ final class ReplyToTest extends TestCase
     {
         $this->testedClass = ReplyTo::class;
 
-        $this->schema = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/schemas/ws-addr.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wsa_ReplyTo.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_ReplyTo.xml'
         );
 
         $this->referenceParametersContent = DOMDocumentFactory::fromString(

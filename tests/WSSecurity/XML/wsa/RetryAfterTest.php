@@ -35,10 +35,10 @@ final class RetryAfterTest extends TestCase
     {
         $this->testedClass = RetryAfter::class;
 
-        $this->schema = dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/schemas/ws-addr.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(dirname(dirname(dirname(__FILE__)))) . '/resources/xml/wsa_RetryAfter.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_RetryAfter.xml'
         );
     }
 
