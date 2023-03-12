@@ -7,10 +7,10 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -35,7 +35,7 @@ final class AddressTest extends TestCase
         $this->testedClass = Address::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_Address.xml'
+            dirname(__FILE__, 5) . '/resources/xml/wsa_Address.xml'
         );
     }
 

@@ -7,11 +7,11 @@ namespace SimpleSAML\Test\WSSecurity\XML\wst;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wst\TextChallengeResponse;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -35,10 +35,10 @@ final class TextChallengeResponseTest extends TestCase
     {
         $this->testedClass = TextChallengeResponse::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-trust.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-trust.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wst_TextChallengeResponse.xml'
+            dirname(__FILE__, 5) . '/resources/xml/wst_TextChallengeResponse.xml'
         );
     }
 

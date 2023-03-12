@@ -7,12 +7,12 @@ namespace SimpleSAML\Test\WSSecurity\XML\wst;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wst\ChoiceChallengeResponse;
 use SimpleSAML\WSSecurity\XML\wst\ChoiceSelected;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -36,10 +36,10 @@ final class ChoiceChallengeResponseTest extends TestCase
     {
         $this->testedClass = ChoiceChallengeResponse::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-trust.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-trust.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wst_ChoiceChallengeResponse.xml'
+            dirname(__FILE__, 5) . '/resources/xml/wst_ChoiceChallengeResponse.xml'
         );
     }
 

@@ -7,10 +7,10 @@ namespace SimpleSAML\Test\WSSecurity\XML\wst;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wst\ChoiceSelected;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -34,7 +34,7 @@ final class ChoiceSelectedTest extends TestCase
         $this->testedClass = ChoiceSelected::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wst_ChoiceSelected.xml'
+            dirname(__FILE__, 5) . '/resources/xml/wst_ChoiceSelected.xml'
         );
     }
 

@@ -7,8 +7,8 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -36,10 +36,10 @@ final class MessageIDTest extends TestCase
     {
         $this->testedClass = MessageID::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-addr.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_MessageID.xml'
+            dirname(__FILE__, 5) . '/resources/xml/wsa_MessageID.xml'
         );
     }
 
@@ -52,7 +52,7 @@ final class MessageIDTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = $this->xmlRepresentation->createAttributeNS(C::NS_SOAP_ENV, 'soapenv:mustUnderstand');
+        $attr1 = $this->xmlRepresentation->createAttributeNS(C::NS_SOAP_ENV_11, 'soapenv:mustUnderstand');
         $attr1->value = '1';
 
         $msgId = new MessageID('https://login.microsoftonline.com/login.srf', [$attr1]);

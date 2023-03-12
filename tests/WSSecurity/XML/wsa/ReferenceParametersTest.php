@@ -7,20 +7,20 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
 
 /**
- * Class \SimpleSAML\WSSecurity\XML\env\ReferenceParametersTest
+ * Class \SimpleSAML\WSSecurity\XML\wsa\ReferenceParametersTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\env\ReferenceParameters
- * @covers \SimpleSAML\WSSecurity\XML\env\AbstractWsaElement
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  *
  * @package tvdijen/ws-security
  */
@@ -39,10 +39,10 @@ final class ReferenceParametersTest extends TestCase
     {
         $this->testedClass = ReferenceParameters::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-addr.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_ReferenceParameters.xml'
+            dirname(__FILE__, 5) . '/resources/xml/wsa_ReferenceParameters.xml'
         );
 
         $this->referenceParametersContent = DOMDocumentFactory::fromString(

@@ -8,8 +8,6 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
@@ -17,6 +15,8 @@ use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
@@ -26,7 +26,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsa\EndpointReference
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstracWsaElement
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package tvdijen/ws-security
  */
 final class EndpointReferenceTest extends TestCase
@@ -51,10 +51,10 @@ final class EndpointReferenceTest extends TestCase
     {
         $this->testedClass = EndpointReference::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-addr.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_EndpointReference.xml'
+            dirname(__FILE__, 5) . '/resources/xml/wsa_EndpointReference.xml'
         );
 
         $this->referenceParametersContent = DOMDocumentFactory::fromString(

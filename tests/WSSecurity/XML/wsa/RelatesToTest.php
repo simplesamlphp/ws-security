@@ -7,19 +7,19 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\XML\wsa\RelatesTo;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
 
 /**
- * Class \SimpleSAML\WSSecurity\XML\env\RelatesToTest
+ * Class \SimpleSAML\WSSecurity\XML\wsa\RelatesToTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\env\RelatesTo
- * @covers \SimpleSAML\WSSecurity\XML\env\AbstractWsaElement
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\RelatesTo
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  *
  * @package tvdijen/ws-security
  */
@@ -34,10 +34,10 @@ final class RelatesToTest extends TestCase
     {
         $this->testedClass = RelatesTo::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-addr.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_RelatesTo.xml'
+            dirname(__FILE__, 5) . '/resources/xml/wsa_RelatesTo.xml'
         );
     }
 

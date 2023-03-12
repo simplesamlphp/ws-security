@@ -8,8 +8,8 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
@@ -51,10 +51,10 @@ final class ReplyToTest extends TestCase
     {
         $this->testedClass = ReplyTo::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-addr.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_ReplyTo.xml'
+            dirname(__FILE__, 5) . '/resources/xml/wsa_ReplyTo.xml'
         );
 
         $this->referenceParametersContent = DOMDocumentFactory::fromString(

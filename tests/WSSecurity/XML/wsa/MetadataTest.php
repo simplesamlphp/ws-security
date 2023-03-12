@@ -7,20 +7,20 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Test\XML\SchemaValidationTestTrait;
-use SimpleSAML\Test\XML\SerializableElementTestTrait;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;
 
 /**
- * Class \SimpleSAML\WSSecurity\XML\env\MetadataTest
+ * Class \SimpleSAML\WSSecurity\XML\wsa\MetadataTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\env\Metadata
- * @covers \SimpleSAML\WSSecurity\XML\env\AbstractWsaElement
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\Metadata
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  *
  * @package tvdijen/ws-security
  */
@@ -39,10 +39,10 @@ final class MetadataTest extends TestCase
     {
         $this->testedClass = Metadata::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/schemas/ws-addr.xsd';
+        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_Metadata.xml'
+            dirname(__FILE__, 5) . '/resources/xml/wsa_Metadata.xml'
         );
 
         $this->metadataContent = DOMDocumentFactory::fromString(
