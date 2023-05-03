@@ -15,8 +15,9 @@ use SimpleSAML\XML\ExtendableAttributesTrait;
 /**
  * Class representing WS-addressing ProblemActionType.
  *
- * You can extend the class without extending the constructor. Then you can use the methods available and the
- * class will generate an element with the same name as the extending class (e.g. \SimpleSAML\WSSecurity\wsa\ProblemAction).
+ * You can extend the class without extending the constructor. Then you can use the methods available and the class
+ * will generate an element with the same name as the extending class
+ * (e.g. \SimpleSAML\WSSecurity\wsa\ProblemAction).
  *
  * @package tvdijen/ws-security
  */

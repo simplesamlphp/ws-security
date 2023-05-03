@@ -15,8 +15,9 @@ use SimpleSAML\XML\StringElementTrait;
 /**
  * Class representing WS-addressing AttributedQNameType.
  *
- * You can extend the class without extending the constructor. Then you can use the methods available and the
- * class will generate an element with the same name as the extending class (e.g. \SimpleSAML\WSSecurity\wsa\ProblemHeaderQName).
+ * You can extend the class without extending the constructor. Then you can use the methods available and the class
+ * will generate an element with the same name as the extending class
+ * (e.g. \SimpleSAML\WSSecurity\wsa\ProblemHeaderQName).
  *
  * @package tvdijen/ws-security
  */
