@@ -42,7 +42,7 @@ final class ReferenceParametersTest extends TestCase
         $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/wsa_ReferenceParameters.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_ReferenceParameters.xml'
         );
 
         $this->referenceParametersContent = DOMDocumentFactory::fromString(

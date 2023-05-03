@@ -43,7 +43,7 @@ final class InteractiveChallengeResponseTest extends TestCase
         $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-trust.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/wst_InteractiveChallengeResponse.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wst_InteractiveChallengeResponse.xml'
         );
     }
 

@@ -35,7 +35,7 @@ final class ChoiceTest extends TestCase
         $this->testedClass = Choice::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/wst_Choice.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wst_Choice.xml'
         );
     }
 

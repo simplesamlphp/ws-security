@@ -35,7 +35,7 @@ final class AddressTest extends TestCase
         $this->testedClass = Address::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/wsa_Address.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_Address.xml'
         );
     }
 

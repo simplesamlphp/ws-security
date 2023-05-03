@@ -31,7 +31,7 @@ final class ImageTest extends TestCase
         $this->testedClass = Image::class;
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/wst_Image.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wst_Image.xml'
         );
     }
 

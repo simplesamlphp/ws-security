@@ -39,7 +39,7 @@ final class ProblemIRITest extends TestCase
         $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/wsa_ProblemIRI.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_ProblemIRI.xml'
         );
     }
 

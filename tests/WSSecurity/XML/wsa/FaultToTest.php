@@ -54,7 +54,7 @@ final class FaultToTest extends TestCase
         $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 5) . '/resources/xml/wsa_FaultTo.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_FaultTo.xml'
         );
 
         $this->referenceParametersContent = DOMDocumentFactory::fromString(

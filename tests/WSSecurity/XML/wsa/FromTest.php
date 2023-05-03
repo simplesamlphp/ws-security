@@ -54,7 +54,7 @@ final class FromTest extends TestCase
         $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         $this->xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 5) . '/resources/xml/wsa_From.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_From.xml'
         );
 
         $this->referenceParametersContent = DOMDocumentFactory::fromString(
