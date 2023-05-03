@@ -6,9 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\WSSecurity\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Constants;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\StringElementTrait;
 
@@ -53,7 +53,7 @@ abstract class AbstractAttributedURIType extends AbstractWsaElement
      */
     protected function validateContent(string $content): void
     {
-        Assert::validURI($content, ProtocolViolationException::class);
+        Assert::validURI($content, SchemaViolationException::class);
     }
 
 

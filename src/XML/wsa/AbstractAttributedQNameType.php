@@ -51,7 +51,7 @@ abstract class AbstractAttributedQNameType extends AbstractWsaElement
      */
     protected function validateContent(string $content): void
     {
-        Assert::validQName($content);
+        Assert::validQName($content, SchemaViolationException::class);
     }
 
 
