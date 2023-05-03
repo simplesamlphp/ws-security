@@ -1,0 +1,4 @@
+<wsa:ProblemAction xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:test="value">
+  <wsa:Action ssp:test="value">https://login.microsoftonline.com/login.srf</wsa:Action>
+  <wsa:SoapAction>http://www.example.com/</wsa:SoapAction>
+</wsa:ProblemAction>
