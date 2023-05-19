@@ -73,7 +73,6 @@ final class Image extends AbstractWstElement
         Assert::same($xml->localName, 'Image', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Image::NS, InvalidDOMElementException::class);
 
-        /** @psalm-var string $mimeType */
         $mimeType = self::getAttribute($xml, 'MimeType');
 
         return new static($xml->textContent, $mimeType);

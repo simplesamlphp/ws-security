@@ -21,8 +21,8 @@ final class ContextData extends AbstractWstElement
     use ExtendableElementTrait;
     use ReferenceIdentifierTrait;
 
-    /** @var string|array */
-    public const NAMESPACE = C::XS_ANY_NS_ANY;
+    /** The namespace-attribute for the xs:any element */
+    public const XS_ANY_ELT_NAMESPACE = C::XS_ANY_NS_ANY;
 
 
     /**
@@ -52,7 +52,6 @@ final class ContextData extends AbstractWstElement
         Assert::same($xml->localName, 'ContextData', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ContextData::NS, InvalidDOMElementException::class);
 
-        /** @psalm-var string $refId */
         $refId = self::getAttribute($xml, 'RefID');
 
         $children = [];

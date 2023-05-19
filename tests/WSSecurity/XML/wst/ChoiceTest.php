@@ -10,6 +10,7 @@ use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wst\Choice;
 use SimpleSAML\WSSecurity\XML\wst\Image;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
@@ -48,8 +49,7 @@ final class ChoiceTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'test:attr1');
-        $domAttr->value = 'testval1';
+        $domAttr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
 
         $choice = new Choice(
             'urn:x-simplesamlphp:namespace', // RefID

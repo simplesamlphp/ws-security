@@ -33,7 +33,10 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     use ExtendableElementTrait;
 
     /** The namespace-attribute for the xs:any element */
-    public const NAMESPACE = C::XS_ANY_NS_OTHER;
+    public const XS_ANY_ELT_NAMESPACE = C::XS_ANY_NS_OTHER;
+
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
 
     /**
@@ -65,7 +68,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
      * @param \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters[] $referenceParameters
      * @param \SimpleSAML\WSSecurity\XML\wsa\Metadata[] $metadata
      * @param \SimpleSAML\XML\Chunk[] $children
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException
      */
@@ -214,7 +217,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
         $e = parent::instantiateParentElement($parent);
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         $this->getAddress()->toXML($e);

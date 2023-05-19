@@ -11,6 +11,7 @@ use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function dirname;
@@ -52,10 +53,8 @@ final class MessageIDTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = $this->xmlRepresentation->createAttributeNS(C::NS_SOAP_ENV_11, 'soapenv:mustUnderstand');
-        $attr1->value = '1';
-
-        $msgId = new MessageID('https://login.microsoftonline.com/login.srf', [$attr1]);
+        $attr1 = new Attribute(C::NS_SOAP_ENV_11, 'soapenv', 'mustUnderstand', '1');
+        $msgId = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$attr1]);
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),

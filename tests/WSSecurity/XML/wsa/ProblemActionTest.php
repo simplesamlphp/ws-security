@@ -11,6 +11,7 @@ use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\Action;
 use SimpleSAML\WSSecurity\XML\wsa\ProblemAction;
 use SimpleSAML\WSSecurity\XML\wsa\SoapAction;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -54,8 +55,7 @@ final class ProblemActionTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:test');
-        $attr1->value = 'value';
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', 'value');
 
         $problemAction = new ProblemAction(
             new Action('https://login.microsoftonline.com/login.srf', [$attr1]),

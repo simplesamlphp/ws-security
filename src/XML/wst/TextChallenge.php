@@ -6,6 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -21,6 +22,9 @@ final class TextChallenge extends AbstractWstElement
 {
     use ExtendableAttributesTrait;
     use ReferenceIdentifierTrait;
+
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
     /** @var string|null */
     protected ?string $label;
@@ -43,7 +47,7 @@ final class TextChallenge extends AbstractWstElement
      * @param int|null $maxLen
      * @param bool|null $hideText
      * @param \SimpleSAML\WSSecurity\XML\wst\Image|null $image
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
         string $refId,
@@ -164,11 +168,10 @@ final class TextChallenge extends AbstractWstElement
         Assert::same($xml->localName, 'TextChallenge', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, TextChallenge::NS, InvalidDOMElementException::class);
 
-        /** @psalm-var string $refId */
         $refId = self::getAttribute($xml, 'RefID');
-        $label = self::getAttribute($xml, 'Label', null);
-        $maxLen = self::getIntegerAttribute($xml, 'MaxLen', null);
-        $hideText = self::getBooleanAttribute($xml, 'HideText', null);
+        $label = self::getOptionalAttribute($xml, 'Label', null);
+        $maxLen = self::getOptionalIntegerAttribute($xml, 'MaxLen', null);
+        $hideText = self::getOptionalBooleanAttribute($xml, 'HideText', null);
 
         $image = Image::getChildrenOfClass($xml);
         Assert::maxCount($image, 1, TooManyElementsException::class);
@@ -188,9 +191,8 @@ final class TextChallenge extends AbstractWstElement
         $e = $this->instantiateParentElement($parent);
         $e->setAttribute('RefID', $this->getRefId());
 
-        $label = $this->getLabel();
-        if ($label !== null) {
-            $e->setAttribute('Label', $label);
+        if ($this->getLabel() !== null) {
+            $e->setAttribute('Label', $this->getLabel());
         }
 
         $e->setAttribute('MaxLen', strval($this->getMaxLen()));
@@ -199,7 +201,7 @@ final class TextChallenge extends AbstractWstElement
         $this->getImage()?->toXML($e);
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         return $e;

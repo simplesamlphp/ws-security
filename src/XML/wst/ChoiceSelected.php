@@ -43,7 +43,6 @@ final class ChoiceSelected extends AbstractWstElement
         Assert::same($xml->localName, 'ChoiceSelected', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ChoiceSelected::NS, InvalidDOMElementException::class);
 
-        /** @psalm-var string $refId */
         $refId = self::getAttribute($xml, 'RefId');
 
         return new static($refId);

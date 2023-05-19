@@ -67,7 +67,6 @@ final class ChoiceChallengeResponse extends AbstractWstElement
         Assert::same($xml->localName, 'ChoiceChallengeResponse', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ChoiceChallengeResponse::NS, InvalidDOMElementException::class);
 
-        /** @psalm-var string $refId */
         $refId = self::getAttribute($xml, 'RefId');
 
         return new static($refId, ChoiceSelected::getChildrenOfClass($xml));

@@ -6,7 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Constants;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -27,15 +27,15 @@ abstract class AbstractAttributedURIType extends AbstractWsaElement
     use ExtendableAttributesTrait;
     use StringElementTrait;
 
-    /** The namespace-attribute for the xs:any element */
-    public const NAMESPACE = Constants::XS_ANY_NS_OTHER;
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
 
     /**
      * AbstractAttributedURIType constructor.
      *
      * @param string $value The localized string.
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(string $value, array $namespacedAttributes = [])
     {
@@ -87,7 +87,7 @@ abstract class AbstractAttributedURIType extends AbstractWsaElement
         $e->textContent = $this->getContent();
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         return $e;

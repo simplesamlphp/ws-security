@@ -6,6 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -21,6 +22,9 @@ final class RelatesTo extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
 
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
+
     /** @param string|null $RelationshipType */
     protected ?string $RelationshipType;
 
@@ -29,7 +33,7 @@ final class RelatesTo extends AbstractWsaElement
      * Initialize a wsa:RelatesTo
      *
      * @param string|null $RelationshipType
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
         ?string $RelationshipType = 'http://www.w3.org/2005/08/addressing/reply',
@@ -89,7 +93,7 @@ final class RelatesTo extends AbstractWsaElement
         Assert::same($xml->namespaceURI, RelatesTo::NS, InvalidDOMElementException::class);
 
         return new static(
-            self::getAttribute($xml, 'RelationshipType', null),
+            self::getOptionalAttribute($xml, 'RelationshipType', null),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -110,7 +114,7 @@ final class RelatesTo extends AbstractWsaElement
         }
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         return $e;

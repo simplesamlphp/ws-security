@@ -6,11 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\StringElementTrait;
-use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\ReferenceIdentifierTrait;
 
 /**
@@ -22,8 +22,8 @@ final class TextChallengeResponse extends AbstractWstElement
     use ReferenceIdentifierTrait;
     use StringElementTrait;
 
-    /** The namespace-attribute for the xs:any element */
-    public const NAMESPACE = C::XS_ANY_NS_ANY;
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
 
     /**
@@ -31,7 +31,7 @@ final class TextChallengeResponse extends AbstractWstElement
      *
      * @param string $value
      * @param string $refId
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(string $value, string $refId, array $namespacedAttributes = [])
     {
@@ -55,7 +55,6 @@ final class TextChallengeResponse extends AbstractWstElement
         Assert::same($xml->localName, 'TextChallengeResponse', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, TextChallengeResponse::NS, InvalidDOMElementException::class);
 
-        /** @psalm-var string $refId */
         $refId = self::getAttribute($xml, 'RefId');
 
         return new static($xml->textContent, $refId, self::getAttributesNSFromXML($xml));
@@ -75,7 +74,7 @@ final class TextChallengeResponse extends AbstractWstElement
         $e->textContent = $this->getContent();
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         return $e;

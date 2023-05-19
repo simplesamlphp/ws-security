@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wst\ChoiceSelected;
 use SimpleSAML\WSSecurity\XML\wst\ContextData;
 use SimpleSAML\WSSecurity\XML\wst\InteractiveChallengeResponse;
 use SimpleSAML\WSSecurity\XML\wst\TextChallengeResponse;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -56,8 +57,7 @@ final class InteractiveChallengeResponseTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'test:attr1');
-        $domAttr->value = 'testval1';
+        $domAttr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
 
         $textChallengeResponse = new TextChallengeResponse('654321', C::WST_REFID_PIN, [$domAttr]);
         $choiceChallengeResponse = new ChoiceChallengeResponse(

@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -81,14 +82,10 @@ final class EndpointReferenceTest extends TestCase
     {
         $doc = DOMDocumentFactory::fromString('<root/>');
 
-        $attr1 = $doc->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:test1');
-        $attr1->value = 'value1';
-        $attr2 = $doc->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:test2');
-        $attr2->value = 'value2';
-        $attr3 = $doc->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:test3');
-        $attr3->value = 'value3';
-        $attr4 = $doc->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:test4');
-        $attr4->value = 'value4';
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', 'value1');
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', 'value2');
+        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', 'value3');
+        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', 'value4');
 
         $referenceParameters = new ReferenceParameters([new Chunk($this->referenceParametersContent)], [$attr4]);
         $metadata = new Metadata([new Chunk($this->metadataContent)], [$attr3]);

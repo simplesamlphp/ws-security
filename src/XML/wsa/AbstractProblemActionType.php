@@ -6,7 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Constants;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -25,8 +25,8 @@ abstract class AbstractProblemActionType extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
 
-    /** The namespace-attribute for the xs:any element */
-    public const NAMESPACE = Constants::XS_ANY_NS_OTHER;
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
 
     /**
@@ -34,7 +34,7 @@ abstract class AbstractProblemActionType extends AbstractWsaElement
      *
      * @param \SimpleSAML\WSSecurity\XML\wsa\Action|null $action
      * @param \SimpleSAML\WSSecurity\XML\wsa\SoapAction|null $soapAction
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?Action $action = null,
@@ -70,7 +70,7 @@ abstract class AbstractProblemActionType extends AbstractWsaElement
         $this->soapAction?->toXML($e);
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         return $e;

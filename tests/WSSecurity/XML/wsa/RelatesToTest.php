@@ -8,6 +8,7 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\RelatesTo;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -46,8 +47,7 @@ final class RelatesToTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:test:something', 'test:attr1');
-        $domAttr->value = 'testval1';
+        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
         $relatesTo = new RelatesTo('http://www.w3.org/2005/08/addressing/reply', [$domAttr]);
         $this->assertFalse($relatesTo->isEmptyElement());
@@ -83,9 +83,15 @@ final class RelatesToTest extends TestCase
         $attributes = $relatesTo->getAttributesNS();
         $this->assertCount(1, $attributes);
 
-        $attribute = end($attributes);
-        $this->assertEquals('test:attr1', $attribute['qualifiedName']);
-        $this->assertEquals('urn:test:something', $attribute['namespaceURI']);
-        $this->assertEquals('testval1', $attribute['value']);
+        $attribute = array_pop($attributes);
+        $this->assertEquals(
+            [
+                'namespaceURI' => 'urn:test:something',
+                'namespacePrefix' => 'test',
+                'attrName' => 'attr1',
+                'attrValue' => 'testval1',
+            ],
+            $attribute->toArray(),
+        );
     }
 }

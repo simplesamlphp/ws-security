@@ -6,6 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -22,6 +23,9 @@ final class Choice extends AbstractWstElement
     use ExtendableAttributesTrait;
     use ReferenceIdentifierTrait;
 
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
+
     /** @var string|null */
     protected ?string $label;
 
@@ -35,7 +39,7 @@ final class Choice extends AbstractWstElement
      * @param string $refId
      * @param string|null $label
      * @param \SimpleSAML\WSSecurity\XML\wst\Image|null $image
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
         string $refId,
@@ -108,9 +112,8 @@ final class Choice extends AbstractWstElement
         Assert::same($xml->localName, 'Choice', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Choice::NS, InvalidDOMElementException::class);
 
-        /** @psalm-var string $refId */
         $refId = self::getAttribute($xml, 'RefId');
-        $label = self::getAttribute($xml, 'Label', null);
+        $label = self::getOptionalAttribute($xml, 'Label', null);
 
         $image = Image::getChildrenOfClass($xml);
         Assert::maxCount($image, 1, TooManyElementsException::class);
@@ -137,7 +140,7 @@ final class Choice extends AbstractWstElement
         $this->getImage()?->toXML($e);
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         return $e;

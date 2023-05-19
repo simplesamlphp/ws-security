@@ -8,6 +8,7 @@ use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\WSSecurity\XML\wsa\RetryAfter;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -51,10 +52,8 @@ final class RetryAfterTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:test');
-        $attr1->value = 'value';
-
-        $retryAfter = new RetryAfter('1234567890', [$attr1]);
+        $attr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', 'value');
+        $retryAfter = new RetryAfter('1234567890', [$attr]);
 
         $this->assertEquals(
             $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),

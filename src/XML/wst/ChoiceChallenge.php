@@ -39,7 +39,7 @@ final class ChoiceChallenge extends AbstractWstElement
      * @param bool $exactlyOne
      * @param string|null $label
      * @param \SimpleSAML\WSSecurity\XML\wst\Choice|null $choice
-     * @param \DOMAttr[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
         string $refId,
@@ -136,9 +136,7 @@ final class ChoiceChallenge extends AbstractWstElement
         Assert::same($xml->localName, 'ChoiceChallenge', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ChoiceChallenge::NS, InvalidDOMElementException::class);
 
-        /** @psalm-var string $refId */
         $refId = self::getAttribute($xml, 'RefId');
-        /** @psalm-var bool $exactlyOne */
         $exactlyOne = self::getBooleanAttribute($xml, 'ExactlyOne');
         $label = self::getAttribute($xml, 'Label', null);
 
@@ -169,7 +167,7 @@ final class ChoiceChallenge extends AbstractWstElement
         $this->getChoice()?->toXML($e);
 
         foreach ($this->getAttributesNS() as $attr) {
-            $e->setAttributeNS($attr['namespaceURI'], $attr['qualifiedName'], $attr['value']);
+            $attr->toXML($e);
         }
 
         return $e;

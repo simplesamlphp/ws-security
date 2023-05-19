@@ -8,6 +8,7 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -55,8 +56,7 @@ final class MetadataTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:x-simplesamlphp:namespace', 'ssp:attr1');
-        $domAttr->value = 'value1';
+        $domAttr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'value1');
 
         $metadata = new Metadata([new Chunk($this->metadataContent)], [$domAttr]);
         $this->assertFalse($metadata->isEmptyElement());
@@ -94,8 +94,15 @@ final class MetadataTest extends TestCase
         $attributes = $metadata->getAttributesNS();
         $this->assertCount(1, $attributes);
 
-        $attribute = end($attributes);
-        $this->assertEquals('ssp:attr1', $attribute['qualifiedName']);
-        $this->assertEquals('value1', $attribute['value']);
+        $attribute = array_pop($attributes);
+        $this->assertEquals(
+            [
+                'namespaceURI' => 'urn:x-simplesamlphp:namespace',
+                'namespacePrefix' => 'ssp',
+                'attrName' => 'attr1',
+                'attrValue' => 'value1',
+            ],
+            $attribute->toArray(),
+        );
     }
 }

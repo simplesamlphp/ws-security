@@ -8,6 +8,7 @@ use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
+use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -55,8 +56,7 @@ final class ReferenceParametersTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = $this->xmlRepresentation->createAttributeNS('urn:test:something', 'test:attr1');
-        $domAttr->value = 'testval1';
+        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
         $referenceParameters = new ReferenceParameters([new Chunk($this->referenceParametersContent)], [$domAttr]);
         $this->assertFalse($referenceParameters->isEmptyElement());
@@ -94,9 +94,15 @@ final class ReferenceParametersTest extends TestCase
         $attributes = $referenceParameters->getAttributesNS();
         $this->assertCount(1, $attributes);
 
-        $attribute = end($attributes);
-        $this->assertEquals('test:attr1', $attribute['qualifiedName']);
-        $this->assertEquals('urn:test:something', $attribute['namespaceURI']);
-        $this->assertEquals('testval1', $attribute['value']);
+        $attribute = array_pop($attributes);
+        $this->assertEquals(
+            [
+                'namespaceURI' => 'urn:test:something',
+                'namespacePrefix' => 'test',
+                'attrName' => 'attr1',
+                'attrValue' => 'testval1',
+            ],
+            $attribute->toArray(),
+        );
     }
 }
