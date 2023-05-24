@@ -32,13 +32,13 @@ final class RetryAfterTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = RetryAfter::class;
+        self::$testedClass = RetryAfter::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_RetryAfter.xml'
         );
     }
@@ -56,7 +56,7 @@ final class RetryAfterTest extends TestCase
         $retryAfter = new RetryAfter('1234567890', [$attr]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($retryAfter)
         );
     }
@@ -70,10 +70,10 @@ final class RetryAfterTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $RetryAfter = RetryAfter::fromXML($this->xmlRepresentation->documentElement);
+        $RetryAfter = RetryAfter::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($RetryAfter)
         );
     }

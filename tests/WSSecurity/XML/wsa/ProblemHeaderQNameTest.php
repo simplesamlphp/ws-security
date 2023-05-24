@@ -33,13 +33,13 @@ final class ProblemHeaderQNameTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = ProblemHeaderQName::class;
+        self::$testedClass = ProblemHeaderQName::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_ProblemHeaderQName.xml'
         );
     }
@@ -58,7 +58,7 @@ final class ProblemHeaderQNameTest extends TestCase
         $problemHeaderQName = new ProblemHeaderQName('wsa:Action', [$attr1]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($problemHeaderQName)
         );
     }
@@ -72,9 +72,9 @@ final class ProblemHeaderQNameTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $problemHeaderQName = ProblemHeaderQName::fromXML($this->xmlRepresentation->documentElement);
+        $problemHeaderQName = ProblemHeaderQName::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($problemHeaderQName)
         );
     }

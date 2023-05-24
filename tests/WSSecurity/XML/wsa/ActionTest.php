@@ -33,13 +33,13 @@ final class ActionTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Action::class;
+        self::$testedClass = Action::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_Action.xml'
         );
     }
@@ -57,7 +57,7 @@ final class ActionTest extends TestCase
         $action = new Action('https://login.microsoftonline.com/login.srf', [$attr1]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($action)
         );
     }
@@ -71,9 +71,9 @@ final class ActionTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $action = Action::fromXML($this->xmlRepresentation->documentElement);
+        $action = Action::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($action)
         );
     }

@@ -31,22 +31,22 @@ final class MetadataTest extends TestCase
     use SerializableElementTestTrait;
 
     /** @var \DOMElement $MetadataContent */
-    private DOMElement $metadataContent;
+    private static DOMElement $metadataContent;
 
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Metadata::class;
+        self::$testedClass = Metadata::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_Metadata.xml'
         );
 
-        $this->metadataContent = DOMDocumentFactory::fromString(
+        self::$metadataContent = DOMDocumentFactory::fromString(
             '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
         )->documentElement;
     }
@@ -58,11 +58,11 @@ final class MetadataTest extends TestCase
     {
         $domAttr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'value1');
 
-        $metadata = new Metadata([new Chunk($this->metadataContent)], [$domAttr]);
+        $metadata = new Metadata([new Chunk(self::$metadataContent)], [$domAttr]);
         $this->assertFalse($metadata->isEmptyElement());
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($metadata)
         );
     }
@@ -85,7 +85,7 @@ final class MetadataTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $metadata = Metadata::fromXML($this->xmlRepresentation->documentElement);
+        $metadata = Metadata::fromXML(self::$xmlRepresentation->documentElement);
 
         $elements = $metadata->getElements();
         $this->assertFalse($metadata->isEmptyElement());

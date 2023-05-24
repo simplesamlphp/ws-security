@@ -33,13 +33,13 @@ final class TitleTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Title::class;
+        self::$testedClass = Title::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-trust.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-trust.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wst_Title.xml'
         );
     }
@@ -58,7 +58,7 @@ final class TitleTest extends TestCase
         $title = new Title('phpunit', [$attr1]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($title)
         );
     }
@@ -72,9 +72,9 @@ final class TitleTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $title = Title::fromXML($this->xmlRepresentation->documentElement);
+        $title = Title::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($title)
         );
     }

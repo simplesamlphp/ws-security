@@ -31,22 +31,22 @@ final class ReferenceParametersTest extends TestCase
     use SerializableElementTestTrait;
 
     /** @var \DOMElement $referenceParametersContent */
-    private DOMElement $referenceParametersContent;
+    private static DOMElement $referenceParametersContent;
 
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = ReferenceParameters::class;
+        self::$testedClass = ReferenceParameters::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_ReferenceParameters.xml'
         );
 
-        $this->referenceParametersContent = DOMDocumentFactory::fromString(
+        self::$referenceParametersContent = DOMDocumentFactory::fromString(
             '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
         )->documentElement;
     }
@@ -58,11 +58,11 @@ final class ReferenceParametersTest extends TestCase
     {
         $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
-        $referenceParameters = new ReferenceParameters([new Chunk($this->referenceParametersContent)], [$domAttr]);
+        $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)], [$domAttr]);
         $this->assertFalse($referenceParameters->isEmptyElement());
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($referenceParameters)
         );
     }
@@ -85,7 +85,7 @@ final class ReferenceParametersTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $referenceParameters = ReferenceParameters::fromXML($this->xmlRepresentation->documentElement);
+        $referenceParameters = ReferenceParameters::fromXML(self::$xmlRepresentation->documentElement);
 
         $elements = $referenceParameters->getElements();
         $this->assertFalse($referenceParameters->isEmptyElement());

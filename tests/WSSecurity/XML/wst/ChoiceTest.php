@@ -31,11 +31,11 @@ final class ChoiceTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Choice::class;
+        self::$testedClass = Choice::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wst_Choice.xml'
         );
     }
@@ -62,7 +62,7 @@ final class ChoiceTest extends TestCase
         );
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($choice)
         );
     }
@@ -76,9 +76,9 @@ final class ChoiceTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $choice = Choice::fromXML($this->xmlRepresentation->documentElement);
+        $choice = Choice::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($choice)
         );
     }

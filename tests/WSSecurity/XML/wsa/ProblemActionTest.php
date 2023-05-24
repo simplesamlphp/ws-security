@@ -35,13 +35,13 @@ final class ProblemActionTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = ProblemAction::class;
+        self::$testedClass = ProblemAction::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_ProblemAction.xml'
         );
     }
@@ -64,7 +64,7 @@ final class ProblemActionTest extends TestCase
         );
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($problemAction)
         );
     }
@@ -93,9 +93,9 @@ final class ProblemActionTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $problemAction = ProblemAction::fromXML($this->xmlRepresentation->documentElement);
+        $problemAction = ProblemAction::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($problemAction)
         );
     }

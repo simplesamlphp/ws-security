@@ -14,7 +14,7 @@
         "ext-spl": "*",
 
         "simplesamlphp/assert": "^1.0.4",
-        "simplesamlphp/xml-common": "^1.9.1",
+        "simplesamlphp/xml-common": "^1.10",
         "simplesamlphp/xml-security": "^1.6.3"
     },
     "require-dev": {

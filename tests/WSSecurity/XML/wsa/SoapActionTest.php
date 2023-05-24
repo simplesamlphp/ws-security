@@ -29,11 +29,11 @@ final class SoapActionTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = SoapAction::class;
+        self::$testedClass = SoapAction::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_SoapAction.xml'
         );
     }
@@ -50,7 +50,7 @@ final class SoapActionTest extends TestCase
         $soapAction = new SoapAction('http://www.example.com/');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($soapAction)
         );
     }
@@ -64,9 +64,9 @@ final class SoapActionTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $soapAction = SoapAction::fromXML($this->xmlRepresentation->documentElement);
+        $soapAction = SoapAction::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($soapAction)
         );
     }

@@ -26,11 +26,11 @@ final class ImageTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Image::class;
+        self::$testedClass = Image::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wst_Image.xml'
         );
     }
@@ -50,7 +50,7 @@ final class ImageTest extends TestCase
         );
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($image)
         );
     }
@@ -64,9 +64,9 @@ final class ImageTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $image = Image::fromXML($this->xmlRepresentation->documentElement);
+        $image = Image::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($image)
         );
     }

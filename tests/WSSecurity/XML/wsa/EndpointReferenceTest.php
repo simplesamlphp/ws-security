@@ -35,38 +35,37 @@ final class EndpointReferenceTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
-
     /** @var \DOMElement $referenceParametersContent */
-    protected DOMElement $referenceParametersContent;
+    protected static DOMElement $referenceParametersContent;
 
     /** @var \DOMElement $metadataContent */
-    protected DOMElement $metadataContent;
+    protected static DOMElement $metadataContent;
 
     /** @var \DOMElement $customContent */
-    protected DOMElement $customContent;
+    protected static DOMElement $customContent;
 
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = EndpointReference::class;
+        self::$testedClass = EndpointReference::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::FromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::FromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_EndpointReference.xml'
         );
 
-        $this->referenceParametersContent = DOMDocumentFactory::fromString(
+        self::$referenceParametersContent = DOMDocumentFactory::fromString(
             '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Pears</m:Item></m:GetPrice>'
         )->documentElement;
 
-        $this->metadataContent = DOMDocumentFactory::fromString(
+        self::$metadataContent = DOMDocumentFactory::fromString(
             '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
         )->documentElement;
 
-        $this->customContent = DOMDocumentFactory::fromString(
+        self::$customContent = DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>'
         )->documentElement;
     }
@@ -87,9 +86,9 @@ final class EndpointReferenceTest extends TestCase
         $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', 'value3');
         $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', 'value4');
 
-        $referenceParameters = new ReferenceParameters([new Chunk($this->referenceParametersContent)], [$attr4]);
-        $metadata = new Metadata([new Chunk($this->metadataContent)], [$attr3]);
-        $chunk = new Chunk($this->customContent);
+        $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)], [$attr4]);
+        $metadata = new Metadata([new Chunk(self::$metadataContent)], [$attr3]);
+        $chunk = new Chunk(self::$customContent);
 
         $endpointReference = new EndpointReference(
             new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
@@ -100,7 +99,7 @@ final class EndpointReferenceTest extends TestCase
         );
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($endpointReference)
         );
     }
@@ -114,9 +113,9 @@ final class EndpointReferenceTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $endpointReference = EndpointReference::fromXML($this->xmlRepresentation->documentElement);
+        $endpointReference = EndpointReference::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($endpointReference)
         );
     }

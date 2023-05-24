@@ -32,13 +32,13 @@ final class ContextDataTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = ContextData::class;
+        self::$testedClass = ContextData::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-trust.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-trust.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wst_ContextData.xml'
         );
     }
@@ -58,7 +58,7 @@ final class ContextDataTest extends TestCase
         $contextData = new ContextData('urn:x-simplesamlphp:namespace', [$chunk]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($contextData)
         );
     }
@@ -72,10 +72,10 @@ final class ContextDataTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $contextData = ContextData::fromXML($this->xmlRepresentation->documentElement);
+        $contextData = ContextData::fromXML(self::$xmlRepresentation->documentElement);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($contextData)
         );
     }

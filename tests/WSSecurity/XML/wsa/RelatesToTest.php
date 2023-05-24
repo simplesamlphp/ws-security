@@ -31,13 +31,13 @@ final class RelatesToTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = RelatesTo::class;
+        self::$testedClass = RelatesTo::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_RelatesTo.xml'
         );
     }
@@ -53,7 +53,7 @@ final class RelatesToTest extends TestCase
         $this->assertFalse($relatesTo->isEmptyElement());
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($relatesTo)
         );
     }
@@ -76,7 +76,7 @@ final class RelatesToTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $relatesTo = RelatesTo::fromXML($this->xmlRepresentation->documentElement);
+        $relatesTo = RelatesTo::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertFalse($relatesTo->isEmptyElement());
         $this->assertEquals('http://www.w3.org/2005/08/addressing/reply', $relatesTo->getRelationshipType());
 

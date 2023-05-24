@@ -29,11 +29,11 @@ final class ChoiceSelectedTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = ChoiceSelected::class;
+        self::$testedClass = ChoiceSelected::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wst_ChoiceSelected.xml'
         );
     }
@@ -50,7 +50,7 @@ final class ChoiceSelectedTest extends TestCase
         $choiceSelected = new ChoiceSelected('urn:x-simplesamlphp:namespace');
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($choiceSelected)
         );
     }
@@ -64,9 +64,9 @@ final class ChoiceSelectedTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $choiceSelected = ChoiceSelected::fromXML($this->xmlRepresentation->documentElement);
+        $choiceSelected = ChoiceSelected::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($choiceSelected)
         );
     }

@@ -33,13 +33,13 @@ final class ProblemIRITest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = ProblemIRI::class;
+        self::$testedClass = ProblemIRI::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_ProblemIRI.xml'
         );
     }
@@ -58,7 +58,7 @@ final class ProblemIRITest extends TestCase
         $problemIri = new ProblemIRI('https://login.microsoftonline.com/login.srf', [$attr1]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($problemIri)
         );
     }
@@ -72,9 +72,9 @@ final class ProblemIRITest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $problemIri = ProblemIRI::fromXML($this->xmlRepresentation->documentElement);
+        $problemIri = ProblemIRI::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($problemIri)
         );
     }

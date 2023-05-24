@@ -32,13 +32,13 @@ final class TextChallengeResponseTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = TextChallengeResponse::class;
+        self::$testedClass = TextChallengeResponse::class;
 
-        $this->schema = dirname(__FILE__, 5) . '/resources/schemas/ws-trust.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-trust.xsd';
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wst_TextChallengeResponse.xml'
         );
     }
@@ -57,7 +57,7 @@ final class TextChallengeResponseTest extends TestCase
         $textChallengeResponse = new TextChallengeResponse('654321', C::WST_REFID_PIN, [$domAttr]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($textChallengeResponse)
         );
     }
@@ -71,9 +71,9 @@ final class TextChallengeResponseTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $textChallengeResponse = TextChallengeResponse::fromXML($this->xmlRepresentation->documentElement);
+        $textChallengeResponse = TextChallengeResponse::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($textChallengeResponse)
         );
     }

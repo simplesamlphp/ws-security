@@ -31,11 +31,11 @@ final class AddressTest extends TestCase
 
     /**
      */
-    protected function setUp(): void
+    public static function setUpBeforeClass(): void
     {
-        $this->testedClass = Address::class;
+        self::$testedClass = Address::class;
 
-        $this->xmlRepresentation = DOMDocumentFactory::fromFile(
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa_Address.xml'
         );
     }
@@ -53,7 +53,7 @@ final class AddressTest extends TestCase
         $address = new Address('https://login.microsoftonline.com/login.srf', [$attr1]);
 
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($address)
         );
     }
@@ -67,9 +67,9 @@ final class AddressTest extends TestCase
      */
     public function testUnmarshalling(): void
     {
-        $address = Address::fromXML($this->xmlRepresentation->documentElement);
+        $address = Address::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
-            $this->xmlRepresentation->saveXML($this->xmlRepresentation->documentElement),
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($address)
         );
     }
