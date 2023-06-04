@@ -127,13 +127,8 @@ abstract class AbstractTimestamp extends AbstractWsuElement
         }
 
         $Id = null;
-        $attributes = [];
-        foreach (self::getAttributesNSFromXML($xml) as $attr) {
-            if ($attr->getNamespaceURI() !== static::NS) {
-                $attributes[] = $attr;
-            } elseif ($attr->getAttrName() === 'Id') {
-                $Id = $attr->getAttrValue();
-            }
+        if ($xml->hasAttributeNS(static::NS, 'Id')) {
+            $Id = $xml->getAttributeNS(static::NS, 'Id');
         }
 
         return new static(
@@ -141,7 +136,7 @@ abstract class AbstractTimestamp extends AbstractWsuElement
             array_pop($expires),
             $Id,
             $children,
-            $attributes,
+            self::getAttributesNSFromXML($xml),
         );
     }
 
