@@ -2,7 +2,7 @@
 <psalm
   name="WS-Trust"
   useDocblockTypes="true"
-  errorLevel="2"
+  errorLevel="4"
   reportMixedIssues="false"
   hideExternalErrors="true"
 >
