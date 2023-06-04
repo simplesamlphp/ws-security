@@ -1,0 +1,94 @@
+<?php
+
+declare(strict_types=1);
+
+namespace SimpleSAML\Test\WSSecurity\XML\wsu;
+
+use DateTimeImmutable;
+use DOMDocument;
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\wsu\Created;
+use SimpleSAML\WSSecurity\XML\wsu\Expires;
+use SimpleSAML\WSSecurity\XML\wsu\Timestamp;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+
+use function dirname;
+use function strval;
+
+/**
+ * Tests for wsu:Timestamp.
+ *
+ * @covers \SimpleSAML\WSSecurity\XML\wsu\Timestamp
+ * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractTimestamp
+ * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement
+ * @package tvdijen/ws-security
+ */
+final class TimestampTest extends TestCase
+{
+    use SchemaValidationTestTrait;
+    use SerializableElementTestTrait;
+
+
+    /**
+     */
+    public static function setUpBeforeClass(): void
+    {
+        self::$testedClass = Timestamp::class;
+
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/oasis-200401-wss-wssecurity-utility-1.0.xsd';
+
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
+            dirname(__FILE__, 4) . '/resources/xml/wsu_Timestamp.xml'
+        );
+    }
+
+
+    // test marshalling
+
+
+    /**
+     * Test creating an Created object from scratch.
+     */
+    public function testMarshalling(): void
+    {
+        $created = new Created(new DateTimeImmutable('2001-09-13T08:42:00Z'));
+        $expires = new Expires(new DateTimeImmutable('2001-10-13T09:00:00Z'));
+        $timestamp = new Timestamp($created, $expires, 'abc123', [], []);
+
+        $this->assertFalse($timestamp->isEmptyElement());
+        $this->assertEquals(
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
+            strval($timestamp)
+        );
+    }
+
+
+    /**
+     */
+    public function testMarshallingEmpty(): void
+    {
+        $timestamp = new Timestamp();
+
+        $this->assertTrue($timestamp->isEmptyElement());
+    }
+
+
+    // test unmarshalling
+
+
+    /**
+     * Test creating a Created from XML.
+     */
+    public function testUnmarshalling(): void
+    {
+        $timestamp = Timestamp::fromXML(self::$xmlRepresentation->documentElement);
+        $this->assertEquals(
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
+            strval($timestamp)
+        );
+    }
+}

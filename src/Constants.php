@@ -70,4 +70,13 @@ class Constants extends \SimpleSAML\XMLSecurity\Constants
      */
     public const WST_REFID_PIN = 'http://docs.oasis-open.org/ws-sx/ws-trust/200802/challenge/PIN';
     public const WST_REFID_OTP = 'http://docs.oasis-open.org/ws-sx/ws-trust/200802/challenge/OTP';
+
+    /**
+     */
+    public const WSU_TIMESTAMP_FAULT = 'MessageExpired';
+
+    /**
+     * The format to express a timestamp in SAML2
+     */
+    public const DATETIME_FORMAT = 'Y-m-d\\TH:i:sp';
 }
