@@ -138,7 +138,7 @@ final class ChoiceChallenge extends AbstractWstElement
 
         $refId = self::getAttribute($xml, 'RefId');
         $exactlyOne = self::getBooleanAttribute($xml, 'ExactlyOne');
-        $label = self::getAttribute($xml, 'Label', null);
+        $label = self::getOptionalAttribute($xml, 'Label', null);
 
         $choice = Choice::getChildrenOfClass($xml);
         Assert::maxCount($choice, 1, TooManyElementsException::class);
