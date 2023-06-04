@@ -8,8 +8,8 @@ use DateTimeImmutable;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\StringElementTrait;
 
@@ -77,7 +77,10 @@ abstract class AbstractAttributedDateTime extends AbstractWsuElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        Assert::validDateTime($xml->textContent, SchemaViolationException::class);
+        // Time values MUST be expressed in the UTC timezone using the 'Z' timezone identifier
+        // Strip sub-seconds
+        $xml->textContent = preg_replace('/([.][0-9]+Z)$/', 'Z', $xml->textContent, 1);
+        Assert::validDateTimeZulu($xml->textContent, ProtocolViolationException::class);
 
         $Id = null;
         if ($xml->hasAttributeNS(static::NS, 'Id')) {
