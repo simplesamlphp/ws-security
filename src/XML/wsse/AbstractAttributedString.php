@@ -7,6 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -69,8 +70,12 @@ abstract class AbstractAttributedString extends AbstractWsseElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         $Id = null;
-        if ($xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')) {
-            $Id = $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id');
+        foreach ($nsAttributes as $i => $attr) {
+            if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
+                $Id = $attr->getAttrValue();
+                unset($nsAttributes[$i]);
+                break;
+            }
         }
 
         return new static($xml->textContent, $Id, self::getAttributesNSFromXML($xml));
@@ -81,7 +86,7 @@ abstract class AbstractAttributedString extends AbstractWsseElement
      * @param \DOMElement|null $parent
      * @return \DOMElement
      */
-    final public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
         $e->textContent = $this->getContent();

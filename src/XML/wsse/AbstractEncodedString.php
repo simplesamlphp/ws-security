@@ -35,7 +35,7 @@ abstract class AbstractEncodedString extends AbstractAttributedString
     ) {
         Assert::nullOrValidURI($EncodingType);
 
-        parent::construct($content, $Id, $namespacedAttributes);
+        parent::__construct($content, $Id, $namespacedAttributes);
     }
 
 
@@ -63,8 +63,12 @@ abstract class AbstractEncodedString extends AbstractAttributedString
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         $Id = null;
-        if ($xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')) {
-            $Id = $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id');
+        foreach ($nsAttributes as $i => $attr) {
+            if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
+                $Id = $attr->getAttrValue();
+                unset($nsAttributes[$i]);
+                break;
+            }
         }
 
         return new static(
@@ -80,10 +84,10 @@ abstract class AbstractEncodedString extends AbstractAttributedString
      * @param \DOMElement|null $parent
      * @return \DOMElement
      */
-    final public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute($e, 'EncodingType', $this->getEncodingType());
+        $e->setAttribute('EncodingType', $this->getEncodingType());
 
         return $e;
     }

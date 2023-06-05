@@ -20,7 +20,7 @@ final class Image extends AbstractWstElement
     /**
      * Even though the schema doesn't mark this as required, the 2012 errata does.
      * @var string
-      */
+     */
     protected string $mimeType;
 
 
