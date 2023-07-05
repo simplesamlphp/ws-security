@@ -112,7 +112,7 @@ final class Choice extends AbstractWstElement
         Assert::same($xml->localName, 'Choice', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, Choice::NS, InvalidDOMElementException::class);
 
-        $refId = self::getAttribute($xml, 'RefId');
+        $refId = self::getAttribute($xml, 'RefID');
         $label = self::getOptionalAttribute($xml, 'Label', null);
 
         $image = Image::getChildrenOfClass($xml);
@@ -131,7 +131,7 @@ final class Choice extends AbstractWstElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('RefId', $this->refId);
+        $e->setAttribute('RefID', $this->refId);
 
         if ($this->getLabel() !== null) {
             $e->setAttribute('Label', $this->getLabel());

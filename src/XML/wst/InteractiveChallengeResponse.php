@@ -37,7 +37,7 @@ final class InteractiveChallengeResponse extends AbstractWstElement
      * @param \SimpleSAML\XML\ElementInterface[] $elements
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
-    public function __construct(array $elements, array $namespacedAttributes = [])
+    public function __construct(array $elements = [], array $namespacedAttributes = [])
     {
         $this->setElements($elements);
         $this->setAttributesNS($namespacedAttributes);

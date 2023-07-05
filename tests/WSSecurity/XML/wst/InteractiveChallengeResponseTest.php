@@ -73,10 +73,29 @@ final class InteractiveChallengeResponseTest extends TestCase
             [$domAttr],
         );
 
+        $this->assertCount(1, $interactiveChallengeResponse->getTextChallengeResponse());
+        $this->assertCount(1, $interactiveChallengeResponse->getChoiceChallengeResponse());
+        $this->assertCount(1, $interactiveChallengeResponse->getContextData());
+
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($interactiveChallengeResponse)
         );
+    }
+
+
+    /**
+     * Adding an empty InteractiveChallengeResponse element should yield an empty element.
+     */
+    public function testMarshallingEmptyElement(): void
+    {
+        $wstns = C::NS_TRUST;
+        $interactiveChallengeResponse = new InteractiveChallengeResponse();
+        $this->assertEquals(
+            "<wst:InteractiveChallengeResponse xmlns:wst=\"$wstns\"/>",
+            strval($interactiveChallengeResponse),
+        );
+        $this->assertTrue($interactiveChallengeResponse->isEmptyElement());
     }
 
 

@@ -10,6 +10,7 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\ReferenceIdentifierTrait;
 
 use function array_pop;
@@ -21,6 +22,9 @@ final class ChoiceChallenge extends AbstractWstElement
 {
     use ExtendableAttributesTrait;
     use ReferenceIdentifierTrait;
+
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
     /** @var string|null */
     protected ?string $label;
@@ -136,7 +140,7 @@ final class ChoiceChallenge extends AbstractWstElement
         Assert::same($xml->localName, 'ChoiceChallenge', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ChoiceChallenge::NS, InvalidDOMElementException::class);
 
-        $refId = self::getAttribute($xml, 'RefId');
+        $refId = self::getAttribute($xml, 'RefID');
         $exactlyOne = self::getBooleanAttribute($xml, 'ExactlyOne');
         $label = self::getOptionalAttribute($xml, 'Label', null);
 
@@ -156,7 +160,7 @@ final class ChoiceChallenge extends AbstractWstElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('RefId', $this->getRefId());
+        $e->setAttribute('RefID', $this->getRefId());
         $e->setAttribute('ExactlyOne', strval($this->getExactlyOne()));
 
         $label = $this->getLabel();
