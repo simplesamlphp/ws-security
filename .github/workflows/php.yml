@@ -47,7 +47,7 @@ jobs:
           php-version: '8.2'
           tools: composer, composer-require-checker, composer-unused, phpcs, psalm
           # optional performance gain for psalm: opcache
-          extensions: ctype, date, dom, filter, opcache, pcre, spl, xml
+          extensions: ctype, date, dom, filter, opcache, pcre, soap, spl, xml
           coverage: none
 
       - name: Setup problem matchers for PHP
@@ -111,7 +111,7 @@ jobs:
         with:
           # Should be the lowest supported version
           php-version: '8.0'
-          extensions: ctype, date, dom, filter, pcre, spl, xml
+          extensions: ctype, date, dom, filter, pcre, soap, spl, xml
           tools: composer
           coverage: none
 
@@ -158,7 +158,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: ctype, date, dom, filter, pcre, spl, xml
+          extensions: ctype, date, dom, filter, pcre, soap, spl, xml
           tools: composer
           ini-values: error_reporting=E_ALL
           coverage: pcov
@@ -220,7 +220,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          extensions: ctype, date, dom, filter, pcre, spl, xml
+          extensions: ctype, date, dom, filter, pcre, soap, spl, xml
           tools: composer
           ini-values: error_reporting=E_ALL
           coverage: none
