@@ -10,7 +10,7 @@ namespace SimpleSAML\WSSecurity;
  * @package tvdijen/ws-security
  */
 
-class Constants extends \SimpleSAML\XMLSecurity\Constants
+class Constants extends \SimpleSAML\SAML2\Constants
 {
     /**
      * The namespace for WS-Addressing protocol.

@@ -14,12 +14,11 @@
         "ext-spl": "*",
 
         "simplesamlphp/assert": "^1.0.4",
-        "simplesamlphp/xml-common": "^1.12",
-        "simplesamlphp/xml-security": "^1.6.9"
+        "simplesamlphp/saml2": "dev-master",
+        "simplesamlphp/xml-common": "^1.12"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "^1.5.5",
-        "simplesamlphp/xml-soap": "^1.3.0"
+        "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
     },
     "autoload": {
         "psr-4": {
