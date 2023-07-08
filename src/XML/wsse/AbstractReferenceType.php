@@ -9,37 +9,33 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XML\ExtendableAttributesTrait;
 
 /**
- * Class defining the BinarySecurityTokenType element
+ * Class defining the ReferenceType element
  *
  * @package tvdijen/ws-security
  */
-abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
+abstract class AbstractReferenceType extends AbstractWsseElement
 {
-    /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
-
+    use ExtendableAttributesTrait;
 
     /**
-     * AbstractBinarySecurityTokenType constructor
+     * AbstractReferenceType constructor
      *
-     * @param string $content
+     * @param string $URI
      * @param string $valueType
-     * @param string|null $Id
-     * @param string|null $EncodingType
      * @param array $namespacedAttributes
      */
     public function __construct(
-        string $content,
+        protected string $URI,
         protected string $valueType,
-        ?string $Id = null,
-        ?string $EncodingType = null,
         array $namespacedAttributes = []
     ) {
+        Assert::validURI($URI, SchemaViolationException::class);
         Assert::validURI($valueType, SchemaViolationException::class);
 
-        parent::__construct($content, $Id, $EncodingType, $namespacedAttributes);
+        $this->setAttributesNS($namespacedAttributes);
     }
 
 
@@ -49,6 +45,15 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
     public function getValueType(): string
     {
         return $this->valueType;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getURI(): string
+    {
+        return $this->URI;
     }
 
 
@@ -66,23 +71,10 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        $nsAttributes = self::getAttributesNSFromXML($xml);
-
-        $Id = null;
-        foreach ($nsAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
-                $Id = $attr->getAttrValue();
-                unset($nsAttributes[$i]);
-                break;
-            }
-        }
-
         return new static(
-            $xml->textContent,
+            self::getAttribute($xml, 'URI'),
             self::getAttribute($xml, 'ValueType'),
-            $Id,
-            self::getOptionalAttribute($xml, 'EncodingType', null),
-            $nsAttributes,
+            self::getAttributesNSFromXML($xml),
         );
     }
 
@@ -96,7 +88,12 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
+        $e->setAttribute('URI', $this->getValueType());
         $e->setAttribute('ValueType', $this->getValueType());
+
+        foreach ($this->getAttributesNS() as $attr) {
+            $attr->toXML($e);
+        }
 
         return $e;
     }
