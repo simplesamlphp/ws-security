@@ -25,9 +25,6 @@ final class RelatesTo extends AbstractWsaElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
-    /** @param string|null $RelationshipType */
-    protected ?string $RelationshipType;
-
 
     /**
      * Initialize a wsa:RelatesTo
@@ -36,10 +33,11 @@ final class RelatesTo extends AbstractWsaElement
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
-        ?string $RelationshipType = 'http://www.w3.org/2005/08/addressing/reply',
+        protected ?string $RelationshipType = 'http://www.w3.org/2005/08/addressing/reply',
         array $namespacedAttributes = []
     ) {
-        $this->setRelationshipType($RelationshipType);
+        Assert::nullOrValidURI($RelationshipType, SchemaViolationException::class);
+
         $this->setAttributesNS($namespacedAttributes);
     }
 
@@ -52,18 +50,6 @@ final class RelatesTo extends AbstractWsaElement
     public function getRelationshipType(): ?string
     {
         return $this->RelationshipType;
-    }
-
-
-    /**
-     * Set the value of the RelationshipType property.
-     *
-     * @param string|null $RelationshipType
-     */
-    protected function setRelationshipType(?string $RelationshipType): void
-    {
-        Assert::nullOrValidURI($RelationshipType, SchemaViolationException::class);
-        $this->RelationshipType = $RelationshipType;
     }
 
 

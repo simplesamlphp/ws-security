@@ -26,18 +26,6 @@ final class TextChallenge extends AbstractWstElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
-    /** @var string|null */
-    protected ?string $label;
-
-    /** @var int|null */
-    protected ?int $maxLen;
-
-    /** @var bool|null */
-    protected ?bool $hideText;
-
-    /** @var \SimpleSAML\WSSecurity\XML\wst\Image|null */
-    protected ?Image $image;
-
 
     /**
      * Initialize a wst:TextChallenge
@@ -51,17 +39,13 @@ final class TextChallenge extends AbstractWstElement
      */
     public function __construct(
         string $refId,
-        ?string $label = null,
-        ?int $maxLen = null,
-        ?bool $hideText = null,
-        ?Image $image = null,
+        protected ?string $label = null,
+        protected ?int $maxLen = null,
+        protected ?bool $hideText = null,
+        protected ?Image $image = null,
         array $namespacedAttributes = []
     ) {
         $this->setRefId($refId);
-        $this->setLabel($label);
-        $this->setMaxLen($maxLen);
-        $this->setHideText($hideText);
-        $this->setImage($image);
         $this->setAttributesNS($namespacedAttributes);
     }
 
@@ -78,17 +62,6 @@ final class TextChallenge extends AbstractWstElement
 
 
     /**
-     * Set the value of the maxLen property.
-     *
-     * @param int|null $maxLen
-     */
-    protected function setMaxLen(?int $maxLen): void
-    {
-        $this->maxLen = $maxLen;
-    }
-
-
-    /**
      * Collect the value of the hideText property.
      *
      * @return bool|null
@@ -96,17 +69,6 @@ final class TextChallenge extends AbstractWstElement
     public function getHideText(): ?bool
     {
         return $this->hideText;
-    }
-
-
-    /**
-     * Set the value of the hideText property.
-     *
-     * @param bool|null $hideText
-     */
-    protected function setHideText(?bool $hideText): void
-    {
-        $this->hideText = $hideText;
     }
 
 
@@ -122,17 +84,6 @@ final class TextChallenge extends AbstractWstElement
 
 
     /**
-     * Set the value of the label property.
-     *
-     * @param string|null $label
-     */
-    protected function setLabel(?string $label): void
-    {
-        $this->label = $label;
-    }
-
-
-    /**
      * Collect the value of the image property.
      *
      * @return \SimpleSAML\WSSecurity\XML\wst\Image|null
@@ -140,17 +91,6 @@ final class TextChallenge extends AbstractWstElement
     public function getImage(): ?Image
     {
         return $this->image;
-    }
-
-
-    /**
-     * Set the value of the image property.
-     *
-     * @param \SimpleSAML\WSSecurity\XML\wst\Image|null $image
-     */
-    protected function setImage(?Image $image): void
-    {
-        $this->image = $image;
     }
 
 

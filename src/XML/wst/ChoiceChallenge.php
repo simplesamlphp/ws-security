@@ -26,15 +26,6 @@ final class ChoiceChallenge extends AbstractWstElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
-    /** @var string|null */
-    protected ?string $label;
-
-    /** @var bool */
-    protected bool $exactlyOne;
-
-    /** @var \SimpleSAML\WSSecurity\XML\wst\Choice|null */
-    protected ?Choice $choice;
-
 
     /**
      * Initialize a wst:ChoiceChallenge
@@ -47,15 +38,12 @@ final class ChoiceChallenge extends AbstractWstElement
      */
     public function __construct(
         string $refId,
-        bool $exactlyOne,
-        ?string $label = null,
-        ?Choice $choice = null,
+        protected bool $exactlyOne,
+        protected ?string $label = null,
+        protected ?Choice $choice = null,
         array $namespacedAttributes = []
     ) {
         $this->setRefId($refId);
-        $this->setExactlyOne($exactlyOne);
-        $this->setLabel($label);
-        $this->setChoice($choice);
         $this->setAttributesNS($namespacedAttributes);
     }
 
@@ -72,17 +60,6 @@ final class ChoiceChallenge extends AbstractWstElement
 
 
     /**
-     * Set the value of the exactlyOne property.
-     *
-     * @param bool $exactlyOne
-     */
-    protected function setExactlyOne(bool $exactlyOne): void
-    {
-        $this->exactlyOne = $exactlyOne;
-    }
-
-
-    /**
      * Collect the value of the label property.
      *
      * @return string|null
@@ -94,17 +71,6 @@ final class ChoiceChallenge extends AbstractWstElement
 
 
     /**
-     * Set the value of the label property.
-     *
-     * @param string|null $label
-     */
-    protected function setLabel(?string $label): void
-    {
-        $this->label = $label;
-    }
-
-
-    /**
      * Collect the value of the choice property.
      *
      * @return \SimpleSAML\WSSecurity\XML\wst\Choice|null
@@ -112,17 +78,6 @@ final class ChoiceChallenge extends AbstractWstElement
     public function getChoice(): ?Choice
     {
         return $this->choice;
-    }
-
-
-    /**
-     * Set the value of the choice property.
-     *
-     * @param \SimpleSAML\WSSecurity\XML\wst\Choice|null $choice
-     */
-    protected function setChoice(?Choice $choice): void
-    {
-        $this->choice = $choice;
     }
 
 

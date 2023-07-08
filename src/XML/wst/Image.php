@@ -17,12 +17,6 @@ final class Image extends AbstractWstElement
 {
     use Base64ElementTrait;
 
-    /**
-     * Even though the schema doesn't mark this as required, the 2012 errata does.
-     * @var string
-     */
-    protected string $mimeType;
-
 
     /**
      * Initialize a wst:Image
@@ -30,10 +24,11 @@ final class Image extends AbstractWstElement
      * @param string $content
      * @param string $mimeType
      */
-    public function __construct(string $content, string $mimeType)
-    {
+    public function __construct(
+        string $content,
+        protected string $mimeType
+    ) {
         $this->setContent($content);
-        $this->setMimeType($mimeType);
     }
 
 
@@ -45,17 +40,6 @@ final class Image extends AbstractWstElement
     public function getMimeType(): string
     {
         return $this->mimeType;
-    }
-
-
-    /**
-     * Set the value of the mimeType property.
-     *
-     * @param string $mimeType
-     */
-    protected function setMimeType(string $mimeType): void
-    {
-        $this->mimeType = $mimeType;
     }
 
 

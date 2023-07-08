@@ -26,13 +26,6 @@ final class Choice extends AbstractWstElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
-    /** @var string|null */
-    protected ?string $label;
-
-    /** @var \SimpleSAML\WSSecurity\XML\wst\Image|null */
-    protected ?Image $image;
-
-
     /**
      * Initialize a wst:Choice
      *
@@ -43,13 +36,11 @@ final class Choice extends AbstractWstElement
      */
     public function __construct(
         string $refId,
-        ?string $label = null,
-        ?Image $image = null,
+        protected ?string $label = null,
+        protected ?Image $image = null,
         array $namespacedAttributes = []
     ) {
         $this->setRefId($refId);
-        $this->setLabel($label);
-        $this->setImage($image);
         $this->setAttributesNS($namespacedAttributes);
     }
 
@@ -66,17 +57,6 @@ final class Choice extends AbstractWstElement
 
 
     /**
-     * Set the value of the label property.
-     *
-     * @param string|null $label
-     */
-    protected function setLabel(?string $label): void
-    {
-        $this->label = $label;
-    }
-
-
-    /**
      * Collect the value of the image property.
      *
      * @return \SimpleSAML\WSSecurity\XML\wst\Image|null
@@ -84,17 +64,6 @@ final class Choice extends AbstractWstElement
     public function getImage(): ?Image
     {
         return $this->image;
-    }
-
-
-    /**
-     * Set the value of the image property.
-     *
-     * @param \SimpleSAML\WSSecurity\XML\wst\Image|null $image
-     */
-    protected function setImage(?Image $image): void
-    {
-        $this->image = $image;
     }
 
 

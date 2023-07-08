@@ -17,9 +17,6 @@ final class ChoiceChallengeResponse extends AbstractWstElement
 {
     use ReferenceIdentifierTrait;
 
-    /** @var \SimpleSAML\WSSecurity\XML\wst\ChoiceSelected[] */
-    protected array $choiceSelected;
-
 
     /**
      * Initialize a wst:ChoiceChallengeResponse
@@ -27,10 +24,13 @@ final class ChoiceChallengeResponse extends AbstractWstElement
      * @param string $refId
      * @param \SimpleSAML\WSSecurity\XML\wst\ChoiceSelected[] $choiceSelected
      */
-    public function __construct(string $refId, array $choiceSelected)
-    {
+    public function __construct(
+        string $refId,
+        protected array $choiceSelected
+    ) {
+        Assert::allIsInstanceOf($choiceSelected, ChoiceSelected::class, SchemaViolationException::class);
+
         $this->setRefId($refId);
-        $this->setChoiceSelected($choiceSelected);
     }
 
 
@@ -40,16 +40,6 @@ final class ChoiceChallengeResponse extends AbstractWstElement
     public function getChoiceSelected(): array
     {
         return $this->choiceSelected;
-    }
-
-
-    /**
-     * @param \SimpleSAML\WSSecurity\XML\wst\ChoiceSelected[] $choiceSelected
-     */
-    private function setChoiceSelected(array $choiceSelected): void
-    {
-        Assert::allIsInstanceOf($choiceSelected, ChoiceSelected::class, SchemaViolationException::class);
-        $this->choiceSelected = $choiceSelected;
     }
 
 

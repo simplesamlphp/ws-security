@@ -40,28 +40,6 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 
 
     /**
-     * The address for this endpoint.
-     *
-     * @var \SimpleSAML\WSSecurity\XML\wsa\Address
-     */
-    protected Address $address;
-
-    /**
-     * The ReferenceParameters.
-     *
-     * @var \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters[]
-     */
-    protected array $referenceParameters;
-
-    /**
-     * The Metadata.
-     *
-     * @var \SimpleSAML\WSSecurity\XML\wsa\Metadata[]
-     */
-    protected array $metadata;
-
-
-    /**
      * EndpointReferenceType constructor.
      *
      * @param \SimpleSAML\WSSecurity\XML\wsa\Address $address
@@ -73,15 +51,15 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
      * @throws \SimpleSAML\Assert\AssertionFailedException
      */
     final public function __construct(
-        Address $address,
-        array $referenceParameters = [],
-        array $metadata = [],
+        protected Address $address,
+        protected array $referenceParameters = [],
+        protected array $metadata = [],
         array $children = [],
         array $namespacedAttributes = []
     ) {
-        $this->setAddress($address);
-        $this->setReferenceParameters($referenceParameters);
-        $this->setMetadata($metadata);
+        Assert::allIsInstanceOf($referenceParameters, ReferenceParameters::class);
+        Assert::allIsInstanceOf($metadata, Metadata::class);
+
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -99,17 +77,6 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 
 
     /**
-     * Set the value of the address property.
-     *
-     * @param \SimpleSAML\WSSecurity\XML\wsa\Address $binding
-     */
-    protected function setAddress(Address $address): void
-    {
-        $this->address = $address;
-    }
-
-
-    /**
      * Collect the value of the referenceParameters property.
      *
      * @return \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters[]
@@ -121,18 +88,6 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 
 
     /**
-     * Set the value of the referenceParameters property.
-     *
-     * @param \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters[] $referenceParameters
-     */
-    protected function setReferenceParameters(array $referenceParameters): void
-    {
-        Assert::allIsInstanceOf($referenceParameters, ReferenceParameters::class);
-        $this->referenceParameters = $referenceParameters;
-    }
-
-
-    /**
      * Collect the value of the metadata property.
      *
      * @return \SimpleSAML\WSSecurity\XML\wsa\Metadata[]
@@ -140,18 +95,6 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     public function getMetadata(): array
     {
         return $this->metadata;
-    }
-
-
-    /**
-     * Set the value of the metadata property.
-     *
-     * @param \SimpleSAML\WSSecurity\XML\wsa\Metadata[] $metadata
-     */
-    protected function setMetadata(array $metadata): void
-    {
-        Assert::allIsInstanceOf($metadata, Metadata::class);
-        $this->metadata = $metadata;
     }
 
 
