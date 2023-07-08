@@ -7,43 +7,49 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XML\Exception\MissingElementException;
+use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
 
+use function array_pop;
 use function array_unshift;
 
 /**
- * Abstract class defining the AttributedString type
+ * Class defining the UsernameTokenType element
  *
  * @package tvdijen/ws-security
  */
-abstract class AbstractAttributedString extends AbstractWsseElement
+abstract class AbstractUsernameTokenType extends AbstractWsseElement
 {
     use ExtendableAttributesTrait;
-    use StringElementTrait;
+    use ExtendableElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
 
+    /** The namespace-attribute for the xs:any element */
+    public const XS_ANY_ELT_NAMESPACE = C::XS_ANY_NS_ANY;
+
 
     /**
-     * AbstractAttributedString constructor
+     * AbstractUsernameTokenType constructor
      *
-     * @param string $content
+     * @param \SimpleSAML\WSSecurity\XML\wsse\Username $username
      * @param string|null $Id
-     * @param array $namespacedAttributes
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
+     * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     public function __construct(
-        string $content,
+        protected Username $username,
         protected ?string $Id = null,
+        array $children = [],
         array $namespacedAttributes = []
     ) {
-        Assert::nullOrValidNCName($Id);
-
-        $this->setContent($content);
+        $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
 
@@ -54,6 +60,15 @@ abstract class AbstractAttributedString extends AbstractWsseElement
     public function getId(): ?string
     {
         return $this->Id;
+    }
+
+
+    /**
+     * @return \SimpleSAML\WSSecurity\XML\wsse\Username
+     */
+    public function getUsername(): Username
+    {
+        return $this->username;
     }
 
 
@@ -71,6 +86,10 @@ abstract class AbstractAttributedString extends AbstractWsseElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
+        $username = Username::getChildrenOfClass($xml);
+        Assert::minCount($username, 1, MissingElementException::class);
+        Assert::maxCount($username, 1, TooManyElementsException::class);
+
         $nsAttributes = self::getAttributesNSFromXML($xml);
 
         $Id = null;
@@ -82,18 +101,33 @@ abstract class AbstractAttributedString extends AbstractWsseElement
             }
         }
 
-        return new static($xml->textContent, $Id, $nsAttributes);
+        $children = [];
+        foreach ($xml->childNodes as $child) {
+            if (!($child instanceof DOMElement)) {
+                continue;
+            }
+
+            $children[] = new Chunk($child);
+        }
+
+        return new static(
+            array_pop($username),
+            $Id,
+            $children,
+            $nsAttributes,
+        );
     }
 
 
     /**
-     * @param \DOMElement|null $parent
+     * Add this username token to an XML element.
+     *
+     * @param \DOMElement $parent The element we should append this username token to.
      * @return \DOMElement
      */
     public function toXML(DOMElement $parent = null): DOMElement
     {
-        $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e = parent::instantiateParentElement($parent);
 
         $attributes = $this->getAttributesNS();
         if ($this->getId() !== null) {
@@ -103,6 +137,15 @@ abstract class AbstractAttributedString extends AbstractWsseElement
 
         foreach ($attributes as $attr) {
             $attr->toXML($e);
+        }
+
+        $this->getUsername()->toXML($e);
+
+        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
+        foreach ($this->getElements() as $child) {
+            if (!$child->isEmptyElement()) {
+                $child->toXML($e);
+            }
         }
 
         return $e;

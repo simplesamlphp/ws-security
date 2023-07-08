@@ -62,6 +62,8 @@ abstract class AbstractPasswordString extends AbstractAttributedString
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
+        $nsAttributes = self::getAttributesNSFromXML($xml);
+
         $Id = null;
         foreach ($nsAttributes as $i => $attr) {
             if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
@@ -75,7 +77,7 @@ abstract class AbstractPasswordString extends AbstractAttributedString
             $xml->textContent,
             $Id,
             self::getOptionalAttribute($xml, 'Type', null),
-            self::getAttributesNSFromXML($xml),
+            $nsAttributes,
         );
     }
 
