@@ -105,6 +105,8 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
         foreach ($xml->childNodes as $child) {
             if (!($child instanceof DOMElement)) {
                 continue;
+            } elseif ($child->namespaceURI === static::NS && $child->localName === 'Username') {
+                continue;
             }
 
             $children[] = new Chunk($child);
