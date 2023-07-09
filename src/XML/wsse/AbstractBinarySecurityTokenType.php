@@ -95,7 +95,7 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
      */
     public function toXML(DOMElement $parent = null): DOMElement
     {
-        $e = parent::instantiateParentElement($parent);
+        $e = parent::toXML($parent);
 
         if ($this->getValueType() !== null) {
             $e->setAttribute('ValueType', $this->getValueType());
