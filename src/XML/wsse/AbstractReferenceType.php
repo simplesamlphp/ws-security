@@ -20,6 +20,10 @@ abstract class AbstractReferenceType extends AbstractWsseElement
 {
     use ExtendableAttributesTrait;
 
+    /** The namespace-attribute for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
+
+
     /**
      * AbstractReferenceType constructor
      *
@@ -89,8 +93,8 @@ abstract class AbstractReferenceType extends AbstractWsseElement
     {
         $e = parent::instantiateParentElement($parent);
 
-        if ($this->getValueType() !== null) {
-            $e->setAttribute('URI', $this->getValueType());
+        if ($this->getURI() !== null) {
+            $e->setAttribute('URI', $this->getURI());
         }
 
         if ($this->getValueType() !== null) {
