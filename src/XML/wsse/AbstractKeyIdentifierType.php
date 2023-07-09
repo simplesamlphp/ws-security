@@ -21,28 +21,28 @@ abstract class AbstractKeyIdentifierType extends AbstractEncodedString
      * AbstractKeyIdentifierType constructor
      *
      * @param string $content
-     * @param string $valueType
+     * @param string|null $valueType
      * @param string|null $Id
      * @param string|null $EncodingType
      * @param array $namespacedAttributes
      */
     public function __construct(
         string $content,
-        protected string $valueType,
+        protected ?string $valueType = null,
         ?string $Id = null,
         ?string $EncodingType = null,
         array $namespacedAttributes = []
     ) {
-        Assert::validURI($valueType, SchemaViolationException::class);
+        Assert::nullOrValidURI($valueType, SchemaViolationException::class);
 
         parent::__construct($content, $Id, $EncodingType, $namespacedAttributes);
     }
 
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getValueType(): string
+    public function getValueType(): ?string
     {
         return $this->valueType;
     }
@@ -75,7 +75,7 @@ abstract class AbstractKeyIdentifierType extends AbstractEncodedString
 
         return new static(
             $xml->textContent,
-            self::getAttribute($xml, 'ValueType'),
+            self::getOptionalAttribute($xml, 'ValueType', null),
             $Id,
             self::getOptionalAttribute($xml, 'EncodingType', null),
             $nsAttributes,
@@ -92,7 +92,10 @@ abstract class AbstractKeyIdentifierType extends AbstractEncodedString
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
-        $e->setAttribute('ValueType', $this->getValueType());
+
+        if ($this->getValueType() !== null) {
+            $e->setAttribute('ValueType', $this->getValueType());
+        }
 
         return $e;
     }

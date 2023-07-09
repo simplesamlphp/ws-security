@@ -23,35 +23,35 @@ abstract class AbstractReferenceType extends AbstractWsseElement
     /**
      * AbstractReferenceType constructor
      *
-     * @param string $URI
-     * @param string $valueType
+     * @param string|null $URI
+     * @param string|null $valueType
      * @param array $namespacedAttributes
      */
     public function __construct(
-        protected string $URI,
-        protected string $valueType,
+        protected ?string $URI = null,
+        protected ?string $valueType = null,
         array $namespacedAttributes = []
     ) {
-        Assert::validURI($URI, SchemaViolationException::class);
-        Assert::validURI($valueType, SchemaViolationException::class);
+        Assert::nullOrValidURI($URI, SchemaViolationException::class);
+        Assert::nullOrValidURI($valueType, SchemaViolationException::class);
 
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getValueType(): string
+    public function getValueType(): ?string
     {
         return $this->valueType;
     }
 
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getURI(): string
+    public function getURI(): ?string
     {
         return $this->URI;
     }
@@ -72,8 +72,8 @@ abstract class AbstractReferenceType extends AbstractWsseElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            self::getAttribute($xml, 'URI'),
-            self::getAttribute($xml, 'ValueType'),
+            self::getOptionalAttribute($xml, 'URI', null),
+            self::getOptionalAttribute($xml, 'ValueType', null),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -88,8 +88,14 @@ abstract class AbstractReferenceType extends AbstractWsseElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
-        $e->setAttribute('URI', $this->getValueType());
-        $e->setAttribute('ValueType', $this->getValueType());
+
+        if ($this->getValueType() !== null) {
+            $e->setAttribute('URI', $this->getValueType());
+        }
+
+        if ($this->getValueType() !== null) {
+            $e->setAttribute('ValueType', $this->getValueType());
+        }
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

@@ -33,16 +33,16 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
     /**
      * AbstractEmbeddedType constructor
      *
-     * @param string $valueType
+     * @param string|null $valueType
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param array $namespacedAttributes
      */
     public function __construct(
-        protected string $valueType,
+        protected ?string $valueType = null,
         array $children = [],
         array $namespacedAttributes = []
     ) {
-        Assert::validURI($valueType, SchemaViolationException::class);
+        Assert::nullOrValidURI($valueType, SchemaViolationException::class);
 
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
@@ -50,11 +50,24 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
 
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getValueType(): string
+    public function getValueType(): ?string
     {
         return $this->valueType;
+    }
+
+
+    /**
+     * Test if an object, at the state it's in, would produce an empty XML-element
+     *
+     * @return bool
+     */
+    public function isEmptyElement(): bool
+    {
+        return empty($this->getValueType()) &&
+            empty($this->getElements()) &&
+            empty($this->getAttributesNS());
     }
 
 
@@ -82,7 +95,7 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
         }
 
         return new static(
-            self::getAttribute($xml, 'ValueType'),
+            self::getOptionalAttribute($xml, 'ValueType', null),
             $children,
             self::getAttributesNSFromXML($xml),
         );
@@ -98,7 +111,10 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
-        $e->setAttribute('ValueType', $this->getValueType());
+
+        if ($this->getValueType() !== null) {
+            $e->setAttribute('ValueType', $this->getValueType());
+        }
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

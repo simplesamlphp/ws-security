@@ -89,7 +89,10 @@ abstract class AbstractEncodedString extends AbstractAttributedString
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('EncodingType', $this->getEncodingType());
+
+        if ($this->getEncodingType() !== null) {
+            $e->setAttribute('EncodingType', $this->getEncodingType());
+        }
 
         return $e;
     }
