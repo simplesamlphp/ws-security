@@ -120,7 +120,7 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
 
         return new static(
             $Id,
-            self::getOptionalAttribute($xml, 'Usage', null),
+            $xml->getAttributeNS(C::NS_SEC_EXT, 'Usage'),
             $children,
             $nsAttributes,
         );
@@ -144,7 +144,8 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
         }
 
         if ($this->getUsage() !== null) {
-            $e->setAttribute('Usage', $this->getUsage());
+            $UsageAttr = new XMLAttribute(C::NS_SEC_EXT, 'wsse', 'Usage', $this->getUsage());
+            array_unshift($attributes, $UsageAttr);
         }
 
         foreach ($attributes as $attr) {
