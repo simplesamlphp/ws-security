@@ -53,17 +53,6 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
 
 
     /**
-     * Test if an object, at the state it's in, would produce an empty XML-element
-     *
-     * @return bool
-     */
-    public function isEmptyElement(): bool
-    {
-        return empty($this->getValueType()) && empty($this->getAttributesNS());
-    }
-
-
-    /**
      * Create an instance of this object from its XML representation.
      *
      * @param \DOMElement $xml
