@@ -88,7 +88,7 @@ abstract class AbstractPasswordString extends AbstractAttributedString
      */
     public function toXML(DOMElement $parent = null): DOMElement
     {
-        $e = $this->instantiateParentElement($parent);
+        $e = parent::toXML($parent);
 
         if ($this->getType() !== null) {
             $e->setAttribute('Type', $this->getType());
