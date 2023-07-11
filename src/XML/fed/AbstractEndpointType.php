@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\fed;
 
+use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
@@ -55,5 +56,23 @@ abstract class AbstractEndpointType extends AbstractFedElement
         return new static(
             EndpointReference::getChildrenOfClass($xml),
         );
+    }
+
+
+    /**
+     * Convert this element to XML.
+     *
+     * @param \DOMElement|null $parent The element we should append this element to.
+     * @return \DOMElement
+     */
+    public function toXML(DOMElement $parent = null): DOMElement
+    {
+        $e = $this->instantiateParentElement($parent);
+
+        foreach ($this->getEndpointReference() as $endpointReference) {
+            $endpointReference->toXML($e);
+        }
+
+        return $e;
     }
 }

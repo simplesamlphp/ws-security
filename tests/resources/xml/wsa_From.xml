@@ -10,5 +10,5 @@
       <m:Item>Apples</m:Item>
     </m:GetPrice>
   </wsa:Metadata>
-  <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>
+  <ssp:Chunk>SomeChunk</ssp:Chunk>
 </wsa:From>

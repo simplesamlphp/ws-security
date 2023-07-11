@@ -2,18 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\Test\WSSecurity\XML\wsa;
+namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
-use SimpleSAML\XML\Attribute;
+use SimpleSAML\WSSecurity\XML\fed\PsuedonymServiceEndpoints;
+use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -23,20 +22,23 @@ use function dirname;
 use function strval;
 
 /**
- * Tests for wsa:EndpointReference.
+ * Tests for fed:PsuedonymServiceEndpoints.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\EndpointReference
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
+ * @covers \SimpleSAML\WSSecurity\XML\fed\PsuedonymServiceEndpoints
+ * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractEndpointType
+ * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  * @package tvdijen/ws-security
  */
-final class EndpointReferenceTest extends TestCase
+final class PsuedonymServiceEndpointsTest extends TestCase
 {
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
-    /** @var \DOMElement $referenceParametersContent */
-    protected static DOMElement $referenceParametersContent;
+    /** @var \DOMElement $endpointReference */
+    protected static DOMElement $endpointReference;
+
+    /** @var \DOMElement $referenceParameters */
+    protected static DOMElement $referenceParameters;
 
     /** @var \DOMElement $metadataContent */
     protected static DOMElement $metadataContent;
@@ -49,15 +51,15 @@ final class EndpointReferenceTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$testedClass = EndpointReference::class;
+        self::$testedClass = PsuedonymServiceEndpoints::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_EndpointReference.xml'
+            dirname(__FILE__, 4) . '/resources/xml/fed_PsuedonymServiceEndpoints.xml'
         );
 
-        self::$referenceParametersContent = DOMDocumentFactory::fromString(
+        self::$referenceParameters = DOMDocumentFactory::fromString(
             '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Pears</m:Item></m:GetPrice>'
         )->documentElement;
 
@@ -68,6 +70,10 @@ final class EndpointReferenceTest extends TestCase
         self::$customContent = DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>'
         )->documentElement;
+
+        self::$endpointReference = DOMDocumentFactory::fromFile(
+            dirname(__FILE__, 4) . '/resources/xml/wsa_EndpointReference.xml',
+        )->documentElement;
     }
 
 
@@ -75,16 +81,18 @@ final class EndpointReferenceTest extends TestCase
 
 
     /**
-     * Test creating an EndpointReference object from scratch.
+     * Test creating an PsuedonymServiceEndpoints object from scratch.
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', 'value1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', 'value2');
-        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', 'value3');
-        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', 'value4');
+        $doc = DOMDocumentFactory::fromString('<root/>');
 
-        $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)], [$attr4]);
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', 'value1');
+        $attr2 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', 'value2');
+        $attr3 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', 'value3');
+        $attr4 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', 'value4');
+
+        $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParameters)], [$attr4]);
         $metadata = new Metadata([new Chunk(self::$metadataContent)], [$attr3]);
         $chunk = new Chunk(self::$customContent);
 
@@ -96,9 +104,11 @@ final class EndpointReferenceTest extends TestCase
             [$attr1],
         );
 
+        $psuedonymServiceEndpoints = new PsuedonymServiceEndpoints([$endpointReference]);
+
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($endpointReference)
+            strval($psuedonymServiceEndpoints),
         );
     }
 
@@ -107,14 +117,14 @@ final class EndpointReferenceTest extends TestCase
 
 
     /**
-     * Test creating a EndpointReference from XML.
+     * Test creating a PsuedonymServiceEndpoints from XML.
      */
     public function testUnmarshalling(): void
     {
-        $endpointReference = EndpointReference::fromXML(self::$xmlRepresentation->documentElement);
+        $psuedonymServiceEndpoints = PsuedonymServiceEndpoints::fromXML(self::$xmlRepresentation->documentElement);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($endpointReference)
+            strval($psuedonymServiceEndpoints),
         );
     }
 }
