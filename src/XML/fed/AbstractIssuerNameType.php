@@ -28,7 +28,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
     /**
      * AbstractIssuerNameType constructor
      *
-     * @param string|null $Uri
+     * @param string $Uri
      * @param array $namespacedAttributes
      */
     public function __construct(
@@ -65,7 +65,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            self::getOptionalAttribute($xml, 'Uri', null),
+            self::getAttribute($xml, 'Uri'),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -80,10 +80,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
-
-        if ($this->getUri() !== null) {
-            $e->setAttribute('Uri', $this->getUri());
-        }
+        $e->setAttribute('Uri', $this->getUri());
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);
