@@ -18,6 +18,11 @@ class Constants extends \SimpleSAML\SAML2\Constants
     public const NS_ADDR = 'http://www.w3.org/2005/08/addressing';
 
     /**
+     * The namespace for WS-Authorization protocol.
+     */
+    public const NS_AUTH = 'http://docs.oasis-open.org/wsfed/federation/v1.2/os/ws-federation-1.2-spec-os.pdf';
+
+    /**
      * The namespace for WS-Federation protocol.
      */
     public const NS_FED = 'http://docs.oasis-open.org/wsfed/federation/200706';
