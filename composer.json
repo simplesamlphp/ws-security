@@ -15,7 +15,8 @@
 
         "simplesamlphp/assert": "^1.0.4",
         "simplesamlphp/saml2": "dev-master",
-        "simplesamlphp/xml-common": "^1.12"
+        "simplesamlphp/xml-security": "^1.6.9",
+        "simplesamlphp/xml-common": "^1.12.1"
     },
     "require-dev": {
         "simplesamlphp/simplesamlphp-test-framework": "^1.5.5"
