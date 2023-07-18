@@ -87,10 +87,7 @@ abstract class AbstractConstrainedManyValueType extends AbstractAuthElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         $structuredValue = StructuredValue::getChildrenOfClass($xml);
-        Assert::maxCount($structuredValue, 1, TooManyElementsException::class);
-
         $value = Value::getChildrenOfClass($xml);
-        Assert::maxCount($value, 1, TooManyElementsException::class);
 
         return new static(
             $value,
