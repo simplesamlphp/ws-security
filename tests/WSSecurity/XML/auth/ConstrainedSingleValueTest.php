@@ -78,7 +78,7 @@ final class ConstrainedSingleValueTest extends TestCase
             'auth:ValueLessThan' => [ValueLessThan::class],
             'auth:ValueLessThanOrEqual' => [ValueLessThanOrEqual::class],
             'auth:ValueGreaterThan' => [ValueGreaterThan::class],
-//            'auth:ValueGreaterThanOrEqual' => [ValueGreaterThanOrEqual::class],
+            'auth:ValueGreaterThanOrEqual' => [ValueGreaterThanOrEqual::class],
         ];
     }
 }
