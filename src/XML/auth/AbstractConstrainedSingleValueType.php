@@ -62,6 +62,17 @@ abstract class AbstractConstrainedSingleValueType extends AbstractAuthElement
 
 
     /**
+     * Test if an object, at the state it's in, would produce an empty XML-element
+     *
+     * @return bool
+     */
+    public function isEmptyElement(): bool
+    {
+        return empty($this->value) && empty($this->structuredValue);
+    }
+
+
+    /**
      * Convert XML into a class instance
      *
      * @param \DOMElement $xml The XML element we should load

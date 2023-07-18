@@ -51,6 +51,7 @@ final class ValueLowerBoundTest extends TestCase
     {
         $valueLowerBound = new ValueLowerBound(new Value('MyValue'));
 
+        $this->assertFalse($valueLowerBound->isEmptyElement());
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($valueLowerBound),

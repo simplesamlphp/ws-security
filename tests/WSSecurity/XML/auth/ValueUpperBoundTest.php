@@ -63,6 +63,7 @@ final class ValueUpperBoundTest extends TestCase
 
         $valueUpperBound = new ValueUpperBound(null, $structuredValue);
 
+        $this->assertFalse($valueUpperBound->isEmptyElement());
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($valueUpperBound),
