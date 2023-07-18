@@ -24,7 +24,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
  * @package tvdijen/ws-security
  */
-final class ValueOneOfTest extends TestCase
+final class ValueOneOfWithValuesTest extends TestCase
 {
     use SerializableElementTestTrait;
 
@@ -36,7 +36,7 @@ final class ValueOneOfTest extends TestCase
         self::$testedClass = ValueOneOf::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/auth_ValueOneOf.xml'
+            dirname(__FILE__, 4) . '/resources/xml/auth_ValueOneOfWithValues.xml'
         );
     }
 
