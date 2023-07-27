@@ -118,6 +118,8 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
         foreach ($xml->childNodes as $child) {
             if (!($child instanceof DOMElement)) {
                 continue;
+            } elseif ($child->namespaceURI === static::NS) {
+                continue;
             }
 
             $children[] = new Chunk($child);
@@ -139,7 +141,7 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
      */
     public function toXML(DOMElement $parent = null): DOMElement
     {
-        $e = parent::instantiateParentElement($parent);
+        $e = $this->instantiateParentElement($parent);
 
         if ($this->getAssertConstraint() !== null) {
             $e->setAttribute('AssertConstraint', $this->getAssertConstraint() ? 'true' : 'false');
