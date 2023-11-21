@@ -1,3 +1,0 @@
-<wst:Choice xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200802" RefID="urn:x-simplesamlphp:namespace" Label="SomeLabel" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="testval1">
-  <wst:Image MimeType="image/png">iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=</wst:Image>
-</wst:Choice>

@@ -1,5 +1,0 @@
-<wst:ChoiceChallenge xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200802" RefID="urn:x-simplesamlphp:namespace" ExactlyOne="1" Label="OtherLabel" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr2="testval2">
-  <wst:Choice RefID="urn:x-simplesamlphp:namespace" Label="SomeLabel" ssp:attr1="testval1">
-    <wst:Image MimeType="image/png">iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=</wst:Image>
-  </wst:Choice>
-</wst:ChoiceChallenge>
