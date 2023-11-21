@@ -49,6 +49,8 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
         array $children = [],
         array $namespacedAttributes = []
     ) {
+        Assert::nullOrValidNCName($Id);
+
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
