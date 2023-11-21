@@ -87,7 +87,7 @@ final class Metadata extends AbstractWsaElement
      * Convert this Metadata to XML.
      *
      * @param \DOMElement|null $parent The element we should add this Metadata to.
-     * @return \DOMElement This Header-element.
+     * @return \DOMElement This Metadata-element.
      */
     public function toXML(DOMElement $parent = null): DOMElement
     {
