@@ -12,6 +12,7 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\XsNamespace as NS;
 
 use function array_unshift;
 
@@ -26,7 +27,7 @@ abstract class AbstractAttributedString extends AbstractWsseElement
     use StringElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
+    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
 
     /**

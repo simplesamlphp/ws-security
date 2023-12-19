@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\auth\ConstrainedValue;
 use SimpleSAML\WSSecurity\XML\auth\Description;
 use SimpleSAML\WSSecurity\XML\auth\DisplayName;
@@ -20,6 +19,7 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\SerializableElementInterface;
+use SimpleSAML\XML\XsNamespace as NS;
 
 use function array_filter;
 use function array_merge;
@@ -35,7 +35,7 @@ abstract class AbstractClaimType extends AbstractAuthElement
     use ExtendableAttributesTrait;
 
     /** The namespace-attribute for the xs:anyAttribute */
-    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
+    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
 
     /**

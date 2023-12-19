@@ -6,11 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\XsNamespace as NS;
 
 /**
  * Class representing WS-addressing AttributedQNameType.
@@ -27,7 +27,7 @@ abstract class AbstractAttributedQNameType extends AbstractWsaElement
     use StringElementTrait;
 
     /** The namespace-attribute for the xs:anyElement element */
-    public const XS_ANY_ATTR_NAMESPACE = C::XS_ANY_NS_OTHER;
+    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
 
     /**
