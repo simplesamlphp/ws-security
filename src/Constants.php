@@ -43,6 +43,11 @@ class Constants extends \SimpleSAML\SAML2\Constants
     public const NS_SEC_EXT = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
 
     /**
+     * The namespace for WS Security Policy.
+     */
+    public const NS_SEC_POLICY = 'http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702';
+
+    /**
      * The namespace for WS-Security utilities protocol.
      */
     public const NS_SEC_UTIL = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd';
