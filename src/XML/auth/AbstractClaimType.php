@@ -183,7 +183,9 @@ abstract class AbstractClaimType extends AbstractAuthElement
 
         $otherValue = [];
         foreach ($xml->childNodes as $child) {
-            if ($child->namespaceURI !== static::NS) {
+            if (!($child instanceof DOMElement)) {
+                continue;
+            } elseif ($child->namespaceURI !== static::NS) {
                 $otherValue[] = new Chunk($child);
             }
         }
