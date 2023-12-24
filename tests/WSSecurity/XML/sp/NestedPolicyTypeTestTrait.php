@@ -13,7 +13,7 @@ use function sprintf;
 use function strval;
 
 /**
- * Class \SimpleSAML\WSSecurity\XML\sp\QNameAssertionTypeTestTrait
+ * Class \SimpleSAML\WSSecurity\XML\sp\NestedPolicyTypeTestTrait
  *
  * @package tvdijen/ws-security
  */
@@ -23,7 +23,7 @@ trait NestedPolicyTypeTestTrait
 
 
     /**
-     * Test that creating a QNameAssertionType from scratch works.
+     * Test that creating a NestedPolicyType from scratch works.
      */
     public function testMarshalling(): void
     {
@@ -37,7 +37,49 @@ trait NestedPolicyTypeTestTrait
 
 
     /**
-     * Adding an empty InitiatorToken element should yield an empty element.
+     * Test that creating a NestedPolicyType from scratch without attributes works.
+     */
+    public function testMarshallingWithoutNSAttr(): void
+    {
+        $xml = <<<XML
+<sp:%s xmlns:sp="%s">
+  <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>
+</sp:%s>
+XML;
+        $localName = static::$testedClass::getLocalName();
+        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY, $localName);
+        $xmlRepresentation = DOMDocumentFactory::fromString($xml);
+
+        $np = new static::$testedClass([static::$chunk]);
+
+        $this->assertEquals(
+            $xmlRepresentation->saveXML($xmlRepresentation->documentElement),
+            strval($np),
+        );
+    }
+
+
+    /**
+     * Test that creating a NestedPolicyType from scratch without children works.
+     */
+    public function testMarshallingWithoutChildren(): void
+    {
+        $xml = '<sp:%s xmlns:sp="%s" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1"/>';
+        $localName = static::$testedClass::getLocalName();
+        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY, $localName);
+        $xmlRepresentation = DOMDocumentFactory::fromString($xml);
+
+        $qns = new static::$testedClass([], [static::$attr]);
+
+        $this->assertEquals(
+            $xmlRepresentation->saveXML($xmlRepresentation->documentElement),
+            strval($qns),
+        );
+    }
+
+
+    /**
+     * Adding an empty NestedPolicyType element should yield an empty element.
      */
     public function testMarshallingEmptyElement(): void
     {
@@ -62,6 +104,48 @@ trait NestedPolicyTypeTestTrait
 
         $this->assertEquals(
             static::$xmlRepresentation->saveXML(static::$xmlRepresentation->documentElement),
+            strval($np),
+        );
+    }
+
+
+    /**
+     * Test that creating a NestedPolicyType from XML without attributes succeeds.
+     */
+    public function testUnmarshallingWithoutNSAttr(): void
+    {
+        $xml = <<<XML
+<sp:%s xmlns:sp="%s">
+  <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>
+</sp:%s>
+XML;
+        $localName = static::$testedClass::getLocalName();
+        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY, $localName);
+        $xmlRepresentation = DOMDocumentFactory::fromString($xml);
+
+        $np = static::$testedClass::fromXML($xmlRepresentation->documentElement);
+
+        $this->assertEquals(
+            $xmlRepresentation->saveXML($xmlRepresentation->documentElement),
+            strval($np),
+        );
+    }
+
+
+    /**
+     * Test that creating a NestedPolicyType from XML without children succeeds.
+     */
+    public function testUnmarshallingWithoutChildren(): void
+    {
+        $xml = '<sp:%s xmlns:sp="%s" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1"/>';
+        $localName = static::$testedClass::getLocalName();
+        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY, $localName);
+        $xmlRepresentation = DOMDocumentFactory::fromString($xml);
+
+        $np = static::$testedClass::fromXML($xmlRepresentation->documentElement);
+
+        $this->assertEquals(
+            $xmlRepresentation->saveXML($xmlRepresentation->documentElement),
             strval($np),
         );
     }
