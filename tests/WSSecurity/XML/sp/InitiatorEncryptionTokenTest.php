@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\sp;
 use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\sp\TransportBinding;
+use SimpleSAML\WSSecurity\XML\sp\InitiatorEncryptionToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -17,15 +17,15 @@ use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use function dirname;
 
 /**
- * Class \SimpleSAML\WSSecurity\XML\sp\TransportBindingTest
+ * Class \SimpleSAML\WSSecurity\XML\sp\InitiatorEncryptionTokenTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\TransportBinding
+ * @covers \SimpleSAML\WSSecurity\XML\sp\InitiatorEncryptionToken
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractNestedPolicyType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
  * @package tvdijen/ws-security
  */
-final class TransportBindingTest extends TestCase
+final class InitiatorEncryptionTokenTest extends TestCase
 {
     use NestedPolicyTypeTestTrait;
     use SchemaValidationTestTrait;
@@ -44,10 +44,10 @@ final class TransportBindingTest extends TestCase
     {
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-securitypolicy-1.2.xsd';
 
-        self::$testedClass = TransportBinding::class;
+        self::$testedClass = InitiatorEncryptionToken::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/sp_TransportBinding.xml',
+            dirname(__FILE__, 4) . '/resources/xml/sp_InitiatorEncryptionToken.xml',
         );
 
         self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');

@@ -27,9 +27,16 @@ use function dirname;
  */
 final class ProtectionTokenTest extends TestCase
 {
+    use NestedPolicyTypeTestTrait;
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
+    /** @var \SimpleSAML\XML\Chunk $chunk */
+    protected static Chunk $chunk;
+
+    /** @var \SimpleSAML\XML\Attribute $attr */
+    protected static XMLAttribute $attr;
 
     /**
      */
@@ -42,58 +49,11 @@ final class ProtectionTokenTest extends TestCase
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/sp_ProtectionToken.xml',
         );
-    }
 
+        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
 
-    /**
-     * Adding an empty ProtectionToken element should yield an empty element.
-     */
-    public function testMarshallingEmptyElement(): void
-    {
-        $spns = C::NS_SEC_POLICY;
-        $ProtectionToken = new ProtectionToken();
-        $this->assertEquals(
-            "<sp:ProtectionToken xmlns:sp=\"$spns\"/>",
-            strval($ProtectionToken),
-        );
-        $this->assertTrue($ProtectionToken->isEmptyElement());
-    }
-
-
-    // test marshalling
-
-
-    /**
-     * Test that creating a ProtectionToken from scratch works.
-     */
-    public function testMarshalling(): void
-    {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $chunk = new Chunk(DOMDocumentFactory::fromString(
+        self::$chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>'
         )->documentElement);
-
-        $ProtectionToken = new ProtectionToken([$chunk], [$attr]);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($ProtectionToken),
-        );
-    }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test that creating a ProtectionToken from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $ProtectionToken = ProtectionToken::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($ProtectionToken),
-        );
     }
 }

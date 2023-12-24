@@ -27,9 +27,16 @@ use function dirname;
  */
 final class LayoutTest extends TestCase
 {
+    use NestedPolicyTypeTestTrait;
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
+    /** @var \SimpleSAML\XML\Chunk $chunk */
+    protected static Chunk $chunk;
+
+    /** @var \SimpleSAML\XML\Attribute $attr */
+    protected static XMLAttribute $attr;
 
     /**
      */
@@ -42,58 +49,11 @@ final class LayoutTest extends TestCase
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/sp_Layout.xml',
         );
-    }
 
+        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
 
-    /**
-     * Adding an empty Layout element should yield an empty element.
-     */
-    public function testMarshallingEmptyElement(): void
-    {
-        $spns = C::NS_SEC_POLICY;
-        $layout = new Layout();
-        $this->assertEquals(
-            "<sp:Layout xmlns:sp=\"$spns\"/>",
-            strval($layout),
-        );
-        $this->assertTrue($layout->isEmptyElement());
-    }
-
-
-    // test marshalling
-
-
-    /**
-     * Test that creating a Layout from scratch works.
-     */
-    public function testMarshalling(): void
-    {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $chunk = new Chunk(DOMDocumentFactory::fromString(
+        self::$chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>'
         )->documentElement);
-
-        $layout = new Layout([$chunk], [$attr]);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($layout),
-        );
-    }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test that creating a Layout from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $layout = Layout::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($layout),
-        );
     }
 }

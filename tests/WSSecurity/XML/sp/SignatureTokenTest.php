@@ -27,9 +27,16 @@ use function dirname;
  */
 final class SignatureTokenTest extends TestCase
 {
+    use NestedPolicyTypeTestTrait;
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
+    /** @var \SimpleSAML\XML\Chunk $chunk */
+    protected static Chunk $chunk;
+
+    /** @var \SimpleSAML\XML\Attribute $attr */
+    protected static XMLAttribute $attr;
 
     /**
      */
@@ -42,58 +49,11 @@ final class SignatureTokenTest extends TestCase
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/sp_SignatureToken.xml',
         );
-    }
 
+        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
 
-    /**
-     * Adding an empty SignatureToken element should yield an empty element.
-     */
-    public function testMarshallingEmptyElement(): void
-    {
-        $spns = C::NS_SEC_POLICY;
-        $SignatureToken = new SignatureToken();
-        $this->assertEquals(
-            "<sp:SignatureToken xmlns:sp=\"$spns\"/>",
-            strval($SignatureToken),
-        );
-        $this->assertTrue($SignatureToken->isEmptyElement());
-    }
-
-
-    // test marshalling
-
-
-    /**
-     * Test that creating a SignatureToken from scratch works.
-     */
-    public function testMarshalling(): void
-    {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $chunk = new Chunk(DOMDocumentFactory::fromString(
+        self::$chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>'
         )->documentElement);
-
-        $SignatureToken = new SignatureToken([$chunk], [$attr]);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($SignatureToken),
-        );
-    }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test that creating a SignatureToken from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $SignatureToken = SignatureToken::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($SignatureToken),
-        );
     }
 }

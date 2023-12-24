@@ -27,9 +27,16 @@ use function dirname;
  */
 final class SymmetricBindingTest extends TestCase
 {
+    use NestedPolicyTypeTestTrait;
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
+    /** @var \SimpleSAML\XML\Chunk $chunk */
+    protected static Chunk $chunk;
+
+    /** @var \SimpleSAML\XML\Attribute $attr */
+    protected static XMLAttribute $attr;
 
     /**
      */
@@ -42,58 +49,11 @@ final class SymmetricBindingTest extends TestCase
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/sp_SymmetricBinding.xml',
         );
-    }
 
+        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
 
-    /**
-     * Adding an empty SymmetricBinding element should yield an empty element.
-     */
-    public function testMarshallingEmptyElement(): void
-    {
-        $spns = C::NS_SEC_POLICY;
-        $SymmetricBinding = new SymmetricBinding();
-        $this->assertEquals(
-            "<sp:SymmetricBinding xmlns:sp=\"$spns\"/>",
-            strval($SymmetricBinding),
-        );
-        $this->assertTrue($SymmetricBinding->isEmptyElement());
-    }
-
-
-    // test marshalling
-
-
-    /**
-     * Test that creating a SymmetricBinding from scratch works.
-     */
-    public function testMarshalling(): void
-    {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $chunk = new Chunk(DOMDocumentFactory::fromString(
+        self::$chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>'
         )->documentElement);
-
-        $SymmetricBinding = new SymmetricBinding([$chunk], [$attr]);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($SymmetricBinding),
-        );
-    }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test that creating a SymmetricBinding from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $SymmetricBinding = SymmetricBinding::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($SymmetricBinding),
-        );
     }
 }
