@@ -75,20 +75,4 @@ final class TokenTypeTest extends TestCase
         $this->expectException(AssertionFailedException::class);
         new TokenType();
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a TokenType from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $tokenType = TokenType::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($tokenType),
-        );
-    }
 }

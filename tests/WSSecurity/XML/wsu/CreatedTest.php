@@ -59,20 +59,4 @@ final class CreatedTest extends TestCase
             strval($created)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Created from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $created = Created::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($created)
-        );
-    }
 }

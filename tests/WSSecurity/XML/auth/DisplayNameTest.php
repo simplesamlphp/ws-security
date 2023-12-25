@@ -57,20 +57,4 @@ final class DisplayNameTest extends TestCase
             strval($displayName)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a DisplayName from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $displayName = DisplayName::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($displayName)
-        );
-    }
 }

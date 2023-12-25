@@ -61,20 +61,4 @@ final class ActionTest extends TestCase
             strval($action)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Action from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $action = Action::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($action)
-        );
-    }
 }

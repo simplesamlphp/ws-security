@@ -79,30 +79,4 @@ final class MetadataTest extends TestCase
         );
         $this->assertTrue($metadata->isEmptyElement());
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $metadata = Metadata::fromXML(self::$xmlRepresentation->documentElement);
-
-        $elements = $metadata->getElements();
-        $this->assertFalse($metadata->isEmptyElement());
-        $this->assertCount(1, $elements);
-
-        $attributes = $metadata->getAttributesNS();
-        $this->assertCount(1, $attributes);
-
-        $attribute = array_pop($attributes);
-        $this->assertEquals(
-            [
-                'namespaceURI' => 'urn:x-simplesamlphp:namespace',
-                'namespacePrefix' => 'ssp',
-                'attrName' => 'attr1',
-                'attrValue' => 'value1',
-            ],
-            $attribute->toArray(),
-        );
-    }
 }

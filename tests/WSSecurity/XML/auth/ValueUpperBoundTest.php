@@ -69,20 +69,4 @@ final class ValueUpperBoundTest extends TestCase
             strval($valueUpperBound),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ValueUpperBound from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $valueUpperBound = ValueUpperBound::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($valueUpperBound),
-        );
-    }
 }

@@ -101,20 +101,4 @@ final class EndpointReferenceTest extends TestCase
             strval($endpointReference)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a EndpointReference from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $endpointReference = EndpointReference::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($endpointReference)
-        );
-    }
 }

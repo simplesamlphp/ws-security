@@ -76,20 +76,4 @@ final class ClaimDialectsOfferedTest extends TestCase
             strval($claimDialectsOffered),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ClaimDialectsOffered from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $claimDialectsOffered = ClaimDialectsOffered::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($claimDialectsOffered),
-        );
-    }
 }

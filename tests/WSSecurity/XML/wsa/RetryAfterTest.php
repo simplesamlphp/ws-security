@@ -60,21 +60,4 @@ final class RetryAfterTest extends TestCase
             strval($retryAfter)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a RetryAfter from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $RetryAfter = RetryAfter::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($RetryAfter)
-        );
-    }
 }

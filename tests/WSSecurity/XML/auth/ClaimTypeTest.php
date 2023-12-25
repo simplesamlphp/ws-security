@@ -105,20 +105,4 @@ final class ClaimTypeTest extends TestCase
         $this->assertEquals('auth:DisplayValue', $claimTypeElements[1]->tagName);
         $this->assertEquals('auth:Value', $claimTypeElements[2]->tagName);
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ClaimType from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $claimType = ClaimType::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($claimType),
-        );
-    }
 }

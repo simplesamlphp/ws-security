@@ -111,23 +111,4 @@ final class PassiveRequestorEndpointTest extends TestCase
             strval($passiveRequestorEndpoint),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a PassiveRequestorEndpoint from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $passiveRequestorEndpoint = PassiveRequestorEndpoint::fromXML(
-            self::$xmlRepresentation->documentElement,
-        );
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($passiveRequestorEndpoint),
-        );
-    }
 }

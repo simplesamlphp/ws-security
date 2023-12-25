@@ -62,20 +62,4 @@ final class ProblemHeaderQNameTest extends TestCase
             strval($problemHeaderQName)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ProblemHeaderQName from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $problemHeaderQName = ProblemHeaderQName::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($problemHeaderQName)
-        );
-    }
 }

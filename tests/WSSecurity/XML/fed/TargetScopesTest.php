@@ -111,20 +111,4 @@ final class TargetScopesTest extends TestCase
             strval($targetScopes),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a TargetScopes from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $targetScopes = TargetScopes::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($targetScopes),
-        );
-    }
 }

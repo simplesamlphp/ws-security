@@ -57,20 +57,4 @@ final class AddressTest extends TestCase
             strval($address)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Address from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $address = Address::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($address)
-        );
-    }
 }

@@ -111,20 +111,4 @@ final class ApplicationServiceEndpointTest extends TestCase
             strval($applicationServiceEndpoint),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ApplicationServiceEndpoint from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $applicationServiceEndpoint = ApplicationServiceEndpoint::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($applicationServiceEndpoint),
-        );
-    }
 }

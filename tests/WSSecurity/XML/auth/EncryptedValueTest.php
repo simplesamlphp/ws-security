@@ -85,20 +85,4 @@ final class EncryptedValueTest extends TestCase
             strval($encryptedValue),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a DisplayName from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $encryptedValue = EncryptedValue::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($encryptedValue),
-        );
-    }
 }

@@ -62,20 +62,4 @@ final class ToTest extends TestCase
             strval($to)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a To from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $to = To::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($to)
-        );
-    }
 }

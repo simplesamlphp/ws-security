@@ -75,20 +75,4 @@ final class TimestampTest extends TestCase
 
         $this->assertTrue($timestamp->isEmptyElement());
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Created from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $timestamp = Timestamp::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($timestamp)
-        );
-    }
 }

@@ -57,20 +57,4 @@ final class DescriptionTest extends TestCase
             strval($description)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Description from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $description = Description::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($description)
-        );
-    }
 }

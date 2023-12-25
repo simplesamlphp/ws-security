@@ -78,20 +78,4 @@ final class TransformationParametersTest extends TestCase
 
         $this->assertTrue($transformationParameters->isEmptyElement());
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a TransformationParameters from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $transformationParameters = TransformationParameters::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($transformationParameters),
-        );
-    }
 }

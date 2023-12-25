@@ -104,20 +104,4 @@ final class ReplyToTest extends TestCase
             strval($replyTo)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ReplyTo from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $replyTo = ReplyTo::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($replyTo)
-        );
-    }
 }

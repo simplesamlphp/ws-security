@@ -111,20 +111,4 @@ final class AttributeServiceEndpointTest extends TestCase
             strval($attributeServiceEndpoint),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a AttributeServiceEndpoint from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $attributeServiceEndpoint = AttributeServiceEndpoint::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($attributeServiceEndpoint),
-        );
-    }
 }

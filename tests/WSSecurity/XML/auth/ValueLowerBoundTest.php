@@ -57,20 +57,4 @@ final class ValueLowerBoundTest extends TestCase
             strval($valueLowerBound),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ValueLowerBound from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $valueLowerBound = ValueLowerBound::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($valueLowerBound),
-        );
-    }
 }

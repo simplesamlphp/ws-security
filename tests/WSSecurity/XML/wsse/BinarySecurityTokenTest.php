@@ -70,20 +70,4 @@ final class BinarySecurityTokenTest extends TestCase
             strval($binarySecurityToken),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a BinarySecurityToken from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $binarySecurityToken = BinarySecurityToken::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($binarySecurityToken),
-        );
-    }
 }

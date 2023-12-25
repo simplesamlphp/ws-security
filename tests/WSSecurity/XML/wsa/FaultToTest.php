@@ -104,20 +104,4 @@ final class FaultToTest extends TestCase
             strval($faultTo)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a FaultTo from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $faultTo = FaultTo::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($faultTo)
-        );
-    }
 }

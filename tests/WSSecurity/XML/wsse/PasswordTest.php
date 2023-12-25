@@ -57,20 +57,4 @@ final class PasswordTest extends TestCase
             strval($password),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Password from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $password = Password::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($password),
-        );
-    }
 }

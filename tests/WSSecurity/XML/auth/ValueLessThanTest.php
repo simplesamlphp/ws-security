@@ -69,20 +69,4 @@ final class ValueLessThanTest extends TestCase
             strval($valueLessThan),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ValueLessThan from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $valueLessThan = ValueLessThan::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($valueLessThan),
-        );
-    }
 }

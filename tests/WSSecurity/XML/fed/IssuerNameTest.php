@@ -62,20 +62,4 @@ final class IssuerNameTest extends TestCase
             strval($issuerName),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a IssuerName from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $issuerName = IssuerName::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($issuerName),
-        );
-    }
 }

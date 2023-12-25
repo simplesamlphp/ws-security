@@ -104,20 +104,4 @@ final class FromTest extends TestCase
             strval($from)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a From from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $from = From::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($from)
-        );
-    }
 }

@@ -79,30 +79,4 @@ final class ReferenceParametersTest extends TestCase
         );
         $this->assertTrue($referenceParameters->isEmptyElement());
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $referenceParameters = ReferenceParameters::fromXML(self::$xmlRepresentation->documentElement);
-
-        $elements = $referenceParameters->getElements();
-        $this->assertFalse($referenceParameters->isEmptyElement());
-        $this->assertCount(1, $elements);
-
-        $attributes = $referenceParameters->getAttributesNS();
-        $this->assertCount(1, $attributes);
-
-        $attribute = array_pop($attributes);
-        $this->assertEquals(
-            [
-                'namespaceURI' => 'urn:test:something',
-                'namespacePrefix' => 'test',
-                'attrName' => 'attr1',
-                'attrValue' => 'testval1',
-            ],
-            $attribute->toArray(),
-        );
-    }
 }

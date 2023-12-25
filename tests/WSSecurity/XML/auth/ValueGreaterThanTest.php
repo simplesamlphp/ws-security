@@ -69,20 +69,4 @@ final class ValueGreaterThanTest extends TestCase
             strval($valueGreaterThan),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ValueGreaterThan from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $valueGreaterThan = ValueGreaterThan::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($valueGreaterThan),
-        );
-    }
 }

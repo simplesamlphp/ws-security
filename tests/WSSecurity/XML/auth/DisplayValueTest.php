@@ -57,20 +57,4 @@ final class DisplayValueTest extends TestCase
             strval($displayValue)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a DisplayValue from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $displayValue = DisplayValue::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($displayValue)
-        );
-    }
 }

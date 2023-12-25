@@ -58,20 +58,4 @@ final class ValueOneOfWithValuesTest extends TestCase
             strval($valueOneOf),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ValueOneOf from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $valueOneOf = ValueOneOf::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($valueOneOf),
-        );
-    }
 }

@@ -65,20 +65,4 @@ final class StructuredValueTest extends TestCase
             strval($structuredValue),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a StructuredValue from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $structuredValue = StructuredValue::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($structuredValue),
-        );
-    }
 }

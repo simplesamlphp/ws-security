@@ -79,20 +79,4 @@ final class EmbeddedTest extends TestCase
 
         $this->assertTrue($embedded->isEmptyElement());
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Embedded from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $embedded = Embedded::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($embedded),
-        );
-    }
 }

@@ -83,20 +83,4 @@ final class ProblemActionTest extends TestCase
         );
         $this->assertTrue($problemAction->isEmptyElement());
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ProblemAction from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $problemAction = ProblemAction::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($problemAction)
-        );
-    }
 }

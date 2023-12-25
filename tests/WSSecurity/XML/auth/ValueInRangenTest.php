@@ -73,20 +73,4 @@ final class ValueInRangenTest extends TestCase
             strval($valueInRangen),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ValueInRangen from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $valueInRangen = ValueInRangen::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($valueInRangen),
-        );
-    }
 }

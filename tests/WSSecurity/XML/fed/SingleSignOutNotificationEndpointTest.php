@@ -111,23 +111,4 @@ final class SingleSignOutNotificationEndpointTest extends TestCase
             strval($singleSignOutNotificationEndpoint),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a SingleSignOutSubscriptionEndpoint from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $singleSignOutNotificationEndpoint = SingleSignOutNotificationEndpoint::fromXML(
-            self::$xmlRepresentation->documentElement,
-        );
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($singleSignOutNotificationEndpoint),
-        );
-    }
 }

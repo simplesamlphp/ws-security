@@ -75,20 +75,4 @@ final class ClaimDialectTest extends TestCase
         $this->expectException(AssertionFailedException::class);
         new ClaimDialect();
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ClaimDialect from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $claimDialect = ClaimDialect::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($claimDialect),
-        );
-    }
 }

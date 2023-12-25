@@ -54,20 +54,4 @@ final class ValueTest extends TestCase
             strval($value),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Value from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $value = Value::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($value),
-        );
-    }
 }

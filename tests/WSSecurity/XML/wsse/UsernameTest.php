@@ -56,20 +56,4 @@ final class UsernameTest extends TestCase
             strval($username),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Username from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $username = Username::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($username),
-        );
-    }
 }

@@ -70,28 +70,4 @@ final class RelatesToTest extends TestCase
         );
         $this->assertTrue($relatesTo->isEmptyElement());
     }
-
-
-    /**
-     */
-    public function testUnmarshalling(): void
-    {
-        $relatesTo = RelatesTo::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertFalse($relatesTo->isEmptyElement());
-        $this->assertEquals('http://www.w3.org/2005/08/addressing/reply', $relatesTo->getRelationshipType());
-
-        $attributes = $relatesTo->getAttributesNS();
-        $this->assertCount(1, $attributes);
-
-        $attribute = array_pop($attributes);
-        $this->assertEquals(
-            [
-                'namespaceURI' => 'urn:test:something',
-                'namespacePrefix' => 'test',
-                'attrName' => 'attr1',
-                'attrValue' => 'testval1',
-            ],
-            $attribute->toArray(),
-        );
-    }
 }

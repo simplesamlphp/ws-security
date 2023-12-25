@@ -80,20 +80,4 @@ final class SecurityTokenReferenceTest extends TestCase
 
         $this->assertTrue($securityTokenReference->isEmptyElement());
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a SecurityTokenReference from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $securityTokenReference = SecurityTokenReference::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($securityTokenReference),
-        );
-    }
 }

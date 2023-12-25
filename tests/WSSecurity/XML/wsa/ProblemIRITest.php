@@ -62,20 +62,4 @@ final class ProblemIRITest extends TestCase
             strval($problemIri)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a ProblemIRI from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $problemIri = ProblemIRI::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($problemIri)
-        );
-    }
 }

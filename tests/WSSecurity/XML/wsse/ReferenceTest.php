@@ -65,20 +65,4 @@ final class ReferenceTest extends TestCase
             strval($reference),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Reference from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $reference = Reference::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($reference),
-        );
-    }
 }

@@ -73,20 +73,4 @@ final class UsernameTokenTest extends TestCase
             strval($usernameToken),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a UsernameToken from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $usernameToken = UsernameToken::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($usernameToken),
-        );
-    }
 }

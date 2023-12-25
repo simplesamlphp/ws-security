@@ -68,20 +68,4 @@ final class NonceTest extends TestCase
             strval($nonce),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a BinarySecurityToken from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $nonce = Nonce::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($nonce),
-        );
-    }
 }

@@ -70,20 +70,4 @@ final class KeyIdentifierTest extends TestCase
             strval($keyIdentifier),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a KeyIdentifier from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $keyIdentifier = KeyIdentifier::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($keyIdentifier),
-        );
-    }
 }

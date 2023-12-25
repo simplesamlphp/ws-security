@@ -72,23 +72,4 @@ final class LogicalServiceNamesOfferedTest extends TestCase
             strval($logicalServiceNamesOffered),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a LogicalServiceNamesOffered from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $logicalServiceNamesOffered = LogicalServiceNamesOffered::fromXML(
-            self::$xmlRepresentation->documentElement,
-        );
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($logicalServiceNamesOffered),
-        );
-    }
 }

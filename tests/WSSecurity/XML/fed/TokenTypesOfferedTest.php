@@ -80,20 +80,4 @@ final class TokenTypesOfferedTest extends TestCase
             strval($tokenTypesOffered),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a TokenTypesOffered from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $tokenTypesOffered = TokenTypesOffered::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($tokenTypesOffered),
-        );
-    }
 }

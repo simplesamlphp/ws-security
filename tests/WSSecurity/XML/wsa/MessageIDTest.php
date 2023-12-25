@@ -61,20 +61,4 @@ final class MessageIDTest extends TestCase
             strval($msgId)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a MessageID from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $msgId = MessageID::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($msgId)
-        );
-    }
 }

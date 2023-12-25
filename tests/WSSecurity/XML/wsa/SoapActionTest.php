@@ -54,20 +54,4 @@ final class SoapActionTest extends TestCase
             strval($soapAction)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a SoapAction from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $soapAction = SoapAction::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($soapAction)
-        );
-    }
 }

@@ -111,20 +111,4 @@ final class PsuedonymServiceEndpointsTest extends TestCase
             strval($psuedonymServiceEndpoints),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a PsuedonymServiceEndpoints from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $psuedonymServiceEndpoints = PsuedonymServiceEndpoints::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($psuedonymServiceEndpoints),
-        );
-    }
 }

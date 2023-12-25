@@ -111,23 +111,4 @@ final class SecurityTokenServiceEndpointTest extends TestCase
             strval($securityTokenServiceEndpoint),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a SecurityTokenServiceEndpoint from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $securityTokenServiceEndpoint = SecurityTokenServiceEndpoint::fromXML(
-            self::$xmlRepresentation->documentElement,
-        );
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($securityTokenServiceEndpoint),
-        );
-    }
 }

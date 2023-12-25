@@ -59,20 +59,4 @@ final class ExpiresTest extends TestCase
             strval($expires)
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test creating a Expires from XML.
-     */
-    public function testUnmarshalling(): void
-    {
-        $expires = Expires::fromXML(self::$xmlRepresentation->documentElement);
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($expires)
-        );
-    }
 }
