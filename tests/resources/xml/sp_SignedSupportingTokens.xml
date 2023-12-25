@@ -1,0 +1,3 @@
+<sp:SignedSupportingTokens xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1">
+  <ssp:Chunk>Some</ssp:Chunk>
+</sp:SignedSupportingTokens>
