@@ -117,21 +117,4 @@ final class EncryptedPartsTest extends TestCase
         $this->assertEquals('sp:Attachments', $EncryptedPartsElements[1]->tagName);
         $this->assertEquals('ssp:Chunk', $EncryptedPartsElements[2]->tagName);
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test that creating a EncryptedParts from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $EncryptedParts = EncryptedParts::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($EncryptedParts),
-        );
-    }
 }

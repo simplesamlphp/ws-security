@@ -108,21 +108,4 @@ final class RequiredPartsTest extends TestCase
             strval($RequiredParts),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test that creating a RequiredParts from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $RequiredParts = RequiredParts::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($RequiredParts),
-        );
-    }
 }

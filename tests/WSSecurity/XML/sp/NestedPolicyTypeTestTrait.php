@@ -96,20 +96,6 @@ XML;
 
 
     /**
-     * Test that creating a NestedPolicyType from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $np = static::$testedClass::fromXML(static::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            static::$xmlRepresentation->saveXML(static::$xmlRepresentation->documentElement),
-            strval($np),
-        );
-    }
-
-
-    /**
      * Test that creating a NestedPolicyType from XML without attributes succeeds.
      */
     public function testUnmarshallingWithoutNSAttr(): void

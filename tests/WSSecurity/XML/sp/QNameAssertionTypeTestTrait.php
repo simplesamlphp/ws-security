@@ -57,20 +57,6 @@ trait QNameAssertionTypeTestTrait
 
 
     /**
-     * Test that creating a QNameAssertionType from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $qna = static::$testedClass::fromXML(static::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            static::$xmlRepresentation->saveXML(static::$xmlRepresentation->documentElement),
-            strval($qna),
-        );
-    }
-
-
-    /**
      * Test that creating a QNameAssertionType from XML without attributes succeeds.
      */
     public function testUnmarshallingWithoutNSAttr(): void

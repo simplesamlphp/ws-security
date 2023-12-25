@@ -56,21 +56,4 @@ final class HeaderTest extends TestCase
             strval($header),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test that creating a Header from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $header = Header::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($header),
-        );
-    }
 }

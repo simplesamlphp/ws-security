@@ -116,22 +116,4 @@ final class SignedPartsTest extends TestCase
         $this->assertEquals('sp:Attachments', $SignedPartsElements[1]->tagName);
         $this->assertEquals('ssp:Chunk', $SignedPartsElements[2]->tagName);
     }
-
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test that creating a SignedParts from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $signedParts = SignedParts::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($signedParts),
-        );
-    }
 }

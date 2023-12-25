@@ -54,21 +54,4 @@ final class BodyTest extends TestCase
             strval($body),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test that creating a Body from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $body = Body::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($body),
-        );
-    }
 }

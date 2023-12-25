@@ -54,21 +54,4 @@ final class AttachmentsTest extends TestCase
             strval($attachments),
         );
     }
-
-
-    // test unmarshalling
-
-
-    /**
-     * Test that creating an Attachments from XML succeeds.
-     */
-    public function testUnmarshalling(): void
-    {
-        $attachments = Attachments::fromXML(self::$xmlRepresentation->documentElement);
-
-        $this->assertEquals(
-            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($attachments),
-        );
-    }
 }
