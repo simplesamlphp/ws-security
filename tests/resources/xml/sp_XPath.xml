@@ -1,0 +1,1 @@
+<sp:XPath xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">/bookstore/book[price>35.00]/title</sp:XPath>
