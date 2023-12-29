@@ -1,0 +1,3 @@
+<sp:RequestSecurityTokenTemplate xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:ssp="urn:x-simplesamlphp:namespace" TrustVersion="urn:x-simplesamlphp:version" ssp:attr1="value1">
+  <ssp:Chunk>some</ssp:Chunk>
+</sp:RequestSecurityTokenTemplate>

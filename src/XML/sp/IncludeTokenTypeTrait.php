@@ -19,17 +19,17 @@ trait IncludeTokenTypeTrait
     /**
      * The included token.
      *
-     * @var \SimpleSAML\WSSecurity\XML\sp\IncludeToken|string
+     * @var \SimpleSAML\WSSecurity\XML\sp\IncludeToken|string|null
      */
-    protected IncludeToken|string $includeToken;
+    protected IncludeToken|string|null $includeToken;
 
 
     /**
      * Collect the value of the includeToken-property
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp\IncludeToken|string
+     * @return \SimpleSAML\WSSecurity\XML\sp\IncludeToken|string|null
      */
-    public function getIncludeToken(): IncludeToken|string
+    public function getIncludeToken(): IncludeToken|string|null
     {
         return $this->includeToken;
     }
@@ -38,9 +38,9 @@ trait IncludeTokenTypeTrait
     /**
      * Set the value of the includeToken-property
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp\IncludeToken|string $includeToken
+     * @param \SimpleSAML\WSSecurity\XML\sp\IncludeToken|string|null $includeToken
      */
-    protected function setIncludeToken(IncludeToken|string $includeToken): void
+    protected function setIncludeToken(IncludeToken|string|null $includeToken): void
     {
         if (is_string($includeToken)) {
             Assert::validURI($includeToken);

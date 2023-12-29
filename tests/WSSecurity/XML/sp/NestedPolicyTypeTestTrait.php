@@ -64,9 +64,9 @@ XML;
      */
     public function testMarshallingWithoutChildren(): void
     {
-        $xml = '<sp:%s xmlns:sp="%s" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1"/>';
+        $xml = '<sp:%s xmlns:sp="%s" xmlns:ssp="%s" ssp:attr1="value1"/>';
         $localName = static::$testedClass::getLocalName();
-        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY, $localName);
+        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY, C::NAMESPACE);
         $xmlRepresentation = DOMDocumentFactory::fromString($xml);
 
         $qns = new static::$testedClass([], [static::$attr]);
