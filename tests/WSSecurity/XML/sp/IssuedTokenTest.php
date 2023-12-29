@@ -81,7 +81,7 @@ final class IssuedTokenTest extends TestCase
 
 
     /**
-     * Test that creating a RequiredParts from scratch works.
+     * Test that creating a IssuedToken from scratch works.
      */
     public function testMarshalling(): void
     {
