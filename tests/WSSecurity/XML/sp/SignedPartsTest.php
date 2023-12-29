@@ -49,6 +49,9 @@ final class SignedPartsTest extends TestCase
     }
 
 
+    // test marshalling
+
+
     /**
      * Adding an empty SignedParts element should yield an empty element.
      */
@@ -62,9 +65,6 @@ final class SignedPartsTest extends TestCase
         );
         $this->assertTrue($signedParts->isEmptyElement());
     }
-
-
-    // test marshalling
 
 
     /**
