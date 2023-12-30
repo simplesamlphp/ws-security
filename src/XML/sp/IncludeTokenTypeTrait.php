@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp;
 
-use DOMElement;
 use SimpleSAML\Assert\Assert;
 
-use function array_pop;
+use function is_string;
 
 /**
  * Trait grouping common functionality for elements that can hold IncludeToken attributes.

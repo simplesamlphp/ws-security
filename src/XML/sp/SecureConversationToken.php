@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\sp;
 
 /**
- * An HttpsToken element
+ * An SecureConversationToken element
  *
  * @package tvdijen/ws-security
  */
-final class HttpsToken extends AbstractTokenAssertionType
+final class SecureConversationToken extends AbstractSecureConversationTokenType
 {
 }
