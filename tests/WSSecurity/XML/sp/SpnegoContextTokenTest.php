@@ -24,7 +24,7 @@ use function dirname;
  *
  * @covers \SimpleSAML\WSSecurity\XML\sp\SpnegoContextToken
  * @covers \SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait
- * @covers \SimpleSAML\WSSecurity\XML\sp\SpnegoContextTokenType
+ * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpnegoContextTokenType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
  * @package tvdijen/ws-security

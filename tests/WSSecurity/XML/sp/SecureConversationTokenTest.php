@@ -24,7 +24,7 @@ use function dirname;
  *
  * @covers \SimpleSAML\WSSecurity\XML\sp\SecureConversationToken
  * @covers \SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait
- * @covers \SimpleSAML\WSSecurity\XML\sp\SecureConversationTokenType
+ * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSecureConversationTokenType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
  * @package tvdijen/ws-security
