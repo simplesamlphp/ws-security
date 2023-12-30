@@ -19,7 +19,7 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\InitiatorTokenTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\InitatorToken
+ * @covers \SimpleSAML\WSSecurity\XML\sp\InitiatorToken
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractNestedPolicyType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *

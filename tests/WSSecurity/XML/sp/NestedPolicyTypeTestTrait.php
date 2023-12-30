@@ -125,7 +125,7 @@ XML;
     {
         $xml = '<sp:%s xmlns:sp="%s" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1"/>';
         $localName = static::$testedClass::getLocalName();
-        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY, $localName);
+        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY);
         $xmlRepresentation = DOMDocumentFactory::fromString($xml);
 
         $np = static::$testedClass::fromXML($xmlRepresentation->documentElement);

@@ -67,7 +67,12 @@ final class SignedElementsTest extends TestCase
 
         // Test ordering of SignedElements contents
         /** @psalm-var \DOMElement[] $SignedElementsElements */
-        $SignedElementsElements = XMLXPath::xpQuery($SignedElementsElement, './sp:XPath/following-sibling::*', $xpCache);
+        $SignedElementsElements = XMLXPath::xpQuery(
+            $SignedElementsElement,
+            './sp:XPath/following-sibling::*',
+            $xpCache,
+        );
+
         $this->assertCount(1, $SignedElementsElements);
         $this->assertEquals('ssp:Chunk', $SignedElementsElements[0]->tagName);
     }

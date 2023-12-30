@@ -68,9 +68,9 @@ abstract class AbstractSerElementsType extends AbstractSpElement
     /**
      * Collect the value of the XPathVersion property.
      *
-     * @return string
+     * @return string|null
      */
-    public function getXPathVersion(): string
+    public function getXPathVersion(): ?string
     {
         return $this->xpathVersion;
     }
@@ -146,6 +146,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
         }
 
         foreach ($this->getElements() as $elt) {
+            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
             $elt->toXML($e);
         }
 

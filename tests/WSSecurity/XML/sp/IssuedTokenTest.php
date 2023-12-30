@@ -24,6 +24,7 @@ use function dirname;
  * Class \SimpleSAML\WSSecurity\XML\sp\IssuedTokenTest
  *
  * @covers \SimpleSAML\WSSecurity\XML\sp\IssuedToken
+ * @covers \SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractIssuedTokenType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
@@ -58,7 +59,11 @@ final class IssuedTokenTest extends TestCase
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
         )->documentElement);
-        $requestSecurityTokenTemplate = new RequestSecurityTokenTemplate('urn:x-simplesamlphp:version', [$chunk], [$attr]);
+        $requestSecurityTokenTemplate = new RequestSecurityTokenTemplate(
+            'urn:x-simplesamlphp:version',
+            [$chunk],
+            [$attr],
+        );
 
         $issuedToken = new IssuedToken($requestSecurityTokenTemplate, $issuer, IncludeToken::Always, [$chunk], [$attr]);
         $issuedTokenElement = $issuedToken->toXML();
@@ -91,7 +96,11 @@ final class IssuedTokenTest extends TestCase
         )->documentElement);
 
         $issuer = new IssuerName('urn:x-simplesamlphp:issuer');
-        $requestSecurityTokenTemplate = new RequestSecurityTokenTemplate('urn:x-simplesamlphp:version', [$chunk], [$attr]);
+        $requestSecurityTokenTemplate = new RequestSecurityTokenTemplate(
+            'urn:x-simplesamlphp:version',
+            [$chunk],
+            [$attr],
+        );
 
         $issuedToken = new IssuedToken($requestSecurityTokenTemplate, $issuer, IncludeToken::Always, [$chunk], [$attr]);
         $this->assertEquals(

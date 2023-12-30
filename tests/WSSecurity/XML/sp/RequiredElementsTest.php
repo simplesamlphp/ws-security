@@ -67,7 +67,12 @@ final class RequiredElementsTest extends TestCase
 
         // Test ordering of RequiredElements contents
         /** @psalm-var \DOMElement[] $requiredElementsElements */
-        $requiredElementsElements = XMLXPath::xpQuery($requiredElementsElement, './sp:XPath/following-sibling::*', $xpCache);
+        $requiredElementsElements = XMLXPath::xpQuery(
+            $requiredElementsElement,
+            './sp:XPath/following-sibling::*',
+            $xpCache,
+        );
+
         $this->assertCount(1, $requiredElementsElements);
         $this->assertEquals('ssp:Chunk', $requiredElementsElements[0]->tagName);
     }

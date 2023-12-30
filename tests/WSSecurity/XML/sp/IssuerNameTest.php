@@ -17,7 +17,7 @@ use function strval;
 /**
  * Tests for IssuerName.
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\IssuerNameName
+ * @covers \SimpleSAML\WSSecurity\XML\sp\IssuerName
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
  * @package tvdijen/ws-security

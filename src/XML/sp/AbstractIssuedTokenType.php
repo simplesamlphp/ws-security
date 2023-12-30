@@ -63,9 +63,9 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
     /**
      * Collect the value of the Issuer property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp\Issuer|\SimpleSAML\WSSecurity\XML\sp\IssuerName
+     * @return \SimpleSAML\WSSecurity\XML\sp\Issuer|\SimpleSAML\WSSecurity\XML\sp\IssuerName|null
      */
-    public function getIssuer(): Issuer|IssuerName
+    public function getIssuer(): Issuer|IssuerName|null
     {
         return $this->issuer;
     }
@@ -173,6 +173,7 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
         $this->getRequestSecurityTokenTemplate()->toXML($e);
 
         foreach ($this->getElements() as $elt) {
+            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
             $elt->toXML($e);
         }
 

@@ -54,7 +54,12 @@ final class RequestSecurityTokenTemplateTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
         )->documentElement);
 
-        $RequestSecurityTokenTemplateElements = new RequestSecurityTokenTemplate('urn:x-simplesamlphp:version', [$chunk], [$attr]);
+        $RequestSecurityTokenTemplateElements = new RequestSecurityTokenTemplate(
+            'urn:x-simplesamlphp:version',
+            [$chunk],
+            [$attr],
+        );
+
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($RequestSecurityTokenTemplateElements),

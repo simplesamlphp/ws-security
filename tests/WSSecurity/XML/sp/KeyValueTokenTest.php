@@ -22,6 +22,7 @@ use function dirname;
  * Class \SimpleSAML\WSSecurity\XML\sp\KeyValueTokenTest
  *
  * @covers \SimpleSAML\WSSecurity\XML\sp\KeyValueToken
+ * @covers \SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractKeyValueTokenType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *

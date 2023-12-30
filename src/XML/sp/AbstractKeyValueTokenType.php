@@ -144,6 +144,7 @@ abstract class AbstractKeyValueTokenType extends AbstractSpElement
         }
 
         foreach ($this->getElements() as $elt) {
+            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
             $elt->toXML($e);
         }
 

@@ -22,7 +22,8 @@ use function dirname;
  * Class \SimpleSAML\WSSecurity\XML\sp\HttpsTokenTest
  *
  * @covers \SimpleSAML\WSSecurity\XML\sp\HttpsToken
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractAssertionTokenType
+ * @covers \SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait
+ * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractTokenAssertionType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
  * @package tvdijen/ws-security
