@@ -12,57 +12,37 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\XsNamespace as NS;
 
-use function array_unshift;
-
 /**
- * Class defining the SecurityTokenReferenceType element
+ * Class defining the SecurityHeaderType element
  *
  * @package tvdijen/ws-security
  */
-abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
+abstract class AbstractSecurityHeaderType extends AbstractWsseElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
-    use UsageTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+    public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::ANY;
 
 
     /**
-     * AbstractSecurityReferenceType constructor
+     * AbstractSecurityHeaderType constructor
      *
-     * @param string|null $Id
-     * @param string|null $Usage
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param array $namespacedAttributes
      */
     public function __construct(
-        protected ?string $Id = null,
-        ?string $Usage = null,
         array $children = [],
         array $namespacedAttributes = []
     ) {
-        Assert::nullOrValidNCName($Id);
-
-        $this->setUsage($Usage);
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
-    }
-
-
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-        return $this->Id;
     }
 
 
@@ -73,9 +53,7 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
      */
     public function isEmptyElement(): bool
     {
-        return empty($this->getId()) &&
-            empty($this->getUsage()) &&
-            empty($this->getElements()) &&
+        return empty($this->getElements()) &&
             empty($this->getAttributesNS());
     }
 
@@ -96,15 +74,6 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
 
         $nsAttributes = self::getAttributesNSFromXML($xml);
 
-        $Id = null;
-        foreach ($nsAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
-                $Id = $attr->getAttrValue();
-                unset($nsAttributes[$i]);
-                break;
-            }
-        }
-
         $children = [];
         foreach ($xml->childNodes as $child) {
             if (!($child instanceof DOMElement)) {
@@ -115,8 +84,6 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
         }
 
         return new static(
-            $Id,
-            $xml->getAttributeNS(C::NS_SEC_EXT, 'Usage'),
             $children,
             $nsAttributes,
         );
@@ -124,7 +91,7 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
 
 
     /**
-     * Add this SecurityTokenReferenceType token to an XML element.
+     * Add this SecurityHeaderType token to an XML element.
      *
      * @param \DOMElement $parent The element we should append this username token to.
      * @return \DOMElement
@@ -133,18 +100,7 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
     {
         $e = parent::instantiateParentElement($parent);
 
-        $attributes = $this->getAttributesNS();
-        if ($this->getId() !== null) {
-            $idAttr = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', $this->getId());
-            array_unshift($attributes, $idAttr);
-        }
-
-        if ($this->getUsage() !== null) {
-            $UsageAttr = new XMLAttribute(C::NS_SEC_EXT, 'wsse', 'Usage', $this->getUsage());
-            array_unshift($attributes, $UsageAttr);
-        }
-
-        foreach ($attributes as $attr) {
+        foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);
         }
 
