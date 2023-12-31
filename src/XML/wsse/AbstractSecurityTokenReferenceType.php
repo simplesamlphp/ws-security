@@ -48,6 +48,7 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
         array $children = [],
         array $namespacedAttributes = []
     ) {
+        Assert::nullOrValidURI($Usage);
         Assert::nullOrValidNCName($Id);
 
         $this->setElements($children);
