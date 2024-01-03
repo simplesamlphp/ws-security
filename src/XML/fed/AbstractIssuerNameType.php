@@ -30,7 +30,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
      * @param string $Uri
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         protected string $Uri,
         array $namespacedAttributes = []
     ) {

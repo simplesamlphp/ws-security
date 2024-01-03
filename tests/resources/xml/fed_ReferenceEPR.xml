@@ -1,0 +1,14 @@
+<fed:ReferenceEPR xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="testval1">
+  <wsa:Address xmlns:wsa="http://www.w3.org/2005/08/addressing" ssp:attr2="testval2">https://login.microsoftonline.com/login.srf</wsa:Address>
+  <wsa:ReferenceParameters xmlns:wsa="http://www.w3.org/2005/08/addressing" ssp:attr3="testval3">
+    <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+      <m:Item>Pears</m:Item>
+    </m:GetPrice>
+  </wsa:ReferenceParameters>
+  <wsa:Metadata xmlns:wsa="http://www.w3.org/2005/08/addressing" ssp:attr4="testval4">
+    <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+      <m:Item>Apples</m:Item>
+    </m:GetPrice>
+  </wsa:Metadata>
+  <ssp:Chunk>SomeChunk</ssp:Chunk>
+</fed:ReferenceEPR>

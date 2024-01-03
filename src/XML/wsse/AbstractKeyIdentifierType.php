@@ -26,7 +26,7 @@ abstract class AbstractKeyIdentifierType extends AbstractEncodedString
      * @param string|null $EncodingType
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         string $content,
         protected ?string $valueType = null,
         ?string $Id = null,

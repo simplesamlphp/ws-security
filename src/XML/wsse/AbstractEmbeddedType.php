@@ -37,7 +37,7 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         protected ?string $valueType = null,
         array $children = [],
         array $namespacedAttributes = []

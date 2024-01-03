@@ -44,7 +44,7 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         protected Username $username,
         protected ?string $Id = null,
         array $children = [],

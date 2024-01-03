@@ -37,7 +37,7 @@ abstract class AbstractClaimDialectType extends AbstractFedElement
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         protected ?string $Uri = null,
         array $children = [],
         array $namespacedAttributes = []

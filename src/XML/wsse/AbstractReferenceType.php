@@ -31,7 +31,7 @@ abstract class AbstractReferenceType extends AbstractWsseElement
      * @param string|null $valueType
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         protected ?string $URI = null,
         protected ?string $valueType = null,
         array $namespacedAttributes = []

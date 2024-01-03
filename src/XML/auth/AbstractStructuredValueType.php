@@ -35,7 +35,7 @@ abstract class AbstractStructuredValueType extends AbstractAuthElement
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         array $children = [],
         array $namespacedAttributes = []
     ) {

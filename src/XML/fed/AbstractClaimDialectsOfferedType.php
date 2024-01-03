@@ -32,7 +32,7 @@ abstract class AbstractClaimDialectsOfferedType extends AbstractFedElement
      * @param \SimpleSAML\WSSecurity\XML\fed\ClaimDialect[] $claimDialect
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         protected array $claimDialect,
         array $namespacedAttributes = []
     ) {
