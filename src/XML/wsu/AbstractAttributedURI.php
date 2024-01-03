@@ -34,7 +34,7 @@ abstract class AbstractAttributedURI extends AbstractWsuElement
      * @param string|null $Id
      * @param array $namespacedAttributes
      */
-    protected function __construct(
+    final protected function __construct(
         string $uri,
         protected ?string $Id = null,
         array $namespacedAttributes = []

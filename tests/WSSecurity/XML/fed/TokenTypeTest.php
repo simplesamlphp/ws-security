@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\WSSecurity\XML\fed\TokenType;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -70,7 +69,7 @@ final class TokenTypeTest extends TestCase
      */
     public function testMarshallingEmpty(): void
     {
-        $this->expectException(AssertionFailedException::class);
-        new TokenType();
+        $tokenType = new TokenType();
+        $this->assertTrue($tokenType->isEmptyElement());
     }
 }

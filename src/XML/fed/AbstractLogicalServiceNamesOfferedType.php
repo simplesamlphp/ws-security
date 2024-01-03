@@ -25,13 +25,14 @@ abstract class AbstractLogicalServiceNamesOfferedType extends AbstractFedElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
+
     /**
      * LogicalServiceNamesOfferedType constructor
      *
      * @param \SimpleSAML\WSSecurity\XML\fed\IssuerName[] $issuerName
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         protected array $issuerName,
         array $namespacedAttributes = []
     ) {

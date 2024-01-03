@@ -35,7 +35,7 @@ abstract class AbstractNestedPolicyType extends AbstractSpElement
      * @param \SimpleSAML\XML\Chunk[] $elements
      * @param \SimpleSAML\XML\Attribute[] $attributes
      */
-    public function __construct(array $elements = [], array $attributes = [])
+    final public function __construct(array $elements = [], array $attributes = [])
     {
         $this->setElements($elements);
         $this->setAttributesNS($attributes);

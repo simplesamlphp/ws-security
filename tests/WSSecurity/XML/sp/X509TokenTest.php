@@ -17,7 +17,7 @@ use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use function dirname;
 
 /**
- * Class \SimpleSAML\WSSecurity\XML\sp\X509lTokenTest
+ * Class \SimpleSAML\WSSecurity\XML\sp\X509TokenTest
  *
  * @covers \SimpleSAML\WSSecurity\XML\sp\X509Token
  * @covers \SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait

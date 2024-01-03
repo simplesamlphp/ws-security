@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\sp;
 
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\StringElementTrait;
 
 /**
@@ -38,6 +39,6 @@ final class IssuerName extends AbstractSpElement
      */
     protected function validateContent(string $content): void
     {
-        Assert::validURI($content);
+        Assert::validURI($content, SchemaViolationException::class);
     }
 }

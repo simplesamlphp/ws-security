@@ -40,7 +40,7 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
     /**
      * IssuedTokenType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp\RequestSecurityTokenTemplate
+     * @param \SimpleSAML\WSSecurity\XML\sp\RequestSecurityTokenTemplate $requestSecurityTokenTemplate
      * @param \SimpleSAML\WSSecurity\XML\sp\Issuer|\SimpleSAML\WSSecurity\XML\sp\IssuerName|null $issuer
      * @param \SimpleSAML\WSSecurity\XML\sp\IncludeToken|null $includeToken
      * @param list<\SimpleSAML\XML\ElementInterface> $elts

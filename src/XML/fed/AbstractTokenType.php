@@ -37,14 +37,12 @@ abstract class AbstractTokenType extends AbstractFedElement
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         protected ?string $Uri = null,
         array $children = [],
         array $namespacedAttributes = []
     ) {
         Assert::nullOrValidURI($Uri, SchemaViolationException::class);
-        // Next one is debatable since the schema allows an empty element, but that makes zero sense
-        Assert::allNotEmpty([$Uri, $children, $namespacedAttributes]);
 
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
@@ -57,6 +55,19 @@ abstract class AbstractTokenType extends AbstractFedElement
     public function getUri(): ?string
     {
         return $this->Uri;
+    }
+
+
+    /**
+     * Test if an object, at the state it's in, would produce an empty XML-element
+     *
+     * @return bool
+     */
+    public function isEmptyElement(): bool
+    {
+        return empty($this->getUri())
+            && empty($this->getElements())
+            && empty($this->getAttributesNS());
     }
 
 

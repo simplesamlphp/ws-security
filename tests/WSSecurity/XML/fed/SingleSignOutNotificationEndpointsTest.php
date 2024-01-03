@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\XML\fed\PsuedonymServiceEndpoints;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
+use SimpleSAML\WSSecurity\XML\fed\SingleSignOutNotificationEndpoints;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -21,14 +22,14 @@ use function dirname;
 use function strval;
 
 /**
- * Tests for fed:PsuedonymServiceEndpoints.
+ * Tests for fed:SingleSignOutNotificationEndpoints.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\PsuedonymServiceEndpoints
+ * @covers \SimpleSAML\WSSecurity\XML\fed\SingleSignOutNotificationEndpoints
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractEndpointType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  * @package tvdijen/ws-security
  */
-final class PsuedonymServiceEndpointsTest extends TestCase
+final class SingleSignOutNotificationEndpointsTest extends TestCase
 {
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
@@ -50,12 +51,12 @@ final class PsuedonymServiceEndpointsTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$testedClass = PsuedonymServiceEndpoints::class;
+        self::$testedClass = SingleSignOutNotificationEndpoints::class;
 
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 4) . '/resources/xml/fed_PsuedonymServiceEndpoints.xml'
+            dirname(__FILE__, 4) . '/resources/xml/fed_SingleSignOutNotificationEndpoints.xml'
         );
 
         self::$referenceParameters = DOMDocumentFactory::fromString(
@@ -80,7 +81,7 @@ final class PsuedonymServiceEndpointsTest extends TestCase
 
 
     /**
-     * Test creating an PsuedonymServiceEndpoints object from scratch.
+     * Test creating an SingleSignOutNotificationEndpoints object from scratch.
      */
     public function testMarshalling(): void
     {
@@ -103,11 +104,11 @@ final class PsuedonymServiceEndpointsTest extends TestCase
             [$attr1],
         );
 
-        $psuedonymServiceEndpoints = new PsuedonymServiceEndpoints([$endpointReference]);
+        $singleSignOutNotificationEndpoints = new SingleSignOutNotificationEndpoints([$endpointReference]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($psuedonymServiceEndpoints),
+            strval($singleSignOutNotificationEndpoints),
         );
     }
 }

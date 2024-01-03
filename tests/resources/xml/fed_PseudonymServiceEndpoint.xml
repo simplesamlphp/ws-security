@@ -1,4 +1,4 @@
-<fed:PsuedonymServiceEndpoints xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706">
+<fed:PseudonymServiceEndpoint xmlns:fed="http://docs.oasis-open.org/wsfed/federation/200706">
   <wsa:EndpointReference xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:test1="value1">
     <wsa:Address ssp:test2="value2">https://login.microsoftonline.com/login.srf</wsa:Address>
     <wsa:ReferenceParameters xmlns:wsa="http://www.w3.org/2005/08/addressing" ssp:test4="value4">
@@ -13,4 +13,4 @@
     </wsa:Metadata>
     <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>
   </wsa:EndpointReference>
-</fed:PsuedonymServiceEndpoints>
+</fed:PseudonymServiceEndpoint>

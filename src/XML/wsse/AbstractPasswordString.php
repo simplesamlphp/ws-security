@@ -24,7 +24,7 @@ abstract class AbstractPasswordString extends AbstractAttributedString
      * @param string|null $Type
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         string $content,
         ?string $Id = null,
         protected ?string $Type = null,

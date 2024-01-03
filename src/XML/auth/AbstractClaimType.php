@@ -55,7 +55,7 @@ abstract class AbstractClaimType extends AbstractAuthElement
      * ) $value
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         protected string $uri,
         protected ?bool $optional = null,
         protected ?DisplayName $displayName = null,
@@ -227,7 +227,7 @@ abstract class AbstractClaimType extends AbstractAuthElement
         $this->getDisplayName()?->toXML($e);
         $this->getDescription()?->toXML($e);
         $this->getDisplayValue()?->toXML($e);
-        $this->getValue()->toXML($e);
+        $this->getValue()?->toXML($e);
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

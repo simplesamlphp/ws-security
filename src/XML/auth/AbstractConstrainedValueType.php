@@ -44,7 +44,7 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param bool|null $assertConstraint
      */
-    public function __construct(
+    final public function __construct(
         protected ValueLessThan|ValueLessThanOrEqual|ValueGreaterThan|ValueGreaterThanOrEqual|ValueInRangen|ValueOneOf $value,
         array $children = [],
         protected ?bool $assertConstraint = null

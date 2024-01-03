@@ -39,7 +39,7 @@ abstract class AbstractTokenTypesOfferedType extends AbstractFedElement
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param array $namespacedAttributes
      */
-    public function __construct(
+    final public function __construct(
         protected array $tokenType,
         array $children = [],
         array $namespacedAttributes = []

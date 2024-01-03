@@ -40,12 +40,14 @@ trait NestedPolicyTypeTestTrait
     public function testMarshallingWithoutNSAttr(): void
     {
         $xml = <<<XML
-<sp:%s xmlns:sp="%s">
+<%s:%s xmlns:%s="%s">
   <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>
-</sp:%s>
+</%s:%s>
 XML;
         $localName = static::$testedClass::getLocalName();
-        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY, $localName);
+        $prefix = static::$testedClass::getNamespacePrefix();
+        $namespaceURI = static::$testedClass::getNamespaceURI();
+        $xml = sprintf($xml, $prefix, $localName, $prefix, $namespaceURI, $prefix, $localName);
         $xmlRepresentation = DOMDocumentFactory::fromString($xml);
 
         $np = new static::$testedClass([static::$chunk]);
@@ -62,9 +64,11 @@ XML;
      */
     public function testMarshallingWithoutChildren(): void
     {
-        $xml = '<sp:%s xmlns:sp="%s" xmlns:ssp="%s" ssp:attr1="value1"/>';
+        $xml = '<%s:%s xmlns:%s="%s" xmlns:ssp="%s" ssp:attr1="value1"/>';
         $localName = static::$testedClass::getLocalName();
-        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY, C::NAMESPACE);
+        $prefix = static::$testedClass::getNamespacePrefix();
+        $namespaceURI = static::$testedClass::getNamespaceURI();
+        $xml = sprintf($xml, $prefix, $localName, $prefix, $namespaceURI, C::NAMESPACE);
         $xmlRepresentation = DOMDocumentFactory::fromString($xml);
 
         $qns = new static::$testedClass([], [static::$attr]);
@@ -82,8 +86,13 @@ XML;
     public function testMarshallingEmptyElement(): void
     {
         $np = new static::$testedClass();
+
+        $localName = static::$testedClass::getLocalName();
+        $prefix = static::$testedClass::getNamespacePrefix();
+        $namespaceURI = static::$testedClass::getNamespaceURI();
+
         $this->assertEquals(
-            sprintf("<sp:%s xmlns:sp=\"%s\"/>", static::$testedClass::getLocalName(), C::NS_SEC_POLICY),
+            sprintf("<%s:%s xmlns:%s=\"%s\"/>", $prefix, $localName, $prefix, $namespaceURI),
             strval($np),
         );
         $this->assertTrue($np->isEmptyElement());
@@ -99,12 +108,15 @@ XML;
     public function testUnmarshallingWithoutNSAttr(): void
     {
         $xml = <<<XML
-<sp:%s xmlns:sp="%s">
+<%s:%s xmlns:%s="%s">
   <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>
-</sp:%s>
+</%s:%s>
 XML;
         $localName = static::$testedClass::getLocalName();
-        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY, $localName);
+        $prefix = static::$testedClass::getNamespacePrefix();
+        $namespaceURI = static::$testedClass::getNamespaceURI();
+
+        $xml = sprintf($xml, $prefix, $localName, $prefix, $namespaceURI, $prefix, $localName);
         $xmlRepresentation = DOMDocumentFactory::fromString($xml);
 
         $np = static::$testedClass::fromXML($xmlRepresentation->documentElement);
@@ -121,9 +133,12 @@ XML;
      */
     public function testUnmarshallingWithoutChildren(): void
     {
-        $xml = '<sp:%s xmlns:sp="%s" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1"/>';
+        $xml = '<%s:%s xmlns:%s="%s" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1"/>';
         $localName = static::$testedClass::getLocalName();
-        $xml = sprintf($xml, $localName, C::NS_SEC_POLICY);
+        $prefix = static::$testedClass::getNamespacePrefix();
+        $namespaceURI = static::$testedClass::getNamespaceURI();
+
+        $xml = sprintf($xml, $prefix, $localName, $prefix, $namespaceURI);
         $xmlRepresentation = DOMDocumentFactory::fromString($xml);
 
         $np = static::$testedClass::fromXML($xmlRepresentation->documentElement);
