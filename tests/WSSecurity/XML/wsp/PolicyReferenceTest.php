@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsp;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsp\PolicyReference;
 use SimpleSAML\XML\Attribute as XMLAttribute;

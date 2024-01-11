@@ -13,7 +13,6 @@ use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
-use function array_pop;
 use function sprintf;
 
 /**

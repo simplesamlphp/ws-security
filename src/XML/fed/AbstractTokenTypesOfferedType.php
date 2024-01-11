@@ -8,11 +8,11 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\XML\fed\TokenType;
 use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**

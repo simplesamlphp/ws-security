@@ -14,10 +14,9 @@ use SimpleSAML\WSSecurity\XML\auth\EncryptedValue;
 use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
 use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\SerializableElementInterface;
 use SimpleSAML\XML\XsNamespace as NS;
 

@@ -12,8 +12,6 @@ use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\StringElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
-use function filter_var;
-
 /**
  * Class representing WS-addressing AttributedURIType.
  *

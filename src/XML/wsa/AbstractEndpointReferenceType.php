@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsa;
 
-use DOMAttr;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;

@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
-use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AttributeServiceEndpoint;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
-use SimpleSAML\WSSecurity\XML\fed\AttributeServiceEndpoint;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;

@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath;
 use SimpleSAML\WSSecurity\XML\auth\ClaimType;

@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\fed\ClaimDialect;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;

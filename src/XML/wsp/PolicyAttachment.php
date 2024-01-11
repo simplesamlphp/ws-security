@@ -7,16 +7,16 @@ namespace SimpleSAML\WSSecurity\XML\wsp;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsse\Security;
 use SimpleSAML\WSSecurity\XML\wsp\AppliesTo;
 use SimpleSAML\WSSecurity\XML\wsp\Policy;
 use SimpleSAML\WSSecurity\XML\wsp\PolicyReference;
+use SimpleSAML\WSSecurity\XML\wsse\Security;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
-use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
 use function array_merge;

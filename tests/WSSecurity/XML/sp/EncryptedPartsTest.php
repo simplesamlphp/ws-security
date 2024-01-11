@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath;
 use SimpleSAML\WSSecurity\XML\sp\Attachments;
 use SimpleSAML\WSSecurity\XML\sp\Body;
-use SimpleSAML\WSSecurity\XML\sp\Header;
 use SimpleSAML\WSSecurity\XML\sp\EncryptedParts;
+use SimpleSAML\WSSecurity\XML\sp\Header;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;

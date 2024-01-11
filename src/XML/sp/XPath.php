@@ -8,7 +8,6 @@ use DOMNodeList;
 use DOMXPath;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\StringElementTrait;
 
 /**

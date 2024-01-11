@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\auth\DisplayValue;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;

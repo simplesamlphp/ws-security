@@ -4,11 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
-use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;

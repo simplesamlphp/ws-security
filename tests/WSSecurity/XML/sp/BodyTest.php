@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\sp\Body;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;

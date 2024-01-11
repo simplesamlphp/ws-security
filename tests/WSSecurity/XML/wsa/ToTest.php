@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\SOAP\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\To;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;

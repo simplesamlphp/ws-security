@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
-use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
@@ -18,6 +13,8 @@ use SimpleSAML\WSSecurity\XML\wsa\ReplyTo;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 
 use function dirname;
 use function strval;

@@ -6,7 +6,6 @@ namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
 use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\WSSecurity\XML\auth\ValueGreaterThan;

@@ -12,7 +12,6 @@ use SimpleSAML\WSSecurity\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**

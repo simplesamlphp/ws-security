@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 
 use function array_pop;

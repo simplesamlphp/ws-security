@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\sp\ProtectTokens;
 use SimpleSAML\XML\DOMDocumentFactory;

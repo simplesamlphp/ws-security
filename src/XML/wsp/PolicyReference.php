@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wsp;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;

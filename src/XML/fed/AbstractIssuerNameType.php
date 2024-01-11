@@ -6,10 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**

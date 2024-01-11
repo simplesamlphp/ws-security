@@ -4,17 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsp;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsp\ExactlyOne;
 use SimpleSAML\WSSecurity\XML\wsp\Policy;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingAttributeException;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 

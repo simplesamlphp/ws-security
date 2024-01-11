@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsu;
 
-use SimpleSAML\XML\AbstractElement;
 use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\XML\AbstractElement;
 
 /**
  * Abstract class to be implemented by all the classes in this namespace

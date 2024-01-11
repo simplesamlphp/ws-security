@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsse;
 
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsse\Username;
 use SimpleSAML\WSSecurity\XML\wsse\UsernameToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;

@@ -9,7 +9,6 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\StringElementTrait;
-use SimpleSAML\WSSecurity\Constants as C;
 
 /**
  * @package tvdijen/ws-security

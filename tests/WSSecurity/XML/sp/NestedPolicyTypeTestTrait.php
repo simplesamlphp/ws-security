@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function sprintf;

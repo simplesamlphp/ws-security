@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsu;
 
 use DateTimeImmutable;
-use DOMDocument;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsu\Created;
-use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
