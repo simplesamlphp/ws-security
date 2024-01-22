@@ -1,0 +1,4 @@
+<wst:Authenticator xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">
+  <wst:CombinedHash>/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI=</wst:CombinedHash>
+  <wsa:MessageID xmlns:wsa="http://www.w3.org/2005/08/addressing" soapenv:mustUnderstand="1" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de</wsa:MessageID>
+</wst:Authenticator>

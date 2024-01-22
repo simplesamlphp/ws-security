@@ -28,11 +28,11 @@ abstract class AbstractAttributeServiceType extends AbstractWebServiceDescriptor
      * @param string|null $cacheDuration Maximum time this document can be cached. Defaults to null.
      * @param \SimpleSAML\SAML2\XML\md\Extensions|null $extensions An array of extensions. Defaults to an empty array.
      * @param string|null $errorURL An URI where to redirect users for support. Defaults to null.
-     * @param \SimpleSAML\SAML2\XML\md\KeyDescriptor[] $keyDescriptors An array of KeyDescriptor elements.
+     * @param \SimpleSAML\SAML2\XML\md\KeyDescriptor[] $keyDescriptor An array of KeyDescriptor elements.
      *   Defaults to an empty array.
      * @param \SimpleSAML\SAML2\XML\md\Organization|null $organization
      *   The organization running this entity. Defaults to null.
-     * @param \SimpleSAML\SAML2\XML\md\ContactPerson[] $contacts An array of contacts for this entity.
+     * @param \SimpleSAML\SAML2\XML\md\ContactPerson[] $contact An array of contacts for this entity.
      *   Defaults to an empty array.
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      * @param \SimpleSAML\WSSecurity\XML\fed\LogicalServiceNamesOffered|null $logicalServiceNamesOffered
@@ -54,9 +54,9 @@ abstract class AbstractAttributeServiceType extends AbstractWebServiceDescriptor
         ?string $cacheDuration = null,
         ?Extensions $extensions = null,
         ?string $errorURL = null,
-        array $keyDescriptors = [],
+        array $keyDescriptor = [],
         ?Organization $organization = null,
-        array $contacts = [],
+        array $contact = [],
         array $namespacedAttributes = [],
         ?LogicalServiceNamesOffered $logicalServiceNamesOffered = null,
         ?TokenTypesOffered $tokenTypesOffered = null,
@@ -99,7 +99,7 @@ abstract class AbstractAttributeServiceType extends AbstractWebServiceDescriptor
             $claimTypesOffered,
             $claimTypesRequested,
             $automaticPseudonyms,
-            $targetedScopes,
+            $targetScopes,
             $serviceDisplayName,
             $serviceDescription,
         );

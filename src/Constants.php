@@ -35,7 +35,7 @@ class Constants extends \SimpleSAML\SAML2\Constants
     /**
      * The namespace for WS-Trust protocol.
      */
-    public const NS_TRUST = 'http://docs.oasis-open.org/ws-sx/ws-trust/200802';
+    public const NS_TRUST = 'http://docs.oasis-open.org/ws-sx/ws-trust/200512/';
 
     /**
      * The namespace for WS-Security extensions.

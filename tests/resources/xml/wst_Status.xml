@@ -1,0 +1,4 @@
+<wst:Status xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">
+  <wst:Code>http://docs.oasis-open.org/ws-sx/ws-trust/200512/status/invalid</wst:Code>
+  <wst:Reason>phpunit</wst:Reason>
+</wst:Status>

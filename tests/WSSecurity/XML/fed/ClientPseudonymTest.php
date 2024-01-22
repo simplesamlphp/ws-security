@@ -23,7 +23,7 @@ use function strval;
  * Tests for fed:ClientPseudonym.
  *
  * @covers \SimpleSAML\WSSecurity\XML\fed\ClientPseudonym
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractClientPseudonym
+ * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractClientPseudonymType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  *
  * @package tvdijen/ws-security

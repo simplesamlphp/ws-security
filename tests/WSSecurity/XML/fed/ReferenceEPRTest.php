@@ -6,13 +6,10 @@ namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceEPR;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
-use SimpleSAML\WSSecurity\XML\wsa\ReplyTo;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -25,8 +22,8 @@ use function strval;
  * Tests for fed:ReferenceEPR.
  *
  * @covers \SimpleSAML\WSSecurity\XML\fed\ReferenceEPR
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractEndpointReferenceType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractWsaElement
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType
+ * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  *
  * @package tvdijen/ws-security
  */

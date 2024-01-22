@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
-use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\fed\Realm;
 use SimpleSAML\WSSecurity\XML\fed\SignOut;
 use SimpleSAML\WSSecurity\XML\fed\SignOutBasis;

@@ -5,10 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DateTimeImmutable;
-use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
-use SimpleSAML\WSSecurity\Constants;
 use SimpleSAML\WSSecurity\XML\fed\ProofToken;
 use SimpleSAML\WSSecurity\XML\fed\Pseudonym;
 use SimpleSAML\WSSecurity\XML\fed\PseudonymBasis;

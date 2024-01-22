@@ -46,7 +46,7 @@ abstract class AbstractAttributedLongType extends AbstractWsaElement
      * Validate the content of the element.
      *
      * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\WSSecurity\Exception\ProtocolViolationException on failure
+     * @throws \SimpleSAML\XML\Exception\SchemaViolationException on failure
      * @return void
      */
     protected function validateContent(string $content): void

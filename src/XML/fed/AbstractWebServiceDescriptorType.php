@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DateTimeImmutable;
 use DOMElement;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptorType;
 use SimpleSAML\SAML2\XML\md\Extensions;
 use SimpleSAML\SAML2\XML\md\Organization;

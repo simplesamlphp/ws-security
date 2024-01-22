@@ -4,20 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
-use DOMDocument;
 use DOMElement;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsa\Address;
-use SimpleSAML\WSSecurity\XML\wsa\Metadata;
-use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
-use SimpleSAML\WSSecurity\XML\wsa\ReplyTo;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceDigest;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceEPR;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceToken;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceType;
 use SimpleSAML\WSSecurity\XML\fed\SerialNo;
+use SimpleSAML\WSSecurity\XML\wsa\Address;
+use SimpleSAML\WSSecurity\XML\wsa\Metadata;
+use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;

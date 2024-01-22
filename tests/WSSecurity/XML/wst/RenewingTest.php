@@ -1,0 +1,70 @@
+<?php
+
+declare(strict_types=1);
+
+namespace SimpleSAML\Test\WSSecurity\XML\wst;
+
+use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wst\Renewing;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+
+use function dirname;
+
+/**
+ * Class \SimpleSAML\WSSecurity\XML\wst\RenewingTest
+ *
+ * @covers \SimpleSAML\WSSecurity\XML\wst\Renewing
+ * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractRenewingType
+ * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
+ *
+ * @package tvdijen/ws-security
+ */
+final class RenewingTest extends TestCase
+{
+    use SchemaValidationTestTrait;
+    use SerializableElementTestTrait;
+
+
+    /**
+     */
+    public static function setUpBeforeClass(): void
+    {
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-trust.xsd';
+
+        self::$testedClass = Renewing::class;
+
+        self::$xmlRepresentation = DOMDocumentFactory::fromFile(
+            dirname(__FILE__, 4) . '/resources/xml/wst_Renewing.xml',
+        );
+    }
+
+
+    // test marshalling
+
+
+    /**
+     * Test creating a Renewing object from scratch.
+     */
+    public function testMarshalling(): void
+    {
+        $renewing = new Renewing(true, false);
+
+        $this->assertEquals(
+            self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
+            strval($renewing),
+        );
+    }
+
+
+    /**
+     * Test creating an empty Renewing object from scratch.
+     */
+    public function testMarshallingEmpty(): void
+    {
+        $renewing = new Renewing();
+
+        $this->assertTrue($renewing->isEmptyElement());
+    }
+}
