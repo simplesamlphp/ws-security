@@ -9,7 +9,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\QNameElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**
@@ -24,7 +24,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractAttributedQNameType extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
-    use StringElementTrait;
+    use QNameElementTrait;
 
     /** The namespace-attribute for the xs:anyElement element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -40,19 +40,6 @@ abstract class AbstractAttributedQNameType extends AbstractWsaElement
     {
         $this->setContent($value);
         $this->setAttributesNS($namespacedAttributes);
-    }
-
-
-    /**
-     * Validate the content of the element.
-     *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\WSSecurity\Exception\ProtocolViolationException on failure
-     * @return void
-     */
-    protected function validateContent(string $content): void
-    {
-        Assert::validQName($content, SchemaViolationException::class);
     }
 
 

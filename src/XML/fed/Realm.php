@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\fed;
 
-use DOMElement;
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\StringElementTrait;
-
-use function sprintf;
+use SimpleSAML\XML\URIElementTrait;
 
 /**
  * A Realm element
@@ -18,7 +13,7 @@ use function sprintf;
  */
 final class Realm extends AbstractFedElement
 {
-    use StringElementTrait;
+    use URIElementTrait;
 
 
     /**
@@ -27,18 +22,5 @@ final class Realm extends AbstractFedElement
     public function __construct(string $content)
     {
         $this->setContent($content);
-    }
-
-
-    /**
-     * Validate the content of the element.
-     *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\XML\Exception\SchemaViolationException on failure
-     * @return void
-     */
-    protected function validateContent(string $content): void
-    {
-        Assert::validURI($content, SchemaViolationException::class);
     }
 }

@@ -8,14 +8,14 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\URIElementTrait;
 
 /**
  * @package tvdijen/ws-security
  */
 final class SoapAction extends AbstractWsaElement
 {
-    use StringElementTrait;
+    use URIElementTrait;
 
 
     /**
@@ -44,19 +44,6 @@ final class SoapAction extends AbstractWsaElement
         Assert::same($xml->namespaceURI, SoapAction::NS, InvalidDOMElementException::class);
 
         return new static($xml->textContent);
-    }
-
-
-    /**
-     * Validate the content of the element.
-     *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\WSSecurity\Exception\ProtocolViolationException on failure
-     * @return void
-     */
-    protected function validateContent(string $content): void
-    {
-        Assert::validURI($content, SchemaViolationException::class);
     }
 
 

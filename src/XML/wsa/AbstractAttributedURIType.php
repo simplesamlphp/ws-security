@@ -9,7 +9,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\URIElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**
@@ -23,7 +23,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractAttributedURIType extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
-    use StringElementTrait;
+    use URIElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -39,19 +39,6 @@ abstract class AbstractAttributedURIType extends AbstractWsaElement
     {
         $this->setContent($value);
         $this->setAttributesNS($namespacedAttributes);
-    }
-
-
-    /**
-     * Validate the content of the element.
-     *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\WSSecurity\Exception\ProtocolViolationException on failure
-     * @return void
-     */
-    protected function validateContent(string $content): void
-    {
-        Assert::validURI($content, SchemaViolationException::class);
     }
 
 

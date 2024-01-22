@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp;
 
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\URIElementTrait;
 
 /**
  * An IssuerName element
@@ -15,7 +13,7 @@ use SimpleSAML\XML\StringElementTrait;
  */
 final class IssuerName extends AbstractSpElement
 {
-    use StringElementTrait;
+    use URIElementTrait;
 
 
     /**
@@ -23,22 +21,8 @@ final class IssuerName extends AbstractSpElement
      *
      * @param string $content
      */
-    public function __construct(
-        string $content
-    ) {
-        $this->setContent($content);
-    }
-
-
-    /**
-     * Validate the content of the element.
-     *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\XML\Exception\SchemaViolationException on failure
-     * @return void
-     */
-    protected function validateContent(string $content): void
+    public function __construct(string $content)
     {
-        Assert::validURI($content, SchemaViolationException::class);
+        $this->setContent($content);
     }
 }
