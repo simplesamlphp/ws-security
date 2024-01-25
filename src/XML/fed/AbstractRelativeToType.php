@@ -36,7 +36,7 @@ abstract class AbstractRelativeToType extends AbstractFedElement
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     final public function __construct(
-        array $children,
+        array $children = [],
         array $namespacedAttributes = []
     ) {
         $this->setElements($children);

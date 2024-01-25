@@ -16,6 +16,7 @@ use function dirname;
  * Class \SimpleSAML\WSSecurity\XML\wst\CodeTest
  *
  * @covers \SimpleSAML\WSSecurity\XML\wst\Code
+ * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractStatusCodeOpenEnum
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
  * @package tvdijen/ws-security

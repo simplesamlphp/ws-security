@@ -74,4 +74,19 @@ final class ReferenceToken11Test extends TestCase
             strval($referenceToken11),
         );
     }
+
+
+    /**
+     * Adding an empty X509lToken element should yield an empty element.
+     */
+    public function testMarshallingEmptyElement(): void
+    {
+        $fedns = C::NS_FED;
+        $referenceToken11 = new ReferenceToken11();
+        $this->assertEquals(
+            "<fed:ReferenceToken11 xmlns:fed=\"$fedns\"/>",
+            strval($referenceToken11),
+        );
+        $this->assertTrue($referenceToken11->isEmptyElement());
+    }
 }

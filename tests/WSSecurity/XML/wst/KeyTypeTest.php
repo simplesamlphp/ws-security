@@ -17,6 +17,7 @@ use function dirname;
  * Class \SimpleSAML\WSSecurity\XML\wst\KeyTypeTest
  *
  * @covers \SimpleSAML\WSSecurity\XML\wst\KeyType
+ * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractKeyTypeOpenEnum
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
  * @package tvdijen/ws-security

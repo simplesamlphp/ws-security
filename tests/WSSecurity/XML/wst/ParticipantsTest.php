@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
+use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
 use SimpleSAML\WSSecurity\XML\wst\Participant;
 use SimpleSAML\WSSecurity\XML\wst\Participants;
@@ -21,7 +22,7 @@ use function dirname;
  * Class \SimpleSAML\WSSecurity\XML\wst\ParticipantsTest
  *
  * @covers \SimpleSAML\WSSecurity\XML\wst\Participants
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractParticipantType
+ * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractParticipantsType
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
  * @package tvdijen/ws-security
@@ -65,5 +66,20 @@ final class ParticipantsTest extends TestCase
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($participants),
         );
+    }
+
+
+    /**
+     * Adding an empty Participants element should yield an empty element.
+     */
+    public function testMarshallingEmptyElement(): void
+    {
+        $wstns = C::NS_TRUST;
+        $participants = new Participants();
+        $this->assertEquals(
+            "<wst:Participants xmlns:wst=\"$wstns\"/>",
+            strval($participants),
+        );
+        $this->assertTrue($participants->isEmptyElement());
     }
 }

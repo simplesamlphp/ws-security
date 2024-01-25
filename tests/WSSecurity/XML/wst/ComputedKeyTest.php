@@ -17,6 +17,7 @@ use function dirname;
  * Class \SimpleSAML\WSSecurity\XML\wst\ComputedKeyTest
  *
  * @covers \SimpleSAML\WSSecurity\XML\wst\ComputedKey
+ * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractComputedKeyOpenEnum
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
  * @package tvdijen/ws-security

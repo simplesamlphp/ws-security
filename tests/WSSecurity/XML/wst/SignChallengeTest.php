@@ -66,4 +66,15 @@ final class SignChallengeTest extends TestCase
             strval($signChallenge),
         );
     }
+
+
+    /**
+     * Test creating an empty SignChallenge object from scratch.
+     */
+    public function testMarshallingEmpty(): void
+    {
+        $signChallenge = new SignChallenge();
+
+        $this->assertTrue($signChallenge->isEmptyElement());
+    }
 }

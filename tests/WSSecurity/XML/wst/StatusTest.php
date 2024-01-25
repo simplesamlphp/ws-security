@@ -19,6 +19,7 @@ use function dirname;
  * Class \SimpleSAML\WSSecurity\XML\wst\StatusTest
  *
  * @covers \SimpleSAML\WSSecurity\XML\wst\Status
+ * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractStatusType
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
  * @package tvdijen/ws-security
