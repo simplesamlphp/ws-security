@@ -50,7 +50,7 @@ final class RequestTypeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $requestType = new RequestType(RequestTypeEnum::Issue);
+        $requestType = new RequestType([RequestTypeEnum::Issue]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

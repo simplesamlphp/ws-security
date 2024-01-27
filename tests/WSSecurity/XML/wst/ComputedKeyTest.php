@@ -50,7 +50,7 @@ final class ComputedKeyTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $computedKey = new ComputedKey(ComputedKeyEnum::PSHA1);
+        $computedKey = new ComputedKey([ComputedKeyEnum::PSHA1]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

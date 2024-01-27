@@ -46,7 +46,7 @@ final class CodeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $code = new Code(StatusCodeEnum::Invalid);
+        $code = new Code([StatusCodeEnum::Invalid]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

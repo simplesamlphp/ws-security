@@ -50,7 +50,7 @@ final class KeyTypeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $keyType = new KeyType(KeyTypeEnum::PublicKey);
+        $keyType = new KeyType([KeyTypeEnum::PublicKey]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

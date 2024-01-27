@@ -52,7 +52,7 @@ final class StatusTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $code = new Code(StatusCodeEnum::Invalid);
+        $code = new Code([StatusCodeEnum::Invalid]);
         $reason = new Reason('phpunit');
         $status = new Status($code, $reason);
 
