@@ -73,7 +73,18 @@ final class ConstrainedValueTest extends TestCase
             self::$resourcePath . $xmlRepresentation,
         );
 
-        $constrainedValue = new ConstrainedValue(new $class(self::$value, null), [], true);
+        /**
+         * @var (
+         *   \SimpleSAML\WSSecurity\XML\auth\ValueLessThan|
+         *   \SimpleSAML\WSSecurity\XML\auth\ValueLessThanOrEqual|
+         *   \SimpleSAML\WSSecurity\XML\auth\ValueGreaterThan|
+         *   \SimpleSAML\WSSecurity\XML\auth\ValueGreaterThanOrEqual|
+         *   \SimpleSAML\WSSecurity\XML\auth\ValueInRangen|
+         *   \SimpleSAML\WSSecurity\XML\auth\ValueOneOf
+         * ) $item
+         */
+        $item = new $class(self::$value, null);
+        $constrainedValue = new ConstrainedValue($item, [], true);
 
         $this->assertEquals(
             $xmlRepresentation->saveXML($xmlRepresentation->documentElement),
