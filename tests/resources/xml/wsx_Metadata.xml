@@ -1,0 +1,6 @@
+<wsx:Metadata xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="testval1">
+  <wsx:MetadataSection Dialect="urn:x-simplesamlphp:namespace" Identifier="urn:x-simplesamlphp:namespace" ssp:attr2="testval2">
+    <wsx:Location>urn:x-simplesamlphp:namespace</wsx:Location>
+  </wsx:MetadataSection>
+  <ssp:Chunk>Some</ssp:Chunk>
+</wsx:Metadata>

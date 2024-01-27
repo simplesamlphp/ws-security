@@ -22,7 +22,7 @@ abstract class AbstractBinaryExchangeType extends AbstractWstElement
     use ExtendableAttributesTrait;
     use StringElementTrait;
 
-    /** @var string|\SimpleSAML\XML\XsNamespace */
+    /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
 

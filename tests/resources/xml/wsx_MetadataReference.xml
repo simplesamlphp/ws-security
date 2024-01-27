@@ -1,0 +1,6 @@
+<wsx:MetadataReference xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex">
+  <wsa:EndpointReference xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:test1="value1">
+    <wsa:Address ssp:test2="value2">https://login.microsoftonline.com/login.srf</wsa:Address>
+    <ssp:Chunk>SomeChunk</ssp:Chunk>
+  </wsa:EndpointReference>
+</wsx:MetadataReference>
