@@ -6,7 +6,6 @@ namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
-use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
 use SimpleSAML\WSSecurity\XML\wst\RequestedSecurityToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;

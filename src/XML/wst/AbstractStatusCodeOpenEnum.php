@@ -25,7 +25,7 @@ abstract class AbstractStatusCodeOpenEnum extends AbstractWstElement
 
 
     /**
-     * @param string[] $values
+     * @param (\SimpleSAML\WSSecurity\XML\wst\StatusCodeEnum|string)[] $values
      */
     public function __construct(array $values)
     {

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsse\SecurityTokenReference;
 use SimpleSAML\WSSecurity\XML\wst\RequestedUnattachedReference;
 use SimpleSAML\XML\Attribute as XMLAttribute;

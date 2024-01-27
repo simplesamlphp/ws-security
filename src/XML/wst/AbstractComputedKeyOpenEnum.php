@@ -25,7 +25,7 @@ abstract class AbstractComputedKeyOpenEnum extends AbstractWstElement
 
 
     /**
-     * @param string[] $values
+     * @param (\SimpleSAML\WSSecurity\XML\wst\ComputedKeyEnum|string)[] $values
      */
     public function __construct(array $values)
     {

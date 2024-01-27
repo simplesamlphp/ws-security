@@ -25,7 +25,7 @@ abstract class AbstractBinarySecretTypeOpenEnum extends AbstractWstElement
 
 
     /**
-     * @param string[] $values
+     * @param (\SimpleSAML\WSSecurity\XML\wst\BinarySecretTypeEnum|string)[] $values
      */
     public function __construct(array $values)
     {

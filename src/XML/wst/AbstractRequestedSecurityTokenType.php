@@ -64,7 +64,7 @@ abstract class AbstractRequestedSecurityTokenType extends AbstractWstElement
             $children[] = new Chunk($child);
         }
 
-        Assert::minCount($children, 1, MissingElementEcxeption::class);
+        Assert::minCount($children, 1, MissingElementException::class);
         Assert::maxCount($children, 1, TooManyElementsException::class);
 
         return new static(array_pop($children));

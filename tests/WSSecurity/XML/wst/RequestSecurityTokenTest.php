@@ -54,7 +54,7 @@ final class RequestSecurityTokenTest extends TestCase
     public function testMarshalling(): void
     {
         $attr1 = new XMLAttribute(SOAP::NS_SOAP_ENV_11, 'soapenv', 'mustUnderstand', '1');
-        $attr2 = new XMLAttribute(C::NAMESPACE,  'ssp', 'attr1', 'testval1');
+        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
         $msgId = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$attr1]);
 
         $RequestSecurityToken = new RequestSecurityToken(C::NAMESPACE, [$msgId], [$attr2]);
