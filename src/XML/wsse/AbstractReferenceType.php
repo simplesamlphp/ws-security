@@ -29,7 +29,7 @@ abstract class AbstractReferenceType extends AbstractWsseElement
      *
      * @param string|null $URI
      * @param string|null $valueType
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?string $URI = null,

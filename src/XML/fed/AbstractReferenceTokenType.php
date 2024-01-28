@@ -34,12 +34,12 @@ abstract class AbstractReferenceTokenType extends AbstractFedElement
     /**
      * ReferenceTokenType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\fed\ReferenceEPR[] $referenceEPR
+     * @param array<\SimpleSAML\WSSecurity\XML\fed\ReferenceEPR> $referenceEPR
      * @param \SimpleSAML\WSSecurity\XML\fed\ReferenceDigest|null $referenceDigest
      * @param \SimpleSAML\WSSecurity\XML\fed\ReferenceType|null $referenceType
      * @param \SimpleSAML\WSSecurity\XML\fed\SerialNo|null $serialNo
-     * @param \SimpleSAML\XML\ElementInterface[] $children
-     * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected array $referenceEPR = [],
@@ -64,7 +64,7 @@ abstract class AbstractReferenceTokenType extends AbstractFedElement
     /**
      * Collect the value of the referenceEPR-property
      *
-     * @return \SimpleSAML\WSSecurity\XML\fed\ReferenceEPR[]
+     * @return array<\SimpleSAML\WSSecurity\XML\fed\ReferenceEPR>
      */
     public function getReferenceEPR(): array
     {

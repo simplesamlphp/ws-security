@@ -35,8 +35,8 @@ abstract class AbstractFilterPseudonymsType extends AbstractFedElement
      *
      * @param \SimpleSAML\WSSecurity\XML\fed\PseudonymBasis|null $pseudonymBasis
      * @param \SimpleSAML\WSSecurity\XML\fed\RelativeTo|null $relativeTo
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $childeren
-     * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?PseudonymBasis $pseudonymBasis = null,

@@ -20,7 +20,7 @@ abstract class AbstractEndpointType extends AbstractFedElement
     /**
      * ReferenceType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\wsa\EndpointReference[] $endpointReference
+     * @param array<\SimpleSAML\WSSecurity\XML\wsa\EndpointReference> $endpointReference
      */
     final public function __construct(
         protected array $endpointReference,
@@ -31,7 +31,7 @@ abstract class AbstractEndpointType extends AbstractFedElement
 
 
     /**
-     * @return array
+     * @return array<\SimpleSAML\WSSecurity\XML\wsa\EndpointReference>
      */
     public function getEndpointReference(): array
     {

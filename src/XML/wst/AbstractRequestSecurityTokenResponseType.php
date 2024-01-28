@@ -38,8 +38,8 @@ abstract class AbstractRequestSecurityTokenResponseType extends AbstractWstEleme
      * AbstractRequestSecurityTokenResponseType constructor
      *
      * @param string|null $context
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param \SimpleSAML\XML\Attributes[] $namepacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?string $context = null,

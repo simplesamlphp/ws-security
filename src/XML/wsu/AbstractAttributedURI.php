@@ -31,7 +31,7 @@ abstract class AbstractAttributedURI extends AbstractWsuElement
      *
      * @param string $uri
      * @param string|null $Id
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final protected function __construct(
         string $uri,

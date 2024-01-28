@@ -30,7 +30,7 @@ abstract class AbstractBinaryExchangeType extends AbstractWstElement
      * @param string $content
      * @param string $valueType
      * @param string $encodingType
-     * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         string $content,

@@ -34,8 +34,8 @@ abstract class AbstractRequestPseudonymType extends AbstractFedElement
      *
      * @param bool|null $SingleUse
      * @param bool|null $Lookup
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?bool $SingleUse = null,

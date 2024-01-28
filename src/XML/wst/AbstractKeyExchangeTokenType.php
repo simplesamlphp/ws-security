@@ -27,7 +27,7 @@ abstract class AbstractKeyExchangeTokenType extends AbstractWstElement
     /**
      * AbstractKeyExchangeTokenType constructor
      *
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      */
     final public function __construct(
         array $children = []

@@ -35,7 +35,7 @@ abstract class AbstractFreshnessType extends AbstractFedElement
      *
      * @param int $content
      * @param bool|null $AllowCache
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         int $content,

@@ -135,6 +135,7 @@ final class Policy extends AbstractOperatorContentType
                 'ExactlyOne' => ExactlyOne::fromXML($n),
                 'Policy' => Policy::fromXML($n),
                 'PolicyReference' => PolicyReference::fromXML($n),
+                default => null,
             };
         }
 

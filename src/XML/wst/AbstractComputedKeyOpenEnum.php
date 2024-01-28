@@ -18,6 +18,8 @@ use function implode;
  * A ComputedKeyOpenEnum element
  *
  * @package simplesamlphp/ws-security
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class AbstractComputedKeyOpenEnum extends AbstractWstElement
 {

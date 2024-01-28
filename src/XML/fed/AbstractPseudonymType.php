@@ -39,10 +39,10 @@ abstract class AbstractPseudonymType extends AbstractFedElement
      * @param \SimpleSAML\WSSecurity\XML\fed\PseudonymBasis $pseudonymBasis
      * @param \SimpleSAML\WSSecurity\XML\fed\RelativeTo $relativeTo
      * @param \SimpleSAML\WSSecurity\XML\wsu\Expires|null $expires
-     * @param \SimpleSAML\WSSecurity\XML\fed\SecurityToken[] $securityToken
-     * @param \SimpleSAML\WSSecurity\XML\fed\ProofToken[] $proofToken
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $childeren
-     * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
+     * @param array<\SimpleSAML\WSSecurity\XML\fed\SecurityToken> $securityToken
+     * @param array<\SimpleSAML\WSSecurity\XML\fed\ProofToken> $proofToken
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected PseudonymBasis $pseudonymBasis,
@@ -107,7 +107,7 @@ abstract class AbstractPseudonymType extends AbstractFedElement
     /**
      * Collect the value of the securityToken-property
      *
-     * @return \SimpleSAML\WSSecurity\XML\fed\SecurityToken[]
+     * @return array<\SimpleSAML\WSSecurity\XML\fed\SecurityToken>
      */
     public function getSecurityToken(): array
     {
@@ -118,7 +118,7 @@ abstract class AbstractPseudonymType extends AbstractFedElement
     /**
      * Collect the value of the proofToken-property
      *
-     * @return \SimpleSAML\WSSecurity\XML\fed\ProofToken[]
+     * @return array<\SimpleSAML\WSSecurity\XML\fed\ProofToken>
      */
     public function getProofToken(): array
     {

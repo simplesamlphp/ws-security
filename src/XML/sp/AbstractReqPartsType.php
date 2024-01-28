@@ -95,7 +95,7 @@ abstract class AbstractReqPartsType extends AbstractSpElement
         );
 
         $header = Header::getChildrenOfClass($xml);
-        Assert::maxcount($header, 1, TooManyElementsException::class);
+        Assert::maxCount($header, 1, TooManyElementsException::class);
 
         $details = [];
         foreach ($xml->childNodes as $detail) {

@@ -23,7 +23,7 @@ abstract class AbstractValueInRangeType extends AbstractAuthElement
      * @param \SimpleSAML\WSSecurity\XML\auth\ValueUpperBound $valueUpperBound
      * @param \SimpleSAML\WSSecurity\XML\auth\ValueLowerBound $valueLowerBound
      */
-    public function __construct(
+    final public function __construct(
         protected ValueUpperBound $valueUpperBound,
         protected ValueLowerBound $valueLowerBound
     ) {

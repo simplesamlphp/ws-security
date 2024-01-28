@@ -30,7 +30,7 @@ abstract class AbstractAuthenticatorType extends AbstractWstElement
      * AbstractAuthenticatorType constructor
      *
      * @param \SimpleSAML\WSSecurity\XML\wst\CombinedHash|null $combinedHash
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      */
     final public function __construct(
         protected ?CombinedHash $combinedHash = null,

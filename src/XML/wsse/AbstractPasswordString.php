@@ -22,7 +22,7 @@ abstract class AbstractPasswordString extends AbstractAttributedString
      * @param string $content
      * @param string|null $Id
      * @param string|null $Type
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         string $content,

@@ -18,6 +18,8 @@ use function implode;
  * A RequestTypeOpenEnum element
  *
  * @package simplesamlphp/ws-security
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class AbstractRequestTypeOpenEnum extends AbstractWstElement
 {

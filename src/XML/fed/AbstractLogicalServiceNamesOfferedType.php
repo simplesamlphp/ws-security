@@ -29,8 +29,8 @@ abstract class AbstractLogicalServiceNamesOfferedType extends AbstractFedElement
     /**
      * LogicalServiceNamesOfferedType constructor
      *
-     * @param \SimpleSAML\WSSecurity\XML\fed\IssuerName[] $issuerName
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\WSSecurity\XML\fed\IssuerName> $issuerName
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected array $issuerName,
@@ -44,7 +44,7 @@ abstract class AbstractLogicalServiceNamesOfferedType extends AbstractFedElement
 
 
     /**
-     * @return array
+     * @return array<\SimpleSAML\WSSecurity\XML\fed\IssuerName>
      */
     public function getIssuerName(): array
     {

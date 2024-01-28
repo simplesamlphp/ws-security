@@ -18,6 +18,8 @@ use function implode;
  * A StatusCodeOpenEnum element
  *
  * @package simplesamlphp/ws-security
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class AbstractStatusCodeOpenEnum extends AbstractWstElement
 {

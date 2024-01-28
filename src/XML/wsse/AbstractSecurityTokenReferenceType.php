@@ -39,8 +39,8 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
      *
      * @param string|null $Id
      * @param string|null $Usage
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?string $Id = null,

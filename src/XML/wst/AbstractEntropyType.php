@@ -32,8 +32,8 @@ abstract class AbstractEntropyType extends AbstractWstElement
     /**
      * AbstractEntropyType constructor
      *
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         array $children = [],

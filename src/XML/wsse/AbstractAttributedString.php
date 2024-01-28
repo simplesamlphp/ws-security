@@ -19,6 +19,8 @@ use function array_unshift;
  * Abstract class defining the AttributedString type
  *
  * @package simplesamlphp/ws-security
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class AbstractAttributedString extends AbstractWsseElement
 {
@@ -34,7 +36,7 @@ abstract class AbstractAttributedString extends AbstractWsseElement
      *
      * @param string $content
      * @param string|null $Id
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
         string $content,

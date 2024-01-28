@@ -21,6 +21,8 @@ use SimpleSAML\XML\XsNamespace as NS;
  * Class defining the RequestSecurityTokenType element
  *
  * @package simplesamlphp/ws-security
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class AbstractRequestSecurityTokenType extends AbstractWstElement
 {
@@ -38,8 +40,8 @@ abstract class AbstractRequestSecurityTokenType extends AbstractWstElement
      * AbstractRequestSecurityTokenType constructor
      *
      * @param string|null $context
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param \SimpleSAML\XML\Attributes[] $namepacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?string $context = null,

@@ -17,6 +17,8 @@ use SimpleSAML\XML\XsNamespace as NS;
  * Class representing a wsp:OperatorContentType element.
  *
  * @package simplesamlphp/ws-security
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class AbstractOperatorContentType extends AbstractWspElement
 {
@@ -99,17 +101,18 @@ abstract class AbstractOperatorContentType extends AbstractWspElement
         for ($n = $xml->firstChild; $n !== null; $n = $n->nextSibling) {
             if (!($n instanceof DOMElement)) {
                 continue;
-            } elseif ($n->namespaceURI !== self::NS) {
-                $children[] = new Chunk($n);
+            } elseif ($n->namespaceURI === self::NS) {
+                $operatorContent[] = match ($n->localName) {
+                    'All' => All::fromXML($n),
+                    'ExactlyOne' => ExactlyOne::fromXML($n),
+                    'Policy' => Policy::fromXML($n),
+                    'PolicyReference' => PolicyReference::fromXML($n),
+                    default => null,
+                };
                 continue;
             }
 
-            $operatorContent[] = match ($n->localName) {
-                'All' => All::fromXML($n),
-                'ExactlyOne' => ExactlyOne::fromXML($n),
-                'Policy' => Policy::fromXML($n),
-                'PolicyReference' => PolicyReference::fromXML($n),
-            };
+            $children[] = new Chunk($n);
         }
 
         return new static($operatorContent, $children);

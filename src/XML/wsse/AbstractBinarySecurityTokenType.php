@@ -29,7 +29,7 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
      * @param string|null $valueType
      * @param string|null $Id
      * @param string|null $EncodingType
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         string $content,

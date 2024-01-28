@@ -35,8 +35,8 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
      * AbstractRequestSecurityTokenTemplateType constructor.
      *
      * @param string|null $trustVersion
-     * @param list<\SimpleSAML\XML\ElementInterface> $elts
-     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?string $trustVersion = null,

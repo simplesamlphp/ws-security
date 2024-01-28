@@ -43,8 +43,8 @@ final class PolicyAttachment extends AbstractWspElement
      *
      * @param \SimpleSAML\WSSecurity\XML\wsp\AppliesTo $appliesTo
      * @param (\SimpleSAML\WSSecurity\XML\wsp\Policy|\SimpleSAML\WSSecurity\XML\wsp\PolicyReference)[] $policies
-     * @param \SimpleSAML\XML\ElementInterface[] $children
-     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
         protected AppliesTo $appliesTo,

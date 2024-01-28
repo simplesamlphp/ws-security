@@ -13,6 +13,8 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
  * Abstract class defining the EncodedString type
  *
  * @package simplesamlphp/ws-security
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class AbstractEncodedString extends AbstractAttributedString
 {
@@ -22,7 +24,7 @@ abstract class AbstractEncodedString extends AbstractAttributedString
      * @param string $content
      * @param string|null $Id
      * @param string|null $EncodingType
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
         string $content,

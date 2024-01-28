@@ -34,8 +34,8 @@ abstract class AbstractTokenType extends AbstractFedElement
      * AbstractTokenType constructor
      *
      * @param string|null $Uri
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?string $Uri = null,

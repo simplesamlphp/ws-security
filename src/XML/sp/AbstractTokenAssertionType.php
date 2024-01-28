@@ -38,8 +38,8 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
      * TokenAssertionType constructor.
      *
      * @param \SimpleSAML\WSSecurity\XML\sp\IncludeToken|null $includeToken
-     * @param list<\SimpleSAML\XML\ElementInterface> $elts
-     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         ?IncludeToken $includeToken = null,
@@ -89,7 +89,7 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
         try {
             $includeToken = IncludeToken::from(self::getOptionalAttribute($xml, 'IncludeToken', null));
         } catch (ValueError) {
-            self::getOptionalAttribute($xml, 'IncludeToken', null);
+            $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', null);
         }
 
         $elements = [];

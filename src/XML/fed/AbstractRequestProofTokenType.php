@@ -32,8 +32,8 @@ abstract class AbstractRequestProofTokenType extends AbstractFedElement
     /**
      * AbstractRequestProofTokenType constructor
      *
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         array $children = [],

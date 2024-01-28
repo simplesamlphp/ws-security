@@ -37,8 +37,8 @@ abstract class AbstractSerElementsType extends AbstractSpElement
      *
      * @param list<\SimpleSAML\WSSecurity\XML\sp\XPath> $xpath
      * @param string|null $xpathVersion
-     * @param list<\SimpleSAML\XML\ElementInterface> $elts
-     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected array $xpath,

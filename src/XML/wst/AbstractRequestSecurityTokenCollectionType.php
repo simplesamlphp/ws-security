@@ -18,7 +18,7 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
 abstract class AbstractRequestSecurityTokenCollectionType extends AbstractWstElement
 {
     /**
-     * @param \SimpleSAML\WSSecurity\XML\wst\RequestSecurityToken[] $requestSecurityToken
+     * @param array<\SimpleSAML\WSSecurity\XML\wst\RequestSecurityToken> $requestSecurityToken
      */
     final public function __construct(
         protected array $requestSecurityToken

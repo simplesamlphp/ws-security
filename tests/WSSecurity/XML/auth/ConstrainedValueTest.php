@@ -6,14 +6,14 @@ namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\auth\ConstrainedValue;
-use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
+//use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
 use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\WSSecurity\XML\auth\ValueGreaterThan;
 use SimpleSAML\WSSecurity\XML\auth\ValueGreaterThanOrEqual;
 use SimpleSAML\WSSecurity\XML\auth\ValueLessThan;
 use SimpleSAML\WSSecurity\XML\auth\ValueLessThanOrEqual;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Chunk;
+//use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 
 use function dirname;
@@ -31,7 +31,7 @@ final class ConstrainedValueTest extends TestCase
 {
     private static string $resourcePath;
 
-    private static StructuredValue $structuredValue;
+    //private static StructuredValue $structuredValue;
 
     private static Value $value;
 
@@ -47,10 +47,12 @@ final class ConstrainedValueTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
         );
 
+/**
         self::$structuredValue = new StructuredValue(
             [new Chunk($child->documentElement)],
             [$attr1],
         );
+*/
 
         self::$value = new Value('MyValue');
     }

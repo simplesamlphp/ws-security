@@ -32,7 +32,7 @@ abstract class AbstractAttributedDateTime extends AbstractWsuElement
      *
      * @param \DateTimeImmutable $dateTime
      * @param string|null $Id
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected DateTimeImmutable $dateTime,

@@ -36,7 +36,7 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
     /**
      * @param string $content
      * @param (\SimpleSAML\WSSecurity\XML\wst\BinarySecretTypeEnum|string)[]|null $Type
-     * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         string $content,

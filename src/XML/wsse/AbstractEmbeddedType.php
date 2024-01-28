@@ -34,8 +34,8 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
      * AbstractEmbeddedType constructor
      *
      * @param string|null $valueType
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?string $valueType = null,

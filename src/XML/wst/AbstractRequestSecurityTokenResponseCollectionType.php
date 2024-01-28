@@ -26,8 +26,8 @@ abstract class AbstractRequestSecurityTokenResponseCollectionType extends Abstra
 
 
     /**
-     * @param \SimpleSAML\WSSecurity\XML\wst\RequestSecurityTokenResponse[] $requestSecurityTokenResponse
-     * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
+     * @param array<\SimpleSAML\WSSecurity\XML\wst\RequestSecurityTokenResponse> $requestSecurityTokenResponse
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected array $requestSecurityTokenResponse,

@@ -28,7 +28,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
      * AbstractIssuerNameType constructor
      *
      * @param string $Uri
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected string $Uri,

@@ -29,8 +29,8 @@ abstract class AbstractParticipantsType extends AbstractWstElement
      * AbstractParticipantsType constructor
      *
      * @param \SimpleSAML\WSSecurity\XML\wst\Primary|null $primary
-     * @param \SimpleSAML\WSSecurity\XML\wst\Participant[] $participant
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
+     * @param array<\SimpleSAML\WSSecurity\XML\wst\Participant> $participant
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      */
     final public function __construct(
         protected ?Primary $primary = null,

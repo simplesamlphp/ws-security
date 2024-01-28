@@ -126,7 +126,7 @@ abstract class AbstractSePartsType extends AbstractSpElement
         $body = Body::getChildrenOfClass($xml);
 
         $header = Header::getChildrenOfClass($xml);
-        Assert::maxcount($header, 1, TooManyElementsException::class);
+        Assert::maxCount($header, 1, TooManyElementsException::class);
 
         $attachments = Attachments::getChildrenOfClass($xml);
 

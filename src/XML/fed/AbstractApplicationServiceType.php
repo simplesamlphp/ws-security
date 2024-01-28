@@ -46,6 +46,7 @@ abstract class AbstractApplicationServiceType extends AbstractWebServiceDescript
      * @param string|null $serviceDescription
      * @param \SimpleSAML\WSSecurity\XML\fed\ApplicationServiceEndpoint[] $applicationServiceEndpoint
      * @param \SimpleSAML\WSSecurity\XML\fed\SingleSignOutNotificationEndpoint[] $singleSignOutNotificationEndpoint
+     * @param \SimpleSAML\WSSecurity\XML\fed\PassiveRequestorEndpoint[] $passiveRequestorEndpoint
      */
     final public function __construct(
         array $protocolSupportEnumeration,

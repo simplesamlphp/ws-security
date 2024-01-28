@@ -35,9 +35,9 @@ abstract class AbstractTokenTypesOfferedType extends AbstractFedElement
     /**
      * AbstractTokenTypesOffered constructor
      *
-     * @param \SimpleSAML\WSSecurity\XML\fed\TokenType[] $tokenType
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\WSSecurity\XML\fed\TokenType> $tokenType
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected array $tokenType,
@@ -53,7 +53,7 @@ abstract class AbstractTokenTypesOfferedType extends AbstractFedElement
 
 
     /**
-     * @return array
+     * @return array<\SimpleSAML\WSSecurity\XML\fed\TokenType>
      */
     public function getTokenType(): array
     {

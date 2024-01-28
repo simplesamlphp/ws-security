@@ -49,10 +49,6 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptorTy
      * @param \SimpleSAML\WSSecurity\XML\fed\TargetScopes|null $targetScopes
      * @param string|null $serviceDisplayName
      * @param string|null $serviceDescription
-     * @param \SimpleSAML\WSSecurity\XML\fed\SecurityTokenServiceEndpoint[] $securityTokenServiceEndpoint
-     * @param \SimpleSAML\WSSecurity\XML\fed\SingleSignOutSubscriptionEndpoint[] $singleSignOutSubscriptionEndpoint
-     * @param \SimpleSAML\WSSecurity\XML\fed\SingleSignOutNotificationEndpoint[] $singleSignOutNotificationEndpoint
-     * @param \SimpleSAML\WSSecurity\XML\fed\PassiveRequestorEndpoint[] $passiveRequestorEndpoint
      */
     protected function __construct(
         array $protocolSupportEnumeration,

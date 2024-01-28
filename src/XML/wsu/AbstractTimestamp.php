@@ -38,8 +38,8 @@ abstract class AbstractTimestamp extends AbstractWsuElement
      * @param \SimpleSAML\WSSecurity\XML\wsu\Created|null $created
      * @param \SimpleSAML\WSSecurity\XML\wsu\Expires|null $expires
      * @param string|null $Id
-     * @param array $elements
-     * @param array $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $elements
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?Created $created = null,
@@ -144,12 +144,11 @@ abstract class AbstractTimestamp extends AbstractWsuElement
     /**
      * Convert this Timestamp to XML.
      *
-     * @param \DOMElement|null $element The element we are converting to XML.
+     * @param \DOMElement|null $parent The element we should append this class to.
      * @return \DOMElement The XML element after adding the data corresponding to this Timestamp.
      */
     public function toXML(DOMElement $parent = null): DOMElement
     {
-        /** @psalm-var \DOMDocument $e->ownerDocument */
         $e = $this->instantiateParentElement($parent);
 
         $attributes = $this->getAttributesNS();

@@ -32,8 +32,8 @@ final class AppliesTo extends AbstractWspElement
     /**
      * Initialize a wsp:AppliesTo
      *
-     * @param list<\SimpleSAML\XML\ElementInterface> $children
-     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(array $children = [], array $namespacedAttributes = [])
     {

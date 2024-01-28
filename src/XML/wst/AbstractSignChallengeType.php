@@ -35,8 +35,8 @@ abstract class AbstractSignChallengeType extends AbstractWstElement
      * AbstractSignChallengeType constructor
      *
      * @param \SimpleSAML\WSSecurity\XML\wst\Challenge|null $challenge
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
+     * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?Challenge $challenge = null,
