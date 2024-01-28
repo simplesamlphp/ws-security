@@ -37,8 +37,8 @@ abstract class AbstractHeaderType extends AbstractSpElement
         protected ?string $name = null,
         array $namespacedAttributes = []
     ) {
-        Assert::nullOrValidURI($namespace);
-        Assert::validQName($name);
+        Assert::validURI($namespace);
+        Assert::nullOrValidQName($name);
 
         $this->setAttributesNS($namespacedAttributes);
     }
