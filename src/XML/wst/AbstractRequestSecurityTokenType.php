@@ -6,6 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
+use SimpleSAML\SAML2\XML\saml\Assertion;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsp\AppliesTo;
 use SimpleSAML\WSSecurity\XML\wsp\Policy;
@@ -95,6 +96,11 @@ abstract class AbstractRequestSecurityTokenType extends AbstractWstElement
         foreach ($xml->childNodes as $child) {
             if (!($child instanceof DOMElement)) {
                 continue;
+            } elseif ($child->namespaceURI === C::NS_SAML) {
+                $children[] = match ($child->localName) {
+                    'Assertion' => Assertion::fromXML($child),
+                    default => Chunk::fromXML($child),
+                };
             } elseif ($child->namespaceURI === C::NS_TRUST) {
                 $children[] = match ($child->localName) {
                     'AllowPostdating' => AllowPostdating::fromXML($child),
