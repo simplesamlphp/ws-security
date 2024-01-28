@@ -16,7 +16,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * A SignOutBasisType
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractSignOutBasisType extends AbstractFedElement
 {

@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An SecurityContextToken element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SecurityContextToken extends AbstractTokenAssertionType
 {

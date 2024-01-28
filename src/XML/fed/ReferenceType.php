@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * A ReferenceType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ReferenceType extends AbstractAttributeExtensibleURI
 {

@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * An AdditionalContextProcessed element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class AdditionalContextProcessed extends AbstractAssertionType
 {

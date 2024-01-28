@@ -17,7 +17,7 @@ use function implode;
 /**
  * A StatusCodeOpenEnum element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractStatusCodeOpenEnum extends AbstractWstElement
 {

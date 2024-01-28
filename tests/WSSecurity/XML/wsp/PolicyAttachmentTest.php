@@ -28,7 +28,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsp\PolicyAttachment
  * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class PolicyAttachmentTest extends TestCase
 {

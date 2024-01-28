@@ -13,7 +13,7 @@ use SimpleSAML\XML\StringElementTrait;
 /**
  * Class representing WS-trust KeySize.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class KeySize extends AbstractWstElement
 {

@@ -26,7 +26,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\SingleSignOutSubscriptionEndpoints
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractEndpointType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SingleSignOutSubscriptionEndpointsTest extends TestCase
 {

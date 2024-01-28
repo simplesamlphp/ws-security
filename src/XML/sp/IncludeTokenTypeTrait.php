@@ -11,7 +11,7 @@ use function is_string;
 /**
  * Trait grouping common functionality for elements that can hold IncludeToken attributes.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 trait IncludeTokenTypeTrait
 {

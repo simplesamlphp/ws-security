@@ -18,7 +18,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\Forwardable
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ForwardableTest extends TestCase
 {

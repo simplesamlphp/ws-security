@@ -18,7 +18,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\Delegatable
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class DelegatableTest extends TestCase
 {

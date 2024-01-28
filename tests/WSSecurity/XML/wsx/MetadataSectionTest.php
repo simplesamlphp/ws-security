@@ -20,7 +20,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsx\MetadataSection
  * @covers \SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class MetadataSectionTest extends TestCase
 {

@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * A RecipientEncryptionToken element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RecipientEncryptionToken extends AbstractNestedPolicyType
 {

@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * A TransportToken element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class TransportToken extends AbstractNestedPolicyType
 {

@@ -17,7 +17,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\Reason
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ReasonTest extends TestCase
 {

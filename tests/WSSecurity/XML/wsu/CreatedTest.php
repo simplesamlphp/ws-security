@@ -20,7 +20,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsu\Created
  * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractAttributedDateTime
  * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class CreatedTest extends TestCase
 {

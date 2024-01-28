@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 /**
  * A Renewing element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Renewing extends AbstractRenewingType
 {

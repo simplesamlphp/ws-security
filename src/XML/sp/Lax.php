@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An Lax element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Lax extends AbstractQNameAssertionType
 {

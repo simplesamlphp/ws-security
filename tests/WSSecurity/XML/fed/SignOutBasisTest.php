@@ -21,7 +21,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractSignOutBasisType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SignOutBasisTest extends TestCase
 {

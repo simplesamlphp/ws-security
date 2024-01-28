@@ -13,7 +13,7 @@ use SimpleSAML\SAML2\XML\md\Organization;
 /**
  * An WebServiceDescriptorType
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptorType
 {

@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An EncryptedElements element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class EncryptedElements extends AbstractSerElementsType
 {

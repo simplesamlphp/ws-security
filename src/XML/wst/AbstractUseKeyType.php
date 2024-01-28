@@ -17,7 +17,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class defining the UseKeyType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractUseKeyType extends AbstractWstElement
 {

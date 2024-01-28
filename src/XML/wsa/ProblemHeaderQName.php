@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 /**
  * An attributed QName
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ProblemHeaderQName extends AbstractAttributedQNameType
 {

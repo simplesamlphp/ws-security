@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 /**
  * A Lifetime element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Lifetime extends AbstractLifetimeType
 {

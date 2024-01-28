@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 /**
  * An attributed URI
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class To extends AbstractAttributedURIType
 {

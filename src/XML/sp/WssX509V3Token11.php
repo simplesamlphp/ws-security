@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An WssX509V3Token11 element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class WssX509V3Token11 extends AbstractQNameAssertionType
 {

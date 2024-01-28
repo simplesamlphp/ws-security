@@ -13,7 +13,7 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
 /**
  * A RequestSecurityTokenCollectionType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractRequestSecurityTokenCollectionType extends AbstractWstElement
 {

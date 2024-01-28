@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * A SecurityToken element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SecurityToken extends AbstractSecurityTokenType
 {

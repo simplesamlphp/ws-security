@@ -19,7 +19,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wsx\Location
  * @covers \SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class LocationTest extends TestCase
 {

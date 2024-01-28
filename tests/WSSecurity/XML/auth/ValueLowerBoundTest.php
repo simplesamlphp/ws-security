@@ -19,7 +19,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\auth\ValueLowerBound
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedSingleValueType
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ValueLowerBoundTest extends TestCase
 {

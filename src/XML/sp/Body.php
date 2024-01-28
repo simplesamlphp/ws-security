@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An Body element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Body extends AbstractEmptyType
 {

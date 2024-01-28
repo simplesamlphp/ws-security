@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An HttpsToken element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class HttpsToken extends AbstractTokenAssertionType
 {

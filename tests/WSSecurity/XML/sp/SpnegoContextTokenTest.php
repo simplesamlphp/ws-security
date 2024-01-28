@@ -26,7 +26,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpnegoContextTokenType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SpnegoContextTokenTest extends TestCase
 {

@@ -16,7 +16,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class representing a wsp:OperatorContentType element.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractOperatorContentType extends AbstractWspElement
 {

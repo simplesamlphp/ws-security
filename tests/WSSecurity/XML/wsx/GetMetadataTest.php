@@ -21,7 +21,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsx\GetMetadata
  * @covers \SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class GetMetadataTest extends TestCase
 {

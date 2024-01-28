@@ -9,7 +9,7 @@ use SimpleSAML\Assert\Assert;
 /**
  * Trait grouping common functionality for elements that can hold a PolicyURIs attribute.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 trait PolicyURIsTrait
 {

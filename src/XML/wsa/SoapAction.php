@@ -10,7 +10,7 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\URIElementTrait;
 
 /**
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SoapAction extends AbstractWsaElement
 {

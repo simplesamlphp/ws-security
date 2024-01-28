@@ -15,7 +15,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class defining the MetadataReference element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class MetadataReference extends AbstractWsxElement
 {

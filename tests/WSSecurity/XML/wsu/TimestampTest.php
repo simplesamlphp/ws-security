@@ -22,7 +22,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsu\Timestamp
  * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractTimestamp
  * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class TimestampTest extends TestCase
 {

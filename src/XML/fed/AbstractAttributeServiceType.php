@@ -15,7 +15,7 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
 /**
  * A AttributeServiceType
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractAttributeServiceType extends AbstractWebServiceDescriptorType
 {

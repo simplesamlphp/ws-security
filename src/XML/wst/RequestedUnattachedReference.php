@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 /**
  * A RequestedUnattachedReference element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequestedUnattachedReference extends AbstractRequestedReferenceType
 {

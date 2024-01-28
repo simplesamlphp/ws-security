@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An RequestSecurityTokenTemplate element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequestSecurityTokenTemplate extends AbstractRequestSecurityTokenTemplateType
 {

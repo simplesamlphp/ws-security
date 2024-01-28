@@ -21,7 +21,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsse\SecurityTokenReference
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractSecurityTokenReferenceType
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SecurityTokenReferenceTest extends TestCase
 {

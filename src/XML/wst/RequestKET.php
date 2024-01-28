@@ -11,7 +11,7 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 /**
  * A RequestKET element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequestKET extends AbstractWstElement
 {

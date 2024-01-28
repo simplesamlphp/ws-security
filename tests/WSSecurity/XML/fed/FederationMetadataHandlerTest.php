@@ -21,7 +21,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFederationMetadataHandlerType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class FederationMetadataHandlerTest extends TestCase
 {

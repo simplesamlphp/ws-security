@@ -21,7 +21,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsse\Embedded
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractEmbeddedType
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class EmbeddedTest extends TestCase
 {

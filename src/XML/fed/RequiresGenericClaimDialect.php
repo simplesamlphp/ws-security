@@ -9,7 +9,7 @@ use SimpleSAML\WSSecurity\XML\fed\AbstractAssertionType;
 /**
  * A RequiresGenericClaimDialect element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequiresGenericClaimDialect extends AbstractAssertionType
 {

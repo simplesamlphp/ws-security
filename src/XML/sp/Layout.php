@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * A Layout element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Layout extends AbstractNestedPolicyType
 {

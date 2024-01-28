@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An TripleDesSha256 element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class TripleDesSha256 extends AbstractQNameAssertionType
 {

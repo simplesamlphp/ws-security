@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * Class defining the PassiveRequestorEndpoints element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class PassiveRequestorEndpoints extends AbstractEndpointType
 {

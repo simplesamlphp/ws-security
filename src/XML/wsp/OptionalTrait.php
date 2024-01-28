@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsp;
 /**
  * Trait grouping common functionality for elements that can hold an Optional attribute.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 trait OptionalTrait
 {

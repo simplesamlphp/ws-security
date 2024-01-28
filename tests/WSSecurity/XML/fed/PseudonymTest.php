@@ -29,7 +29,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractPseudonymType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class PseudonymTest extends TestCase
 {

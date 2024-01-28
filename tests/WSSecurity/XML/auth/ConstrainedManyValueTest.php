@@ -18,7 +18,7 @@ use SimpleSAML\XML\DOMDocumentFactory;
  *
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedManyValueType
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ConstrainedManyValueTest extends TestCase
 {

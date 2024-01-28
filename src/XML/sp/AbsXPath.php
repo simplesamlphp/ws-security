@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An AbsXPath element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class AbsXPath extends AbstractQNameAssertionType
 {

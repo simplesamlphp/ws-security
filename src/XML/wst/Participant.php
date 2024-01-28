@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 /**
  * A Participant element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Participant extends AbstractParticipantType
 {

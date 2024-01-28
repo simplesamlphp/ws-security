@@ -18,7 +18,7 @@ use function array_pop;
 /**
  * Abstract class defining the Timestamp type
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractTimestamp extends AbstractWsuElement
 {

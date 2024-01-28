@@ -24,7 +24,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractTokenAssertionType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SamlTokenTest extends TestCase
 {

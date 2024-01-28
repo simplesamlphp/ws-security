@@ -19,7 +19,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\IssuerName
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractIssuerNameType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class IssuerNameTest extends TestCase
 {

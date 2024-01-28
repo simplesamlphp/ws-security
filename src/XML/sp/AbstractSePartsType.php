@@ -19,7 +19,7 @@ use function sprintf;
 /**
  * Class representing WS security policy AbstractSePartsType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractSePartsType extends AbstractSpElement
 {

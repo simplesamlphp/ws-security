@@ -22,7 +22,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractAssertionType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequireBearerTokensTest extends TestCase
 {

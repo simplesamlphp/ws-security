@@ -9,7 +9,7 @@ use SimpleSAML\XML\BooleanElementTrait;
 /**
  * A Delegatable element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Delegatable extends AbstractWstElement
 {

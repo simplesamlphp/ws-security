@@ -17,7 +17,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * A ReferenceTokenType
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractReferenceTokenType extends AbstractFedElement
 {

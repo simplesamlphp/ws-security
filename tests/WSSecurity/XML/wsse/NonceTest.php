@@ -21,7 +21,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractEncodedString
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class NonceTest extends TestCase
 {

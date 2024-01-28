@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An STRTransform10 element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class STRTransform10 extends AbstractQNameAssertionType
 {

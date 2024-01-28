@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity;
 /**
  * Class holding constants relevant for WS-Security.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 
 class Constants extends \SimpleSAML\SAML2\Constants

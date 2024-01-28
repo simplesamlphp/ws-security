@@ -14,7 +14,7 @@ use function array_pop;
 /**
  * A ProblemAction
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ProblemAction extends AbstractProblemActionType
 {

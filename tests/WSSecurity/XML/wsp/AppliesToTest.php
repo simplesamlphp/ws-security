@@ -23,7 +23,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsp\AppliesTo
  * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractwspElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class AppliesToTest extends TestCase
 {

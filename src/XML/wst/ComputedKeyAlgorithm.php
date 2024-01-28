@@ -9,7 +9,7 @@ use SimpleSAML\XML\URIElementTrait;
 /**
  * A ComputedKeyAlgorithm element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ComputedKeyAlgorithm extends AbstractWstElement
 {

@@ -18,7 +18,7 @@ use function array_unshift;
 /**
  * Abstract class defining the AttributedString type
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractAttributedString extends AbstractWsseElement
 {

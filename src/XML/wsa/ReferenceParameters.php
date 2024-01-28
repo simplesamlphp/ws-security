@@ -15,7 +15,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class representing a wsa:ReferenceParameters element.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ReferenceParameters extends AbstractWsaElement
 {

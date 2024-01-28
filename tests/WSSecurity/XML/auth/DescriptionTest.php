@@ -19,7 +19,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\auth\Description
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractDescriptionType
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class DescriptionTest extends TestCase
 {

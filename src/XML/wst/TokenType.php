@@ -9,7 +9,7 @@ use SimpleSAML\XML\URIElementTrait;
 /**
  * A TokenType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class TokenType extends AbstractWstElement
 {

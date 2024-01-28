@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 /**
  * An endpoint reference
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class EndpointReference extends AbstractEndpointReferenceType
 {

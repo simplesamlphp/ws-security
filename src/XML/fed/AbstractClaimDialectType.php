@@ -16,7 +16,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class defining the ClaimDialectType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractClaimDialectType extends AbstractFedElement
 {

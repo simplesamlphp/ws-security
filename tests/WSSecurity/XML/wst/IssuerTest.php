@@ -24,7 +24,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wst\Issuer
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class IssuerTest extends TestCase
 {

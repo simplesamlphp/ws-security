@@ -9,7 +9,7 @@ use SimpleSAML\XML\Base64ElementTrait;
 /**
  * A CombinedHash element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class CombinedHash extends AbstractWstElement
 {

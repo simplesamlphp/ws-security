@@ -22,7 +22,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\RelativeTo
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractRelativeToType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RelativeToTest extends TestCase
 {

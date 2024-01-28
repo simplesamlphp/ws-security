@@ -14,7 +14,7 @@ use SimpleSAML\XML\Exception\TooManyElementsException;
 /**
  * Class defining the LifetimeType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractLifetimeType extends AbstractWstElement
 {

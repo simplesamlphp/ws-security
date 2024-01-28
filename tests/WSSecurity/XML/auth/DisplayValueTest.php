@@ -19,7 +19,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\auth\DisplayValue
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractDisplayValueType
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class DisplayValueTest extends TestCase
 {

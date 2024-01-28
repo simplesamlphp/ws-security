@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 /**
  * Class defining the Reference element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Reference extends AbstractReferenceType
 {

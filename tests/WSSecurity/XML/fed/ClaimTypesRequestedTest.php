@@ -26,7 +26,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractClaimTypesRequestedType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ClaimTypesRequestedTest extends TestCase
 {

@@ -20,7 +20,7 @@ use function sprintf;
 /**
  * Class representing WS security policy SecureConversationTokenType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractSecureConversationTokenType extends AbstractSpElement
 {

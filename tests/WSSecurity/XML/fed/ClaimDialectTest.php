@@ -21,7 +21,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\ClaimDialect
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractClaimDialectType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ClaimDialectTest extends TestCase
 {

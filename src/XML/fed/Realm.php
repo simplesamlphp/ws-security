@@ -9,7 +9,7 @@ use SimpleSAML\XML\URIElementTrait;
 /**
  * A Realm element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Realm extends AbstractFedElement
 {

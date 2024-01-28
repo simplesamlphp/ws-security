@@ -18,7 +18,7 @@ use function array_pop;
 /**
  * Class defining the PseudonymBasisType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractPseudonymBasisType extends AbstractFedElement
 {

@@ -11,7 +11,7 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 /**
  * A AllowPostdating element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class AllowPostdating extends AbstractWstElement
 {

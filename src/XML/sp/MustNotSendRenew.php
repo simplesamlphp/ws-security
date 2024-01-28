@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An MustNotSendRenew element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class MustNotSendRenew extends AbstractQNameAssertionType
 {

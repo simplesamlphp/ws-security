@@ -25,7 +25,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\auth\ConstrainedValue
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedValueType
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ConstrainedValueTest extends TestCase
 {

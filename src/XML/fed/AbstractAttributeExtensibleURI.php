@@ -14,7 +14,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * An AbstractAttributeExtensibleURI element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractAttributeExtensibleURI extends AbstractFedElement
 {

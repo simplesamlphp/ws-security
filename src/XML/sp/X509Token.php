@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An X509Token element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class X509Token extends AbstractTokenAssertionType
 {

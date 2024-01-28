@@ -18,7 +18,7 @@ use SimpleSAML\XML\XsNamespace as NS;
  * You can extend the class without extending the constructor. Then you can use the methods available and the
  * class will generate an element with the same name as the extending class (e.g. \SimpleSAML\WSSecurity\wsa\Address).
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractAttributedLongType extends AbstractWsaElement
 {

@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 /**
  * A UseKey element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class UseKey extends AbstractUseKeyType
 {

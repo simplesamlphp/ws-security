@@ -24,7 +24,7 @@ use function array_merge;
 /**
  * Class representing a wsp:PolicyAttachment element.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class PolicyAttachment extends AbstractWspElement
 {

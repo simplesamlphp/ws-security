@@ -20,7 +20,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsa\ProblemHeaderQName
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedQNameType
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ProblemHeaderQNameTest extends TestCase
 {

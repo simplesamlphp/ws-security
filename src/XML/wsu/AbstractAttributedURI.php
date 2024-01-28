@@ -15,7 +15,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Abstract class defining the AttributedURI type
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractAttributedURI extends AbstractWsuElement
 {

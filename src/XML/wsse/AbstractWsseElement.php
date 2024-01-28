@@ -11,7 +11,7 @@ use SimpleSAML\XML\AbstractElement;
  * Abstract class to be implemented by all the classes in this namespace
  *
  * @see https://docs.oasis-open.org/wss/v1.1/wss-v1.1-spec-pr-SOAPMessageSecurity-01.htm#_Toc106443153
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractWsseElement extends AbstractElement
 {

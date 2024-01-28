@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An RequireEmbeddedTokenReference element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequireEmbeddedTokenReference extends AbstractQNameAssertionType
 {

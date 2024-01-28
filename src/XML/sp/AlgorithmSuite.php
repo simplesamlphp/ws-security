@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An AlgorithmSuite element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class AlgorithmSuite extends AbstractNestedPolicyType
 {

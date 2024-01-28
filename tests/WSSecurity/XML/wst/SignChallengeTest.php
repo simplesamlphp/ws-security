@@ -24,7 +24,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractSignChallengeType
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SignChallengeTest extends TestCase
 {

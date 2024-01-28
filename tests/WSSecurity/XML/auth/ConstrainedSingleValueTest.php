@@ -23,7 +23,7 @@ use SimpleSAML\XML\DOMDocumentFactory;
  *
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedSingleValueType
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ConstrainedSingleValueTest extends TestCase
 {

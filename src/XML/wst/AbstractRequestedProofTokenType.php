@@ -17,7 +17,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class defining the RequestedProofTokenType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractRequestedProofTokenType extends AbstractWstElement
 {

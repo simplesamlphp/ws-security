@@ -15,7 +15,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class defining the Metadata element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Metadata extends AbstractWsxElement
 {

@@ -25,7 +25,7 @@ use function sprintf;
  * and the class will generate an element with the same name as the extending class
  * (e.g. \SimpleSAML\WSSecurity\wsa\EndpointReference).
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 {

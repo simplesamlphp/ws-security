@@ -19,7 +19,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\SignWith
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SignWithTest extends TestCase
 {

@@ -22,7 +22,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsse\UsernameToken
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractUsernameTokenType
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class UsernameTokenTest extends TestCase
 {

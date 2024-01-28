@@ -20,7 +20,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsa\RetryAfter
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedLongType
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RetryAfterTest extends TestCase
 {

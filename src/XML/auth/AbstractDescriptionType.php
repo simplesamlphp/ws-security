@@ -14,7 +14,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class representing WS-authorization DescriptionType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractDescriptionType extends AbstractAuthElement
 {

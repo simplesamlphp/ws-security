@@ -24,7 +24,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class IssuedTokensTest extends TestCase
 {

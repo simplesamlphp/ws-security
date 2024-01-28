@@ -9,7 +9,7 @@ use SimpleSAML\XML\URIElementTrait;
 /**
  * An IssuerName element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class IssuerName extends AbstractSpElement
 {

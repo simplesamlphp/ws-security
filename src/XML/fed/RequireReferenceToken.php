@@ -9,7 +9,7 @@ use SimpleSAML\WSSecurity\XML\sp\AbstractTokenAssertionType;
 /**
  * An RequireReferenceToken element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequireReferenceToken extends AbstractTokenAssertionType
 {

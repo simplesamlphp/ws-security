@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * A FederationID element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class FederationID extends AbstractAttributeExtensibleURI
 {

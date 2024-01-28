@@ -17,7 +17,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\auth\Value
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ValueTest extends TestCase
 {

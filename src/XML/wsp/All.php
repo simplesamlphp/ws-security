@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsp;
 /**
  * Class defining the All element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class All extends AbstractOperatorContentType
 {

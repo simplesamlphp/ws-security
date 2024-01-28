@@ -9,7 +9,7 @@ use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
 /**
  * A ReferenceEPR element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ReferenceEPR extends AbstractEndpointReferenceType
 {

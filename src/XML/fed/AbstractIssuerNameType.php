@@ -14,7 +14,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class defining the IssuerNameType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractIssuerNameType extends AbstractFedElement
 {

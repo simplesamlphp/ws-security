@@ -23,7 +23,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractAuthenticatorType
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class AuthenticatorTest extends TestCase
 {

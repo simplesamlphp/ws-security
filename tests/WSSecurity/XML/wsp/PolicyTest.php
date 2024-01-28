@@ -23,7 +23,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsp\Policy
  * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractOperatorContentType
  * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class PolicyTest extends TestCase
 {

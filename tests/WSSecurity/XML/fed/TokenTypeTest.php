@@ -20,7 +20,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\TokenType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractTokenType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class TokenTypeTest extends TestCase
 {

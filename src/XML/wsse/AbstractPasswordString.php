@@ -12,7 +12,7 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 /**
  * Abstract class defining the PasswordString type
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractPasswordString extends AbstractAttributedString
 {

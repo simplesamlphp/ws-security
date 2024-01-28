@@ -21,7 +21,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsp\ExactlyOne
  * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractOperatorContentType
  * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ExactlyOneTest extends TestCase
 {

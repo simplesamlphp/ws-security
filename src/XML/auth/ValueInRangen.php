@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 /**
  * Class representing WS-authorization ValueInRangen.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ValueInRangen extends AbstractValueInRangeType
 {

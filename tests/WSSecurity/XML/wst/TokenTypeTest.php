@@ -19,7 +19,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\TokenType
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class TokenTypeTest extends TestCase
 {

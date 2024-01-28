@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An HttpDigestAuthentication element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class HttpDigestAuthentication extends AbstractQNameAssertionType
 {

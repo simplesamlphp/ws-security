@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 /**
  * Class defining the KeyIdentifier element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class KeyIdentifier extends AbstractKeyIdentifierType
 {

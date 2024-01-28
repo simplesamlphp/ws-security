@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * A ReferenceDigest element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ReferenceDigest extends AbstractReferenceDigestType
 {

@@ -17,7 +17,7 @@ use function implode;
 /**
  * A ComputedKeyOpenEnum element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractComputedKeyOpenEnum extends AbstractWstElement
 {

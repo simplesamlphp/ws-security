@@ -20,7 +20,7 @@ use function array_pop;
 /**
  * Class defining the ConstrainedValueType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractConstrainedValueType extends AbstractAuthElement
 {

@@ -9,7 +9,7 @@ use SimpleSAML\XML\URIElementTrait;
 /**
  * A KeyWrapAlgorithm element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class KeyWrapAlgorithm extends AbstractWstElement
 {

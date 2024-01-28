@@ -10,7 +10,7 @@ use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
 /**
  * An Issuer element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Issuer extends AbstractEndpointReferenceType
 {

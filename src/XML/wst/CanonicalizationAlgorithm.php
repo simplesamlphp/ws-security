@@ -9,7 +9,7 @@ use SimpleSAML\XML\URIElementTrait;
 /**
  * A CanonicalizationAlgorithm element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class CanonicalizationAlgorithm extends AbstractWstElement
 {

@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 /**
  * A DelegateTo element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class DelegateTo extends AbstractDelegateToType
 {

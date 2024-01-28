@@ -22,7 +22,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\TokenTypesOffered
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractTokenTypesOfferedType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class TokenTypesOfferedTest extends TestCase
 {

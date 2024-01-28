@@ -19,7 +19,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * A PseudonymType
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractPseudonymType extends AbstractFedElement
 {

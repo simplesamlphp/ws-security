@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An IncludeTimestamp element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class IncludeTimestamp extends AbstractQNameAssertionType
 {

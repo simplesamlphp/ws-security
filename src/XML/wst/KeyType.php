@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 /**
  * A KeyType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class KeyType extends AbstractKeyTypeOpenEnum
 {

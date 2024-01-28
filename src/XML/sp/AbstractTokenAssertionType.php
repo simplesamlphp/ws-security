@@ -19,7 +19,7 @@ use function sprintf;
 /**
  * Class representing WS security policy TokenAssertionType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractTokenAssertionType extends AbstractSpElement
 {

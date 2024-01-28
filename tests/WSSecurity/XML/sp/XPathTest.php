@@ -18,7 +18,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\sp\XPath
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class XPathTest extends TestCase
 {

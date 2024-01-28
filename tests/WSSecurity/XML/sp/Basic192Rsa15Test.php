@@ -19,7 +19,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractQNameAssertionType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Basic192Rsa15Test extends TestCase
 {

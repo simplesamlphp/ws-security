@@ -20,7 +20,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class defining the RequestSecurityTokenType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractRequestSecurityTokenType extends AbstractWstElement
 {

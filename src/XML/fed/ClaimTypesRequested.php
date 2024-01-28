@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * A ClaimTypesRequested element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ClaimTypesRequested extends AbstractClaimTypesRequestedType
 {

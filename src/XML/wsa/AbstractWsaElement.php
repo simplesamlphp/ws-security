@@ -10,7 +10,7 @@ use SimpleSAML\XML\AbstractElement;
 /**
  * Abstract class to be implemented by all the classes in this namespace
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractWsaElement extends AbstractElement
 {

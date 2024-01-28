@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa;
 /**
  * An attributed long
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RetryAfter extends AbstractAttributedLongType
 {

@@ -13,7 +13,7 @@ use function array_pop;
 /**
  * Class defining the ValueInRangeType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractValueInRangeType extends AbstractAuthElement
 {

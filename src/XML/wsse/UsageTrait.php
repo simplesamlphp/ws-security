@@ -8,7 +8,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 
 /**
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 trait UsageTrait
 {

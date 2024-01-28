@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 /**
  * A BinarySecret element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class BinarySecret extends AbstractBinarySecretType
 {

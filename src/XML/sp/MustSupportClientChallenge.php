@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An MustSupportClientChallenge element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class MustSupportClientChallenge extends AbstractQNameAssertionType
 {

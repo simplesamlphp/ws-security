@@ -14,7 +14,7 @@ use function array_pop;
 /**
  * Class representing WS-authorization ConstrainedSingleValueType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractConstrainedSingleValueType extends AbstractAuthElement
 {

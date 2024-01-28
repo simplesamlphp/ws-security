@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * A FilterPseudonyms element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class FilterPseudonyms extends AbstractFilterPseudonymsType
 {

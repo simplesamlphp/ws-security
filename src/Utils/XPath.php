@@ -11,7 +11,7 @@ use SimpleSAML\WSSecurity\Constants as C;
 /**
  * Compilation of utilities for XPath.
  *
- * @package tvdijen/wssecurity
+ * @package simplesamlphp/wssecurity
  */
 class XPath extends \SimpleSAML\XMLSecurity\Utils\XPath
 {

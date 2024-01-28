@@ -15,7 +15,7 @@ use function sprintf;
 /**
  * Class representing WS security policy HeaderType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractHeaderType extends AbstractSpElement
 {

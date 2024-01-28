@@ -15,7 +15,7 @@ use function sprintf;
 /**
  * A AutomaticPseudonyms element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class AutomaticPseudonyms extends AbstractFedElement
 {

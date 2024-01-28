@@ -22,7 +22,7 @@ use function array_unshift;
 /**
  * Class defining the UsernameTokenType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractUsernameTokenType extends AbstractWsseElement
 {

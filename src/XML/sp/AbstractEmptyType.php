@@ -13,7 +13,7 @@ use function sprintf;
 /**
  * Class representing WS security policy EmptyType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractEmptyType extends AbstractSpElement
 {

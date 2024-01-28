@@ -15,7 +15,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class representing a wsp:AppliesTo element.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class AppliesTo extends AbstractWspElement
 {

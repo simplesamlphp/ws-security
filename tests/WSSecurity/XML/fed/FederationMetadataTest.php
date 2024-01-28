@@ -23,7 +23,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFederationMetadataType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class FederationMetadataTest extends TestCase
 {

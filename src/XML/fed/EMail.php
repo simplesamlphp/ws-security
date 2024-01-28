@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * An EMail element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class EMail extends AbstractAttributeExtensibleString
 {

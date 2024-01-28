@@ -9,7 +9,7 @@ use SimpleSAML\XML\BooleanElementTrait;
 /**
  * A Forwardable element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Forwardable extends AbstractWstElement
 {

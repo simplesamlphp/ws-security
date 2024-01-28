@@ -20,7 +20,7 @@ use function sprintf;
 /**
  * Class representing WS security policy SpnegoContextTokenType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractSpnegoContextTokenType extends AbstractSpElement
 {

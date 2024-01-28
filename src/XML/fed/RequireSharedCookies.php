@@ -9,7 +9,7 @@ use SimpleSAML\WSSecurity\XML\fed\AbstractAssertionType;
 /**
  * A RequireSharedCookies element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequireSharedCookies extends AbstractAssertionType
 {

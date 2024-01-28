@@ -15,7 +15,7 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
 /**
  * A PseudonymServiceType
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractPseudonymServiceType extends AbstractWebServiceDescriptorType
 {

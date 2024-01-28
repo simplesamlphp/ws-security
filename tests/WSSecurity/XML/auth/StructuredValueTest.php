@@ -20,7 +20,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\auth\StructuredValue
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractStructuredValueType
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class StructuredValueTest extends TestCase
 {

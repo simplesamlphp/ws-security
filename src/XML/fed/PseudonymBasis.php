@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * A PseudonymBasis element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class PseudonymBasis extends AbstractPseudonymBasisType
 {

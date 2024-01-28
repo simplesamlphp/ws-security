@@ -22,7 +22,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractKeyExchangeTokenType
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class KeyExchangeTokenTest extends TestCase
 {

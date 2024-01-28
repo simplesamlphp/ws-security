@@ -20,7 +20,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsse\Reference
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractReferenceType
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ReferenceTest extends TestCase
 {

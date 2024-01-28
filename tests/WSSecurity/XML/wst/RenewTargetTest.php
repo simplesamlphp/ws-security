@@ -22,7 +22,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractRenewTargetType
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RenewTargetTest extends TestCase
 {

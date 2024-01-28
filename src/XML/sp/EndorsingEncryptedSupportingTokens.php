@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * A EndorsingEncryptedSupportingTokens element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class EndorsingEncryptedSupportingTokens extends AbstractNestedPolicyType
 {

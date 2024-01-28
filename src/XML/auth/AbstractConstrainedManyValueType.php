@@ -11,7 +11,7 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 /**
  * Class representing WS-authorization ConstrainedManyValueType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractConstrainedManyValueType extends AbstractAuthElement
 {

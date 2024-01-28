@@ -23,7 +23,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractNestedPolicyType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class WebBindingTest extends TestCase
 {

@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsu;
 /**
  * Class defining the Expires element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Expires extends AbstractAttributedDateTime
 {

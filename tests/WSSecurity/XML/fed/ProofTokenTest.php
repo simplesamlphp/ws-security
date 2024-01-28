@@ -21,7 +21,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\ProofToken
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractProofTokenType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ProofTokenTest extends TestCase
 {

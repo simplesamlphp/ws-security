@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * Class defining the AttributeServiceEndpoint element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class AttributeServiceEndpoint extends AbstractEndpointType
 {

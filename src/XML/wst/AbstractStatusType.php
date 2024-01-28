@@ -13,7 +13,7 @@ use SimpleSAML\XML\Exception\TooManyElementsException;
 /**
  * Class defining the StatusType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractStatusType extends AbstractWstElement
 {

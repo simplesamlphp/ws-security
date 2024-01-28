@@ -9,7 +9,7 @@ use SimpleSAML\WSSecurity\XML\fed\AbstractAssertionType;
 /**
  * A RequireBearerTokens element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequireBearerTokens extends AbstractAssertionType
 {

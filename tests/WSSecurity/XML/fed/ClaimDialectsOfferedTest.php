@@ -22,7 +22,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\ClaimDialectsOffered
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractClaimDialectsOfferedType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ClaimDialectsOfferedTest extends TestCase
 {

@@ -15,7 +15,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * A RequestSecurityTokenResponseCollectionType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractRequestSecurityTokenResponseCollectionType extends AbstractWstElement
 {

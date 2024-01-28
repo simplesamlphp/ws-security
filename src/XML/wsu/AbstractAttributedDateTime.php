@@ -17,7 +17,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Abstract class defining the AttributedDateTime type
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractAttributedDateTime extends AbstractWsuElement
 {

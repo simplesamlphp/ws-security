@@ -26,7 +26,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\auth\ClaimType
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractClaimType
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ClaimTypeTest extends TestCase
 {

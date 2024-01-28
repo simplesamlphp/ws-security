@@ -9,7 +9,7 @@ use SimpleSAML\XML\StringElementTrait;
 /**
  * A Challenge element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Challenge extends AbstractWstElement
 {

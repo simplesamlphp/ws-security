@@ -19,7 +19,7 @@ use function array_pop;
 /**
  * Class defining the MetadataSection element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class MetadataSection extends AbstractWsxElement
 {

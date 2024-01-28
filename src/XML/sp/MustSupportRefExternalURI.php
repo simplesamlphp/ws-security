@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An MustSupportRefExternalURI element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class MustSupportRefExternalURI extends AbstractQNameAssertionType
 {

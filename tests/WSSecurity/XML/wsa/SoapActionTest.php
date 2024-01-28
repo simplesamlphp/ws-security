@@ -17,7 +17,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsa\SoapAction
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SoapActionTest extends TestCase
 {

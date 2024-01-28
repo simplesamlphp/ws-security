@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 /**
  * Class representing WS-authorization ValueLessThan.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ValueLessThan extends AbstractConstrainedSingleValueType
 {

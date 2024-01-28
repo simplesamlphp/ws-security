@@ -21,7 +21,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractRequestSecurityTokenTemplateType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequestSecurityTokenTemplateTest extends TestCase
 {

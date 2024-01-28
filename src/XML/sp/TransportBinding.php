@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * A TransportBinding element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class TransportBinding extends AbstractNestedPolicyType
 {

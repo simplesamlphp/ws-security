@@ -13,7 +13,7 @@ use SimpleSAML\XML\Exception\MissingElementException;
 /**
  * An EndpointType
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractEndpointType extends AbstractFedElement
 {

@@ -11,7 +11,7 @@ use SimpleSAML\XML\AbstractElement;
  * Abstract class to be implemented by all the classes in this namespace
  *
  * @see http://docs.oasis-open.org/wsfed/federation/v1.2/ws-federation.pdf
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractFedElement extends AbstractElement
 {

@@ -22,7 +22,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsx\Metadata
  * @covers \SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class MetadataTest extends TestCase
 {

@@ -23,7 +23,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsa\ProblemAction
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractProblemActionType
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ProblemActionTest extends TestCase
 {

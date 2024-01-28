@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\Exception;
 /**
  * This exception may be raised when a violation of the WS specification is detected
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 class ProtocolViolationException extends RuntimeException
 {

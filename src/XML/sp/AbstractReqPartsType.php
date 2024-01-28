@@ -18,7 +18,7 @@ use function sprintf;
 /**
  * Class representing WS security policy AbstractReqPartsType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractReqPartsType extends AbstractSpElement
 {

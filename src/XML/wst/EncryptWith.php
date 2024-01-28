@@ -9,7 +9,7 @@ use SimpleSAML\XML\URIElementTrait;
 /**
  * An EncryptWith element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class EncryptWith extends AbstractWstElement
 {

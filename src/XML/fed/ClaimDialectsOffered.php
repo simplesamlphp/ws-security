@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * Class defining the ClaimDialectsOffered element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ClaimDialectsOffered extends AbstractClaimDialectsOfferedType
 {

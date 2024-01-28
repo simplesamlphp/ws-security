@@ -31,7 +31,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractReferenceTokenType
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType
  * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ReferenceTokenTest extends TestCase
 {

@@ -19,7 +19,7 @@ use function strval;
 /**
  * Class defining the FreshnessType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractFreshnessType extends AbstractFedElement
 {

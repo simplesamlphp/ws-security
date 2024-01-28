@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * A FederationMetadata element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class FederationMetadata extends AbstractFederationMetadataType
 {

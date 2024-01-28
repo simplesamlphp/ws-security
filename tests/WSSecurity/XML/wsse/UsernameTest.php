@@ -19,7 +19,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsse\Username
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class UsernameTest extends TestCase
 {

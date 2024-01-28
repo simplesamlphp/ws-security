@@ -9,7 +9,7 @@ use SimpleSAML\WSSecurity\XML\fed\AbstractAssertionType;
 /**
  * A RequireSignedTokens element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequireSignedTokens extends AbstractAssertionType
 {

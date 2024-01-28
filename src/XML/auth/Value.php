@@ -9,7 +9,7 @@ use SimpleSAML\XML\StringElementTrait;
 /**
  * Class representing WS-authorization Value.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Value extends AbstractAuthElement
 {

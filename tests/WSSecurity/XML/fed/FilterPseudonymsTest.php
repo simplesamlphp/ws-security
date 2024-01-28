@@ -26,7 +26,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFilterPseudonymsType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class FilterPseudonymsTest extends TestCase
 {

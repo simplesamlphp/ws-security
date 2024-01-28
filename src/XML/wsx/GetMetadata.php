@@ -16,7 +16,7 @@ use function array_pop;
 /**
  * Class defining the GetMetadata element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class GetMetadata extends AbstractWsxElement
 {

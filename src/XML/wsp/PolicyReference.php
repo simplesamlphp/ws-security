@@ -16,7 +16,7 @@ use function str_replace;
 /**
  * Class defining the PolicyReference element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class PolicyReference extends AbstractWspElement
 {

@@ -19,7 +19,7 @@ use function implode;
 /**
  * A BinarySecertType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractBinarySecretType extends AbstractWstElement
 {

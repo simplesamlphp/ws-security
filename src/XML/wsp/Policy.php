@@ -16,7 +16,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class defining the Policy element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Policy extends AbstractOperatorContentType
 {

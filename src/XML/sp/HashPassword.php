@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An HashPassword element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class HashPassword extends AbstractQNameAssertionType
 {

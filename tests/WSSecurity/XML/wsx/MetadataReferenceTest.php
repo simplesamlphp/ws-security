@@ -23,7 +23,7 @@ use function strval;
  *
  * @covers \SimpleSAML\WSSecurity\XML\wsx\MetadataReference
  * @covers \SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class MetadataReferenceTest extends TestCase
 {

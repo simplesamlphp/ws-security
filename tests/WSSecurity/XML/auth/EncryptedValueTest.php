@@ -24,7 +24,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\auth\EncryptedValue
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractEncryptedValueType
  * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class EncryptedValueTest extends TestCase
 {

@@ -13,7 +13,7 @@ use function strval;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\NestedPolicyTypeTestTrait
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 trait NestedPolicyTypeTestTrait
 {

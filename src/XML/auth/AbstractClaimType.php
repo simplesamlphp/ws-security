@@ -27,7 +27,7 @@ use function array_pop;
 /**
  * Class defining the ClaimType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractClaimType extends AbstractAuthElement
 {

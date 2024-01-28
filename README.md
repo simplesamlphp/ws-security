@@ -1,10 +1,9 @@
 # WS-Security PHP library
 
-![CI](https://github.com/tvdijen/ws-security/workflows/CI/badge.svg?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/tvdijen/ws-security/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/tvdijen/ws-security/?branch=master)
-[![Coverage Status](https://codecov.io/gh/tvdijen/ws-security/branch/master/graph/badge.svg)](https://codecov.io/gh/tvdijen/ws-security)
-[![Type coverage](https://shepherd.dev/github/tvdijen/ws-security/coverage.svg)](https://shepherd.dev/github/tvdijen/ws-security)
-[![Psalm Level](https://shepherd.dev/github/tvdijen/ws-security/level.svg)](https://shepherd.dev/github/tvdijen/ws-security)
+![CI](https://github.com/simplesamlphp/ws-security/workflows/CI/badge.svg?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/simplesamlphp/ws-security/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/simplesamlphp/ws-security/?branch=master)
+[![Coverage Status](https://codecov.io/gh/simplesamlphp/ws-security/branch/master/graph/badge.svg)](https://codecov.io/gh/simplesamlphp/ws-security)
+[![PHPStan Enabled](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://github.com/simplesamlphp/ws-security)
 
 A PHP library for WS-Security related functionality.
 
@@ -23,5 +22,5 @@ to connect your application using WS-Security, you should probably use
 run the following command in your project:
 
 ```bash
-composer require tvdijen/ws-security:dev-master
+composer require simplesamlphp/ws-security:dev-master
 ```

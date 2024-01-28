@@ -21,7 +21,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractBinaryExchangeType
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class BinaryExchangeTest extends TestCase
 {

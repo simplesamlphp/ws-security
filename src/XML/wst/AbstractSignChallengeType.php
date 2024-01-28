@@ -17,7 +17,7 @@ use function array_pop;
 /**
  * Class defining the SignChallengeType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractSignChallengeType extends AbstractWstElement
 {

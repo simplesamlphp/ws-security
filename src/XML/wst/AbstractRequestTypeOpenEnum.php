@@ -17,7 +17,7 @@ use function implode;
 /**
  * A RequestTypeOpenEnum element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractRequestTypeOpenEnum extends AbstractWstElement
 {

@@ -14,7 +14,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * Class defining the KeyExchangeTokenType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractKeyExchangeTokenType extends AbstractWstElement
 {

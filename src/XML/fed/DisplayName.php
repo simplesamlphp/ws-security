@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * A DisplayName element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class DisplayName extends AbstractAttributeExtensibleString
 {

@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\WSSecurity;
 /**
  * A collection of constants used in this library for unit testing.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 class Constants extends \SimpleSAML\WSSecurity\Constants
 {

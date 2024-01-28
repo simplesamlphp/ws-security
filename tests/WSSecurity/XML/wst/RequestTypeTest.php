@@ -20,7 +20,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractRequestTypeOpenEnum
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequestTypeTest extends TestCase
 {

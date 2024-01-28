@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An MustSupportRefEncryptedKey element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class MustSupportRefEncryptedKey extends AbstractQNameAssertionType
 {

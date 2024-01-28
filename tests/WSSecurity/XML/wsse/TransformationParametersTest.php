@@ -21,7 +21,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsse\TransformationParameters
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractTransformationParametersType
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class TransformationParametersTest extends TestCase
 {

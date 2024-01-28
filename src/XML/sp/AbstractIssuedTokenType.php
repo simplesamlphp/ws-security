@@ -22,7 +22,7 @@ use function sprintf;
 /**
  * Class representing WS security policy IssuedTokenType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractIssuedTokenType extends AbstractSpElement
 {

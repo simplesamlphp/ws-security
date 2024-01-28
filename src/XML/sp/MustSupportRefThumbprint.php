@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An MustSupportRefThumbprint element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class MustSupportRefThumbprint extends AbstractQNameAssertionType
 {

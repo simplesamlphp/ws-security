@@ -20,7 +20,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractHeaderType
  * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class HeaderTest extends TestCase
 {

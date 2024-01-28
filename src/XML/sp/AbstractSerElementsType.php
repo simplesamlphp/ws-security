@@ -18,7 +18,7 @@ use function sprintf;
 /**
  * Class representing WS security policy SetElementsType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractSerElementsType extends AbstractSpElement
 {

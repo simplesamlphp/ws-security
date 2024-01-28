@@ -9,7 +9,7 @@ use SimpleSAML\WSSecurity\XML\sp\AbstractNestedPolicyType;
 /**
  * A WebBinding element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class WebBinding extends AbstractNestedPolicyType
 {

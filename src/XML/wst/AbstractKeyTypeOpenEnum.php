@@ -17,7 +17,7 @@ use function implode;
 /**
  * A KeyTypeOpenEnum element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractKeyTypeOpenEnum extends AbstractWstElement
 {

@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 /**
  * A PPID element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class PPID extends AbstractAttributeExtensibleString
 {

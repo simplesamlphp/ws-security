@@ -26,7 +26,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\ApplicationServiceEndpoint
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractEndpointType
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ApplicationServiceEndpointTest extends TestCase
 {

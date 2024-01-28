@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 /**
  * Class representing WS-authorization ValueOneOf.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class ValueOneOf extends AbstractConstrainedManyValueType
 {

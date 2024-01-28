@@ -19,7 +19,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wsx\Dialect
  * @covers \SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class DialectTest extends TestCase
 {

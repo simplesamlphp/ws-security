@@ -21,7 +21,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\wsse\Security
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractSecurityHeaderType
  * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class SecurityTest extends TestCase
 {

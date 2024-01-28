@@ -17,7 +17,7 @@ use function array_pop;
 /**
  * Class representing WS-authorization EncryptedValueType.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractEncryptedValueType extends AbstractAuthElement
 {

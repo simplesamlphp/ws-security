@@ -9,7 +9,7 @@ use SimpleSAML\WSSecurity\XML\sp\AbstractNestedPolicyType;
 /**
  * An AuthenticationToken element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class AuthenticationToken extends AbstractNestedPolicyType
 {

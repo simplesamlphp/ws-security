@@ -9,7 +9,7 @@ use SimpleSAML\XML\URIElementTrait;
 /**
  * An Identifier element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Identifier extends AbstractWsxElement
 {

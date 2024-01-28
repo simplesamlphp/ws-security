@@ -16,7 +16,7 @@ use function array_pop;
 /**
  * Class defining the RequestedReferenceType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractRequestedReferenceType extends AbstractWstElement
 {

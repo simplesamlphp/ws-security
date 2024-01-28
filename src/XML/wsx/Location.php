@@ -9,7 +9,7 @@ use SimpleSAML\XML\URIElementTrait;
 /**
  * An Location element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Location extends AbstractWsxElement
 {

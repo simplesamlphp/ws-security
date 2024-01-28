@@ -13,7 +13,7 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
 /**
  * Class defining the KeyIdentifierType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractKeyIdentifierType extends AbstractEncodedString
 {

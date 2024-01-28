@@ -16,7 +16,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 /**
  * A FilterPseudonymsType
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractFilterPseudonymsType extends AbstractFedElement
 {

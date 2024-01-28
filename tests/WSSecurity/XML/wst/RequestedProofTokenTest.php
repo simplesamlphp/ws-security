@@ -22,7 +22,7 @@ use function dirname;
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractRequestedProofTokenType
  * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RequestedProofTokenTest extends TestCase
 {

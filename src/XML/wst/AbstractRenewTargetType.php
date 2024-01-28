@@ -19,7 +19,7 @@ use function array_pop;
 /**
  * Class defining the RenewTargetType element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 abstract class AbstractRenewTargetType extends AbstractWstElement
 {

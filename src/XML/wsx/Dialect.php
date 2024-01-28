@@ -9,7 +9,7 @@ use SimpleSAML\XML\URIElementTrait;
 /**
  * An Dialect element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class Dialect extends AbstractWsxElement
 {

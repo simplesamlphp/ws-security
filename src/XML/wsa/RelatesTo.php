@@ -16,7 +16,7 @@ use function is_null;
 /**
  * Class representing a wsa:RelatesTo element.
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class RelatesTo extends AbstractWsaElement
 {

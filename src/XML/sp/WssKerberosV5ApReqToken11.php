@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\sp;
 /**
  * An WssKerberosV5ApReqToken11 element
  *
- * @package tvdijen/ws-security
+ * @package simplesamlphp/ws-security
  */
 final class WssKerberosV5ApReqToken11 extends AbstractQNameAssertionType
 {
