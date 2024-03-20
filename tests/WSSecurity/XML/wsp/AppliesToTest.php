@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
+use SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement;
 use SimpleSAML\WSSecurity\XML\wsp\AppliesTo;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -19,11 +21,10 @@ use function strval;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wsp\AppliesToTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsp\AppliesTo
- * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractwspElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(AppliesTo::class)]
+#[CoversClass(AbstractWspElement::class)]
 final class AppliesToTest extends TestCase
 {
     use SchemaValidationTestTrait;

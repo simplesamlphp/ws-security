@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractEncryptedValueType;
 use SimpleSAML\WSSecurity\XML\auth\EncryptedValue;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -21,11 +24,11 @@ use function strval;
 /**
  * Tests for auth:EncryptedValue.
  *
- * @covers \SimpleSAML\WSSecurity\XML\auth\EncryptedValue
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractEncryptedValueType
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(EncryptedValue::class)]
+#[CoversClass(AbstractEncryptedValueType::class)]
+#[CoversClass(AbstractAuthElement::class)]
 final class EncryptedValueTest extends TestCase
 {
     use SerializableElementTestTrait;

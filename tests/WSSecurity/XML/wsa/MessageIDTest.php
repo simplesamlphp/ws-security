@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as C;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -18,11 +21,11 @@ use function strval;
 /**
  * Tests for wsa:MessageID.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\MessageID
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(MessageID::class)]
+#[CoversClass(AbstractAttributedURIType::class)]
+#[CoversClass(AbstractWsaElement::class)]
 final class MessageIDTest extends TestCase
 {
     use SchemaValidationTestTrait;

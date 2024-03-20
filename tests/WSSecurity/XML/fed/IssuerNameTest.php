@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractIssuerNameType;
 use SimpleSAML\WSSecurity\XML\fed\IssuerName;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,11 +19,11 @@ use function strval;
 /**
  * Tests for fed:IssuerName.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\IssuerName
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractIssuerNameType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(IssuerName::class)]
+#[CoversClass(AbstractIssuerNameType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class IssuerNameTest extends TestCase
 {
     use SerializableElementTestTrait;

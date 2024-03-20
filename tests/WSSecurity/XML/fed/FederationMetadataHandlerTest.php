@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFederationMetadataHandlerType;
 use SimpleSAML\WSSecurity\XML\fed\FederationMetadataHandler;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -17,12 +20,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\fed\FederationMetadataHandlerTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\FederationMetadataHandler
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFederationMetadataHandlerType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(FederationMetadataHandler::class)]
+#[CoversClass(AbstractFederationMetadataHandlerType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class FederationMetadataHandlerTest extends TestCase
 {
     use SchemaValidationTestTrait;

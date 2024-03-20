@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractClaimDialectsOfferedType;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\ClaimDialect;
 use SimpleSAML\WSSecurity\XML\fed\ClaimDialectsOffered;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -19,11 +22,11 @@ use function strval;
 /**
  * Tests for fed:ClaimDialectsOffered.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\ClaimDialectsOffered
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractClaimDialectsOfferedType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ClaimDialectsOffered::class)]
+#[CoversClass(AbstractClaimDialectsOfferedType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class ClaimDialectsOfferedTest extends TestCase
 {
     use SchemaValidationTestTrait;

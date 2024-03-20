@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\fed\AbstractAssertionType;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceToken11;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -18,12 +21,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\fed\ReferenceToken11Test
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\ReferenceToken11
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractAssertionType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ReferenceToken11::class)]
+#[CoversClass(AbstractAssertionType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class ReferenceToken11Test extends TestCase
 {
     use SchemaValidationTestTrait;

@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\wsp\AbstractOperatorContentType;
+use SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement;
 use SimpleSAML\WSSecurity\XML\wsp\ExactlyOne;
 use SimpleSAML\WSSecurity\XML\wsp\Policy;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -20,11 +23,11 @@ use function strval;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wsp\PolicyTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsp\Policy
- * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractOperatorContentType
- * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Policy::class)]
+#[CoversClass(AbstractOperatorContentType::class)]
+#[CoversClass(AbstractWspElement::class)]
 final class PolicyTest extends TestCase
 {
     use SchemaValidationTestTrait;

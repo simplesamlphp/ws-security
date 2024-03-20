@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
 use DOMElement;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
@@ -19,11 +21,10 @@ use function strval;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wsa\ReferenceParametersTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ReferenceParameters::class)]
+#[CoversClass(AbstractWsaElement::class)]
 final class ReferenceParametersTest extends TestCase
 {
     use SchemaValidationTestTrait;

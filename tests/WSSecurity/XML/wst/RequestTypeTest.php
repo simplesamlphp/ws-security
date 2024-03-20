@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wst\AbstractRequestTypeOpenEnum;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\RequestType;
 use SimpleSAML\WSSecurity\XML\wst\RequestTypeEnum;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,12 +19,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\RequestTypeTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\RequestType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractRequestTypeOpenEnum
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(RequestType::class)]
+#[CoversClass(AbstractRequestTypeOpenEnum::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class RequestTypeTest extends TestCase
 {
     use SchemaValidationTestTrait;

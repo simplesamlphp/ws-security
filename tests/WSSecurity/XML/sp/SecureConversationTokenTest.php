@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSecureConversationTokenType;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp\IncludeToken;
+use SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp\IssuerName;
 use SimpleSAML\WSSecurity\XML\sp\SecureConversationToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -21,13 +25,12 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\SecureConversationTokenTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\SecureConversationToken
- * @covers \SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSecureConversationTokenType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(SecureConversationToken::class)]
+#[CoversClass(IncludeTokenTypeTrait::class)]
+#[CoversClass(AbstractSecureConversationTokenType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class SecureConversationTokenTest extends TestCase
 {
     use SchemaValidationTestTrait;

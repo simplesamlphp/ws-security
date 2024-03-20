@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractProblemActionType;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\Action;
 use SimpleSAML\WSSecurity\XML\wsa\ProblemAction;
 use SimpleSAML\WSSecurity\XML\wsa\SoapAction;
@@ -20,11 +23,11 @@ use function strval;
 /**
  * Tests for wsa:ProblemIRI.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\ProblemAction
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractProblemActionType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ProblemAction::class)]
+#[CoversClass(AbstractProblemActionType::class)]
+#[CoversClass(AbstractWsaElement::class)]
 final class ProblemActionTest extends TestCase
 {
     use SchemaValidationTestTrait;

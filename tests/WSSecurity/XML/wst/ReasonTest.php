@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Reason;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -14,11 +16,10 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\ReasonTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\Reason
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Reason::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class ReasonTest extends TestCase
 {
     use SerializableElementTestTrait;

@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
+use SimpleSAML\WSSecurity\XML\wst\AbstractProofEncryptionType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\ProofEncryption;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -18,12 +21,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\ProofEncryptionTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\ProofEncryption
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractProofEncryptionType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ProofEncryption::class)]
+#[CoversClass(AbstractProofEncryptionType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class ProofEncryptionTest extends TestCase
 {
     use SchemaValidationTestTrait;

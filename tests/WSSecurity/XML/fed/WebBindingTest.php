@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\Test\WSSecurity\XML\sp\NestedPolicyTypeTestTrait;
 use SimpleSAML\WSSecurity\XML\fed\WebBinding;
+use SimpleSAML\WSSecurity\XML\sp\AbstractNestedPolicyType;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -19,12 +22,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\fed\WebBindingTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\WebBinding
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractNestedPolicyType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(WebBinding::class)]
+#[CoversClass(AbstractNestedPolicyType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class WebBindingTest extends TestCase
 {
     use NestedPolicyTypeTestTrait;

@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFreshnessType;
 use SimpleSAML\WSSecurity\XML\fed\Freshness;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -17,12 +20,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\fed\FreshnessTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\Freshness
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFreshnessType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Freshness::class)]
+#[CoversClass(AbstractFreshnessType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class FreshnessTest extends TestCase
 {
     use SchemaValidationTestTrait;

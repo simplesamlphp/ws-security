@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\SoapAction;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -15,10 +17,10 @@ use function strval;
 /**
  * Tests for wsa:ProblemIRI.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\SoapAction
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(SoapAction::class)]
+#[CoversClass(AbstractWsaElement::class)]
 final class SoapActionTest extends TestCase
 {
     use SerializableElementTestTrait;

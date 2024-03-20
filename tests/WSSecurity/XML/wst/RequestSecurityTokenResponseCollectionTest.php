@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
+use SimpleSAML\WSSecurity\XML\wst\AbstractRequestSecurityTokenResponseCollectionType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\RequestSecurityTokenResponse;
 use SimpleSAML\WSSecurity\XML\wst\RequestSecurityTokenResponseCollection;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -20,12 +23,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\RequestSecurityTokenResponseCollectionTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\RequestSecurityTokenResponseCollection
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractRequestSecurityTokenResponseCollectionType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(RequestSecurityTokenResponseCollection::class)]
+#[CoversClass(AbstractRequestSecurityTokenResponseCollectionType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class RequestSecurityTokenResponseCollectionTest extends TestCase
 {
     use SchemaValidationTestTrait;

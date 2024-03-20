@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
 use DOMElement;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Issuer;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
@@ -21,11 +24,11 @@ use function strval;
 /**
  * Tests for wst:Issuer.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\Issuer
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Issuer::class)]
+#[CoversClass(AbstractEndpointReferenceType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class IssuerTest extends TestCase
 {
     use SerializableElementTestTrait;

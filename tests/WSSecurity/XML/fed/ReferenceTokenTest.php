@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DOMElement;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\fed\AbstractReferenceTokenType;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceDigest;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceEPR;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceToken;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceType;
 use SimpleSAML\WSSecurity\XML\fed\SerialNo;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
@@ -27,12 +31,12 @@ use function strval;
 /**
  * Tests for fed:ReferenceToken.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\ReferenceToken
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractReferenceTokenType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ReferenceToken::class)]
+#[CoversClass(AbstractReferenceTokenType::class)]
+#[CoversClass(AbstractEndpointReferenceType::class)]
+#[CoversClass(AbstractWsaElement::class)]
 final class ReferenceTokenTest extends TestCase
 {
     use SchemaValidationTestTrait;

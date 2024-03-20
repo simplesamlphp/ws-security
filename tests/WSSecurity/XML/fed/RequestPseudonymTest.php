@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractRequestPseudonymType;
 use SimpleSAML\WSSecurity\XML\fed\RequestPseudonym;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -18,11 +21,11 @@ use function strval;
 /**
  * Tests for fed:RequestPseudonym.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\RequestPseudonym
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractRequestPseudonymType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(RequestPseudonym::class)]
+#[CoversClass(AbstractRequestPseudonymType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class RequestPseudonymTest extends TestCase
 {
     use SchemaValidationTestTrait;

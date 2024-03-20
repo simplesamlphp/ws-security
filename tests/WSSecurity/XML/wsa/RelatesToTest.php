@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\RelatesTo;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -17,11 +19,10 @@ use function strval;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wsa\RelatesToTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\RelatesTo
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(RelatesTo::class)]
+#[CoversClass(AbstractWsaElement::class)]
 final class RelatesToTest extends TestCase
 {
     use SchemaValidationTestTrait;

@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath;
+use SimpleSAML\WSSecurity\XML\sp\AbstractReqPartsType;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp\Header;
 use SimpleSAML\WSSecurity\XML\sp\RequiredParts;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -20,12 +23,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\RequiredPartsTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\RequiredParts
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractReqPartsType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(RequiredParts::class)]
+#[CoversClass(AbstractReqPartsType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class RequiredPartsTest extends TestCase
 {
     use SchemaValidationTestTrait;

@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsx;
 
 use DOMElement;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
+use SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement;
 use SimpleSAML\WSSecurity\XML\wsx\MetadataReference;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
@@ -21,10 +23,10 @@ use function strval;
 /**
  * Tests for wsx:MetadataReference.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsx\MetadataReference
- * @covers \SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(MetadataReference::class)]
+#[CoversClass(AbstractWsxElement::class)]
 final class MetadataReferenceTest extends TestCase
 {
     use SchemaValidationTestTrait;

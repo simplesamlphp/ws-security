@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFilterPseudonymsType;
 use SimpleSAML\WSSecurity\XML\fed\FilterPseudonyms;
 use SimpleSAML\WSSecurity\XML\fed\PseudonymBasis;
 use SimpleSAML\WSSecurity\XML\fed\RelativeTo;
@@ -22,12 +25,11 @@ use function strval;
 /**
  * Tests for fed:FilterPseudonyms.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\FilterPseudonyms
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFilterPseudonymsType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(FilterPseudonyms::class)]
+#[CoversClass(AbstractFilterPseudonymsType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class FilterPseudonymsTest extends TestCase
 {
     use SchemaValidationTestTrait;

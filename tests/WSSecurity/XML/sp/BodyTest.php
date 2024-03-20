@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\sp\AbstractEmptyType;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp\Body;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -14,12 +17,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\BodyTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\Body
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractEmptyType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Body::class)]
+#[CoversClass(AbstractEmptyType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class BodyTest extends TestCase
 {
     use SerializableElementTestTrait;

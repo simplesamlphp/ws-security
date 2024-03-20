@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsu;
 
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsu\AbstractAttributedDateTime;
+use SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement;
 use SimpleSAML\WSSecurity\XML\wsu\Expires;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -17,11 +20,11 @@ use function strval;
 /**
  * Tests for wsu:Expires.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsu\Expires
- * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractAttributedDateTime
- * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Expires::class)]
+#[CoversClass(AbstractAttributedDateTime::class)]
+#[CoversClass(AbstractWsuElement::class)]
 final class ExpiresTest extends TestCase
 {
     use SchemaValidationTestTrait;

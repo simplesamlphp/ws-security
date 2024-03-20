@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\sp\AbstractHeaderType;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp\Header;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,12 +19,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\HeaderTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\Header
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractHeaderType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Header::class)]
+#[CoversClass(AbstractHeaderType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class HeaderTest extends TestCase
 {
     use SerializableElementTestTrait;

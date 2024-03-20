@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsse;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractTransformationParametersType;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement;
 use SimpleSAML\WSSecurity\XML\wsse\TransformationParameters;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -18,11 +21,11 @@ use function strval;
 /**
  * Tests for wsse:TransformationParameters.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsse\TransformationParameters
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractTransformationParametersType
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(TransformationParameters::class)]
+#[CoversClass(AbstractTransformationParametersType::class)]
+#[CoversClass(AbstractWsseElement::class)]
 final class TransformationParametersTest extends TestCase
 {
     use SchemaValidationTestTrait;

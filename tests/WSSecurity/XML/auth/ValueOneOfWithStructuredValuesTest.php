@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedManyValueType;
 use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
 use SimpleSAML\WSSecurity\XML\auth\ValueOneOf;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -18,11 +21,11 @@ use function strval;
 /**
  * Tests for auth:Value.
  *
- * @covers \SimpleSAML\WSSecurity\XML\auth\ValueOneOf
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedManyValueType
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ValueOneOf::class)]
+#[CoversClass(AbstractConstrainedManyValueType::class)]
+#[CoversClass(AbstractAuthElement::class)]
 final class ValueOneOfWithStructuredValuesTest extends TestCase
 {
     use SerializableElementTestTrait;

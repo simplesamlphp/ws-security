@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\fed\AbstractAttributeExtensibleString;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\EMail;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,12 +19,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\fed\EMailTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\EMail
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractAttributeExtensibleString
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(EMail::class)]
+#[CoversClass(AbstractAttributeExtensibleString::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class EMailTest extends TestCase
 {
     use SerializableElementTestTrait;

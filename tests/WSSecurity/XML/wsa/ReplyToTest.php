@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
 use DOMElement;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
@@ -22,11 +25,11 @@ use function strval;
 /**
  * Tests for wsa:ReplyTo.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\ReplyTo
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ReplyTo::class)]
+#[CoversClass(AbstractEndpointReferenceType::class)]
+#[CoversClass(AbstractWsaElement::class)]
 final class ReplyToTest extends TestCase
 {
     use SchemaValidationTestTrait;

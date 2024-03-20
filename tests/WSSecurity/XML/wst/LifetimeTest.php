@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wst\AbstractLifetimeType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Lifetime;
 use SimpleSAML\WSSecurity\XML\wsu\Created;
 use SimpleSAML\WSSecurity\XML\wsu\Expires;
@@ -18,12 +21,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\LifetimeTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\Lifetime
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractLifetimeType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Lifetime::class)]
+#[CoversClass(AbstractLifetimeType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class LifetimeTest extends TestCase
 {
     use SchemaValidationTestTrait;

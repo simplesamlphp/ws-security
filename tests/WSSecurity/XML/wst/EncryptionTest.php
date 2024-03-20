@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
+use SimpleSAML\WSSecurity\XML\wst\AbstractEncryptionType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Encryption;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -18,12 +21,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\EncryptionTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\Encryption
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractEncryptionType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Encryption::class)]
+#[CoversClass(AbstractEncryptionType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class EncryptionTest extends TestCase
 {
     use SchemaValidationTestTrait;

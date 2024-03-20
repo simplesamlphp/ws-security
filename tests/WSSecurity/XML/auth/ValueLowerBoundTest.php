@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedSingleValueType;
 use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\WSSecurity\XML\auth\ValueLowerBound;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,11 +19,11 @@ use function strval;
 /**
  * Tests for auth:ValueLowerBound.
  *
- * @covers \SimpleSAML\WSSecurity\XML\auth\ValueLowerBound
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedSingleValueType
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ValueLowerBound::class)]
+#[CoversClass(AbstractConstrainedSingleValueType::class)]
+#[CoversClass(AbstractAuthElement::class)]
 final class ValueLowerBoundTest extends TestCase
 {
     use SerializableElementTestTrait;

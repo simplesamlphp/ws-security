@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractValueInRangeType;
 use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
 use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\WSSecurity\XML\auth\ValueInRangen;
@@ -21,11 +24,11 @@ use function strval;
 /**
  * Tests for auth:ValueInRangen.
  *
- * @covers \SimpleSAML\WSSecurity\XML\auth\ValueInRangen
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractValueInRangeType
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ValueInRangen::class)]
+#[CoversClass(AbstractValueInRangeType::class)]
+#[CoversClass(AbstractAuthElement::class)]
 final class ValueInRangenTest extends TestCase
 {
     use SerializableElementTestTrait;

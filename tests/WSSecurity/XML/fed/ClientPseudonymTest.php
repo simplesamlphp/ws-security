@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractClientPseudonymType;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\ClientPseudonym;
 use SimpleSAML\WSSecurity\XML\fed\DisplayName;
 use SimpleSAML\WSSecurity\XML\fed\EMail;
@@ -22,12 +25,11 @@ use function strval;
 /**
  * Tests for fed:ClientPseudonym.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\ClientPseudonym
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractClientPseudonymType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ClientPseudonym::class)]
+#[CoversClass(AbstractClientPseudonymType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class ClientPseudonymTest extends TestCase
 {
     use SchemaValidationTestTrait;

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\auth\ClaimType;
@@ -11,6 +12,8 @@ use SimpleSAML\WSSecurity\XML\auth\Description;
 use SimpleSAML\WSSecurity\XML\auth\DisplayName;
 use SimpleSAML\WSSecurity\XML\auth\DisplayValue;
 use SimpleSAML\WSSecurity\XML\auth\Value;
+use SimpleSAML\WSSecurity\XML\fed\AbstractClaimTypesRequestedType;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\ClaimTypesRequested;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -22,12 +25,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\fed\ClaimTypesRequestedTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\ClaimTypesRequested
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractClaimTypesRequestedType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ClaimTypesRequested::class)]
+#[CoversClass(AbstractClaimTypesRequestedType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class ClaimTypesRequestedTest extends TestCase
 {
     use SchemaValidationTestTrait;

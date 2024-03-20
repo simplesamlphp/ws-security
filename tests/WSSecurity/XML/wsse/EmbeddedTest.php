@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsse;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractEmbeddedType;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement;
 use SimpleSAML\WSSecurity\XML\wsse\Embedded;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -18,11 +21,11 @@ use function strval;
 /**
  * Tests for wsse:Embedded.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsse\Embedded
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractEmbeddedType
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Embedded::class)]
+#[CoversClass(AbstractEmbeddedType::class)]
+#[CoversClass(AbstractWsseElement::class)]
 final class EmbeddedTest extends TestCase
 {
     use SchemaValidationTestTrait;

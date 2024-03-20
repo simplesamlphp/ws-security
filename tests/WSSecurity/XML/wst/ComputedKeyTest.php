@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wst\AbstractComputedKeyOpenEnum;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\ComputedKey;
 use SimpleSAML\WSSecurity\XML\wst\ComputedKeyEnum;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,12 +19,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\ComputedKeyTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\ComputedKey
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractComputedKeyOpenEnum
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ComputedKey::class)]
+#[CoversClass(AbstractComputedKeyOpenEnum::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class ComputedKeyTest extends TestCase
 {
     use SchemaValidationTestTrait;

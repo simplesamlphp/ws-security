@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
 use DOMElement;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\Metadata;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
@@ -19,11 +21,10 @@ use function strval;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wsa\MetadataTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\Metadata
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Metadata::class)]
+#[CoversClass(AbstractWsaElement::class)]
 final class MetadataTest extends TestCase
 {
     use SchemaValidationTestTrait;

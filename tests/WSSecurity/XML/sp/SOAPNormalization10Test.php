@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\sp\AbstractQNameAssertionType;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp\SOAPNormalization10;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -15,12 +18,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\SOAPNormalization10Test
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\SOAPNormalization10
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractQNameAssertionType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(SOAPNormalization10::class)]
+#[CoversClass(AbstractQNameAssertionType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class SOAPNormalization10Test extends TestCase
 {
     use QNameAssertionTypeTestTrait;

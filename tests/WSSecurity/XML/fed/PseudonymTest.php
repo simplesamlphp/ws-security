@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractPseudonymType;
 use SimpleSAML\WSSecurity\XML\fed\ProofToken;
 use SimpleSAML\WSSecurity\XML\fed\Pseudonym;
 use SimpleSAML\WSSecurity\XML\fed\PseudonymBasis;
@@ -25,12 +28,11 @@ use function strval;
 /**
  * Tests for fed:Pseudonym.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\Pseudonym
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractPseudonymType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Pseudonym::class)]
+#[CoversClass(AbstractPseudonymType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class PseudonymTest extends TestCase
 {
     use SchemaValidationTestTrait;

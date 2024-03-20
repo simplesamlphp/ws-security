@@ -4,7 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsse;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractBinarySecurityTokenType;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractEncodedString;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement;
 use SimpleSAML\WSSecurity\XML\wsse\BinarySecurityToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -17,13 +22,13 @@ use function strval;
 /**
  * Tests for wsse:BinarySecurityToken.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsse\BinarySecurityToken
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractBinarySecurityTokenType
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractEncodedString
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(BinarySecurityToken::class)]
+#[CoversClass(AbstractBinarySecurityTokenType::class)]
+#[CoversClass(AbstractEncodedString::class)]
+#[CoversClass(AbstractAttributedString::class)]
+#[CoversClass(AbstractWsseElement::class)]
 final class BinarySecurityTokenTest extends TestCase
 {
     use SchemaValidationTestTrait;

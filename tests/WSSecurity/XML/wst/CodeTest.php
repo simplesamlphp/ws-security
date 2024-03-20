@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wst\AbstractStatusCodeOpenEnum;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Code;
 use SimpleSAML\WSSecurity\XML\wst\StatusCodeEnum;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -15,12 +18,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\CodeTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\Code
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractStatusCodeOpenEnum
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Code::class)]
+#[CoversClass(AbstractStatusCodeOpenEnum::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class CodeTest extends TestCase
 {
     use SerializableElementTestTrait;

@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsu;
 
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsu\AbstractAttributedDateTime;
+use SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement;
 use SimpleSAML\WSSecurity\XML\wsu\Created;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -17,11 +20,11 @@ use function strval;
 /**
  * Tests for wsu:Created.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsu\Created
- * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractAttributedDateTime
- * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Created::class)]
+#[CoversClass(AbstractAttributedDateTime::class)]
+#[CoversClass(AbstractWsuElement::class)]
 final class CreatedTest extends TestCase
 {
     use SchemaValidationTestTrait;

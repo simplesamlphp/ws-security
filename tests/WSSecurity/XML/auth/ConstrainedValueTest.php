@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedValueType;
 use SimpleSAML\WSSecurity\XML\auth\ConstrainedValue;
 //use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
 use SimpleSAML\WSSecurity\XML\auth\Value;
@@ -22,11 +26,11 @@ use function strval;
 /**
  * Tests for auth:ConstrainedValue.
  *
- * @covers \SimpleSAML\WSSecurity\XML\auth\ConstrainedValue
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedValueType
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ConstrainedValue::class)]
+#[CoversClass(AbstractConstrainedValueType::class)]
+#[CoversClass(AbstractAuthElement::class)]
 final class ConstrainedValueTest extends TestCase
 {
     private static string $resourcePath;
@@ -64,11 +68,10 @@ final class ConstrainedValueTest extends TestCase
     /**
      * Test creating a ConstrainedValue object from scratch.
      *
-     * @dataProvider classProvider
-     *
      * @param class-string $class
      * @param string $xmlRepresentation
      */
+    #[DataProvider('classProvider')]
     public function testMarshalling(string $class, string $xmlRepresentation): void
     {
         $xmlRepresentation = DOMDocumentFactory::fromFile(
@@ -101,11 +104,10 @@ final class ConstrainedValueTest extends TestCase
     /**
      * Test creating a ConstrainedValue from XML.
      *
-     * @dataProvider classProvider
-     *
      * @param class-string $class
      * @param string $xmlRepresentation
      */
+    #[DataProvider('classProvider')]
     public function testUnmarshalling(string $class, string $xmlRepresentation): void
     {
         $xmlRepresentation = DOMDocumentFactory::fromFile(

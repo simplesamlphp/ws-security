@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractTokenType;
 use SimpleSAML\WSSecurity\XML\fed\TokenType;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -17,11 +20,11 @@ use function strval;
 /**
  * Tests for fed:TokenType.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\TokenType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractTokenType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(TokenType::class)]
+#[CoversClass(AbstractTokenType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class TokenTypeTest extends TestCase
 {
     use SerializableElementTestTrait;

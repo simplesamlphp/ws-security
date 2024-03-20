@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsse;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractEncodedString;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement;
 use SimpleSAML\WSSecurity\XML\wsse\Nonce;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -17,12 +21,12 @@ use function strval;
 /**
  * Tests for wsse:Nonce.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsse\Nonce
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractEncodedString
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Nonce::class)]
+#[CoversClass(AbstractEncodedString::class)]
+#[CoversClass(AbstractAttributedString::class)]
+#[CoversClass(AbstractWsseElement::class)]
 final class NonceTest extends TestCase
 {
     use SchemaValidationTestTrait;

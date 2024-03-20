@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\AutomaticPseudonyms;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -15,11 +17,10 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\fed\AutomaticPseudonymsTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\AutomaticPseudonyms
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(AutomaticPseudonyms::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class AutomaticPseudonymsTest extends TestCase
 {
     use SchemaValidationTestTrait;

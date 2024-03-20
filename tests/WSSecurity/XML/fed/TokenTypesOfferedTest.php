@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractTokenTypesOfferedType;
 use SimpleSAML\WSSecurity\XML\fed\TokenType;
 use SimpleSAML\WSSecurity\XML\fed\TokenTypesOffered;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -19,11 +22,11 @@ use function strval;
 /**
  * Tests for fed:TokenTypesOffered.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\TokenTypesOffered
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractTokenTypesOfferedType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(TokenTypesOffered::class)]
+#[CoversClass(AbstractTokenTypesOfferedType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class TokenTypesOfferedTest extends TestCase
 {
     use SchemaValidationTestTrait;

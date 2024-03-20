@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsse;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractSecurityHeaderType;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement;
 use SimpleSAML\WSSecurity\XML\wsse\Security;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -18,11 +21,11 @@ use function strval;
 /**
  * Tests for wsse:Security.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsse\Security
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractSecurityHeaderType
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Security::class)]
+#[CoversClass(AbstractSecurityHeaderType::class)]
+#[CoversClass(AbstractWsseElement::class)]
 final class SecurityTest extends TestCase
 {
     use SchemaValidationTestTrait;

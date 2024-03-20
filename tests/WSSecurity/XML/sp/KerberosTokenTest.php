@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
+use SimpleSAML\WSSecurity\XML\sp\AbstractTokenAssertionType;
 use SimpleSAML\WSSecurity\XML\sp\IncludeToken;
+use SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp\KerberosToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -19,13 +23,12 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\KerberosTokenTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\KerberosToken
- * @covers \SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractTokenAssertionType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(KerberosToken::class)]
+#[CoversClass(IncludeTokenTypeTrait::class)]
+#[CoversClass(AbstractTokenAssertionType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class KerberosTokenTest extends TestCase
 {
     use SchemaValidationTestTrait;

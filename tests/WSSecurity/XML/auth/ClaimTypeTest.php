@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath;
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractClaimType;
 use SimpleSAML\WSSecurity\XML\auth\ClaimType;
 use SimpleSAML\WSSecurity\XML\auth\Description;
 use SimpleSAML\WSSecurity\XML\auth\DisplayName;
@@ -23,11 +26,11 @@ use function strval;
 /**
  * Tests for auth:ClaimType.
  *
- * @covers \SimpleSAML\WSSecurity\XML\auth\ClaimType
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractClaimType
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ClaimType::class)]
+#[CoversClass(AbstractClaimType::class)]
+#[CoversClass(AbstractAuthElement::class)]
 final class ClaimTypeTest extends TestCase
 {
     use SchemaValidationTestTrait;

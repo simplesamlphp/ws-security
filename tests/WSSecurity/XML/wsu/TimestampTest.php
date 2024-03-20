@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsu;
 
 use DateTimeImmutable;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsu\AbstractTimestamp;
+use SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement;
 use SimpleSAML\WSSecurity\XML\wsu\Created;
 use SimpleSAML\WSSecurity\XML\wsu\Expires;
 use SimpleSAML\WSSecurity\XML\wsu\Timestamp;
@@ -19,11 +22,11 @@ use function strval;
 /**
  * Tests for wsu:Timestamp.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsu\Timestamp
- * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractTimestamp
- * @covers \SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Timestamp::class)]
+#[CoversClass(AbstractTimestamp::class)]
+#[CoversClass(AbstractWsuElement::class)]
 final class TimestampTest extends TestCase
 {
     use SchemaValidationTestTrait;

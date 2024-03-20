@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsp\AbstractOperatorContentType;
+use SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement;
 use SimpleSAML\WSSecurity\XML\wsp\All;
 use SimpleSAML\WSSecurity\XML\wsp\ExactlyOne;
 use SimpleSAML\XML\Chunk;
@@ -18,11 +21,11 @@ use function strval;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wsp\AllTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsp\All
- * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractOperatorContentType
- * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(All::class)]
+#[CoversClass(AbstractOperatorContentType::class)]
+#[CoversClass(AbstractWspElement::class)]
 final class AllTest extends TestCase
 {
     use SchemaValidationTestTrait;

@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wst\AbstractStatusType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Code;
 use SimpleSAML\WSSecurity\XML\wst\Reason;
 use SimpleSAML\WSSecurity\XML\wst\Status;
@@ -18,12 +21,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\StatusTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\Status
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractStatusType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Status::class)]
+#[CoversClass(AbstractStatusType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class StatusTest extends TestCase
 {
     use SchemaValidationTestTrait;

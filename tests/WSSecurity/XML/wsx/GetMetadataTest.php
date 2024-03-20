@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsx;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement;
 use SimpleSAML\WSSecurity\XML\wsx\Dialect;
 use SimpleSAML\WSSecurity\XML\wsx\GetMetadata;
 use SimpleSAML\WSSecurity\XML\wsx\Identifier;
@@ -19,10 +21,10 @@ use function strval;
 /**
  * Tests for wsx:GetMetadata.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsx\GetMetadata
- * @covers \SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(GetMetadata::class)]
+#[CoversClass(AbstractWsxElement::class)]
 final class GetMetadataTest extends TestCase
 {
     use SchemaValidationTestTrait;

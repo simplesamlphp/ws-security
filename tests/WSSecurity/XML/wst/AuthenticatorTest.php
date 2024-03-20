@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
+use SimpleSAML\WSSecurity\XML\wst\AbstractAuthenticatorType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Authenticator;
 use SimpleSAML\WSSecurity\XML\wst\CombinedHash;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -19,12 +22,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\AuthenticatorTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\Authenticator
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractAuthenticatorType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Authenticator::class)]
+#[CoversClass(AbstractAuthenticatorType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class AuthenticatorTest extends TestCase
 {
     use SchemaValidationTestTrait;

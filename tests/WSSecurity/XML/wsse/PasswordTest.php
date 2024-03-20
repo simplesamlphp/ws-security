@@ -4,7 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsse;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractPasswordString;
+use SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement;
 use SimpleSAML\WSSecurity\XML\wsse\Password;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,12 +20,12 @@ use function strval;
 /**
  * Tests for wsse:Password.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsse\Password
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractPasswordString
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString
- * @covers \SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Password::class)]
+#[CoversClass(AbstractPasswordString::class)]
+#[CoversClass(AbstractAttributedString::class)]
+#[CoversClass(AbstractWsseElement::class)]
 final class PasswordTest extends TestCase
 {
     use SerializableElementTestTrait;

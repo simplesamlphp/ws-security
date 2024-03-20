@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\SignatureAlgorithm;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -16,11 +18,10 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\SignatureAlgorithmTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\SignatureAlgorithm
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(SignatureAlgorithm::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class SignatureAlgorithmTest extends TestCase
 {
     use SchemaValidationTestTrait;

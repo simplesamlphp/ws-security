@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFederationMetadataType;
 use SimpleSAML\WSSecurity\XML\fed\Federation;
 use SimpleSAML\WSSecurity\XML\fed\FederationMetadata;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -19,12 +22,11 @@ use function strval;
 /**
  * Tests for fed:FederationMetadata.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\FederationMetadata
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFederationMetadataType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(FederationMetadata::class)]
+#[CoversClass(AbstractFederationMetadataType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class FederationMetadataTest extends TestCase
 {
     use SchemaValidationTestTrait;

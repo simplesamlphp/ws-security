@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsx;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement;
 use SimpleSAML\WSSecurity\XML\wsx\Dialect;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -16,11 +18,10 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wsx\DialectTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsx\Dialect
- * @covers \SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Dialect::class)]
+#[CoversClass(AbstractWsxElement::class)]
 final class DialectTest extends TestCase
 {
     use SchemaValidationTestTrait;

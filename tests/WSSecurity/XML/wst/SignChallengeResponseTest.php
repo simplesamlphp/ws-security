@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
+use SimpleSAML\WSSecurity\XML\wst\AbstractSignChallengeType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Challenge;
 use SimpleSAML\WSSecurity\XML\wst\SignChallengeResponse;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -20,12 +23,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\SignChallengeResponseTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\SignChallengeResponse
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractSignChallengeType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(SignChallengeResponse::class)]
+#[CoversClass(AbstractSignChallengeType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class SignChallengeResponseTest extends TestCase
 {
     use SchemaValidationTestTrait;

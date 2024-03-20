@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath as XMLXPath;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSerElementsType;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp\SignedElements;
 use SimpleSAML\WSSecurity\XML\sp\XPath;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -20,12 +23,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\SignedElementsTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\SignedElements
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSerElementsType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(SignedElements::class)]
+#[CoversClass(AbstractSerElementsType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class SignedElementsTest extends TestCase
 {
     use SchemaValidationTestTrait;

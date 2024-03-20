@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\sp\AbstractRequestSecurityTokenTemplateType;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp\RequestSecurityTokenTemplate;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -17,12 +20,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\RequestSecurityTokenTemplateTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\RequestSecurityTokenTemplate
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractRequestSecurityTokenTemplateType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(RequestSecurityTokenTemplate::class)]
+#[CoversClass(AbstractRequestSecurityTokenTemplateType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class RequestSecurityTokenTemplateTest extends TestCase
 {
     use SerializableElementTestTrait;

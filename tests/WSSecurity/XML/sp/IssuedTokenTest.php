@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath;
+use SimpleSAML\WSSecurity\XML\sp\AbstractIssuedTokenType;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp\IncludeToken;
+use SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp\IssuedToken;
 use SimpleSAML\WSSecurity\XML\sp\IssuerName;
 use SimpleSAML\WSSecurity\XML\sp\RequestSecurityTokenTemplate;
@@ -22,13 +26,12 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\IssuedTokenTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\IssuedToken
- * @covers \SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractIssuedTokenType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(IssuedToken::class)]
+#[CoversClass(IncludeTokenTypeTrait::class)]
+#[CoversClass(AbstractIssuedTokenType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class IssuedTokenTest extends TestCase
 {
     use SchemaValidationTestTrait;

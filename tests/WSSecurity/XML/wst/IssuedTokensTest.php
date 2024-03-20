@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\IssuedTokens;
 use SimpleSAML\WSSecurity\XML\wst\RequestSecurityTokenResponse;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -20,12 +23,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\IssuedTokensTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\IssuedTokens
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(IssuedTokens::class)]
+#[CoversClass(AbstractEndpointReferenceType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class IssuedTokensTest extends TestCase
 {
     use SchemaValidationTestTrait;

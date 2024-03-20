@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
+use SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement;
 use SimpleSAML\WSSecurity\XML\wsp\AppliesTo;
 use SimpleSAML\WSSecurity\XML\wsp\ExactlyOne;
 use SimpleSAML\WSSecurity\XML\wsp\Policy;
@@ -26,10 +28,10 @@ use function strval;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wsp\PolicyAttachmentTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsp\PolicyAttachment
- * @covers \SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(PolicyAttachment::class)]
+#[CoversClass(AbstractWspElement::class)]
 final class PolicyAttachmentTest extends TestCase
 {
     use SchemaValidationTestTrait;

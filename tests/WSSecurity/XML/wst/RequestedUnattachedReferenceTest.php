@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsse\SecurityTokenReference;
+use SimpleSAML\WSSecurity\XML\wst\AbstractRequestedReferenceType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\RequestedUnattachedReference;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -18,12 +21,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\RequestedUnattachedReferenceTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\RequestedUnattachedReference
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractRequestedReferenceType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(RequestedUnattachedReference::class)]
+#[CoversClass(AbstractRequestedReferenceType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class RequestedUnattachedReferenceTest extends TestCase
 {
     use SchemaValidationTestTrait;

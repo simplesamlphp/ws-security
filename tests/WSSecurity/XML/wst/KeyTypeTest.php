@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wst\AbstractKeyTypeOpenEnum;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\KeyType;
 use SimpleSAML\WSSecurity\XML\wst\KeyTypeEnum;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,12 +19,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\KeyTypeTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\KeyType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractKeyTypeOpenEnum
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(KeyType::class)]
+#[CoversClass(AbstractKeyTypeOpenEnum::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class KeyTypeTest extends TestCase
 {
     use SchemaValidationTestTrait;

@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\wst\AbstractBinarySecretType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\BinarySecret;
 use SimpleSAML\WSSecurity\XML\wst\BinarySecretTypeEnum;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -18,12 +21,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\BinarySecretTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\BinarySecret
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractBinarySecretType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(BinarySecret::class)]
+#[CoversClass(AbstractBinarySecretType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class BinarySecretTest extends TestCase
 {
     use SchemaValidationTestTrait;

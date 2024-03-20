@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\fed\AbstractAttributeExtensibleString;
+use SimpleSAML\WSSecurity\XML\fed\AbstractAttributeExtensibleURI;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\SerialNo;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,13 +20,12 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\fed\SerialNoTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\SerialNo
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractAttributeExtensibleURI
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractAttributeExtensibleString
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(SerialNo::class)]
+#[CoversClass(AbstractAttributeExtensibleURI::class)]
+#[CoversClass(AbstractAttributeExtensibleString::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class SerialNoTest extends TestCase
 {
     use SerializableElementTestTrait;

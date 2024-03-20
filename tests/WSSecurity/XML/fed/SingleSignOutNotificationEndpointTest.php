@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DOMElement;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractEndpointType;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\SingleSignOutNotificationEndpoint;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
@@ -23,11 +26,11 @@ use function strval;
 /**
  * Tests for fed:SingleSignOutNotificationEndpoint.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\SingleSignOutNotificationEndpoint
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractEndpointType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(SingleSignOutNotificationEndpoint::class)]
+#[CoversClass(AbstractEndpointType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class SingleSignOutNotificationEndpointTest extends TestCase
 {
     use SchemaValidationTestTrait;

@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractReferenceDigestType;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceDigest;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,12 +19,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\fed\ReferenceDigestTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\ReferenceDigest
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractReferenceDigestType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ReferenceDigest::class)]
+#[CoversClass(AbstractReferenceDigestType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class ReferenceDigestTest extends TestCase
 {
     use SerializableElementTestTrait;

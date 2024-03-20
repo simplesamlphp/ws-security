@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Delegatable;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -15,11 +17,10 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\DelegatableTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\Delegatable
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Delegatable::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class DelegatableTest extends TestCase
 {
     use SchemaValidationTestTrait;

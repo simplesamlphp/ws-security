@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSePartsType;
+use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp\Attachments;
 use SimpleSAML\WSSecurity\XML\sp\Body;
 use SimpleSAML\WSSecurity\XML\sp\EncryptedParts;
@@ -22,12 +25,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\sp\EncryptedPartsTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\sp\EncryptedParts
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSePartsType
- * @covers \SimpleSAML\WSSecurity\XML\sp\AbstractSpElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(EncryptedParts::class)]
+#[CoversClass(AbstractSePartsType::class)]
+#[CoversClass(AbstractSpElement::class)]
 final class EncryptedPartsTest extends TestCase
 {
     use SchemaValidationTestTrait;

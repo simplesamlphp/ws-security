@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\wst\AbstractBinaryExchangeType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\BinaryExchange;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -17,12 +20,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\BinaryExchangeTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\BinaryExchange
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractBinaryExchangeType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(BinaryExchange::class)]
+#[CoversClass(AbstractBinaryExchangeType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class BinaryExchangeTest extends TestCase
 {
     use SchemaValidationTestTrait;

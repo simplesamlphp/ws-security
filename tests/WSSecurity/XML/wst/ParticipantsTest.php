@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
+use SimpleSAML\WSSecurity\XML\wst\AbstractParticipantsType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Participant;
 use SimpleSAML\WSSecurity\XML\wst\Participants;
 use SimpleSAML\WSSecurity\XML\wst\Primary;
@@ -21,12 +24,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\ParticipantsTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\Participants
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractParticipantsType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Participants::class)]
+#[CoversClass(AbstractParticipantsType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class ParticipantsTest extends TestCase
 {
     use SchemaValidationTestTrait;

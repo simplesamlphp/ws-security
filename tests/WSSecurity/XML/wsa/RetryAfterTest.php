@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedLongType;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\RetryAfter;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -17,11 +20,11 @@ use function strval;
 /**
  * Tests for wsa:RetryAfter.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\RetryAfter
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedLongType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(RetryAfter::class)]
+#[CoversClass(AbstractAttributedLongType::class)]
+#[CoversClass(AbstractWsaElement::class)]
 final class RetryAfterTest extends TestCase
 {
     use SchemaValidationTestTrait;

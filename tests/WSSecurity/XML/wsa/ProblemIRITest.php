@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType;
+use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\ProblemIRI;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -17,11 +20,11 @@ use function strval;
 /**
  * Tests for wsa:ProblemIRI.
  *
- * @covers \SimpleSAML\WSSecurity\XML\wsa\ProblemIRI
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType
- * @covers \SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ProblemIRI::class)]
+#[CoversClass(AbstractAttributedURIType::class)]
+#[CoversClass(AbstractWsaElement::class)]
 final class ProblemIRITest extends TestCase
 {
     use SchemaValidationTestTrait;

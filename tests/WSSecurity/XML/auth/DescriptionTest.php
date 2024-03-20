@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractDescriptionType;
 use SimpleSAML\WSSecurity\XML\auth\Description;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -16,11 +19,11 @@ use function strval;
 /**
  * Tests for auth:Description.
  *
- * @covers \SimpleSAML\WSSecurity\XML\auth\Description
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractDescriptionType
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Description::class)]
+#[CoversClass(AbstractDescriptionType::class)]
+#[CoversClass(AbstractAuthElement::class)]
 final class DescriptionTest extends TestCase
 {
     use SerializableElementTestTrait;

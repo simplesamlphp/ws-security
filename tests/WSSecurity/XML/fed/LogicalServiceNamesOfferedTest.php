@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractLogicalServiceNamesOfferedType;
 use SimpleSAML\WSSecurity\XML\fed\IssuerName;
 use SimpleSAML\WSSecurity\XML\fed\LogicalServiceNamesOffered;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -18,11 +21,11 @@ use function strval;
 /**
  * Tests for fed:LogicalServiceNamesOffered.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\LogicalServiceNamesOffered
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractLogicalServiceNamesOfferedType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(LogicalServiceNamesOffered::class)]
+#[CoversClass(AbstractLogicalServiceNamesOfferedType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class LogicalServiceNamesOfferedTest extends TestCase
 {
     use SchemaValidationTestTrait;

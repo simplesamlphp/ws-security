@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\Realm;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
@@ -16,11 +18,10 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\fed\RealmTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\Realm
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(Realm::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class RealmTest extends TestCase
 {
     use SchemaValidationTestTrait;

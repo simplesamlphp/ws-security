@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractSignOutBasisType;
 use SimpleSAML\WSSecurity\XML\fed\SignOutBasis;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
@@ -17,12 +20,11 @@ use function strval;
 /**
  * Tests for fed:SignOutBasis.
  *
- * @covers \SimpleSAML\WSSecurity\XML\fed\SignOutBasis
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractSignOutBasisType
- * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(SignOutBasis::class)]
+#[CoversClass(AbstractSignOutBasisType::class)]
+#[CoversClass(AbstractFedElement::class)]
 final class SignOutBasisTest extends TestCase
 {
     use SerializableElementTestTrait;

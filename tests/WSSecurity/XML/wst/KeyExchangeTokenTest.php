@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
+use SimpleSAML\WSSecurity\XML\wst\AbstractKeyExchangeTokenType;
+use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\KeyExchangeToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -18,12 +21,11 @@ use function dirname;
 /**
  * Class \SimpleSAML\WSSecurity\XML\wst\KeyExchangeTokenTest
  *
- * @covers \SimpleSAML\WSSecurity\XML\wst\KeyExchangeToken
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractKeyExchangeTokenType
- * @covers \SimpleSAML\WSSecurity\XML\wst\AbstractWstElement
- *
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(KeyExchangeToken::class)]
+#[CoversClass(AbstractKeyExchangeTokenType::class)]
+#[CoversClass(AbstractWstElement::class)]
 final class KeyExchangeTokenTest extends TestCase
 {
     use SchemaValidationTestTrait;

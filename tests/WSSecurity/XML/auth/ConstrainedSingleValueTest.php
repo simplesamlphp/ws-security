@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedSingleValueType;
 use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
 use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\WSSecurity\XML\auth\ValueGreaterThan;
@@ -21,19 +25,24 @@ use SimpleSAML\XML\DOMDocumentFactory;
 /**
  * Tests for auth:ConstrainedSingleValueType.
  *
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedSingleValueType
- * @covers \SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement
  * @package simplesamlphp/ws-security
  */
+#[CoversClass(ValueGreaterThan::class)]
+#[CoversClass(ValueGreaterThanOrEqual::class)]
+#[CoversClass(ValueLessThan::class)]
+#[CoversClass(ValueLessThanOrEqual::class)]
+#[CoversClass(ValueLowerBound::class)]
+#[CoversClass(ValueUpperBound::class)]
+#[CoversClass(AbstractConstrainedSingleValueType::class)]
+#[CoversClass(AbstractAuthElement::class)]
 final class ConstrainedSingleValueTest extends TestCase
 {
     /**
      * Test creating an object from scratch.
      *
      * @param class-string $class
-     *
-     * @dataProvider classProvider
      */
+    #[DataProvider('classProvider')]
     public function testMarshallingEmpty(string $class): void
     {
         $x = new $class(null, null);
@@ -45,9 +54,8 @@ final class ConstrainedSingleValueTest extends TestCase
      * Test creating an object from scratch with both Value and StructuredValue.
      *
      * @param class-string $class
-     *
-     * @dataProvider classProvider
      */
+    #[DataProvider('classProvider')]
     public function testMarshallingIllegalCombination(string $class): void
     {
         $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
