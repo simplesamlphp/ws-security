@@ -45,7 +45,7 @@ final class ClientPseudonymTest extends TestCase
         self::$testedClass = ClientPseudonym::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 4) . '/resources/xml/fed_ClientPseudonym.xml'
+            dirname(__FILE__, 4) . '/resources/xml/fed_ClientPseudonym.xml',
         );
     }
 
@@ -64,7 +64,7 @@ final class ClientPseudonymTest extends TestCase
         $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', 'testval4');
 
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
         )->documentElement);
 
         $clientPseudonym = new ClientPseudonym(
@@ -77,7 +77,7 @@ final class ClientPseudonymTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($clientPseudonym)
+            strval($clientPseudonym),
         );
     }
 
@@ -102,7 +102,7 @@ final class ClientPseudonymTest extends TestCase
         $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', 'testval4');
 
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
         )->documentElement);
 
         $clientPseudonym = new ClientPseudonym(

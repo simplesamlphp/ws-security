@@ -37,7 +37,7 @@ final class RelatesToTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_RelatesTo.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_RelatesTo.xml',
         );
     }
 
@@ -53,7 +53,7 @@ final class RelatesToTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($relatesTo)
+            strval($relatesTo),
         );
     }
 
@@ -65,7 +65,7 @@ final class RelatesToTest extends TestCase
         $relatesTo = new RelatesTo(null, []);
         $this->assertEquals(
             '<wsa:RelatesTo xmlns:wsa="http://www.w3.org/2005/08/addressing"/>',
-            strval($relatesTo)
+            strval($relatesTo),
         );
         $this->assertTrue($relatesTo->isEmptyElement());
     }

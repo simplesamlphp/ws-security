@@ -78,7 +78,7 @@ final class SignedPartsTest extends TestCase
         $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
         $attachments = new Attachments();
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $signedParts = new SignedParts($body, [$header], $attachments, [$chunk], [$attr]);
@@ -98,7 +98,7 @@ final class SignedPartsTest extends TestCase
         $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
         $attachments = new Attachments();
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $SignedParts = new SignedParts($body, [$header], $attachments, [$chunk], [$attr]);

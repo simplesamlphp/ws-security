@@ -54,19 +54,19 @@ final class FilterPseudonymsTest extends TestCase
         self::$testedClass = FilterPseudonyms::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 4) . '/resources/xml/fed_FilterPseudonyms.xml'
+            dirname(__FILE__, 4) . '/resources/xml/fed_FilterPseudonyms.xml',
         );
 
         self::$chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
         )->documentElement);
 
         self::$basis = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Basis</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Basis</ssp:Chunk>',
         )->documentElement);
 
         self::$relative = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Relative</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Relative</ssp:Chunk>',
         )->documentElement);
     }
 
@@ -119,7 +119,7 @@ final class FilterPseudonymsTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($filterPseudonyms)
+            strval($filterPseudonyms),
         );
     }
 }

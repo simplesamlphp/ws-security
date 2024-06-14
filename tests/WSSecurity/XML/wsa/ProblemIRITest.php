@@ -40,7 +40,7 @@ final class ProblemIRITest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_ProblemIRI.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_ProblemIRI.xml',
         );
     }
 
@@ -59,7 +59,7 @@ final class ProblemIRITest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($problemIri)
+            strval($problemIri),
         );
     }
 }

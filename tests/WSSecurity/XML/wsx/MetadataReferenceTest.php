@@ -51,11 +51,11 @@ final class MetadataReferenceTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/MetadataExchange.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsx_MetadataReference.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsx_MetadataReference.xml',
         );
 
         self::$customContent = DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
         )->documentElement;
     }
 
@@ -85,7 +85,7 @@ final class MetadataReferenceTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($metadataReference)
+            strval($metadataReference),
         );
     }
 }

@@ -36,7 +36,7 @@ final class AddressTest extends TestCase
         self::$testedClass = Address::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_Address.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_Address.xml',
         );
     }
 
@@ -54,7 +54,7 @@ final class AddressTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($address)
+            strval($address),
         );
     }
 }

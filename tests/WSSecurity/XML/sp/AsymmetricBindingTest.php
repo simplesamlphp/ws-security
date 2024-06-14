@@ -53,7 +53,7 @@ final class AsymmetricBindingTest extends TestCase
         self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
 
         self::$chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
         )->documentElement);
     }
 }

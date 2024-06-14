@@ -55,7 +55,7 @@ final class ContentEncryptedElementsTest extends TestCase
         $xpath = new XPath('/bookstore/book[price>35.00]/title');
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $contentEncryptedElements = new ContentEncryptedElements(
@@ -98,7 +98,7 @@ final class ContentEncryptedElementsTest extends TestCase
         $xpath = new XPath('/bookstore/book[price>35.00]/title');
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $contentEncryptedElements = new ContentEncryptedElements(

@@ -36,7 +36,7 @@ final class DisplayValueTest extends TestCase
         self::$testedClass = DisplayValue::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/auth_DisplayValue.xml'
+            dirname(__FILE__, 4) . '/resources/xml/auth_DisplayValue.xml',
         );
     }
 
@@ -54,7 +54,7 @@ final class DisplayValueTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($displayValue)
+            strval($displayValue),
         );
     }
 }

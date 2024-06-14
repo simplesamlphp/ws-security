@@ -41,7 +41,7 @@ final class EncryptedValueTest extends TestCase
         self::$testedClass = EncryptedValue::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/auth_EncryptedValue.xml'
+            dirname(__FILE__, 4) . '/resources/xml/auth_EncryptedValue.xml',
         );
     }
 

@@ -70,7 +70,7 @@ final class RequiredPartsTest extends TestCase
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
         $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $RequiredParts = new RequiredParts([$header], [$chunk], [$attr]);
@@ -100,7 +100,7 @@ final class RequiredPartsTest extends TestCase
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
         $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $RequiredParts = new RequiredParts([$header], [$chunk], [$attr]);

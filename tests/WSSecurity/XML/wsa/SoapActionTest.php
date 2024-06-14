@@ -33,7 +33,7 @@ final class SoapActionTest extends TestCase
         self::$testedClass = SoapAction::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_SoapAction.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_SoapAction.xml',
         );
     }
 
@@ -50,7 +50,7 @@ final class SoapActionTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($soapAction)
+            strval($soapAction),
         );
     }
 }

@@ -40,7 +40,7 @@ final class ToTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_To.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_To.xml',
         );
     }
 
@@ -59,7 +59,7 @@ final class ToTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($to)
+            strval($to),
         );
     }
 }

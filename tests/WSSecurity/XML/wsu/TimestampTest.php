@@ -42,7 +42,7 @@ final class TimestampTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/oasis-200401-wss-wssecurity-utility-1.0.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsu_Timestamp.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsu_Timestamp.xml',
         );
     }
 
@@ -62,7 +62,7 @@ final class TimestampTest extends TestCase
         $this->assertFalse($timestamp->isEmptyElement());
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($timestamp)
+            strval($timestamp),
         );
     }
 

@@ -50,15 +50,15 @@ final class SignOutTest extends TestCase
         self::$testedClass = SignOut::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 4) . '/resources/xml/fed_SignOut.xml'
+            dirname(__FILE__, 4) . '/resources/xml/fed_SignOut.xml',
         );
 
         self::$chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
         )->documentElement);
 
         self::$basis = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Basis</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Basis</ssp:Chunk>',
         )->documentElement);
     }
 
@@ -91,7 +91,7 @@ final class SignOutTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($signOut)
+            strval($signOut),
         );
     }
 

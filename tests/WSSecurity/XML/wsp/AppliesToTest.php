@@ -40,7 +40,7 @@ final class AppliesToTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-policy.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsp_AppliesTo.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsp_AppliesTo.xml',
         );
     }
 
@@ -59,7 +59,7 @@ final class AppliesToTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($AppliesTo)
+            strval($AppliesTo),
         );
     }
 
@@ -71,7 +71,7 @@ final class AppliesToTest extends TestCase
         $AppliesTo = new AppliesTo([], []);
         $this->assertEquals(
             '<wsp:AppliesTo xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"/>',
-            strval($AppliesTo)
+            strval($AppliesTo),
         );
         $this->assertTrue($AppliesTo->isEmptyElement());
     }

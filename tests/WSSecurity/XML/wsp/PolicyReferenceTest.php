@@ -39,7 +39,7 @@ final class PolicyReferenceTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-policy.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsp_PolicyReference.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsp_PolicyReference.xml',
         );
     }
 

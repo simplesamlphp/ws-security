@@ -58,7 +58,7 @@ final class SpnegoContextTokenTest extends TestCase
         $issuer = new IssuerName('urn:x-simplesamlphp:issuer');
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $spnegoContextToken = new SpnegoContextToken($issuer, IncludeToken::Always, [$chunk], [$attr]);
@@ -91,7 +91,7 @@ final class SpnegoContextTokenTest extends TestCase
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $issuer = new IssuerName('urn:x-simplesamlphp:issuer');

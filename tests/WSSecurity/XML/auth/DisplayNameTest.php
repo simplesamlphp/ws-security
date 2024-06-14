@@ -36,7 +36,7 @@ final class DisplayNameTest extends TestCase
         self::$testedClass = DisplayName::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/auth_DisplayName.xml'
+            dirname(__FILE__, 4) . '/resources/xml/auth_DisplayName.xml',
         );
     }
 
@@ -54,7 +54,7 @@ final class DisplayNameTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($displayName)
+            strval($displayName),
         );
     }
 }

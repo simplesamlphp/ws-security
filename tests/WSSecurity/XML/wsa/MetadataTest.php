@@ -43,11 +43,11 @@ final class MetadataTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_Metadata.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_Metadata.xml',
         );
 
         self::$metadataContent = DOMDocumentFactory::fromString(
-            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
+            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>',
         )->documentElement;
     }
 
@@ -63,7 +63,7 @@ final class MetadataTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($metadata)
+            strval($metadata),
         );
     }
 
@@ -75,7 +75,7 @@ final class MetadataTest extends TestCase
         $metadata = new Metadata([], []);
         $this->assertEquals(
             '<wsa:Metadata xmlns:wsa="http://www.w3.org/2005/08/addressing"/>',
-            strval($metadata)
+            strval($metadata),
         );
         $this->assertTrue($metadata->isEmptyElement());
     }

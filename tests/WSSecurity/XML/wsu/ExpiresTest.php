@@ -40,7 +40,7 @@ final class ExpiresTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/oasis-200401-wss-wssecurity-utility-1.0.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsu_Expires.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsu_Expires.xml',
         );
     }
 
@@ -57,7 +57,7 @@ final class ExpiresTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($expires)
+            strval($expires),
         );
     }
 }

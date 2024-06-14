@@ -63,7 +63,7 @@ final class EncryptedPartsTest extends TestCase
         $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
         $attachments = new Attachments();
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $EncryptedParts = new EncryptedParts($body, [$header], $attachments, [$chunk], [$attr]);
@@ -99,7 +99,7 @@ final class EncryptedPartsTest extends TestCase
         $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
         $attachments = new Attachments();
         $chunk = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $EncryptedParts = new EncryptedParts($body, [$header], $attachments, [$chunk], [$attr]);

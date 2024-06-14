@@ -39,7 +39,7 @@ final class MetadataSectionTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/MetadataExchange.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsx_MetadataSection.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsx_MetadataSection.xml',
         );
     }
 
@@ -63,7 +63,7 @@ final class MetadataSectionTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($metadataSection)
+            strval($metadataSection),
         );
     }
 }

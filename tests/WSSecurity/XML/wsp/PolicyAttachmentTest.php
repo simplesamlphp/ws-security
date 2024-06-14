@@ -47,7 +47,7 @@ final class PolicyAttachmentTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-policy.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsp_PolicyAttachment.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsp_PolicyAttachment.xml',
         );
     }
 
@@ -67,13 +67,13 @@ final class PolicyAttachmentTest extends TestCase
         $attr5 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr5', 'testval5');
 
         $some = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
         )->documentElement);
         $other = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Other</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Other</ssp:Chunk>',
         )->documentElement);
         $sec = new Chunk(DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Security</ssp:Chunk>'
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Security</ssp:Chunk>',
         )->documentElement);
 
         $appliesTo = new AppliesTo(

@@ -40,7 +40,7 @@ final class GetMetadataTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/MetadataExchange.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsx_GetMetadata.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsx_GetMetadata.xml',
         );
     }
 
@@ -63,7 +63,7 @@ final class GetMetadataTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($getMetadata)
+            strval($getMetadata),
         );
     }
 }

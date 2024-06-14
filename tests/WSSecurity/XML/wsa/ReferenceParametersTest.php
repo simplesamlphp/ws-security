@@ -43,11 +43,11 @@ final class ReferenceParametersTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_ReferenceParameters.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_ReferenceParameters.xml',
         );
 
         self::$referenceParametersContent = DOMDocumentFactory::fromString(
-            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>'
+            '<m:GetPrice xmlns:m="https://www.w3schools.com/prices"><m:Item>Apples</m:Item></m:GetPrice>',
         )->documentElement;
     }
 
@@ -63,7 +63,7 @@ final class ReferenceParametersTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($referenceParameters)
+            strval($referenceParameters),
         );
     }
 
@@ -75,7 +75,7 @@ final class ReferenceParametersTest extends TestCase
         $referenceParameters = new ReferenceParameters([], []);
         $this->assertEquals(
             '<wsa:ReferenceParameters xmlns:wsa="http://www.w3.org/2005/08/addressing"/>',
-            strval($referenceParameters)
+            strval($referenceParameters),
         );
         $this->assertTrue($referenceParameters->isEmptyElement());
     }

@@ -38,7 +38,7 @@ final class ValueOneOfWithStructuredValuesTest extends TestCase
         self::$testedClass = ValueOneOf::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/auth_ValueOneOfWithStructuredValues.xml'
+            dirname(__FILE__, 4) . '/resources/xml/auth_ValueOneOfWithStructuredValues.xml',
         );
     }
 

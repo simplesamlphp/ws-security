@@ -43,7 +43,7 @@ final class ProblemActionTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_ProblemAction.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_ProblemAction.xml',
         );
     }
 
@@ -61,12 +61,12 @@ final class ProblemActionTest extends TestCase
         $problemAction = new ProblemAction(
             new Action('https://login.microsoftonline.com/login.srf', [$attr1]),
             new SoapAction('http://www.example.com/'),
-            [$attr1]
+            [$attr1],
         );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($problemAction)
+            strval($problemAction),
         );
     }
 

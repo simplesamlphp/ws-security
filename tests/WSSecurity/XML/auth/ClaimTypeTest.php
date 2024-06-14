@@ -46,7 +46,7 @@ final class ClaimTypeTest extends TestCase
         self::$testedClass = ClaimType::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/auth_ClaimType.xml'
+            dirname(__FILE__, 4) . '/resources/xml/auth_ClaimType.xml',
         );
     }
 

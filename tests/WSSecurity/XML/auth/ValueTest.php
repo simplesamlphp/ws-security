@@ -33,7 +33,7 @@ final class ValueTest extends TestCase
         self::$testedClass = Value::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/auth_Value.xml'
+            dirname(__FILE__, 4) . '/resources/xml/auth_Value.xml',
         );
     }
 

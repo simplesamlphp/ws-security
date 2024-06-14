@@ -36,7 +36,7 @@ final class DescriptionTest extends TestCase
         self::$testedClass = Description::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/auth_Description.xml'
+            dirname(__FILE__, 4) . '/resources/xml/auth_Description.xml',
         );
     }
 
@@ -54,7 +54,7 @@ final class DescriptionTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($description)
+            strval($description),
         );
     }
 }

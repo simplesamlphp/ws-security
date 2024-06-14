@@ -41,7 +41,7 @@ final class MessageIDTest extends TestCase
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_MessageID.xml'
+            dirname(__FILE__, 4) . '/resources/xml/wsa_MessageID.xml',
         );
     }
 
@@ -59,7 +59,7 @@ final class MessageIDTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($msgId)
+            strval($msgId),
         );
     }
 }
