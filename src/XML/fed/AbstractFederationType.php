@@ -40,7 +40,7 @@ abstract class AbstractFederationType extends AbstractFedElement
     final public function __construct(
         protected ?string $FederationID = null,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($FederationID, SchemaViolationException::class);
 

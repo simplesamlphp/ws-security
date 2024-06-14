@@ -26,7 +26,7 @@ abstract class AbstractLifetimeType extends AbstractWstElement
      */
     final public function __construct(
         protected ?Created $created = null,
-        protected ?Expires $expires = null
+        protected ?Expires $expires = null,
     ) {
     }
 

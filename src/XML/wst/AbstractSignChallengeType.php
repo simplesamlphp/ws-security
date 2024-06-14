@@ -41,7 +41,7 @@ abstract class AbstractSignChallengeType extends AbstractWstElement
     final public function __construct(
         protected ?Challenge $challenge = null,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);

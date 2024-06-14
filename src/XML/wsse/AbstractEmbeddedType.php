@@ -40,7 +40,7 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
     final public function __construct(
         protected ?string $valueType = null,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($valueType, SchemaViolationException::class);
 

@@ -39,7 +39,7 @@ abstract class AbstractSecurityTokenType extends AbstractFedElement
      */
     final public function __construct(
         protected SerializableElementinterface $child,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setElements([$child]);
         $this->setAttributesNS($namespacedAttributes);

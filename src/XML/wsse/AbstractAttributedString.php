@@ -41,7 +41,7 @@ abstract class AbstractAttributedString extends AbstractWsseElement
     public function __construct(
         string $content,
         protected ?string $Id = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidNCName($Id);
 

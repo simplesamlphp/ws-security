@@ -41,7 +41,7 @@ abstract class AbstractRequestPseudonymType extends AbstractFedElement
         protected ?bool $SingleUse = null,
         protected ?bool $Lookup = null,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);

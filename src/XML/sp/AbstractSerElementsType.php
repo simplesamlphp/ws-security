@@ -44,7 +44,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
         protected array $xpath,
         protected ?string $xpathVersion = null,
         array $elts = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::minCount($xpath, 1, SchemaViolationException::class);
         Assert::nullOrValidURI($xpathVersion);
@@ -94,7 +94,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
             $xml->localName,
             $qualifiedName,
             sprintf('Unexpected name for SerElementsType: %s. Expected: %s.', $xml->localName, $qualifiedName),
-            InvalidDOMElementException::class
+            InvalidDOMElementException::class,
         );
 
         $elements = [];

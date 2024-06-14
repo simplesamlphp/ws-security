@@ -26,7 +26,7 @@ final class XPath extends AbstractSpElement
      * @param string $content
      */
     public function __construct(
-        string $content
+        string $content,
     ) {
         $this->setContent($content);
     }

@@ -47,7 +47,7 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
     final public function __construct(
         protected ValueLessThan|ValueLessThanOrEqual|ValueGreaterThan|ValueGreaterThanOrEqual|ValueInRangen|ValueOneOf $value,
         array $children = [],
-        protected ?bool $assertConstraint = null
+        protected ?bool $assertConstraint = null,
     ) {
         $this->setElements($children);
     }

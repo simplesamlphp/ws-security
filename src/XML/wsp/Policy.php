@@ -43,7 +43,7 @@ final class Policy extends AbstractOperatorContentType
         protected ?string $Id = null,
         array $operatorContent = [],
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($Name, SchemaViolationException::class);
         Assert::nullOrValidNCName($Id, SchemaViolationException::class);

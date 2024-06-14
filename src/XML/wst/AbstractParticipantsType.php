@@ -35,7 +35,7 @@ abstract class AbstractParticipantsType extends AbstractWstElement
     final public function __construct(
         protected ?Primary $primary = null,
         protected array $participant = [],
-        array $children = []
+        array $children = [],
     ) {
         $this->setElements($children);
     }

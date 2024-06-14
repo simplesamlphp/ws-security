@@ -28,7 +28,7 @@ abstract class AbstractPasswordString extends AbstractAttributedString
         string $content,
         ?string $Id = null,
         protected ?string $Type = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($Type);
 

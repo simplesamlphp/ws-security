@@ -37,7 +37,7 @@ abstract class AbstractRequestProofTokenType extends AbstractFedElement
      */
     final public function __construct(
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);

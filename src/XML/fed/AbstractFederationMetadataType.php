@@ -40,7 +40,7 @@ abstract class AbstractFederationMetadataType extends AbstractFedElement
     final public function __construct(
         protected array $federation = [],
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::minCount($federation, 1, SchemaViolationException::class);
 

@@ -31,7 +31,7 @@ abstract class AbstractRequestSecurityTokenResponseCollectionType extends Abstra
      */
     final public function __construct(
         protected array $requestSecurityTokenResponse,
-        array $namespacedAttributes
+        array $namespacedAttributes,
     ) {
         Assert::minCount($requestSecurityTokenResponse, 1, MissingElementException::class);
         Assert::allIsInstanceOf(

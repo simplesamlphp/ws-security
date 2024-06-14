@@ -34,7 +34,7 @@ abstract class AbstractReferenceType extends AbstractWsseElement
     final public function __construct(
         protected ?string $URI = null,
         protected ?string $valueType = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($URI, SchemaViolationException::class);
         Assert::nullOrValidURI($valueType, SchemaViolationException::class);

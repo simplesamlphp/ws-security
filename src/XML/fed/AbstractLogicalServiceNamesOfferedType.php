@@ -34,7 +34,7 @@ abstract class AbstractLogicalServiceNamesOfferedType extends AbstractFedElement
      */
     final public function __construct(
         protected array $issuerName,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::notEmpty($issuerName, SchemaViolationException::class);
         Assert::allIsInstanceOf($issuerName, IssuerName::class);

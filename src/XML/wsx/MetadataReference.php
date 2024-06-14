@@ -31,7 +31,7 @@ final class MetadataReference extends AbstractWsxElement
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      */
     final public function __construct(
-        array $children = []
+        array $children = [],
     ) {
         Assert::minCount($children, 1, MissingElementException::class);
         $this->setElements($children);

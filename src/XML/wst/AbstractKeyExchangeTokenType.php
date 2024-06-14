@@ -30,7 +30,7 @@ abstract class AbstractKeyExchangeTokenType extends AbstractWstElement
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      */
     final public function __construct(
-        array $children = []
+        array $children = [],
     ) {
         $this->setElements($children);
     }

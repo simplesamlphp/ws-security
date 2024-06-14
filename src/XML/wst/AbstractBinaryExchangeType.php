@@ -36,7 +36,7 @@ abstract class AbstractBinaryExchangeType extends AbstractWstElement
         string $content,
         protected string $valueType,
         protected string $encodingType,
-        array $namespacedAttributes
+        array $namespacedAttributes,
     ) {
         Assert::validURI($valueType, SchemaViolationException::class);
         Assert::validURI($encodingType, SchemaViolationException::class);

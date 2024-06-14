@@ -46,7 +46,7 @@ abstract class AbstractTimestamp extends AbstractWsuElement
         protected ?Expires $expires = null,
         protected ?string $Id = null,
         array $elements = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidNCName($Id);
 

@@ -37,7 +37,7 @@ abstract class AbstractStructuredValueType extends AbstractAuthElement
      */
     final public function __construct(
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         // Next one is debatable since the schema allows an empty element, but that makes zero sense
         Assert::allNotEmpty([$children, $namespacedAttributes]);

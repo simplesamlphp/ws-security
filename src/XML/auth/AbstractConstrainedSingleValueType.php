@@ -26,7 +26,7 @@ abstract class AbstractConstrainedSingleValueType extends AbstractAuthElement
      */
     final public function __construct(
         protected ?Value $value = null,
-        protected ?StructuredValue $structuredValue = null
+        protected ?StructuredValue $structuredValue = null,
     ) {
         Assert::oneOf(
             null,

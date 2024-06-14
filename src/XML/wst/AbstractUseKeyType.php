@@ -35,7 +35,7 @@ abstract class AbstractUseKeyType extends AbstractWstElement
      */
     final public function __construct(
         ?SerializableElementInterface $child = null,
-        protected ?string $Sig = null
+        protected ?string $Sig = null,
     ) {
         Assert::nullOrValidURI($Sig, SchemaViolationException::class);
 

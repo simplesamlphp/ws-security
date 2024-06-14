@@ -43,7 +43,7 @@ final class MetadataSection extends AbstractWsxElement
         protected SerializableElementInterface|MetadataReference|Location $child,
         protected string $Dialect,
         protected ?string $Identifier = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::validURI($Dialect);
         Assert::nullOrValidURI($Identifier);

@@ -23,7 +23,7 @@ abstract class AbstractRenewingType extends AbstractWstElement
      */
     final public function __construct(
         protected ?bool $allow = null,
-        protected ?bool $ok = null
+        protected ?bool $ok = null,
     ) {
     }
 

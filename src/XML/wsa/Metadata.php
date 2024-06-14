@@ -78,7 +78,7 @@ final class Metadata extends AbstractWsaElement
 
         return new static(
             $children,
-            self::getAttributesNSFromXML($xml)
+            self::getAttributesNSFromXML($xml),
         );
     }
 

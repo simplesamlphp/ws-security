@@ -39,7 +39,7 @@ final class Metadata extends AbstractWsxElement
     final public function __construct(
         protected array $metadataSection = [],
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);

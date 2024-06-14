@@ -78,7 +78,7 @@ final class ReferenceParameters extends AbstractWsaElement
 
         return new static(
             $children,
-            self::getAttributesNSFromXML($xml)
+            self::getAttributesNSFromXML($xml),
         );
     }
 

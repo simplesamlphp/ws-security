@@ -40,7 +40,7 @@ abstract class AbstractClaimsType extends AbstractWstElement
     final public function __construct(
         protected ?string $dialect = null,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($dialect, SchemaViolationException::class);
 

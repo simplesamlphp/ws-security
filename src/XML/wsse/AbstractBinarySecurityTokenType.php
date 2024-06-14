@@ -36,7 +36,7 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
         protected ?string $valueType = null,
         ?string $Id = null,
         ?string $EncodingType = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($valueType, SchemaViolationException::class);
 

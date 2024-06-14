@@ -30,7 +30,7 @@ abstract class AbstractEncodedString extends AbstractAttributedString
         string $content,
         ?string $Id = null,
         protected ?string $EncodingType = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($EncodingType);
 

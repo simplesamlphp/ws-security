@@ -23,7 +23,7 @@ abstract class AbstractConstrainedManyValueType extends AbstractAuthElement
      */
     final public function __construct(
         protected array $value = [],
-        protected array $structuredValue = []
+        protected array $structuredValue = [],
     ) {
         Assert::oneOf(
             [],

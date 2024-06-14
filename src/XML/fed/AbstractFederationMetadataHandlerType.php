@@ -29,7 +29,7 @@ abstract class AbstractFederationMetadataHandlerType extends AbstractFedElement
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     final public function __construct(
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setAttributesNS($namespacedAttributes);
     }

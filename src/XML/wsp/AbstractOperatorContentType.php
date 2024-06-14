@@ -39,7 +39,7 @@ abstract class AbstractOperatorContentType extends AbstractWspElement
      */
     public function __construct(
         protected array $operatorContent = [],
-        array $children = []
+        array $children = [],
     ) {
         Assert::maxCount($operatorContent, C::UNBOUNDED_LIMIT);
         Assert::maxCount($children, C::UNBOUNDED_LIMIT);

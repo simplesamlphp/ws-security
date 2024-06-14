@@ -40,7 +40,7 @@ abstract class AbstractClaimDialectType extends AbstractFedElement
     final public function __construct(
         protected ?string $Uri = null,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($Uri, SchemaViolationException::class);
         // Next one is debatable since the schema allows an empty element, but that makes zero sense

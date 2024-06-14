@@ -46,7 +46,7 @@ abstract class AbstractClientPseudonymType extends AbstractFedElement
         protected ?DisplayName $displayName = null,
         protected ?EMail $email = null,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);

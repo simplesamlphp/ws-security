@@ -33,7 +33,7 @@ abstract class AbstractProofEncryptionType extends AbstractWstElement
      * @param \SimpleSAML\XML\SerializableElementInterface $child
      */
     final public function __construct(
-        SerializableElementInterface $child
+        SerializableElementInterface $child,
     ) {
         $this->setElements([$child]);
     }

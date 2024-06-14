@@ -36,7 +36,7 @@ abstract class AbstractAttributedURI extends AbstractWsuElement
     final protected function __construct(
         string $uri,
         protected ?string $Id = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidNCName($Id);
 

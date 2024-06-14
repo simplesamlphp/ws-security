@@ -34,7 +34,7 @@ abstract class AbstractAuthenticatorType extends AbstractWstElement
      */
     final public function __construct(
         protected ?CombinedHash $combinedHash = null,
-        array $children = []
+        array $children = [],
     ) {
         $this->setElements($children);
     }

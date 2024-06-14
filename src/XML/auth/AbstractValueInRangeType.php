@@ -25,7 +25,7 @@ abstract class AbstractValueInRangeType extends AbstractAuthElement
      */
     final public function __construct(
         protected ValueUpperBound $valueUpperBound,
-        protected ValueLowerBound $valueLowerBound
+        protected ValueLowerBound $valueLowerBound,
     ) {
     }
 

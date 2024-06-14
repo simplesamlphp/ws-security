@@ -21,7 +21,7 @@ abstract class AbstractRequestSecurityTokenCollectionType extends AbstractWstEle
      * @param array<\SimpleSAML\WSSecurity\XML\wst\RequestSecurityToken> $requestSecurityToken
      */
     final public function __construct(
-        protected array $requestSecurityToken
+        protected array $requestSecurityToken,
     ) {
         Assert::minCount($requestSecurityToken, 2, MissingElementException::class);
         Assert::allIsInstanceOf(

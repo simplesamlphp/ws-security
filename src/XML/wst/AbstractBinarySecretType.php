@@ -41,7 +41,7 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
     final public function __construct(
         string $content,
         ?array $Type = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         if ($Type !== null) {
             $Type = array_map(

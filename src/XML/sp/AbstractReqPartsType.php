@@ -42,7 +42,7 @@ abstract class AbstractReqPartsType extends AbstractSpElement
     final public function __construct(
         protected array $header = [],
         array $details = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setElements($details);
         $this->setAttributesNS($namespacedAttributes);
@@ -91,7 +91,7 @@ abstract class AbstractReqPartsType extends AbstractSpElement
             $xml->localName,
             $qualifiedName,
             sprintf('Unexpected name for Empty: %s. Expected: %s.', $xml->localName, $qualifiedName),
-            InvalidDOMElementException::class
+            InvalidDOMElementException::class,
         );
 
         $header = Header::getChildrenOfClass($xml);

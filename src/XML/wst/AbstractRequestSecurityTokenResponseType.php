@@ -44,7 +44,7 @@ abstract class AbstractRequestSecurityTokenResponseType extends AbstractWstEleme
     final public function __construct(
         protected ?string $context = null,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($context, SchemaViolationException::class);
 

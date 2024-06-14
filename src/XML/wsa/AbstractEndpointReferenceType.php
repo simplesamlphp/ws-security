@@ -55,7 +55,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
         protected array $referenceParameters = [],
         protected array $metadata = [],
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::allIsInstanceOf($referenceParameters, ReferenceParameters::class);
         Assert::allIsInstanceOf($metadata, Metadata::class);
@@ -118,7 +118,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
             $xml->localName,
             $qualifiedName,
             sprintf('Unexpected name for endpoint reference: %s. Expected: %s.', $xml->localName, $qualifiedName),
-            InvalidDOMElementException::class
+            InvalidDOMElementException::class,
         );
 
         $address = Address::getChildrenOfClass($xml);

@@ -38,7 +38,7 @@ final class PolicyReference extends AbstractWspElement
         protected string $URI,
         protected ?string $Digest = null,
         protected ?string $DigestAlgorithm = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::validURI($URI, SchemaViolationException::class);
         Assert::nullOrStringPlausibleBase64($Digest, SchemaViolationException::class);

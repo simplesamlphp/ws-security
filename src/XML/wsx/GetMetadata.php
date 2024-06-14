@@ -36,7 +36,7 @@ final class GetMetadata extends AbstractWsxElement
     final public function __construct(
         protected ?Dialect $dialect = null,
         protected ?Identifier $identifier = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setAttributesNS($namespacedAttributes);
     }

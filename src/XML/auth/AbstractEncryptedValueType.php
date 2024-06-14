@@ -29,7 +29,7 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
      */
     final public function __construct(
         protected EncryptedData $encryptedData,
-        protected ?string $descriptionCondition = null
+        protected ?string $descriptionCondition = null,
     ) {
         Assert::nullOrValidURI($descriptionCondition, SchemaViolationException::class);
     }

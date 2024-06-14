@@ -50,7 +50,7 @@ final class PolicyAttachment extends AbstractWspElement
         protected AppliesTo $appliesTo,
         protected array $policies,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
@@ -119,7 +119,7 @@ final class PolicyAttachment extends AbstractWspElement
             $appliesTo[0],
             $policies,
             $children,
-            self::getAttributesNSFromXML($xml)
+            self::getAttributesNSFromXML($xml),
         );
     }
 

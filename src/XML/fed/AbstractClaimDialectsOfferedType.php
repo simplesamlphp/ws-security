@@ -34,7 +34,7 @@ abstract class AbstractClaimDialectsOfferedType extends AbstractFedElement
      */
     final public function __construct(
         protected array $claimDialect,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::notEmpty($claimDialect, SchemaViolationException::class);
         Assert::allIsInstanceOf($claimDialect, ClaimDialect::class);

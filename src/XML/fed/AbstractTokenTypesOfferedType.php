@@ -42,7 +42,7 @@ abstract class AbstractTokenTypesOfferedType extends AbstractFedElement
     final public function __construct(
         protected array $tokenType,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::notEmpty($tokenType, SchemaViolationException::class);
         Assert::allIsInstanceOf($tokenType, TokenType::class);

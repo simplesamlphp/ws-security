@@ -78,7 +78,7 @@ final class AppliesTo extends AbstractWspElement
 
         return new static(
             $children,
-            self::getAttributesNSFromXML($xml)
+            self::getAttributesNSFromXML($xml),
         );
     }
 

@@ -40,7 +40,7 @@ abstract class AbstractFreshnessType extends AbstractFedElement
     final public function __construct(
         int $content,
         protected ?bool $AllowCache = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setContent(strval($content));
         $this->setAttributesNS($namespacedAttributes);

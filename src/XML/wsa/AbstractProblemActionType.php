@@ -35,7 +35,7 @@ abstract class AbstractProblemActionType extends AbstractWsaElement
     final public function __construct(
         protected ?Action $action = null,
         protected ?SoapAction $soapAction = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setAttributesNS($namespacedAttributes);
     }

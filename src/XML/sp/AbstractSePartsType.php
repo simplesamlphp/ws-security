@@ -47,7 +47,7 @@ abstract class AbstractSePartsType extends AbstractSpElement
         protected array $header = [],
         protected ?Attachments $attachments = null,
         array $details = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setElements($details);
         $this->setAttributesNS($namespacedAttributes);
@@ -120,7 +120,7 @@ abstract class AbstractSePartsType extends AbstractSpElement
             $xml->localName,
             $qualifiedName,
             sprintf('Unexpected name for Empty: %s. Expected: %s.', $xml->localName, $qualifiedName),
-            InvalidDOMElementException::class
+            InvalidDOMElementException::class,
         );
 
         $body = Body::getChildrenOfClass($xml);

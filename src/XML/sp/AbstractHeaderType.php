@@ -35,7 +35,7 @@ abstract class AbstractHeaderType extends AbstractSpElement
     final public function __construct(
         protected string $namespace,
         protected ?string $name = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::validURI($namespace);
         Assert::nullOrValidQName($name);
@@ -84,7 +84,7 @@ abstract class AbstractHeaderType extends AbstractSpElement
             $xml->localName,
             $qualifiedName,
             sprintf('Unexpected name for HeaderType: %s. Expected: %s.', $xml->localName, $qualifiedName),
-            InvalidDOMElementException::class
+            InvalidDOMElementException::class,
         );
 
         $namespacedAttributes = self::getAttributesNSFromXML($xml);

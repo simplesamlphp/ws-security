@@ -25,7 +25,7 @@ abstract class AbstractStatusType extends AbstractWstElement
      */
     final public function __construct(
         protected Code $code,
-        protected ?Reason $reason = null
+        protected ?Reason $reason = null,
     ) {
     }
 

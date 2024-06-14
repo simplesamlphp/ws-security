@@ -43,7 +43,7 @@ abstract class AbstractEmptyType extends AbstractSpElement
             $xml->localName,
             $qualifiedName,
             sprintf('Unexpected name for EmptyType: %s. Expected: %s.', $xml->localName, $qualifiedName),
-            InvalidDOMElementException::class
+            InvalidDOMElementException::class,
         );
 
 

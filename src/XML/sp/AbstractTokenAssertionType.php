@@ -44,7 +44,7 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
     final public function __construct(
         ?IncludeToken $includeToken = null,
         array $elts = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setIncludeToken($includeToken);
         $this->setElements($elts);
@@ -83,7 +83,7 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
             $xml->localName,
             $qualifiedName,
             sprintf('Unexpected name for TokenAssertionType: %s. Expected: %s.', $xml->localName, $qualifiedName),
-            InvalidDOMElementException::class
+            InvalidDOMElementException::class,
         );
 
         try {

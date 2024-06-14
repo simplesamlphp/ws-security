@@ -37,7 +37,7 @@ abstract class AbstractAttributedDateTime extends AbstractWsuElement
     final public function __construct(
         protected DateTimeImmutable $dateTime,
         protected ?string $Id = null,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidNCName($Id);
         $this->setAttributesNS($namespacedAttributes);

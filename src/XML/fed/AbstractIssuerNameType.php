@@ -32,7 +32,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
      */
     final public function __construct(
         protected string $Uri,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::validURI($Uri, SchemaViolationException::class);
 

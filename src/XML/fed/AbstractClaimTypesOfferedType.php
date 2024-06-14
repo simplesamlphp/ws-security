@@ -34,7 +34,7 @@ abstract class AbstractClaimTypesOfferedType extends AbstractFedElement
      */
     final public function __construct(
         protected array $claimType,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::notEmpty($claimType, SchemaViolationException::class);
         Assert::allIsInstanceOf($claimType, ClaimType::class);

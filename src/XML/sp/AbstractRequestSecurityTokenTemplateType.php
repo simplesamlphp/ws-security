@@ -41,7 +41,7 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
     final public function __construct(
         protected ?string $trustVersion = null,
         array $elts = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($trustVersion);
 
@@ -94,7 +94,7 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
                 $xml->localName,
                 $qualifiedName,
             ),
-            InvalidDOMElementException::class
+            InvalidDOMElementException::class,
         );
 
         $elements = [];

@@ -26,7 +26,7 @@ abstract class AbstractRequestedReferenceType extends AbstractWstElement
      * @param \SimpleSAML\WSSecurity\XML\wsse\SecurityTokenReference $securityTokenReference
      */
     final public function __construct(
-        protected SecurityTokenReference $securityTokenReference
+        protected SecurityTokenReference $securityTokenReference,
     ) {
     }
 

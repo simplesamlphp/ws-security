@@ -47,7 +47,7 @@ abstract class AbstractSpnegoContextTokenType extends AbstractSpElement
         protected Issuer|IssuerName|null $issuer,
         ?IncludeToken $includeToken = null,
         array $elts = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setIncludeToken($includeToken);
         $this->setElements($elts);
@@ -98,7 +98,7 @@ abstract class AbstractSpnegoContextTokenType extends AbstractSpElement
             $xml->localName,
             $qualifiedName,
             sprintf('Unexpected name for IssuedTokenType: %s. Expected: %s.', $xml->localName, $qualifiedName),
-            InvalidDOMElementException::class
+            InvalidDOMElementException::class,
         );
 
         $issuer = Issuer::getChildrenOfClass($xml);

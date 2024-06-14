@@ -31,7 +31,7 @@ abstract class AbstractQNameAssertionType extends AbstractSpElement
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -55,7 +55,7 @@ abstract class AbstractQNameAssertionType extends AbstractSpElement
             $xml->localName,
             $qualifiedName,
             sprintf('Unexpected name for QNameAssertion: %s. Expected: %s.', $xml->localName, $qualifiedName),
-            InvalidDOMElementException::class
+            InvalidDOMElementException::class,
         );
 
 

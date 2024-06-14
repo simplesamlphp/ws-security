@@ -34,7 +34,7 @@ final class RelatesTo extends AbstractWsaElement
      */
     public function __construct(
         protected ?string $RelationshipType = 'http://www.w3.org/2005/08/addressing/reply',
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($RelationshipType, SchemaViolationException::class);
 

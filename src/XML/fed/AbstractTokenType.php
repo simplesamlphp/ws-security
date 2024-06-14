@@ -40,7 +40,7 @@ abstract class AbstractTokenType extends AbstractFedElement
     final public function __construct(
         protected ?string $Uri = null,
         array $children = [],
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($Uri, SchemaViolationException::class);
 

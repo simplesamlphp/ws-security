@@ -40,7 +40,7 @@ abstract class AbstractPseudonymBasisType extends AbstractFedElement
      */
     final public function __construct(
         SerializableElementInterface $child,
-        array $namespacedAttributes = []
+        array $namespacedAttributes = [],
     ) {
         $this->setElements([$child]);
         $this->setAttributesNS($namespacedAttributes);
