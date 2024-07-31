@@ -80,8 +80,8 @@ abstract class AbstractAttributedDateTime extends AbstractWsuElement
 
         // Time values MUST be expressed in the UTC timezone using the 'Z' timezone identifier
         // Strip sub-seconds
-        $xml->textContent = preg_replace('/([.][0-9]+Z)$/', 'Z', $xml->textContent, 1);
-        Assert::validDateTimeZulu($xml->textContent, ProtocolViolationException::class);
+        $xml->textContent = preg_replace('/([.][0-9]+)/', '', $xml->textContent, 1);
+        Assert::validDateTime($xml->textContent, ProtocolViolationException::class);
 
         $Id = null;
         if ($xml->hasAttributeNS(static::NS, 'Id')) {
