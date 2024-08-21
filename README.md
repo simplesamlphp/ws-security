@@ -1,6 +1,6 @@
 # WS-Security PHP library
 
-![CI](https://github.com/simplesamlphp/ws-security/workflows/CI/badge.svg?branch=master)
+![CI](https://github.com/simplesamlphp/ws-security/actions/workflows/php.yml/badge.svg)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/simplesamlphp/ws-security/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/simplesamlphp/ws-security/?branch=master)
 [![Coverage Status](https://codecov.io/gh/simplesamlphp/ws-security/branch/master/graph/badge.svg)](https://codecov.io/gh/simplesamlphp/ws-security)
 [![PHPStan Enabled](https://img.shields.io/badge/PHPStan-enabled-brightgreen.svg?style=flat)](https://github.com/simplesamlphp/ws-security)
