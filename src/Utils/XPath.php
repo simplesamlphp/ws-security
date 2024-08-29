@@ -15,7 +15,7 @@ use SimpleSAML\WSSecurity\Constants as C;
  */
 class XPath extends \SimpleSAML\XMLSecurity\Utils\XPath
 {
-    /**
+    /*
      * Get a DOMXPath object that can be used to search for WS Security elements.
      *
      * @param \DOMNode $node The document to associate to the DOMXPath object.
@@ -33,6 +33,7 @@ class XPath extends \SimpleSAML\XMLSecurity\Utils\XPath
         $xp->registerNamespace('trust', C::NS_TRUST);
         $xp->registerNamespace('policy', C::NS_POLICY);
         $xp->registerNamespace('sp', C::NS_SEC_POLICY);
+        $xp->registerNamespace('wsdl', C::NS_WS_DESCRIPTION_LANGUAGE);
         $xp->registerNamespace('wsse', C::NS_SEC_EXT);
         $xp->registerNamespace('wsu', C::NS_SEC_UTIL);
 
