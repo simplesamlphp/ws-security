@@ -77,7 +77,7 @@ abstract class AbstractSecurityTokenServiceType extends AbstractWebServiceDescri
         Assert::minCount($securityTokenServiceEndpoint, 1, MissingElementException::class);
         Assert::allIsInstanceOf(
             $securityTokenServiceEndpoint,
-            AbstractSecurityTokenServiceType::class,
+            SecurityTokenServiceEndpoint::class,
             SchemaViolationException::class,
         );
         Assert::allIsInstanceOf(
