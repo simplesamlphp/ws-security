@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsx;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement;
@@ -20,6 +21,7 @@ use function dirname;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsx')]
 #[CoversClass(Location::class)]
 #[CoversClass(AbstractWsxElement::class)]
 final class LocationTest extends TestCase

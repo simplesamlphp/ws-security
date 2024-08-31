@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
 use SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedValueType;
@@ -28,6 +29,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('auth')]
 #[CoversClass(ConstrainedValue::class)]
 #[CoversClass(AbstractConstrainedValueType::class)]
 #[CoversClass(AbstractAuthElement::class)]

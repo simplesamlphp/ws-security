@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa\SoapAction;
@@ -19,6 +20,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsa')]
 #[CoversClass(SoapAction::class)]
 #[CoversClass(AbstractWsaElement::class)]
 final class SoapActionTest extends TestCase

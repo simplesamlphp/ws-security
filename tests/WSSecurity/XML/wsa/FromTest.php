@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
 use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
 use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
@@ -27,6 +28,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsa')]
 #[CoversClass(From::class)]
 #[CoversClass(AbstractEndpointReferenceType::class)]
 #[CoversClass(AbstractWsaElement::class)]

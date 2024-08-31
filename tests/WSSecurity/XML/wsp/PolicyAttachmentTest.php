@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsp;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
@@ -30,6 +31,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsp')]
 #[CoversClass(PolicyAttachment::class)]
 #[CoversClass(AbstractWspElement::class)]
 final class PolicyAttachmentTest extends TestCase

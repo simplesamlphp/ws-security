@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsu;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsu\AbstractAttributedDateTime;
 use SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement;
@@ -22,6 +23,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsu')]
 #[CoversClass(Expires::class)]
 #[CoversClass(AbstractAttributedDateTime::class)]
 #[CoversClass(AbstractWsuElement::class)]

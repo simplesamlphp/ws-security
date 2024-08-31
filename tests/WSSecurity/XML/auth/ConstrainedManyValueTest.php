@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
@@ -22,6 +23,7 @@ use SimpleSAML\XML\DOMDocumentFactory;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('auth')]
 #[CoversClass(StructuredValue::class)]
 #[CoversClass(ValueOneOf::class)]
 #[CoversClass(AbstractConstrainedManyValueType::class)]

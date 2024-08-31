@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsx;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsx\AbstractWsxElement;
 use SimpleSAML\WSSecurity\XML\wsx\Location;
@@ -24,6 +25,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsx')]
 #[CoversClass(Metadata::class)]
 #[CoversClass(AbstractWsxElement::class)]
 final class MetadataTest extends TestCase

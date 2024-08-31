@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa\AbstractProblemActionType;
@@ -25,6 +26,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsa')]
 #[CoversClass(ProblemAction::class)]
 #[CoversClass(AbstractProblemActionType::class)]
 #[CoversClass(AbstractWsaElement::class)]

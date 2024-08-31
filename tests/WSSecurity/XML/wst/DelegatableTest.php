@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\Delegatable;
@@ -19,6 +20,7 @@ use function dirname;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wst')]
 #[CoversClass(Delegatable::class)]
 #[CoversClass(AbstractWstElement::class)]
 final class DelegatableTest extends TestCase

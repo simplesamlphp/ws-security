@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsse;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString;
 use SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement;
@@ -21,6 +22,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsp')]
 #[CoversClass(Username::class)]
 #[CoversClass(AbstractAttributedString::class)]
 #[CoversClass(AbstractWsseElement::class)]

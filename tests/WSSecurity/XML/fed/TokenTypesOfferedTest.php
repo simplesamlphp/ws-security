@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\AbstractTokenTypesOfferedType;
@@ -24,6 +25,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('fed')]
 #[CoversClass(TokenTypesOffered::class)]
 #[CoversClass(AbstractTokenTypesOfferedType::class)]
 #[CoversClass(AbstractFedElement::class)]

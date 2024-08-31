@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\sp;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath as XMLXPath;
@@ -25,6 +26,7 @@ use function dirname;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('sp')]
 #[CoversClass(EncryptedElements::class)]
 #[CoversClass(AbstractSerElementsType::class)]
 #[CoversClass(AbstractSpElement::class)]

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath;
@@ -28,6 +29,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('auth')]
 #[CoversClass(ClaimType::class)]
 #[CoversClass(AbstractClaimType::class)]
 #[CoversClass(AbstractAuthElement::class)]

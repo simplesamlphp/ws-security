@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wst\AbstractLifetimeType;
 use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
@@ -23,6 +24,7 @@ use function dirname;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wst')]
 #[CoversClass(Lifetime::class)]
 #[CoversClass(AbstractLifetimeType::class)]
 #[CoversClass(AbstractWstElement::class)]

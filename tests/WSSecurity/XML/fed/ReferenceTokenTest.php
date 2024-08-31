@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\fed\AbstractReferenceTokenType;
@@ -33,6 +34,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('fed')]
 #[CoversClass(ReferenceToken::class)]
 #[CoversClass(AbstractReferenceTokenType::class)]
 #[CoversClass(AbstractEndpointReferenceType::class)]

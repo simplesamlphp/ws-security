@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsa;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\AbstractAttributedURIType;
 use SimpleSAML\WSSecurity\XML\wsa\AbstractWsaElement;
@@ -22,6 +23,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsa')]
 #[CoversClass(To::class)]
 #[CoversClass(AbstractAttributedURIType::class)]
 #[CoversClass(AbstractWsaElement::class)]

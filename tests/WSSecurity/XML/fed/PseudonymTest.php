@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\AbstractPseudonymType;
@@ -30,6 +31,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('fed')]
 #[CoversClass(Pseudonym::class)]
 #[CoversClass(AbstractPseudonymType::class)]
 #[CoversClass(AbstractFedElement::class)]

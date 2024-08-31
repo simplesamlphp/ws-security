@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsx;
 
 use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
@@ -25,6 +26,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsx')]
 #[CoversClass(MetadataReference::class)]
 #[CoversClass(AbstractWsxElement::class)]
 final class MetadataReferenceTest extends TestCase

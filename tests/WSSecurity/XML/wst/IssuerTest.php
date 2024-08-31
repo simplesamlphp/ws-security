@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
 use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
@@ -26,6 +27,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wst')]
 #[CoversClass(Issuer::class)]
 #[CoversClass(AbstractEndpointReferenceType::class)]
 #[CoversClass(AbstractWstElement::class)]

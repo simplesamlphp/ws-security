@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
 use SimpleSAML\WSSecurity\XML\wsa\MessageID;
@@ -23,6 +24,7 @@ use function dirname;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wst')]
 #[CoversClass(RequestedSecurityToken::class)]
 #[CoversClass(AbstractRequestedSecurityTokenType::class)]
 #[CoversClass(AbstractWstElement::class)]

@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceEPR;
 use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
@@ -26,6 +27,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('fed')]
 #[CoversClass(ReferenceEPR::class)]
 #[CoversClass(AbstractEndpointReferenceType::class)]
 #[CoversClass(AbstractWsaElement::class)]

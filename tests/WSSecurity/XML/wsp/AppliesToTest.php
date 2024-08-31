@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wsp;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsa\Address;
 use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
@@ -23,6 +24,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wsp')]
 #[CoversClass(AppliesTo::class)]
 #[CoversClass(AbstractWspElement::class)]
 final class AppliesToTest extends TestCase

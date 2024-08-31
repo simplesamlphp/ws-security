@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\fed\AbstractEndpointType;
 use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
@@ -31,6 +32,7 @@ use function strval;
  * @covers \SimpleSAML\WSSecurity\XML\fed\AbstractFedElement
  * @package simplesamlphp/ws-security
  */
+#[Group('fed')]
 #[CoversClass(AttributeServiceEndpoint::class)]
 #[CoversClass(AbstractEndpointType::class)]
 #[CoversClass(AbstractFedElement::class)]

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\wst;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wst\AbstractBinaryExchangeType;
@@ -22,6 +23,7 @@ use function dirname;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('wst')]
 #[CoversClass(BinaryExchange::class)]
 #[CoversClass(AbstractBinaryExchangeType::class)]
 #[CoversClass(AbstractWstElement::class)]

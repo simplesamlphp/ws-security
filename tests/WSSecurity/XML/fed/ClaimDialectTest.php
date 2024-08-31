@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\WSSecurity\XML\fed\AbstractClaimDialectType;
@@ -23,6 +24,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
+#[Group('fed')]
 #[CoversClass(ClaimDialect::class)]
 #[CoversClass(AbstractClaimDialectType::class)]
 #[CoversClass(AbstractFedElement::class)]
