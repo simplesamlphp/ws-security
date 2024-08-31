@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Assert\Assert as SAMLAssert;
+use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\md\{ContactPerson, Extensions, KeyDescriptor, Organization};
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -22,6 +23,16 @@ use function preg_split;
  */
 final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
 {
+    /** @var string */
+    public const NS = C::NS_MD;
+
+    /** @var string */
+    public const NS_PREFIX = 'md';
+
+    /** @var string */
+    public const LOCALNAME = 'RoleDescriptor';
+
+
     /**
      * Convert XML into a SecurityTokenServiceType RoleDescriptor
      *
