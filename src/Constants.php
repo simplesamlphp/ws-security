@@ -58,6 +58,11 @@ class Constants extends \SimpleSAML\SAML2\Constants
     public const NS_METADATA_EXCHANGE = 'http://schemas.xmlsoap.org/ws/2004/09/mex';
 
     /**
+     * The namespace for the Web Service Description Language protocol.
+     */
+    public const NS_WS_DESCRIPTION_LANGUAGE = 'http://schemas.xmlsoap.org/wsdl/';
+
+    /**
      * The schema-defined wsa fault codes
      */
     public const WSA_FAULT_INVALID_ADDRESSING_HEADER = 'InvalidAddressingHeader';
