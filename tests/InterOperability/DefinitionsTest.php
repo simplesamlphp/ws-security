@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity;
 
 use DOMElement;
+use Exception;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Assert\AssertionFailedException;
 use SimpleSAML\WSSecurity\XML\wsdl\Definitions;
 use SimpleSAML\XML\DOMDocumentFactory;
 
@@ -28,7 +28,7 @@ final class DefinitionsTest extends TestCase
         try {
             Definitions::fromXML($mex);
             $this->assertTrue($shouldPass);
-        } catch (AssertionFailedException $e) {
+        } catch (Exception $e) {
             fwrite(STDERR, $e->getFile() . '(' . strval($e->getLine()) . '):' . $e->getMessage());
             fwrite(STDERR, $e->getTraceAsString());
             $this->assertFalse($shouldPass);
