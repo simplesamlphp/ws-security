@@ -32,7 +32,7 @@ abstract class AbstractNestedPolicyType extends AbstractSpElement
     /**
      * Initialize an AbstractNestedPolicyType.
      *
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      * @param \SimpleSAML\XML\Attribute[] $attributes
      */
     final public function __construct(array $elements = [], array $attributes = [])
