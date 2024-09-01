@@ -9,6 +9,7 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\XML\md\Extensions;
 use SimpleSAML\SAML2\XML\md\Organization;
+use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 
@@ -19,6 +20,16 @@ use SimpleSAML\XML\Exception\SchemaViolationException;
  */
 abstract class AbstractSecurityTokenServiceType extends AbstractWebServiceDescriptorType
 {
+    /** @var string */
+    public const XSI_TYPE_PREFIX = 'fed';
+
+    /** @var string */
+    public const XSI_TYPE_NAME = 'SecurityTokenServiceType';
+
+    /** @var string */
+    public const XSI_TYPE_NAMESPACE = C::NS_FED;
+
+
     /**
      * SecurityTokenServiceType constructor.
      *
