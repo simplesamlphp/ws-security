@@ -1,0 +1,14 @@
+<xs:schema targetNamespace="http://schemas.microsoft.com/ws/2005/07/securitypolicy"
+  elementFormDefault="qualified"
+  xmlns:tns="http://schemas.microsoft.com/ws/2005/07/securitypolicy"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702">
+
+  <xs:import namespace="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702"
+    schemaLocation="ws-securitypolicy-1.2.xsd"/>
+
+  <xs:element name="RsaToken" type="sp:TokenAssertionType"/>
+  <xs:element name="MustNotSendCancel" type="sp:QNameAssertionType"/>
+  <xs:element name="RequireClientCertificate" type="sp:QNameAssertionType"/>
+  <xs:element name="SslContextToken" type="sp:TokenAssertionType"/>
+</xs:schema>
