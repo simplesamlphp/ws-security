@@ -11,6 +11,7 @@ use SimpleSAML\SAML2\Assert\Assert as SAMLAssert;
 use SimpleSAML\SAML2\XML\md\{ContactPerson, Extensions, KeyDescriptor, Organization};
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XMLSecurity\XML\ds\Signature;
 
@@ -23,10 +24,6 @@ use function preg_split;
  */
 final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
 {
-    public const XSI_TYPE_PREFIX = 'fed';
-    public const XSI_TYPE_NAME = 'SecurityTokenServiceType';
-    public const XSI_TYPE_NAMESPACE = C::NS_FED;
-
     /**
      * Convert XML into a SecurityTokenServiceType RoleDescriptor
      *
@@ -51,6 +48,7 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
 
         $type = $xml->getAttributeNS(C::NS_XSI, 'type');
         Assert::validQName($type, SchemaViolationException::class);
+        Assert::same($type, static::XSI_TYPE_PREFIX . ':' . static::XSI_TYPE_NAME,);
 
         $protocols = self::getAttribute($xml, 'protocolSupportEnumeration');
         $validUntil = self::getOptionalAttribute($xml, 'validUntil', null);
@@ -137,7 +135,6 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
         );
 
         $securityTokenServiceType = new static(
-            $type,
             preg_split('/[\s]+/', trim($protocols)),
             self::getOptionalAttribute($xml, 'ID', null),
             $validUntil !== null ? new DateTimeImmutable($validUntil) : null,
