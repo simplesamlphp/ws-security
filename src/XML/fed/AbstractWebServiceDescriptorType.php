@@ -6,7 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DateTimeImmutable;
 use DOMElement;
-use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptorType;
+use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptor;
 use SimpleSAML\SAML2\XML\md\Extensions;
 use SimpleSAML\SAML2\XML\md\Organization;
 
@@ -15,18 +15,12 @@ use SimpleSAML\SAML2\XML\md\Organization;
  *
  * @package simplesamlphp/ws-security
  */
-abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptorType
+abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
 {
-    /** @var string */
-    public const NS = AbstractFedElement::NS;
-
-    /** @var string */
-    public const NS_PREFIX = AbstractFedElement::NS_PREFIX;
-
-
     /**
      * WebServiceDescriptorType constructor.
      *
+     * @param string $type The xsi-type of the element
      * @param string[] $protocolSupportEnumeration A set of URI specifying the protocols supported.
      * @param string|null $ID The ID for this document. Defaults to null.
      * @param \DateTimeImmutable|null $validUntil Unix time of validity for this document. Defaults to null.
@@ -51,6 +45,7 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptorTy
      * @param string|null $serviceDescription
      */
     protected function __construct(
+        string $type,
         array $protocolSupportEnumeration,
         ?string $ID = null,
         ?DateTimeImmutable $validUntil = null,
@@ -72,6 +67,7 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptorTy
         protected ?string $serviceDescription = null,
     ) {
         parent::__construct(
+            $type,
             $protocolSupportEnumeration,
             $ID,
             $validUntil,

@@ -97,6 +97,7 @@ abstract class AbstractSecurityTokenServiceType extends AbstractWebServiceDescri
         );
 
         parent::__construct(
+            static::XSI_TYPE_PREFIX . ':' . static::XSI_TYPE_NAME,
             $protocolSupportEnumeration,
             $ID,
             $validUntil,

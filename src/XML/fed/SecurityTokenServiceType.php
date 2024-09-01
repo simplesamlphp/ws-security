@@ -8,8 +8,8 @@ use DateTimeImmutable;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Assert\Assert as SAMLAssert;
-use SimpleSAML\SAML2\Constants as C;
 use SimpleSAML\SAML2\XML\md\{ContactPerson, Extensions, KeyDescriptor, Organization};
+use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XMLSecurity\XML\ds\Signature;
@@ -23,15 +23,9 @@ use function preg_split;
  */
 final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
 {
-    /** @var string */
-    public const NS = C::NS_MD;
-
-    /** @var string */
-    public const NS_PREFIX = 'md';
-
-    /** @var string */
-    public const LOCALNAME = 'RoleDescriptor';
-
+    public const XSI_TYPE_PREFIX = 'fed';
+    public const XSI_TYPE_NAME = 'SecurityTokenServiceType';
+    public const XSI_TYPE_NAMESPACE = C::NS_FED;
 
     /**
      * Convert XML into a SecurityTokenServiceType RoleDescriptor
@@ -48,6 +42,15 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
     {
         Assert::same($xml->localName, 'RoleDescriptor', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
+
+        Assert::true(
+            $xml->hasAttributeNS(C::NS_XSI, 'type'),
+            'Missing required xsi:type in <saml:RoleDescriptor> element.',
+            SchemaViolationException::class,
+        );
+
+        $type = $xml->getAttributeNS(C::NS_XSI, 'type');
+        Assert::validQName($type, SchemaViolationException::class);
 
         $protocols = self::getAttribute($xml, 'protocolSupportEnumeration');
         $validUntil = self::getOptionalAttribute($xml, 'validUntil', null);
@@ -134,6 +137,7 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
         );
 
         $securityTokenServiceType = new static(
+            $type,
             preg_split('/[\s]+/', trim($protocols)),
             self::getOptionalAttribute($xml, 'ID', null),
             $validUntil !== null ? new DateTimeImmutable($validUntil) : null,
