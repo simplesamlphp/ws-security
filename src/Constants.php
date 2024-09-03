@@ -63,6 +63,11 @@ class Constants extends \SimpleSAML\SAML2\Constants
     public const NS_WS_DESCRIPTION_LANGUAGE = 'http://schemas.xmlsoap.org/wsdl/';
 
     /**
+     * The namespace for the Web Service Addressing - WSDL Binding.
+     */
+    public const NS_WSDL_ADDR = 'http://www.w3.org/2006/05/addressing/wsdl';
+
+    /**
      * The namespace for the Web Service Security Policy protocol.
      */
     public const NS_WS_SEC = 'http://schemas.microsoft.com/ws/2005/07/securitypolicy';

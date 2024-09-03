@@ -1,0 +1,1 @@
+<wsaw:ServiceName xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ssp="urn:x-simplesamlphp:namespace" EndpointName="PHPUnit" ssp:attr1="value1">ssp:Chunk</wsaw:ServiceName>
