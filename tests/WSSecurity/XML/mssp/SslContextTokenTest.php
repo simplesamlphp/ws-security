@@ -9,9 +9,9 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\mssp\SslContextToken;
-use SimpleSAML\WSSecurity\XML\sp\AbstractTokenAssertionType;
-use SimpleSAML\WSSecurity\XML\sp\IncludeToken;
-use SimpleSAML\WSSecurity\XML\sp\IncludeTokenTypeTrait;
+use SimpleSAML\WSSecurity\XML\sp_200507\AbstractTokenAssertionType;
+use SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken;
+use SimpleSAML\WSSecurity\XML\sp_200507\IncludeTokenTypeTrait;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -58,7 +58,7 @@ final class SslContextTokenTest extends TestCase
      */
     public function testMarshallingEmptyElement(): void
     {
-        $msspns = C::NS_WS_SEC;
+        $msspns = C::NS_SEC_POLICY_11;
         $sslContextToken = new SslContextToken();
         $this->assertEquals(
             "<mssp:SslContextToken xmlns:mssp=\"$msspns\"/>",

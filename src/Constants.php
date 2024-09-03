@@ -43,9 +43,10 @@ class Constants extends \SimpleSAML\SAML2\Constants
     public const NS_SEC_EXT = 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd';
 
     /**
-     * The namespace for WS Security Policy.
+     * The namespace for the Web Service Security Policy protocol.
      */
-    public const NS_SEC_POLICY = 'http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702';
+    public const NS_SEC_POLICY_11 = 'http://schemas.microsoft.com/ws/2005/07/securitypolicy';
+    public const NS_SEC_POLICY_12 = 'http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702';
 
     /**
      * The namespace for WS-Security utilities protocol.
@@ -66,11 +67,6 @@ class Constants extends \SimpleSAML\SAML2\Constants
      * The namespace for the Web Service Addressing - WSDL Binding.
      */
     public const NS_WSDL_ADDR = 'http://www.w3.org/2006/05/addressing/wsdl';
-
-    /**
-     * The namespace for the Web Service Security Policy protocol.
-     */
-    public const NS_WS_SEC = 'http://schemas.microsoft.com/ws/2005/07/securitypolicy';
 
     /**
      * The schema-defined wsa fault codes

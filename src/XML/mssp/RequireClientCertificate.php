@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\mssp;
 
-use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\sp\AbstractQNameAssertionType;
+use SimpleSAML\WSSecurity\XML\sp_200507\AbstractQNameAssertionType;
 
 /**
  * An RequireClientCertificate element
@@ -14,9 +13,6 @@ use SimpleSAML\WSSecurity\XML\sp\AbstractQNameAssertionType;
  */
 final class RequireClientCertificate extends AbstractQNameAssertionType
 {
-    /** @var string */
-    public const NS = C::NS_WS_SEC;
-
     /** @var string */
     public const NS_PREFIX = 'mssp';
 }

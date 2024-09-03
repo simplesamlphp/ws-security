@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\fed;
 
-use SimpleSAML\WSSecurity\XML\sp\AbstractTokenAssertionType;
+use SimpleSAML\WSSecurity\XML\sp_200702\AbstractTokenAssertionType;
 
 /**
  * An RequireReferenceToken element

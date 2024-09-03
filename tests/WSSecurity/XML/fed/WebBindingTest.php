@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\Test\WSSecurity\XML\sp\NestedPolicyTypeTestTrait;
+use SimpleSAML\Test\WSSecurity\XML\sp_200702\NestedPolicyTypeTestTrait;
 use SimpleSAML\WSSecurity\XML\fed\WebBinding;
 use SimpleSAML\WSSecurity\XML\sp\AbstractNestedPolicyType;
 use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;

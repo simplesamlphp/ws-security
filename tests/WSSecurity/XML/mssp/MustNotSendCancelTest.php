@@ -7,10 +7,10 @@ namespace SimpleSAML\Test\WSSecurity\XML\mssp;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\Test\WSSecurity\XML\sp\QNameAssertionTypeTestTrait;
+use SimpleSAML\Test\WSSecurity\XML\sp_200507\QNameAssertionTypeTestTrait;
 use SimpleSAML\WSSecurity\XML\mssp\MustNotSendCancel;
-use SimpleSAML\WSSecurity\XML\sp\AbstractQNameAssertionType;
-use SimpleSAML\WSSecurity\XML\sp\AbstractSpElement;
+use SimpleSAML\WSSecurity\XML\sp_200507\AbstractQNameAssertionType;
+use SimpleSAML\WSSecurity\XML\sp_200507\AbstractSpElement;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -18,7 +18,7 @@ use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use function dirname;
 
 /**
- * Class \SimpleSAML\WSSecurity\XML\sp\MustNotSendCancelTest
+ * Class \SimpleSAML\WSSecurity\XML\mssp\MustNotSendCancelTest
  *
  * @package simplesamlphp/ws-security
  */

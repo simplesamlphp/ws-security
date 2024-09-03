@@ -32,7 +32,8 @@ class XPath extends \SimpleSAML\XMLSecurity\Utils\XPath
         $xp->registerNamespace('fed', C::NS_FED);
         $xp->registerNamespace('trust', C::NS_TRUST);
         $xp->registerNamespace('policy', C::NS_POLICY);
-        $xp->registerNamespace('sp', C::NS_SEC_POLICY);
+        $xp->registerNamespace('sp11', C::NS_SEC_POLICY_11);
+        $xp->registerNamespace('sp12', C::NS_SEC_POLICY_12);
         $xp->registerNamespace('wsdl', C::NS_WS_DESCRIPTION_LANGUAGE);
         $xp->registerNamespace('wsse', C::NS_SEC_EXT);
         $xp->registerNamespace('wsu', C::NS_SEC_UTIL);

@@ -13,7 +13,7 @@ use SimpleSAML\WSSecurity\XML\fed\AbstractFilterPseudonymsType;
 use SimpleSAML\WSSecurity\XML\fed\FilterPseudonyms;
 use SimpleSAML\WSSecurity\XML\fed\PseudonymBasis;
 use SimpleSAML\WSSecurity\XML\fed\RelativeTo;
-use SimpleSAML\WSSecurity\XML\sp\NoPassword;
+use SimpleSAML\WSSecurity\XML\sp_200702\NoPassword;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
