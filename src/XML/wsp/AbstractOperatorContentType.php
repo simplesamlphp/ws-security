@@ -11,6 +11,7 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\SerializableElementInterface;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**
@@ -35,7 +36,7 @@ abstract class AbstractOperatorContentType extends AbstractWspElement
      *         \SimpleSAML\WSSecurity\XML\wsp\ExactlyOne|
      *         \SimpleSAML\WSSecurity\XML\wsp\Policy|
      *         \SimpleSAML\WSSecurity\XML\wsp\PolicyReference)[] $operatorContent
-     * @param \SimpleSAML\XML\Chunk[] $children
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      */
     public function __construct(
         protected array $operatorContent = [],
@@ -50,7 +51,7 @@ abstract class AbstractOperatorContentType extends AbstractWspElement
         );
         Assert::allIsInstanceOfAny(
             $children,
-            [Chunk::class],
+            [SerializableElementInterface::class],
             InvalidArgumentException::class,
         );
 
