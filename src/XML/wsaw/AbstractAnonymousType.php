@@ -5,12 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wsaw;
 
 use DOMElement;
-use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use ValueError;
-
-use function sprintf;
 
 /**
  * Abstract class defining the Anonymous type

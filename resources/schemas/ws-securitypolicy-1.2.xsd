@@ -29,7 +29,7 @@ MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
 	blockDefault="#all" >
 
   <xs:import namespace="http://www.w3.org/2005/08/addressing" 
-		schemaLocation="ws-addr.xsd" />
+		schemaLocation="ws-addr-200508.xsd" />
 
   <!--
 	4. Protection Assertions

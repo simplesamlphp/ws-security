@@ -6,10 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wsaw;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\XsNamespace as NS;
+
+use function sprintf;
 
 /**
  * Class defining the Anonymous element
@@ -56,7 +57,9 @@ final class Anonymous extends AbstractAnonymousType
         try {
             $anonymous = AnonymousEnum::from($xml->textContent);
         } catch (ValueError) {
-            throw new SchemaViolationException(sprintf('Unknown value \'%s\' for Anonymous element.', $xml->textContent));
+            throw new SchemaViolationException(
+                sprintf('Unknown value \'%s\' for Anonymous element.', $xml->textContent),
+            );
         }
 
         return new static($anonymous, self::getAttributesNSFromXML($xml));

@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <xs:schema
 	targetNamespace="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"
-    xmlns:tns="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"
+	xmlns:tns="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"
 	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
 	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	elementFormDefault="qualified"
 	blockDefault="#all" >
 
 	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" 
-		schemaLocation="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+		schemaLocation="ws-addr-200408.xsd" />
 
 	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/09/policy" 
 		schemaLocation="ws-policy.xsd" />

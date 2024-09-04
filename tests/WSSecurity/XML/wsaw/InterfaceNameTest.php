@@ -8,8 +8,8 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsaw\AbstractWsdlElement;
 use SimpleSAML\WSSecurity\XML\wsaw\AbstractAttributedQNameType;
+use SimpleSAML\WSSecurity\XML\wsaw\AbstractWsawElement;
 use SimpleSAML\WSSecurity\XML\wsaw\InterfaceName;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -25,7 +25,7 @@ use function dirname;
  */
 #[Group('wsaw')]
 #[CoversClass(InterfaceName::class)]
-#[CoversClass(AbstractQNameAttributedQNameType::class)]
+#[CoversClass(AbstractAttributedQNameType::class)]
 #[CoversClass(AbstractWsawElement::class)]
 final class InterfaceNameTest extends TestCase
 {

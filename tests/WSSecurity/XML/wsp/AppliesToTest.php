@@ -7,8 +7,8 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsp;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\XML\wsa\Address;
-use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
+use SimpleSAML\WSSecurity\XML\wsa_200508\Address;
+use SimpleSAML\WSSecurity\XML\wsa_200508\EndpointReference;
 use SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement;
 use SimpleSAML\WSSecurity\XML\wsp\AppliesTo;
 use SimpleSAML\XML\Attribute;
@@ -39,7 +39,7 @@ final class AppliesToTest extends TestCase
     {
         self::$testedClass = AppliesTo::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-policy.xsd';
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-policy-200409.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsp_AppliesTo.xml',

@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
-use SimpleSAML\WSSecurity\XML\wsa\MessageID;
+use SimpleSAML\WSSecurity\XML\wsa_200508\MessageID;
 use SimpleSAML\WSSecurity\XML\wst\AbstractKeyExchangeTokenType;
 use SimpleSAML\WSSecurity\XML\wst\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst\KeyExchangeToken;
