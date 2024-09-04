@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wst;
 
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
+use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
 
 /**
  * An Issuer element

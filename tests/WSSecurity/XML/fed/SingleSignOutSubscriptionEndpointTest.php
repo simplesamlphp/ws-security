@@ -11,10 +11,10 @@ use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\fed\AbstractEndpointType;
 use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\SingleSignOutSubscriptionEndpoint;
-use SimpleSAML\WSSecurity\XML\wsa\Address;
-use SimpleSAML\WSSecurity\XML\wsa\EndpointReference;
-use SimpleSAML\WSSecurity\XML\wsa\Metadata;
-use SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters;
+use SimpleSAML\WSSecurity\XML\wsa_200508\Address;
+use SimpleSAML\WSSecurity\XML\wsa_200508\EndpointReference;
+use SimpleSAML\WSSecurity\XML\wsa_200508\Metadata;
+use SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -76,7 +76,7 @@ final class SingleSignOutSubscriptionEndpointTest extends TestCase
         )->documentElement;
 
         self::$endpointReference = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa_EndpointReference.xml',
+            dirname(__FILE__, 4) . '/resources/xml/wsa/200508/EndpointReference.xml',
         )->documentElement;
     }
 

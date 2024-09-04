@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\fed;
 
-use SimpleSAML\WSSecurity\XML\wsa\AbstractEndpointReferenceType;
+use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
 
 /**
  * A ReferenceEPR element

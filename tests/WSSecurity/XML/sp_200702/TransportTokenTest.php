@@ -47,7 +47,7 @@ final class TransportTokenTest extends TestCase
     {
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-securitypolicy-1.2.xsd';
 
-        self::$testedClass = Transp12ortToken::class;
+        self::$testedClass = TransportToken::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/sp/200702/TransportToken.xml',

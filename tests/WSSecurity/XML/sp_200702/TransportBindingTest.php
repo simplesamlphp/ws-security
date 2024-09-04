@@ -47,7 +47,7 @@ final class TransportBindingTest extends TestCase
     {
         self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-securitypolicy-1.2.xsd';
 
-        self::$testedClass = Transp12ortBinding::class;
+        self::$testedClass = TransportBinding::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/sp/200702/TransportBinding.xml',
