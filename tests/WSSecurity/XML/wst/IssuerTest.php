@@ -88,8 +88,8 @@ final class IssuerTest extends TestCase
 
         $issuer = new Issuer(
             new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
-            [$referenceParameters],
-            [$metadata],
+            $referenceParameters,
+            $metadata,
             [$chunk],
             [$attr1],
         );

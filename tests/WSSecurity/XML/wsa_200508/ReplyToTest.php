@@ -95,8 +95,8 @@ final class ReplyToTest extends TestCase
 
         $replyTo = new ReplyTo(
             new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
-            [$referenceParameters],
-            [$metadata],
+            $referenceParameters,
+            $metadata,
             [$chunk],
             [$attr1],
         );

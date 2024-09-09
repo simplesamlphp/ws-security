@@ -117,8 +117,8 @@ final class ReferenceTokenTest extends TestCase
 
         $referenceEPR = new ReferenceEPR(
             new Address('https://login.microsoftonline.com/login.srf', [$attr3]),
-            [$referenceParameters],
-            [$metadata],
+            $referenceParameters,
+            $metadata,
             [$chunk],
             [$attr2],
         );

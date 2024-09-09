@@ -89,8 +89,8 @@ final class ReferenceEPRTest extends TestCase
 
         $referenceEPR = new ReferenceEPR(
             new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
-            [$referenceParameters],
-            [$metadata],
+            $referenceParameters,
+            $metadata,
             [$chunk],
             [$attr1],
         );

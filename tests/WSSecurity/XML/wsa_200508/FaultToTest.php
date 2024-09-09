@@ -95,8 +95,8 @@ final class FaultToTest extends TestCase
 
         $faultTo = new FaultTo(
             new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
-            [$referenceParameters],
-            [$metadata],
+            $referenceParameters,
+            $metadata,
             [$chunk],
             [$attr1],
         );

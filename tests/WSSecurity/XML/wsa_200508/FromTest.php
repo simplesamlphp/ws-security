@@ -95,8 +95,8 @@ final class FromTest extends TestCase
 
         $from = new From(
             new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
-            [$referenceParameters],
-            [$metadata],
+            $referenceParameters,
+            $metadata,
             [$chunk],
             [$attr1],
         );

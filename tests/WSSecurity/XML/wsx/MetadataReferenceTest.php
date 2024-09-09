@@ -77,8 +77,8 @@ final class MetadataReferenceTest extends TestCase
 
         $endpointReference = new EndpointReference(
             new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
-            [],
-            [],
+            null,
+            null,
             [$chunk],
             [$attr1],
         );
