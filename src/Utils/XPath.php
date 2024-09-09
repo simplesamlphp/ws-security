@@ -27,7 +27,8 @@ class XPath extends \SimpleSAML\XMLSecurity\Utils\XPath
     {
         $xp = parent::getXPath($node);
 
-        $xp->registerNamespace('addr', C::NS_ADDR);
+        $xp->registerNamespace('wsa', C::NS_ADDR_200508);
+        $xp->registerNamespace('wsa', C::NS_ADDR_200408);
         $xp->registerNamespace('auth', C::NS_AUTH);
         $xp->registerNamespace('fed', C::NS_FED);
         $xp->registerNamespace('trust', C::NS_TRUST);

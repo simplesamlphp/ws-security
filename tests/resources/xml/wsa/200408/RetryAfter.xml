@@ -1,0 +1,1 @@
+<wsa:RetryAfter xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">30</wsa:RetryAfter>

@@ -1,0 +1,1 @@
+<wsa:RelatesTo xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" RelationshipType="ssp:Chunk" ssp:test="value">https://login.microsoftonline.com/login.srf</wsa:RelatesTo>

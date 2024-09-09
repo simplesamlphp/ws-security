@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\WSSecurity\XML\wsa_200508;
+namespace SimpleSAML\WSSecurity\XML\wsa_200408;
 
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\AbstractElement;
@@ -15,7 +15,7 @@ use SimpleSAML\XML\AbstractElement;
 abstract class AbstractWsaElement extends AbstractElement
 {
     /** @var string */
-    public const NS = C::NS_ADDR_200508;
+    public const NS = C::NS_ADDR_200408;
 
     /** @var string */
     public const NS_PREFIX = 'wsa';

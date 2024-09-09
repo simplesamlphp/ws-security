@@ -15,7 +15,8 @@ class Constants extends \SimpleSAML\SAML2\Constants
     /**
      * The namespace for WS-Addressing protocol.
      */
-    public const NS_ADDR = 'http://www.w3.org/2005/08/addressing';
+    public const NS_ADDR_200408 = 'http://schemas.xmlsoap.org/ws/2004/08/addressing';
+    public const NS_ADDR_200508 = 'http://www.w3.org/2005/08/addressing';
 
     /**
      * The namespace for WS-Authorization protocol.

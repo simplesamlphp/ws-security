@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SimpleSAML\WSSecurity\XML\wsa_200508;
+namespace SimpleSAML\WSSecurity\XML\wsa_200408;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
@@ -42,9 +42,11 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * EndpointReferenceType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\wsa_200508\Address $address
-     * @param \SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters|null $referenceParameters
-     * @param \SimpleSAML\WSSecurity\XML\wsa_200508\Metadata|null $metadata
+     * @param \SimpleSAML\WSSecurity\XML\wsa_200408\Address $address
+     * @param \SimpleSAML\WSSecurity\XML\wsa_200408\ReferenceProperties|null $referenceProperties
+     * @param \SimpleSAML\WSSecurity\XML\wsa_200408\ReferenceParameters|null $referenceParameters
+     * @param \SimpleSAML\WSSecurity\XML\wsa_200408\PortType|null $portType
+     * @param \SimpleSAML\WSSecurity\XML\wsa_200408\ServiceName|null $serviceName
      * @param \SimpleSAML\XML\Chunk[] $children
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      *
@@ -52,8 +54,10 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
      */
     final public function __construct(
         protected Address $address,
+        protected ?ReferenceProperties $referenceProperties = null,
         protected ?ReferenceParameters $referenceParameters = null,
-        protected ?Metadata $metadata = null,
+        protected ?PortType $portType = null,
+        protected ?ServiceName $serviceName = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
@@ -65,7 +69,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Collect the value of the address property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\wsa_200508\Address
+     * @return \SimpleSAML\WSSecurity\XML\wsa_200408\Address
      */
     public function getAddress(): Address
     {
@@ -74,9 +78,20 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 
 
     /**
+     * Collect the value of the referenceProperties property.
+     *
+     * @return \SimpleSAML\WSSecurity\XML\wsa_200408\ReferenceProperties|null
+     */
+    public function getReferenceProperties(): ?ReferenceProperties
+    {
+        return $this->referenceProperties;
+    }
+
+
+    /**
      * Collect the value of the referenceParameters property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters|null
+     * @return \SimpleSAML\WSSecurity\XML\wsa_200408\ReferenceParameters|null
      */
     public function getReferenceParameters(): ?ReferenceParameters
     {
@@ -85,13 +100,24 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 
 
     /**
-     * Collect the value of the metadata property.
+     * Collect the value of the portType property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\wsa_200508\Metadata|null
+     * @return \SimpleSAML\WSSecurity\XML\wsa_200408\PortType|null
      */
-    public function getMetadata(): ?Metadata
+    public function getPortType(): ?PortType
     {
-        return $this->metadata;
+        return $this->portType;
+    }
+
+
+    /**
+     * Collect the value of the serviceName property.
+     *
+     * @return \SimpleSAML\WSSecurity\XML\wsa_200408\ServiceName|null
+     */
+    public function getServiceName(): ?ServiceName
+    {
+        return $this->serviceName;
     }
 
 
@@ -122,17 +148,23 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
         Assert::minCount($address, 1, MissingElementException::class);
         Assert::maxCount($address, 1, TooManyElementsException::class);
 
+        $referenceProperties = ReferenceProperties::getChildrenOfClass($xml);
+        Assert::maxCount($referenceProperties, 1, TooManyElementsException::class);
+
         $referenceParameters = ReferenceParameters::getChildrenOfClass($xml);
         Assert::maxCount($referenceParameters, 1, TooManyElementsException::class);
 
-        $metadata = Metadata::getChildrenOfClass($xml);
-        Assert::maxCount($metadata, 1, TooManyElementsException::class);
+        $portType = PortType::getChildrenOfClass($xml);
+        Assert::maxCount($portType, 1, TooManyElementsException::class);
+
+        $serviceName = ServiceName::getChildrenOfClass($xml);
+        Assert::maxCount($serviceName, 1, TooManyElementsException::class);
 
         $children = [];
         foreach ($xml->childNodes as $child) {
             if (!($child instanceof DOMElement)) {
                 continue;
-            } elseif ($child->namespaceURI === C::NS_ADDR_200508) {
+            } elseif ($child->namespaceURI === C::NS_ADDR_200408) {
                 continue;
             }
 
@@ -141,8 +173,10 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
 
         return new static(
             array_pop($address),
+            array_pop($referenceProperties),
             array_pop($referenceParameters),
-            array_pop($metadata),
+            array_pop($portType),
+            array_pop($serviceName),
             $children,
             self::getAttributesNSFromXML($xml),
         );
@@ -164,10 +198,12 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
         }
 
         $this->getAddress()->toXML($e);
-        $this->getReferenceParameters()?->toXML($e);
-        $this->getMetadata()?->toXML($e);
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
+        $this->getReferenceProperties()?->toXML($e);
+        $this->getReferenceParameters()?->toXML($e);
+        $this->getPortType()?->toXML($e);
+        $this->getServiceName()?->toXML($e);
+
         foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {
                 $child->toXML($e);
