@@ -52,8 +52,8 @@ abstract class AbstractAttributedLongType extends AbstractWsaElement
     protected function validateContent(string $content): void
     {
         $content = intval($content);
-        Assert::integer($content);
-        Assert::range($content, -9223372036854775808, 9223372036854775807, SchemaViolationException::class);
+        Assert::natural($content, SchemaViolationException::class);
+        Assert::range($content, 0, 18446744073709551615, SchemaViolationException::class);
     }
 
 
