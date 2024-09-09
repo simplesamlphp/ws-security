@@ -35,7 +35,7 @@ abstract class AbstractReqPartsType extends AbstractSpElement
     /**
      * AbstractReqPartsType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp\Header[] $header
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\Header[] $header
      * @param \SimpleSAML\XML\Chunk[] $details
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
@@ -52,7 +52,7 @@ abstract class AbstractReqPartsType extends AbstractSpElement
     /**
      * Collect the Header
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp\Header[]
+     * @return \SimpleSAML\WSSecurity\XML\sp_200702\Header[]
      */
     public function getHeader(): array
     {

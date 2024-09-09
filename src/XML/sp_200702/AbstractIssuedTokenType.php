@@ -40,9 +40,9 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
     /**
      * IssuedTokenType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp\RequestSecurityTokenTemplate $requestSecurityTokenTemplate
-     * @param \SimpleSAML\WSSecurity\XML\sp\Issuer|\SimpleSAML\WSSecurity\XML\sp\IssuerName|null $issuer
-     * @param \SimpleSAML\WSSecurity\XML\sp\IncludeToken|null $includeToken
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\RequestSecurityTokenTemplate $requestSecurityTokenTemplate
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\Issuer|\SimpleSAML\WSSecurity\XML\sp_200702\IssuerName|null $issuer
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken|null $includeToken
      * @param list<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
@@ -62,7 +62,7 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
     /**
      * Collect the value of the Issuer property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp\Issuer|\SimpleSAML\WSSecurity\XML\sp\IssuerName|null
+     * @return \SimpleSAML\WSSecurity\XML\sp_200702\Issuer|\SimpleSAML\WSSecurity\XML\sp_200702\IssuerName|null
      */
     public function getIssuer(): Issuer|IssuerName|null
     {
@@ -73,7 +73,7 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
     /**
      * Collect the value of the RequestSecurityTokenTemplate property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp\RequestSecurityTokenTemplate
+     * @return \SimpleSAML\WSSecurity\XML\sp_200702\RequestSecurityTokenTemplate
      */
     public function getRequestSecurityTokenTemplate(): RequestSecurityTokenTemplate
     {

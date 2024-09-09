@@ -78,7 +78,7 @@ final class ProblemActionTest extends TestCase
      */
     public function testMarshallingEmptyElement(): void
     {
-        $wsans = C::NS_ADDR;
+        $wsans = C::NS_ADDR_200508;
         $problemAction = new ProblemAction();
         $this->assertEquals(
             "<wsa:ProblemAction xmlns:wsa=\"$wsans\"/>",

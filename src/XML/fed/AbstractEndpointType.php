@@ -31,7 +31,7 @@ abstract class AbstractEndpointType extends AbstractFedElement
 
 
     /**
-     * @return array<\SimpleSAML\WSSecurity\XML\wsa\EndpointReference>
+     * @return array<\SimpleSAML\WSSecurity\XML\wsa_200508\EndpointReference>
      */
     public function getEndpointReference(): array
     {

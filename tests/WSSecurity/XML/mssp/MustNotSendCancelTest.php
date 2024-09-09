@@ -42,7 +42,7 @@ final class MustNotSendCancelTest extends TestCase
         self::$testedClass = MustNotSendCancel::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/mssp_MustNotSendCancel.xml',
+            dirname(__FILE__, 4) . '/resources/xml/mssp/MustNotSendCancel.xml',
         );
     }
 }

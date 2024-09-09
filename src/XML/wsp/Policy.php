@@ -7,6 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsp;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
@@ -30,7 +31,7 @@ final class Policy extends AbstractOperatorContentType
      * Initialize a wsp:Policy
      *
      * @param string|null $Name
-     * @param string|null $Id
+     * @param \SimpleSAML\XML\Attribute|null $Id
      * @param (\SimpleSAML\WSSecurity\XML\wsp\All|
      *         \SimpleSAML\WSSecurity\XML\wsp\ExactlyOne|
      *         \SimpleSAML\WSSecurity\XML\wsp\Policy|
@@ -40,13 +41,15 @@ final class Policy extends AbstractOperatorContentType
      */
     public function __construct(
         protected ?string $Name = null,
-        protected ?string $Id = null,
+        protected ?XMLAttribute $Id = null,
         array $operatorContent = [],
         array $children = [],
         array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($Name, SchemaViolationException::class);
-        Assert::nullOrValidNCName($Id, SchemaViolationException::class);
+        if ($Id !== null) {
+            Assert::validNCName($Id->getAttrValue(), SchemaViolationException::class);
+        }
 
         $this->setAttributesNS($namespacedAttributes);
 
@@ -55,9 +58,9 @@ final class Policy extends AbstractOperatorContentType
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XML\Attribute|null
      */
-    public function getId(): ?string
+    public function getId(): ?XMLAttribute
     {
         return $this->Id;
     }
@@ -103,7 +106,7 @@ final class Policy extends AbstractOperatorContentType
 
         $Id = null;
         if ($xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')) {
-            $Id = $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id');
+            $Id = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id'));
         }
 
         $namespacedAttributes = self::getAttributesNSFromXML($xml);
@@ -159,7 +162,8 @@ final class Policy extends AbstractOperatorContentType
     {
         $e = parent::toXML($parent);
         $e->setAttribute('Name', $this->getName());
-        $e->setAttributeNS(C::NS_SEC_UTIL, 'wsu:Id', $this->getId());
+
+        $this->getId()?->toXML($e);
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

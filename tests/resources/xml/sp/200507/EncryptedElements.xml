@@ -1,0 +1,4 @@
+<sp:EncryptedElements xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy" xmlns:ssp="urn:x-simplesamlphp:namespace" XPathVersion="urn:x-simplesamlphp:version" ssp:attr1="value1">
+  <sp:XPath>/bookstore/book[price>35.00]/title</sp:XPath>
+  <ssp:Chunk>some</ssp:Chunk>
+</sp:EncryptedElements>

@@ -42,7 +42,7 @@ final class RequireClientCertificateTest extends TestCase
         self::$testedClass = RequireClientCertificate::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/mssp_RequireClientCertificate.xml',
+            dirname(__FILE__, 4) . '/resources/xml/mssp/RequireClientCertificate.xml',
         );
     }
 }

@@ -36,9 +36,9 @@ abstract class AbstractSePartsType extends AbstractSpElement
     /**
      * AbstractSePartsType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp\Body|null $body
-     * @param \SimpleSAML\WSSecurity\XML\sp\Header[] $header
-     * @param \SimpleSAML\WSSecurity\XML\sp\Attachments|null $attachments
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\Body|null $body
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\Header[] $header
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\Attachments|null $attachments
      * @param \SimpleSAML\XML\Chunk[] $details
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
@@ -57,7 +57,7 @@ abstract class AbstractSePartsType extends AbstractSpElement
     /**
      * Collect the Body
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp\Body|null
+     * @return \SimpleSAML\WSSecurity\XML\sp_200702\Body|null
      */
     public function getBody(): ?Body
     {
@@ -68,7 +68,7 @@ abstract class AbstractSePartsType extends AbstractSpElement
     /**
      * Collect the Header
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp\Header[]
+     * @return \SimpleSAML\WSSecurity\XML\sp_200702\Header[]
      */
     public function getHeader(): array
     {
@@ -79,7 +79,7 @@ abstract class AbstractSePartsType extends AbstractSpElement
     /**
      * Collect the Attachments
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp\Attachments|null
+     * @return \SimpleSAML\WSSecurity\XML\sp_200702\Attachments|null
      */
     public function getAttachments(): ?Attachments
     {

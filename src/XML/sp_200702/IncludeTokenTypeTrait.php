@@ -18,7 +18,7 @@ trait IncludeTokenTypeTrait
     /**
      * The included token.
      *
-     * @var \SimpleSAML\WSSecurity\XML\sp\IncludeToken|string|null
+     * @var \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken|string|null
      */
     protected IncludeToken|string|null $includeToken;
 
@@ -26,7 +26,7 @@ trait IncludeTokenTypeTrait
     /**
      * Collect the value of the includeToken-property
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp\IncludeToken|string|null
+     * @return \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken|string|null
      */
     public function getIncludeToken(): IncludeToken|string|null
     {
@@ -37,7 +37,7 @@ trait IncludeTokenTypeTrait
     /**
      * Set the value of the includeToken-property
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp\IncludeToken|string|null $includeToken
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken|string|null $includeToken
      */
     protected function setIncludeToken(IncludeToken|string|null $includeToken): void
     {

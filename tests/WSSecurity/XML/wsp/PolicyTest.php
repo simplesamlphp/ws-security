@@ -63,7 +63,8 @@ final class PolicyTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
         )->documentElement);
 
-        $policy = new Policy('phpunit', 'MyId', [new ExactlyOne([])], [$chunk], [$attr]);
+        $Id = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', 'MyId');
+        $policy = new Policy('phpunit', $Id, [new ExactlyOne([])], [$chunk], [$attr]);
 
         $this->assertFalse($policy->isEmptyElement());
 
@@ -79,8 +80,8 @@ final class PolicyTest extends TestCase
      */
     public function testMarshallingEmpty(): void
     {
-        $oc = new Policy();
-        $this->assertTrue($oc->isEmptyElement());
+        $policy = new Policy();
+        $this->assertTrue($policy->isEmptyElement());
     }
 
 
@@ -96,7 +97,7 @@ final class PolicyTest extends TestCase
             '<wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" />',
         );
 
-        $oc = Policy::fromXML($xmlRepresentation->documentElement);
-        $this->assertTrue($oc->isEmptyElement());
+        $policy = Policy::fromXML($xmlRepresentation->documentElement);
+        $this->assertTrue($policy->isEmptyElement());
     }
 }

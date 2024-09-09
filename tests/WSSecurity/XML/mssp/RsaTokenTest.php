@@ -45,7 +45,7 @@ final class RsaTokenTest extends TestCase
         self::$testedClass = RsaToken::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/mssp_RsaToken.xml',
+            dirname(__FILE__, 4) . '/resources/xml/mssp/RsaToken.xml',
         );
     }
 
@@ -58,7 +58,7 @@ final class RsaTokenTest extends TestCase
      */
     public function testMarshallingEmptyElement(): void
     {
-        $msspns = C::NS_SEC_POLICY_11;
+        $msspns = C::NS_MSSP;
         $rsaToken = new RsaToken();
         $this->assertEquals(
             "<mssp:RsaToken xmlns:mssp=\"$msspns\"/>",

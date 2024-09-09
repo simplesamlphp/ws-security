@@ -12,7 +12,7 @@
 		schemaLocation="ws-addr-200408.xsd" />
 
 	<xs:import namespace="http://schemas.xmlsoap.org/ws/2004/09/policy" 
-		schemaLocation="ws-policy.xsd" />
+		schemaLocation="ws-policy-200409.xsd" />
 
 	<!--
 	5. Protection Assertions

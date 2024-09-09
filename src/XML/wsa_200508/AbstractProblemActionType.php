@@ -28,8 +28,8 @@ abstract class AbstractProblemActionType extends AbstractWsaElement
     /**
      * AbstractProblemActionType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\wsa\Action|null $action
-     * @param \SimpleSAML\WSSecurity\XML\wsa\SoapAction|null $soapAction
+     * @param \SimpleSAML\WSSecurity\XML\wsa_200508\Action|null $action
+     * @param \SimpleSAML\WSSecurity\XML\wsa_200508\SoapAction|null $soapAction
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(

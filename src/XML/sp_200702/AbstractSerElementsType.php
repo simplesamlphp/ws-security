@@ -35,7 +35,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
     /**
      * AbstractSerElementsType constructor.
      *
-     * @param list<\SimpleSAML\WSSecurity\XML\sp\XPath> $xpath
+     * @param list<\SimpleSAML\WSSecurity\XML\sp_200702\XPath> $xpath
      * @param string|null $xpathVersion
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
@@ -57,7 +57,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
     /**
      * Collect the value of the XPath property.
      *
-     * @return list<\SimpleSAML\WSSecurity\XML\sp\XPath>
+     * @return list<\SimpleSAML\WSSecurity\XML\sp_200702\XPath>
      */
     public function getXPath(): array
     {

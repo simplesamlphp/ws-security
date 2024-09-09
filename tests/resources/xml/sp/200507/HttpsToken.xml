@@ -1,0 +1,3 @@
+<sp:HttpsToken xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy" xmlns:ssp="urn:x-simplesamlphp:namespace" RequireClientCertificate="true" ssp:attr1="value1">
+  <ssp:Chunk>some</ssp:Chunk>
+</sp:HttpsToken>

@@ -42,9 +42,9 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * EndpointReferenceType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\wsa\Address $address
-     * @param \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters[] $referenceParameters
-     * @param \SimpleSAML\WSSecurity\XML\wsa\Metadata[] $metadata
+     * @param \SimpleSAML\WSSecurity\XML\wsa_200508\Address $address
+     * @param \SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters[] $referenceParameters
+     * @param \SimpleSAML\WSSecurity\XML\wsa_200508\Metadata[] $metadata
      * @param \SimpleSAML\XML\Chunk[] $children
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      *
@@ -68,7 +68,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Collect the value of the address property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\wsa\Address
+     * @return \SimpleSAML\WSSecurity\XML\wsa_200508\Address
      */
     public function getAddress(): Address
     {
@@ -79,7 +79,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Collect the value of the referenceParameters property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\wsa\ReferenceParameters[]
+     * @return \SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters[]
      */
     public function getReferenceParameters(): array
     {
@@ -90,7 +90,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Collect the value of the metadata property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\wsa\Metadata[]
+     * @return \SimpleSAML\WSSecurity\XML\wsa_200508\Metadata[]
      */
     public function getMetadata(): array
     {

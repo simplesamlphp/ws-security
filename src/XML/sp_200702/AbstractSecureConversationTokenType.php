@@ -38,8 +38,8 @@ abstract class AbstractSecureConversationTokenType extends AbstractSpElement
     /**
      * SecureConversationTokenType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp\Issuer|\SimpleSAML\WSSecurity\XML\sp\IssuerName|null $issuer
-     * @param \SimpleSAML\WSSecurity\XML\sp\IncludeToken|null $includeToken
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\Issuer|\SimpleSAML\WSSecurity\XML\sp_200702\IssuerName|null $issuer
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken|null $includeToken
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
@@ -58,7 +58,7 @@ abstract class AbstractSecureConversationTokenType extends AbstractSpElement
     /**
      * Collect the value of the Issuer property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp\Issuer|\SimpleSAML\WSSecurity\XML\sp\IssuerName|null
+     * @return \SimpleSAML\WSSecurity\XML\sp_200702\Issuer|\SimpleSAML\WSSecurity\XML\sp_200702\IssuerName|null
      */
     public function getIssuer(): Issuer|IssuerName|null
     {

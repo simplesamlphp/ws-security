@@ -83,7 +83,8 @@ final class PolicyAttachmentTest extends TestCase
             [$attr2],
         );
 
-        $policy = new Policy('phpunit', 'MyId', [new ExactlyOne([])], [$other], [$attr3]);
+        $Id = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', 'MyId');
+        $policy = new Policy('phpunit', $Id, [new ExactlyOne([])], [$other], [$attr3]);
 
         $policyReference = new PolicyReference(
             'urn:x-simplesamlphp:phpunit',

@@ -37,7 +37,7 @@ abstract class AbstractKeyValueTokenType extends AbstractSpElement
     /**
      * KeyValueTokenType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp\IncludeToken|null $includeToken
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken|null $includeToken
      * @param list<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */

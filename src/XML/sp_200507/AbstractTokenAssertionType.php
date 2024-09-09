@@ -37,12 +37,12 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
     /**
      * TokenAssertionType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp\IncludeToken|null $includeToken
+     * @param \SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken|string|null $includeToken
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        ?IncludeToken $includeToken = null,
+        IncludeToken|string|null $includeToken = null,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {

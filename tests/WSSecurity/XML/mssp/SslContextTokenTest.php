@@ -45,7 +45,7 @@ final class SslContextTokenTest extends TestCase
         self::$testedClass = SslContextToken::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/mssp_SslContextToken.xml',
+            dirname(__FILE__, 4) . '/resources/xml/mssp/SslContextToken.xml',
         );
     }
 
@@ -58,7 +58,7 @@ final class SslContextTokenTest extends TestCase
      */
     public function testMarshallingEmptyElement(): void
     {
-        $msspns = C::NS_SEC_POLICY_11;
+        $msspns = C::NS_MSSP;
         $sslContextToken = new SslContextToken();
         $this->assertEquals(
             "<mssp:SslContextToken xmlns:mssp=\"$msspns\"/>",
