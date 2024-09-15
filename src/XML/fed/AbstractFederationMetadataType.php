@@ -6,9 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
@@ -33,28 +31,27 @@ abstract class AbstractFederationMetadataType extends AbstractFedElement
     /**
      * AbstractFederationMetadataType constructor
      *
-     * @param \SimpleSAML\WSSecurity\XML\fed\Federation[] $federation
-     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
+     * @param list<\SimpleSAML\XML\SerializableElementInterface> $children
+     * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected array $federation = [],
         array $children = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::minCount($federation, 1, SchemaViolationException::class);
-
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return \SimpleSAML\WSSecurity\XML\fed\Federation[]
+     * Test if an object, at the state it's in, would produce an empty XML-element
+     *
+     * @return bool
      */
-    public function getFederation(): array
+    public function isEmptyElement(): bool
     {
-        return $this->federation;
+        return empty($this->getElements())
+            && empty($this->getAttributesNS());
     }
 
 
@@ -72,21 +69,8 @@ abstract class AbstractFederationMetadataType extends AbstractFedElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        $children = $federation = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS && $child->localName === 'Federation') {
-                $federation[] = Federation::fromXML($child);
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
-            $federation,
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -101,10 +85,6 @@ abstract class AbstractFederationMetadataType extends AbstractFedElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
-
-        foreach ($this->getFederation() as $fed) {
-            $fed->toXML($e);
-        }
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

@@ -39,9 +39,9 @@ final class FederationMetadataTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
-
         self::$testedClass = FederationMetadata::class;
+
+        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/fed_FederationMetadata.xml',
@@ -59,16 +59,36 @@ final class FederationMetadataTest extends TestCase
     {
         $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
         $attr2 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', 'testval2');
-        $child = DOMDocumentFactory::fromString(
-            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
+        $some = DOMDocumentFactory::fromString(
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
+        );
+        $other = DOMDocumentFactory::fromString(
+            '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Other</ssp:Chunk>',
         );
 
-        $federation = new Federation('urn:some:uri', [new Chunk($child->documentElement)], [$attr2]);
-        $federationMetadata = new FederationMetadata([$federation], [new Chunk($child->documentElement)], [$attr1]);
+        $federation = new Federation(
+            'urn:some:uri',
+            [new Chunk($some->documentElement)],
+            [$attr1],
+        );
+
+        $federationMetadata = new FederationMetadata(
+            [$federation, new Chunk($other->documentElement)],
+            [$attr2],
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($federationMetadata),
         );
+    }
+
+
+    /**
+     */
+    public function testMarshallingEmpty(): void
+    {
+        $federationMetadata = new FederationMetadata();
+        $this->assertTrue($federationMetadata->isEmptyElement());
     }
 }
