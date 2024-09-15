@@ -24,7 +24,6 @@ use function dirname;
  */
 #[Group('wsaw')]
 #[CoversClass(UsingAddressing::class)]
-#[CoversClass(AbstractUsingAddressingType::class)]
 #[CoversClass(AbstractWsawElement::class)]
 final class UsingAddressingTest extends TestCase
 {

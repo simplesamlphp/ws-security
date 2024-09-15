@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wsdl;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 
 use function array_pop;
@@ -40,24 +39,12 @@ final class BindingOperation extends AbstractBindingOperation
         $output = BindingOperationOutput::getChildrenOfClass($xml);
         $faults = BindingOperationFault::getChildrenOfClass($xml);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                // Only other namespaces are allowed
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             self::getAttribute($xml, 'name'),
             array_pop($input),
             array_pop($output),
             $faults,
-            $children,
+            self::getChildElementsFromXML($xml),
         );
     }
 }

@@ -19,7 +19,7 @@ abstract class AbstractBindingOperationMessage extends AbstractExtensibleDocumen
      * Initialize a wsdl:tBindingOperationMessage
      *
      * @param string|null $name
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      */
     public function __construct(
         protected ?string $name = null,

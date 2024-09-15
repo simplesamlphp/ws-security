@@ -6,12 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\wsp;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsp\AppliesTo;
 use SimpleSAML\WSSecurity\XML\wsp\Policy;
 use SimpleSAML\WSSecurity\XML\wsp\PolicyReference;
-use SimpleSAML\WSSecurity\XML\wsse\Security;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -99,26 +96,14 @@ final class PolicyAttachment extends AbstractWspElement
 
         $policy = Policy::getChildrenOfClass($xml);
         $policyReference = PolicyReference::getChildrenOfClass($xml);
+
         $policies = array_merge($policy, $policyReference);
         Assert::minCount($policies, 1, MissingElementException::class);
-
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                continue;
-            } elseif ($child->namespaceURI === C::NS_SEC_EXT && $child->localName === 'Security') {
-                $children[] = Security::fromXML($child);
-            } else {
-                $children[] = new Chunk($child);
-            }
-        }
 
         return new static(
             $appliesTo[0],
             $policies,
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }

@@ -9,6 +9,7 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\mssp\SslContextToken;
+use SimpleSAML\WSSecurity\XML\sp_200507\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200507\AbstractTokenAssertionType;
 use SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken;
 use SimpleSAML\WSSecurity\XML\sp_200507\IncludeTokenTypeTrait;

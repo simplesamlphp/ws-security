@@ -22,7 +22,7 @@ abstract class AbstractBindingOperation extends AbstractExtensibleDocumented
      * @param \SimpleSAML\WSSecurity\XML\wsdl\BindingOperationInput|null $input
      * @param \SimpleSAML\WSSecurity\XML\wsdl\BindingOperationOutput|null $output
      * @param \SimpleSAML\WSSecurity\XML\wsdl\BindingOperationFault[] $fault
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      */
     public function __construct(
         protected string $name,

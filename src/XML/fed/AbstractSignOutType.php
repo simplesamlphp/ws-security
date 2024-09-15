@@ -8,7 +8,6 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -31,6 +30,13 @@ abstract class AbstractSignOutType extends AbstractFedElement
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::ANY;
+
+    /** The exclusions for the xs:any element */
+    public const XS_ANY_ELT_EXCLUSIONS = [
+        ['http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd', 'Id'],
+        ['http://docs.oasis-open.org/wsfed/federation/200706', 'Realm'],
+        ['http://docs.oasis-open.org/wsfed/federation/200706', 'SignOutBasis'],
+    ];
 
 
     /**
@@ -110,34 +116,12 @@ abstract class AbstractSignOutType extends AbstractFedElement
         $realm = Realm::getChildrenOfClass($xml);
         Assert::maxCount($realm, 1, TooManyElementsException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
-        $nsAttributes = self::getAttributesNSFromXML($xml);
-
-        $Id = null;
-        foreach ($nsAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
-                $Id = $attr->getAttrValue();
-                unset($nsAttributes[$i]);
-                break;
-            }
-        }
-
         return new static(
             array_pop($signOutBasis),
             array_pop($realm),
-            $Id,
-            $children,
-            $nsAttributes,
+            $xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id') ? $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id') : null,
+            self::getChildElementsFromXML($xml),
+            self::getAttributesNSFromXML($xml),
         );
     }
 
@@ -152,9 +136,6 @@ abstract class AbstractSignOutType extends AbstractFedElement
     {
         $e = parent::instantiateParentElement($parent);
 
-        $this->getRealm()?->toXML($e);
-        $this->getSignOutBasis()->toXML($e);
-
         $attributes = $this->getAttributesNS();
         if ($this->getId() !== null) {
             $idAttr = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', $this->getId());
@@ -164,6 +145,9 @@ abstract class AbstractSignOutType extends AbstractFedElement
         foreach ($attributes as $attr) {
             $attr->toXML($e);
         }
+
+        $this->getRealm()?->toXML($e);
+        $this->getSignOutBasis()->toXML($e);
 
         foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {

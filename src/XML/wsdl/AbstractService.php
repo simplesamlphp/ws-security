@@ -22,7 +22,7 @@ abstract class AbstractService extends AbstractExtensibleDocumented
      *
      * @param string $name
      * @param \SimpleSAML\WSSecurity\XML\wsdl\Port[] $ports
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      */
     public function __construct(
         protected string $name,

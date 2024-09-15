@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -39,7 +38,7 @@ abstract class AbstractSePartsType extends AbstractSpElement
      * @param \SimpleSAML\WSSecurity\XML\sp_200702\Body|null $body
      * @param \SimpleSAML\WSSecurity\XML\sp_200702\Header[] $header
      * @param \SimpleSAML\WSSecurity\XML\sp_200702\Attachments|null $attachments
-     * @param \SimpleSAML\XML\Chunk[] $details
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $details
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     final public function __construct(
@@ -130,22 +129,11 @@ abstract class AbstractSePartsType extends AbstractSpElement
 
         $attachments = Attachments::getChildrenOfClass($xml);
 
-        $details = [];
-        foreach ($xml->childNodes as $detail) {
-            if (!($detail instanceof DOMElement)) {
-                continue;
-            } elseif ($detail->namespaceURI === static::NS) {
-                continue;
-            }
-
-            $details[] = new Chunk($detail);
-        }
-
         return new static(
             array_pop($body),
             $header,
             array_pop($attachments),
-            $details,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }

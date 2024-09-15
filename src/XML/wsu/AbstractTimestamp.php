@@ -7,7 +7,6 @@ namespace SimpleSAML\WSSecurity\XML\wsu;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -30,6 +29,12 @@ abstract class AbstractTimestamp extends AbstractWsuElement
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::ANY;
+
+    /** The exclusions for the xs:any element */
+    public const XS_ANY_ELT_EXCLUSIONS = [
+        ['http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd', 'Created'],
+        ['http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd', 'Expires'],
+    ];
 
 
     /**
@@ -113,18 +118,7 @@ abstract class AbstractTimestamp extends AbstractWsuElement
 
         $created = Created::getChildrenOfClass($xml);
         $expires = Expires::getChildrenOfClass($xml);
-
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                // Only other namespaces are allowed
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
+        $children = self::getChildElementsFromXML($xml);
 
         $Id = null;
         if ($xml->hasAttributeNS(static::NS, 'Id')) {

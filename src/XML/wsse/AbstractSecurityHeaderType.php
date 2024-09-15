@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -70,20 +69,9 @@ abstract class AbstractSecurityHeaderType extends AbstractWsseElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        $nsAttributes = self::getAttributesNSFromXML($xml);
-
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
-            $children,
-            $nsAttributes,
+            self::getChildElementsFromXML($xml),
+            self::getAttributesNSFromXML($xml),
         );
     }
 

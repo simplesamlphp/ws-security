@@ -6,12 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\SAML2\XML\saml\Assertion;
-use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsp\AppliesTo;
-use SimpleSAML\WSSecurity\XML\wsp\Policy;
-use SimpleSAML\WSSecurity\XML\wsp\PolicyReference;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -92,62 +86,9 @@ abstract class AbstractRequestSecurityTokenType extends AbstractWstElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === C::NS_SAML) {
-                $children[] = match ($child->localName) {
-                    'Assertion' => Assertion::fromXML($child),
-                    default => Chunk::fromXML($child),
-                };
-            } elseif ($child->namespaceURI === C::NS_TRUST) {
-                $children[] = match ($child->localName) {
-                    'AllowPostdating' => AllowPostdating::fromXML($child),
-                    'AuthenticationType' => AuthenticationType::fromXML($child),
-                    'Authenticator' => Authenticator::fromXML($child),
-                    'CanonicalizationAlgorithm' => CanonicalizationAlgorithm::fromXML($child),
-                    'Delegatable' => Delegatable::fromXML($child),
-                    'DelegateTo' => DelegateTo::fromXML($child),
-                    'Encryption' => Encryption::fromXML($child),
-                    'EncryptionAlgorithm' => EncryptionAlgorithm::fromXML($child),
-                    'EncryptWith' => EncryptWith::fromXML($child),
-                    'Entropy' => Entropy::fromXML($child),
-                    'Forwardable' => Forwardable::fromXML($child),
-                    'KeySize' => KeySize::fromXML($child),
-                    'KeyType' => KeyType::fromXML($child),
-                    'Lifetime' => Lifetime::fromXML($child),
-                    'OnBehalfOf' => OnBehalfOf::fromXML($child),
-                    'ProofEncryption' => ProofEncryption::fromXML($child),
-                    'Renewing' => Renewing::fromXML($child),
-                    'RequestedAttachedReference' => RequestedAttachedReference::fromXML($child),
-                    'RequestedProofToken' => RequestedProofToken::fromXML($child),
-                    'RequestedSecurityToken' => RequestedSecurityToken::fromXML($child),
-                    'RequestedUnattachedReference' => RequestedUnattachedReference::fromXML($child),
-                    'RequestType' => RequestType::fromXML($child),
-                    'SignatureAlgorithm' => SignatureAlgorithm::fromXML($child),
-                    'SignWith' => SignWith::fromXML($child),
-                    'Status' => Status::fromXML($child),
-                    'UseKey' => UseKey::fromXML($child),
-                    default => Chunk::fromXML($child),
-                };
-                continue;
-            } elseif ($child->namespaceURI === C::NS_POLICY) {
-                $children[] = match ($child->localName) {
-                    'Policy' => Policy::fromXML($child),
-                    'PolicyReference' => PolicyReference::fromXML($child),
-                    'AppliesTo' => AppliesTo::fromXML($child),
-                    default => Chunk::fromXML($child),
-                };
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             self::getOptionalAttribute($xml, 'Context'),
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }

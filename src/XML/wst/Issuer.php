@@ -19,4 +19,11 @@ final class Issuer extends AbstractEndpointReferenceType
 
     /** @var string */
     public const NS_PREFIX = 'wst';
+
+    /** The exclusions for the xs:any element */
+    public const XS_ANY_ELT_EXCLUSIONS = [
+        ['http://www.w3.org/2005/08/addressing', 'Address'],
+        ['http://www.w3.org/2005/08/addressing', 'Metadata'],
+        ['http://www.w3.org/2005/08/addressing', 'ReferenceParameters'],
+    ];
 }

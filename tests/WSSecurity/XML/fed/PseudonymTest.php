@@ -129,10 +129,7 @@ final class PseudonymTest extends TestCase
         $pseudonym = new Pseudonym(
             $pseudonymBasis,
             $relativeTo,
-            $expires,
-            [$securityToken],
-            [$proofToken],
-            [self::$chunk],
+            [$expires, $securityToken, $proofToken, self::$chunk],
             [$attr1],
         );
 
@@ -178,10 +175,7 @@ final class PseudonymTest extends TestCase
         $pseudonym = new Pseudonym(
             $pseudonymBasis,
             $relativeTo,
-            $expires,
-            [$securityToken],
-            [$proofToken],
-            [self::$chunk],
+            [$expires, $securityToken, $proofToken, self::$chunk],
             [$attr1],
         );
         $pseudonymElement = $pseudonym->toXML();

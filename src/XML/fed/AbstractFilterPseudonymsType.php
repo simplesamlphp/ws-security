@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -105,21 +104,10 @@ abstract class AbstractFilterPseudonymsType extends AbstractFedElement
         $relativeTo = RelativeTo::getChildrenOfClass($xml);
         Assert::maxCount($relativeTo, 1, TooManyElementsException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             array_pop($pseudonymBasis),
             array_pop($relativeTo),
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }

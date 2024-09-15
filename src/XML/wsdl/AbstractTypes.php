@@ -14,7 +14,7 @@ abstract class AbstractTypes extends AbstractExtensibleDocumented
     /**
      * Initialize a wsdl:tTypes
      *
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      */
     public function __construct(
         array $elements = [],

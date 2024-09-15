@@ -79,7 +79,8 @@ final class RequireReferenceTokenTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $requireReferenceToken = new RequireReferenceToken(IncludeToken::Always, [$chunk], [$attr]);
+        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_12, 'sp', 'IncludeToken', IncludeToken::Always->value);
+        $requireReferenceToken = new RequireReferenceToken([$chunk], [$includeToken, $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($requireReferenceToken),

@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -29,6 +28,11 @@ abstract class AbstractHttpsTokenType extends AbstractSpElement
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
+
+    /** The exclusions for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_EXCLUSIONS = [
+        [null, 'RequireClientCertificate'],
+    ];
 
 
     /**
@@ -76,31 +80,10 @@ abstract class AbstractHttpsTokenType extends AbstractSpElement
             InvalidDOMElementException::class,
         );
 
-        $elements = [];
-        foreach ($xml->childNodes as $element) {
-            if ($element->namespaceURI === static::NS) {
-                continue;
-            } elseif (!($element instanceof DOMElement)) {
-                continue;
-            }
-
-            $elements[] = new Chunk($element);
-        }
-
-        $namespacedAttributes = self::getAttributesNSFromXML($xml);
-        foreach ($namespacedAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === null) {
-                if ($attr->getAttrName() === 'RequireClientCertificate') {
-                    unset($namespacedAttributes[$i]);
-                    break;
-                }
-            }
-        }
-
         return new static(
             self::getBooleanAttribute($xml, 'RequireClientCertificate'),
-            $elements,
-            $namespacedAttributes,
+            self::getChildElementsFromXML($xml),
+            self::getAttributesNSFromXML($xml),
         );
     }
 

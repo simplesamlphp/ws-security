@@ -8,7 +8,6 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -32,8 +31,18 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
+    /** The exclusions for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_EXCLUSIONS = [
+        ['http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd', 'Id'],
+    ];
+
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::ANY;
+
+    /** The exclusions for the xs:any element */
+    public const XS_ANY_ELT_EXCLUSIONS = [
+        ['http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd', 'Username'],
+    ];
 
 
     /**
@@ -93,33 +102,11 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
         Assert::minCount($username, 1, MissingElementException::class);
         Assert::maxCount($username, 1, TooManyElementsException::class);
 
-        $nsAttributes = self::getAttributesNSFromXML($xml);
-
-        $Id = null;
-        foreach ($nsAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
-                $Id = $attr->getAttrValue();
-                unset($nsAttributes[$i]);
-                break;
-            }
-        }
-
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS && $child->localName === 'Username') {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             array_pop($username),
-            $Id,
-            $children,
-            $nsAttributes,
+            $xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id') ? $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id') : null,
+            self::getChildElementsFromXML($xml),
+            self::getAttributesNSFromXML($xml),
         );
     }
 

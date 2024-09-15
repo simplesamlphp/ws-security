@@ -6,8 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XML\Exception\MissingElementException;
+use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\SerializableElementInterface;
@@ -61,16 +62,9 @@ abstract class AbstractPseudonymBasisType extends AbstractFedElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
+        $children = self::getChildElementsFromXML($xml);
+        Assert::minCount($children, 1, MissingElementException::class);
+        Assert::maxCount($children, 1, TooManyElementsException::class);
 
         return new static(
             array_pop($children),

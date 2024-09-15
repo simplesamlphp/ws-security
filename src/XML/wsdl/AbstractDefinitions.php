@@ -28,7 +28,7 @@ abstract class AbstractDefinitions extends AbstractExtensibleDocumented
      * @param \SimpleSAML\WSSecurity\XML\wsdl\PortType[] $portType
      * @param \SimpleSAML\WSSecurity\XML\wsdl\Binding[] $binding
      * @param \SimpleSAML\WSSecurity\XML\wsdl\Service[] $service
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      */
     public function __construct(
         protected ?string $targetNamespace = null,

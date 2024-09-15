@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
@@ -124,23 +123,12 @@ abstract class AbstractReferenceTokenType extends AbstractFedElement
         $referenceType = ReferenceType::getChildrenOfClass($xml);
         $serialNo = SerialNo::getChildrenOfClass($xml);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             $referenceEPR,
             array_pop($referenceDigest),
             array_pop($referenceType),
             array_pop($serialNo),
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }

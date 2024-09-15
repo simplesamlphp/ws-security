@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -30,6 +29,11 @@ abstract class AbstractSerElementsType extends AbstractSpElement
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
+
+    /** The exclusions for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_EXCLUSIONS = [
+        ['http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702', 'XPathVersion'],
+    ];
 
 
     /**
@@ -97,32 +101,11 @@ abstract class AbstractSerElementsType extends AbstractSpElement
             InvalidDOMElementException::class,
         );
 
-        $elements = [];
-        foreach ($xml->childNodes as $element) {
-            if ($element->namespaceURI === static::NS) {
-                continue;
-            } elseif (!($element instanceof DOMElement)) {
-                continue;
-            }
-
-            $elements[] = new Chunk($element);
-        }
-
-        $namespacedAttributes = self::getAttributesNSFromXML($xml);
-        foreach ($namespacedAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === null) {
-                if ($attr->getAttrName() === 'XPathVersion') {
-                    unset($namespacedAttributes[$i]);
-                    break;
-                }
-            }
-        }
-
         return new static(
             XPath::getChildrenOfClass($xml),
-            self::getOptionalAttribute($xml, 'XPathVersion', null),
-            $elements,
-            $namespacedAttributes,
+            $xml->hasAttributeNS(self::NS, 'XPathVersion') ? $xml->getAttributeNS(self::NS, 'XPathVersion') : null,
+            self::getChildElementsFromXML($xml),
+            self::getAttributesNSFromXML($xml),
         );
     }
 
@@ -138,7 +121,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
         $e = $this->instantiateParentElement($parent);
 
         if ($this->getXPathVersion() !== null) {
-            $e->setAttribute('XPathVersion', $this->getXPathVersion());
+            $e->setAttributeNS(self::NS, 'sp:XPathVersion', $this->getXPathVersion());
         }
 
         foreach ($this->getXPath() as $xpath) {

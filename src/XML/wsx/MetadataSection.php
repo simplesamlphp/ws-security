@@ -6,14 +6,15 @@ namespace SimpleSAML\WSSecurity\XML\wsx;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\SerializableElementInterface;
 use SimpleSAML\XML\XsNamespace as NS;
 
+use function array_merge;
 use function array_pop;
 
 /**
@@ -24,9 +25,13 @@ use function array_pop;
 final class MetadataSection extends AbstractWsxElement
 {
     use ExtendableAttributesTrait;
+    use ExtendableElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+
+    /** The namespace-attribute for the xs:any element */
+    public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
 
 
     /**
@@ -45,6 +50,9 @@ final class MetadataSection extends AbstractWsxElement
         protected ?string $Identifier = null,
         array $namespacedAttributes = [],
     ) {
+        if (!($child instanceof MetadataReference) && !($child instanceof Location)) {
+            Assert::notSame($child->toXML()->namespaceURI, static::NS);
+        }
         Assert::validURI($Dialect);
         Assert::nullOrValidURI($Identifier);
 
@@ -101,22 +109,11 @@ final class MetadataSection extends AbstractWsxElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                if ($child->localName === 'MetadataReference') {
-                    $children[] = MetadataReference::fromXML($child);
-                } elseif ($child->localName === 'Location') {
-                    $children[] = Location::fromXML($child);
-                }
-                continue;
-            }
+        $children = self::getChildElementsFromXML($xml);
+        $metadataReference = MetadataReference::getChildrenOfClass($xml);
+        $location = Location::getChildrenOfClass($xml);
 
-            $children[] = new Chunk($child);
-        }
-
+        $children = array_merge($children, $metadataReference, $location);
         Assert::minCount($children, 1, MissingElementException::class);
         Assert::maxCount($children, 1, TooManyElementsException::class);
 

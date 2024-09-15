@@ -23,7 +23,7 @@ abstract class AbstractExtensibleDocumented extends AbstractDocumented
     /**
      * Initialize a wsdl:tDocumented
      *
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      */
     public function __construct(array $elements)
     {

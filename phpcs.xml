@@ -24,5 +24,6 @@
 
         <!-- Exclude files with long lines that we cannot immediately fix -->
         <exclude-pattern>src/XML/auth/AbstractConstrainedValueType.php</exclude-pattern>
+        <exclude-pattern>src/XML/element.registry.php</exclude-pattern>
     </rule>
 </ruleset>

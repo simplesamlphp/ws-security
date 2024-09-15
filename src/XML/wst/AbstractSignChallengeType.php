@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -26,6 +25,11 @@ abstract class AbstractSignChallengeType extends AbstractWstElement
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::ANY;
+
+    /** The exclusions for the xs:any element */
+    public const XS_ANY_ELT_EXCLUSIONS = [
+        ['http://docs.oasis-open.org/ws-sx/ws-trust/200512/', 'Challenge'],
+    ];
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
@@ -85,17 +89,7 @@ abstract class AbstractSignChallengeType extends AbstractWstElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         $challenge = Challenge::getChildrenOfClass($xml);
-
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
+        $children = self::getChildElementsFromXML($xml);
 
         return new static(
             array_pop($challenge),

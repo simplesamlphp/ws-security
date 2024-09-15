@@ -6,14 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
-use ValueError;
 
-use function is_string;
 use function sprintf;
 
 /**
@@ -25,7 +22,6 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
-    use IncludeTokenTypeTrait;
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
@@ -37,16 +33,13 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
     /**
      * TokenAssertionType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken|null $includeToken
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        ?IncludeToken $includeToken = null,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
-        $this->setIncludeToken($includeToken);
         $this->setElements($elts);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -59,8 +52,7 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
      */
     public function isEmptyElement(): bool
     {
-        return empty($this->getIncludeToken())
-            && empty($this->getAttributesNS())
+        return empty($this->getAttributesNS())
             && empty($this->getElements());
     }
 
@@ -86,38 +78,9 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
             InvalidDOMElementException::class,
         );
 
-        try {
-            $includeToken = IncludeToken::from(self::getOptionalAttribute($xml, 'IncludeToken', null));
-        } catch (ValueError) {
-            $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', null);
-        }
-
-        $elements = [];
-        foreach ($xml->childNodes as $element) {
-            if ($element->namespaceURI === static::NS) {
-                continue;
-            } elseif (!($element instanceof DOMElement)) {
-                continue;
-            }
-
-            $elements[] = new Chunk($element);
-        }
-
-        $namespacedAttributes = self::getAttributesNSFromXML($xml);
-        foreach ($namespacedAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === null) {
-                if ($attr->getAttrName() === 'IncludeToken') {
-                    unset($namespacedAttributes[$i]);
-                    break;
-                }
-            }
-        }
-
-
         return new static(
-            $includeToken,
-            $elements,
-            $namespacedAttributes,
+            self::getChildElementsFromXML($xml),
+            self::getAttributesNSFromXML($xml),
         );
     }
 
@@ -132,15 +95,7 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        if ($this->getIncludeToken() !== null) {
-            $e->setAttribute(
-                'IncludeToken',
-                is_string($this->getIncludeToken()) ? $this->getIncludeToken() : $this->getIncludeToken()->value,
-            );
-        }
-
         foreach ($this->getElements() as $elt) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
             $elt->toXML($e);
         }
 

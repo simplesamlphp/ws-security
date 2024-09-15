@@ -21,7 +21,7 @@ trait NestedPolicyTypeTestTrait
      */
     public function testMarshalling(): void
     {
-        $np = new static::$testedClass(static::$policy, [static::$some], [static::$attr]);
+        $np = new static::$testedClass([static::$policy, static::$some], [static::$attr]);
         $this->assertEquals(
             static::$xmlRepresentation->saveXML(static::$xmlRepresentation->documentElement),
             strval($np),

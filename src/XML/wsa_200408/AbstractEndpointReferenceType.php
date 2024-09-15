@@ -6,8 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200408;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -47,7 +45,7 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
      * @param \SimpleSAML\WSSecurity\XML\wsa_200408\ReferenceParameters|null $referenceParameters
      * @param \SimpleSAML\WSSecurity\XML\wsa_200408\PortType|null $portType
      * @param \SimpleSAML\WSSecurity\XML\wsa_200408\ServiceName|null $serviceName
-     * @param \SimpleSAML\XML\Chunk[] $children
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      *
      * @throws \SimpleSAML\Assert\AssertionFailedException
@@ -160,24 +158,13 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
         $serviceName = ServiceName::getChildrenOfClass($xml);
         Assert::maxCount($serviceName, 1, TooManyElementsException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === C::NS_ADDR_200408) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             array_pop($address),
             array_pop($referenceProperties),
             array_pop($referenceParameters),
             array_pop($portType),
             array_pop($serviceName),
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }

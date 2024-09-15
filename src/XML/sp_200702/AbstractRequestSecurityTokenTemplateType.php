@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -29,6 +28,11 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
+
+    /** The exclusions for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_EXCLUSIONS = [
+        [null, 'TrustVersion'],
+    ];
 
 
     /**
@@ -97,31 +101,10 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
             InvalidDOMElementException::class,
         );
 
-        $elements = [];
-        foreach ($xml->childNodes as $element) {
-            if ($element->namespaceURI === static::NS) {
-                continue;
-            } elseif (!($element instanceof DOMElement)) {
-                continue;
-            }
-
-            $elements[] = new Chunk($element);
-        }
-
-        $namespacedAttributes = self::getAttributesNSFromXML($xml);
-        foreach ($namespacedAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === null) {
-                if ($attr->getAttrName() === 'TrustVersion') {
-                    unset($namespacedAttributes[$i]);
-                    break;
-                }
-            }
-        }
-
         return new static(
             self::getOptionalAttribute($xml, 'TrustVersion', null),
-            $elements,
-            $namespacedAttributes,
+            self::getChildElementsFromXML($xml),
+            self::getAttributesNSFromXML($xml),
         );
     }
 
@@ -141,7 +124,6 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
         }
 
         foreach ($this->getElements() as $elt) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
             $elt->toXML($e);
         }
 

@@ -79,7 +79,8 @@ final class KerberosTokenTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $kerberosToken = new KerberosToken(IncludeToken::Always, [$chunk], [$attr]);
+        $includeToken = new XMLAttribute(null, null, 'IncludeToken', IncludeToken::Always->value);
+        $kerberosToken = new KerberosToken([$chunk], [$includeToken, $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($kerberosToken),

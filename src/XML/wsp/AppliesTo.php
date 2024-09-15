@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wsp;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -67,17 +66,8 @@ final class AppliesTo extends AbstractWspElement
         Assert::same($xml->localName, 'AppliesTo', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, AppliesTo::NS, InvalidDOMElementException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
     }

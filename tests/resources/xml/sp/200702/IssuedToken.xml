@@ -1,6 +1,6 @@
 <sp:IssuedToken xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:ssp="urn:x-simplesamlphp:namespace" IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/Always" ssp:attr1="value1">
   <sp:IssuerName>urn:x-simplesamlphp:issuer</sp:IssuerName>
-  <sp:RequestSecurityTokenTemplate xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" TrustVersion="urn:x-simplesamlphp:version" ssp:attr1="value1">
+  <sp:RequestSecurityTokenTemplate TrustVersion="urn:x-simplesamlphp:version" ssp:attr1="value1">
     <ssp:Chunk>some</ssp:Chunk>
   </sp:RequestSecurityTokenTemplate>
   <ssp:Chunk>some</ssp:Chunk>

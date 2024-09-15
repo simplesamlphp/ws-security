@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
@@ -77,20 +76,9 @@ abstract class AbstractAuthenticatorType extends AbstractWstElement
 
         $combinedHash = CombinedHash::getChildrenOfClass($xml);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             array_pop($combinedHash),
-            $children,
+            self::getChildElementsFromXML($xml),
         );
     }
 

@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wsdl;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 
 /**
@@ -36,23 +35,11 @@ final class Binding extends AbstractBinding
 
         $operation = BindingOperation::getChildrenOfClass($xml);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                // Only other namespaces are allowed
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             self::getAttribute($xml, 'name'),
             self::getAttribute($xml, 'type'),
             $operation,
-            $children,
+            self::getChildElementsFromXML($xml),
         );
     }
 }

@@ -19,7 +19,7 @@ abstract class AbstractBindingOperationFault extends AbstractExtensibleDocumente
      * Initialize a wsdl:tBindingOperationFault
      *
      * @param string $name
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      */
     public function __construct(
         protected string $name,

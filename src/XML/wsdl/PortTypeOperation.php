@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wsdl;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 
@@ -69,25 +68,13 @@ final class PortTypeOperation extends AbstractPortTypeOperation
             $output = array_pop($output);
         }
 
-        $elements = [];
-        foreach ($xml->childNodes as $element) {
-            if (!($element instanceof DOMElement)) {
-                continue;
-            } elseif ($element->namespaceURI === static::NS) {
-                // Only other namespaces are allowed
-                continue;
-            }
-
-            $elements[] = new Chunk($element);
-        }
-
         return new static(
             self::getAttribute($xml, 'name'),
             self::getOptionalAttribute($xml, 'parameterOrder'),
             $input,
             $output,
             Fault::getChildrenOfClass($xml),
-            $elements,
+            self::getChildElementsFromXML($xml),
         );
     }
 }

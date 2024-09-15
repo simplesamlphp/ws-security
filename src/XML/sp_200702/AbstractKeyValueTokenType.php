@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -32,6 +31,11 @@ abstract class AbstractKeyValueTokenType extends AbstractSpElement
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
+
+    /** The exclusions for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_EXCLUSIONS = [
+        [null, 'IncludeToken'],
+    ];
 
 
     /**
@@ -86,38 +90,16 @@ abstract class AbstractKeyValueTokenType extends AbstractSpElement
             InvalidDOMElementException::class,
         );
 
+        $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', null);
         try {
-            $includeToken = IncludeToken::from(self::getOptionalAttribute($xml, 'IncludeToken', null));
+            $includeToken = IncludeToken::from($includeToken);
         } catch (ValueError) {
-            $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', null);
         }
-
-        $elements = [];
-        foreach ($xml->childNodes as $element) {
-            if ($element->namespaceURI === static::NS) {
-                continue;
-            } elseif (!($element instanceof DOMElement)) {
-                continue;
-            }
-
-            $elements[] = new Chunk($element);
-        }
-
-        $namespacedAttributes = self::getAttributesNSFromXML($xml);
-        foreach ($namespacedAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === null) {
-                if ($attr->getAttrName() === 'IncludeToken') {
-                    unset($namespacedAttributes[$i]);
-                    break;
-                }
-            }
-        }
-
 
         return new static(
             $includeToken,
-            $elements,
-            $namespacedAttributes,
+            self::getChildElementsFromXML($xml),
+            self::getAttributesNSFromXML($xml),
         );
     }
 

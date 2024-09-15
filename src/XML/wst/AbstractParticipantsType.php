@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wst;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableElementTrait;
@@ -89,21 +88,10 @@ abstract class AbstractParticipantsType extends AbstractWstElement
         $primary = Primary::getChildrenOfClass($xml);
         Assert::maxCount($primary, 1, TooManyElementsException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             array_pop($primary),
             Participant::getChildrenOfClass($xml),
-            $children,
+            self::getChildElementsFromXML($xml),
         );
     }
 

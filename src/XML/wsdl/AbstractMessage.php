@@ -22,7 +22,7 @@ abstract class AbstractMessage extends AbstractExtensibleDocumented
      *
      * @param string $name
      * @param \SimpleSAML\WSSecurity\XML\wsdl\Part[] $parts
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      */
     public function __construct(
         protected string $name,

@@ -79,7 +79,8 @@ final class X509TokenTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $x509Token = new X509Token(IncludeToken::Always, [$chunk], [$attr]);
+        $includeToken = new XMLAttribute(null, null, 'IncludeToken', IncludeToken::Always->value);
+        $x509Token = new X509Token([$chunk], [$includeToken, $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($x509Token),

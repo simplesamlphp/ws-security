@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200408;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
@@ -27,7 +26,7 @@ final class ReferenceParameters extends AbstractWsaElement
     /**
      * Initialize a wsa:ReferenceParameters
      *
-     * @param \SimpleSAML\XML\Chunk[] $children
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      */
     public function __construct(array $children = [])
     {
@@ -60,16 +59,9 @@ final class ReferenceParameters extends AbstractWsaElement
         Assert::same($xml->localName, 'ReferenceParameters', InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, ReferenceParameters::NS, InvalidDOMElementException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
-        return new static($children);
+        return new static(
+            self::getChildElementsFromXML($xml),
+        );
     }
 
 

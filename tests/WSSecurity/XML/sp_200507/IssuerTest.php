@@ -84,8 +84,8 @@ final class IssuerTest extends TestCase
         $attr3 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', 'value3');
         $attr4 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', 'value4');
 
-        $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)], [$attr3]);
-        $referenceProperties = new ReferenceProperties([new Chunk(self::$referencePropertiesContent)], [$attr2]);
+        $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)]);
+        $referenceProperties = new ReferenceProperties([new Chunk(self::$referencePropertiesContent)]);
 
         $portType = new PortType('ssp:Chunk', [$attr3]);
         $serviceName = new ServiceName('ssp:Chunk', 'PHPUnit', [$attr4]);

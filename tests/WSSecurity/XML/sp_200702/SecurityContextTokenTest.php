@@ -79,7 +79,8 @@ final class SecurityContextTokenTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $securityContextToken = new SecurityContextToken(IncludeToken::Always, [$chunk], [$attr]);
+        $includeToken = new XMLAttribute(null, null, 'IncludeToken', IncludeToken::Always->value);
+        $securityContextToken = new SecurityContextToken([$chunk], [$includeToken, $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($securityContextToken),

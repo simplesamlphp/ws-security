@@ -79,7 +79,8 @@ final class UsernameTokenTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $usernameToken = new UsernameToken(IncludeToken::Always, [$chunk], [$attr]);
+        $includeToken = new XMLAttribute(null, null, 'IncludeToken', IncludeToken::Always->value);
+        $usernameToken = new UsernameToken([$chunk], [$includeToken, $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($usernameToken),

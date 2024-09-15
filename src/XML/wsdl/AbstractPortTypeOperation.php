@@ -25,7 +25,7 @@ abstract class AbstractPortTypeOperation extends AbstractExtensibleDocumented
      * @param \SimpleSAML\WSSecurity\XML\wsdl\Input|null $input
      * @param \SimpleSAML\WSSecurity\XML\wsdl\Output|null $output
      * @param \SimpleSAML\WSSecurity\XML\wsdl\Fault[] $fault
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      */
     public function __construct(
         protected string $name,

@@ -6,7 +6,6 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\Assert\Assert;
-use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
@@ -114,20 +113,9 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
         Assert::minCount($value, 1, MissingElementException::class);
         Assert::maxCount($value, 1, TooManyElementsException::class);
 
-        $children = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI === static::NS) {
-                continue;
-            }
-
-            $children[] = new Chunk($child);
-        }
-
         return new static(
             array_pop($value),
-            $children,
+            self::getChildElementsFromXML($xml),
             self::getOptionalBooleanAttribute($xml, 'AssertConstraint', null),
         );
     }

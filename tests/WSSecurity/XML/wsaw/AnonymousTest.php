@@ -9,6 +9,7 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsaw\AbstractAnonymousType;
+use SimpleSAML\WSSecurity\XML\wsaw\AbstractWsawElement;
 use SimpleSAML\WSSecurity\XML\wsaw\Anonymous;
 use SimpleSAML\WSSecurity\XML\wsaw\AnonymousEnum;
 use SimpleSAML\XML\Attribute as XMLAttribute;

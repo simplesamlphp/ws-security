@@ -21,7 +21,7 @@ abstract class AbstractBinding extends AbstractExtensibleDocumented
      * @param string $name
      * @param string $type
      * @param \SimpleSAML\WSSecurity\XML\wsdl\BindingOperation[] $operation
-     * @param \SimpleSAML\XML\Chunk[] $elements
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $elements
      */
     public function __construct(
         protected string $name,

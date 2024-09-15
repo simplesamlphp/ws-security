@@ -194,6 +194,7 @@ abstract class AbstractClaimType extends AbstractAuthElement
             $structuredValue,
             $encryptedValue,
             $constrainedValue,
+            $otherValue,
         ));
         Assert::maxCount($value, 1, TooManyElementsException::class);
 
