@@ -24,7 +24,6 @@ abstract class AbstractKeyValueTokenType extends AbstractSpElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
-    use IncludeTokenTypeTrait;
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
@@ -32,25 +31,17 @@ abstract class AbstractKeyValueTokenType extends AbstractSpElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
 
-    /** The exclusions for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_EXCLUSIONS = [
-        [null, 'IncludeToken'],
-    ];
-
 
     /**
      * KeyValueTokenType constructor.
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken|null $includeToken
      * @param list<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        ?IncludeToken $includeToken = null,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
-        $this->setIncludeToken($includeToken);
         $this->setElements($elts);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -63,8 +54,7 @@ abstract class AbstractKeyValueTokenType extends AbstractSpElement
      */
     public function isEmptyElement(): bool
     {
-        return empty($this->getIncludeToken())
-            && empty($this->getAttributesNS())
+        return empty($this->getAttributesNS())
             && empty($this->getElements());
     }
 
@@ -90,14 +80,7 @@ abstract class AbstractKeyValueTokenType extends AbstractSpElement
             InvalidDOMElementException::class,
         );
 
-        $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', null);
-        try {
-            $includeToken = IncludeToken::from($includeToken);
-        } catch (ValueError) {
-        }
-
         return new static(
-            $includeToken,
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -113,13 +96,6 @@ abstract class AbstractKeyValueTokenType extends AbstractSpElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-
-        if ($this->getIncludeToken() !== null) {
-            $e->setAttribute(
-                'IncludeToken',
-                is_string($this->getIncludeToken()) ? $this->getIncludeToken() : $this->getIncludeToken()->value,
-            );
-        }
 
         foreach ($this->getElements() as $elt) {
             /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */

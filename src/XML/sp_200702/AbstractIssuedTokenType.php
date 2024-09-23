@@ -27,7 +27,6 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
-    use IncludeTokenTypeTrait;
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
@@ -35,29 +34,21 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
 
-    /** The exclusions for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_EXCLUSIONS = [
-        [null, 'IncludeToken'],
-    ];
-
 
     /**
      * IssuedTokenType constructor.
      *
      * @param \SimpleSAML\WSSecurity\XML\sp_200702\RequestSecurityTokenTemplate $requestSecurityTokenTemplate
      * @param \SimpleSAML\WSSecurity\XML\sp_200702\Issuer|\SimpleSAML\WSSecurity\XML\sp_200702\IssuerName|null $issuer
-     * @param \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken|null $includeToken
      * @param list<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected RequestSecurityTokenTemplate $requestSecurityTokenTemplate,
         protected Issuer|IssuerName|null $issuer = null,
-        ?IncludeToken $includeToken = null,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
-        $this->setIncludeToken($includeToken);
         $this->setElements($elts);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -114,16 +105,9 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
         Assert::minCount($requestSecurityTokenTemplate, 1, MissingElementException::class);
         Assert::maxCount($requestSecurityTokenTemplate, 1, TooManyElementsException::class);
 
-        $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', null);
-        try {
-            $includeToken = IncludeToken::from($includeToken);
-        } catch (ValueError) {
-        }
-
         return new static(
             $requestSecurityTokenTemplate[0],
             array_pop($issuer),
-            $includeToken,
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -139,13 +123,6 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-
-        if ($this->getIncludeToken() !== null) {
-            $e->setAttribute(
-                'IncludeToken',
-                is_string($this->getIncludeToken()) ? $this->getIncludeToken() : $this->getIncludeToken()->value,
-            );
-        }
 
         if ($this->getIssuer() !== null) {
             $this->getIssuer()->toXML($e);

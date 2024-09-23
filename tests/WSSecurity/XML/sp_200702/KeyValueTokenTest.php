@@ -11,7 +11,6 @@ use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\sp_200702\AbstractKeyValueTokenType;
 use SimpleSAML\WSSecurity\XML\sp_200702\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken;
-use SimpleSAML\WSSecurity\XML\sp_200702\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp_200702\KeyValueToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -28,7 +27,6 @@ use function dirname;
  */
 #[Group('sp')]
 #[CoversClass(KeyValueToken::class)]
-#[CoversClass(IncludeTokenTypeTrait::class)]
 #[CoversClass(AbstractKeyValueTokenType::class)]
 #[CoversClass(AbstractSpElement::class)]
 final class KeyValueTokenTest extends TestCase
@@ -75,11 +73,12 @@ final class KeyValueTokenTest extends TestCase
     public function testMarshalling(): void
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_12, 'sp', 'IncludeToken', IncludeToken::Always->value);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $keyValueToken = new KeyValueToken(IncludeToken::Always, [$chunk], [$attr]);
+        $keyValueToken = new KeyValueToken([$chunk], [$includeToken, $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($keyValueToken),

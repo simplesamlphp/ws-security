@@ -12,7 +12,6 @@ use SimpleSAML\WSSecurity\Utils\XPath;
 use SimpleSAML\WSSecurity\XML\sp_200702\AbstractIssuedTokenType;
 use SimpleSAML\WSSecurity\XML\sp_200702\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken;
-use SimpleSAML\WSSecurity\XML\sp_200702\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp_200702\IssuedToken;
 use SimpleSAML\WSSecurity\XML\sp_200702\IssuerName;
 use SimpleSAML\WSSecurity\XML\sp_200702\RequestSecurityTokenTemplate;
@@ -31,7 +30,6 @@ use function dirname;
  */
 #[Group('sp')]
 #[CoversClass(IssuedToken::class)]
-#[CoversClass(IncludeTokenTypeTrait::class)]
 #[CoversClass(AbstractIssuedTokenType::class)]
 #[CoversClass(AbstractSpElement::class)]
 final class IssuedTokenTest extends TestCase
@@ -60,6 +58,7 @@ final class IssuedTokenTest extends TestCase
     {
         $issuer = new IssuerName('urn:x-simplesamlphp:issuer');
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_12, 'sp', 'IncludeToken', IncludeToken::Always->value);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
@@ -69,7 +68,7 @@ final class IssuedTokenTest extends TestCase
             [$attr],
         );
 
-        $issuedToken = new IssuedToken($requestSecurityTokenTemplate, $issuer, IncludeToken::Always, [$chunk], [$attr]);
+        $issuedToken = new IssuedToken($requestSecurityTokenTemplate, $issuer, [$chunk], [$includeToken, $attr]);
         $issuedTokenElement = $issuedToken->toXML();
 
         // Test for a Issuer
@@ -95,6 +94,7 @@ final class IssuedTokenTest extends TestCase
     public function testMarshalling(): void
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_12, 'sp', 'IncludeToken', IncludeToken::Always->value);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
@@ -106,7 +106,7 @@ final class IssuedTokenTest extends TestCase
             [$attr],
         );
 
-        $issuedToken = new IssuedToken($requestSecurityTokenTemplate, $issuer, IncludeToken::Always, [$chunk], [$attr]);
+        $issuedToken = new IssuedToken($requestSecurityTokenTemplate, $issuer, [$chunk], [$includeToken, $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($issuedToken),

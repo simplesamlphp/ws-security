@@ -12,7 +12,6 @@ use SimpleSAML\WSSecurity\Utils\XPath;
 use SimpleSAML\WSSecurity\XML\sp_200702\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200702\AbstractSpnegoContextTokenType;
 use SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken;
-use SimpleSAML\WSSecurity\XML\sp_200702\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp_200702\IssuerName;
 use SimpleSAML\WSSecurity\XML\sp_200702\SpnegoContextToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -30,7 +29,6 @@ use function dirname;
  */
 #[Group('sp')]
 #[CoversClass(SpnegoContextToken::class)]
-#[CoversClass(IncludeTokenTypeTrait::class)]
 #[CoversClass(AbstractSpnegoContextTokenType::class)]
 #[CoversClass(AbstractSpElement::class)]
 final class SpnegoContextTokenTest extends TestCase
@@ -59,11 +57,12 @@ final class SpnegoContextTokenTest extends TestCase
     {
         $issuer = new IssuerName('urn:x-simplesamlphp:issuer');
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_12, 'sp', 'IncludeToken', IncludeToken::Always->value);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $spnegoContextToken = new SpnegoContextToken($issuer, IncludeToken::Always, [$chunk], [$attr]);
+        $spnegoContextToken = new SpnegoContextToken($issuer, [$chunk], [$includeToken, $attr]);
         $spnegoContextTokenElement = $spnegoContextToken->toXML();
 
         // Test for a IssuerName
@@ -92,13 +91,14 @@ final class SpnegoContextTokenTest extends TestCase
     public function testMarshalling(): void
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_12, 'sp', 'IncludeToken', IncludeToken::Always->value);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $issuer = new IssuerName('urn:x-simplesamlphp:issuer');
 
-        $spnegoContextToken = new SpnegoContextToken($issuer, IncludeToken::Always, [$chunk], [$attr]);
+        $spnegoContextToken = new SpnegoContextToken($issuer, [$chunk], [$includeToken, $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($spnegoContextToken),

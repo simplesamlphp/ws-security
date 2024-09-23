@@ -12,7 +12,6 @@ use SimpleSAML\WSSecurity\Utils\XPath;
 use SimpleSAML\WSSecurity\XML\sp_200702\AbstractSecureConversationTokenType;
 use SimpleSAML\WSSecurity\XML\sp_200702\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken;
-use SimpleSAML\WSSecurity\XML\sp_200702\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp_200702\IssuerName;
 use SimpleSAML\WSSecurity\XML\sp_200702\SecureConversationToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;
@@ -30,7 +29,6 @@ use function dirname;
  */
 #[Group('sp')]
 #[CoversClass(SecureConversationToken::class)]
-#[CoversClass(IncludeTokenTypeTrait::class)]
 #[CoversClass(AbstractSecureConversationTokenType::class)]
 #[CoversClass(AbstractSpElement::class)]
 final class SecureConversationTokenTest extends TestCase
@@ -59,11 +57,12 @@ final class SecureConversationTokenTest extends TestCase
     {
         $issuer = new IssuerName('urn:x-simplesamlphp:issuer');
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_12, 'sp', 'IncludeToken', IncludeToken::Always->value);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $secureConversationToken = new SecureConversationToken($issuer, IncludeToken::Always, [$chunk], [$attr]);
+        $secureConversationToken = new SecureConversationToken($issuer, [$chunk], [$includeToken, $attr]);
         $secureConversationTokenElement = $secureConversationToken->toXML();
 
         // Test for a IssuerName
@@ -92,13 +91,14 @@ final class SecureConversationTokenTest extends TestCase
     public function testMarshalling(): void
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_12, 'sp', 'IncludeToken', IncludeToken::Always->value);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $issuer = new IssuerName('urn:x-simplesamlphp:issuer');
 
-        $secureConversationToken = new SecureConversationToken($issuer, IncludeToken::Always, [$chunk], [$attr]);
+        $secureConversationToken = new SecureConversationToken($issuer, [$chunk], [$includeToken, $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($secureConversationToken),

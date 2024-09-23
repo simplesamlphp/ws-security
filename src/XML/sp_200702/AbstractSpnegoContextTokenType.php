@@ -25,7 +25,6 @@ abstract class AbstractSpnegoContextTokenType extends AbstractSpElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
-    use IncludeTokenTypeTrait;
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
@@ -33,27 +32,19 @@ abstract class AbstractSpnegoContextTokenType extends AbstractSpElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
 
-    /** The exclusions for the xs:anyAttribute element */
-    public const XS_ANY_ATTR_EXCLUSIONS = [
-        [null, 'IncludeToken'],
-    ];
-
 
     /**
      * SpnegoContextTokenType constructor.
      *
      * @param \SimpleSAML\WSSecurity\XML\sp_200702\Issuer|\SimpleSAML\WSSecurity\XML\sp_200702\IssuerName|null $issuer
-     * @param \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken|null $includeToken
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected Issuer|IssuerName|null $issuer,
-        ?IncludeToken $includeToken = null,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
-        $this->setIncludeToken($includeToken);
         $this->setElements($elts);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -78,7 +69,6 @@ abstract class AbstractSpnegoContextTokenType extends AbstractSpElement
     public function isEmptyElement(): bool
     {
         return empty($this->getIssuer())
-            && empty($this->getIncludeToken())
             && empty($this->getAttributesNS())
             && empty($this->getElements());
     }
@@ -109,15 +99,8 @@ abstract class AbstractSpnegoContextTokenType extends AbstractSpElement
         $issuerName = IssuerName::getChildrenOfClass($xml);
         $issuer = array_merge($issuer, $issuerName);
 
-        $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', null);
-        try {
-            $includeToken = IncludeToken::from($includeToken);
-        } catch (ValueError) {
-        }
-
         return new static(
             array_pop($issuer),
-            $includeToken,
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -133,13 +116,6 @@ abstract class AbstractSpnegoContextTokenType extends AbstractSpElement
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-
-        if ($this->getIncludeToken() !== null) {
-            $e->setAttribute(
-                'IncludeToken',
-                is_string($this->getIncludeToken()) ? $this->getIncludeToken() : $this->getIncludeToken()->value,
-            );
-        }
 
         if ($this->getIssuer() !== null) {
             $this->getIssuer()->toXML($e);
