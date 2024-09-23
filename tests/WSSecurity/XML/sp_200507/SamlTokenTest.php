@@ -11,7 +11,6 @@ use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\sp_200507\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200507\AbstractTokenAssertionType;
 use SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken;
-use SimpleSAML\WSSecurity\XML\sp_200507\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp_200507\SamlToken;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -28,7 +27,6 @@ use function dirname;
  */
 #[Group('sp')]
 #[CoversClass(SamlToken::class)]
-#[CoversClass(IncludeTokenTypeTrait::class)]
 #[CoversClass(AbstractTokenAssertionType::class)]
 #[CoversClass(AbstractSpElement::class)]
 final class SamlTokenTest extends TestCase
@@ -75,11 +73,12 @@ final class SamlTokenTest extends TestCase
     public function testMarshalling(): void
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_11, 'sp', 'IncludeToken', IncludeToken::Always->value);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $SamlToken = new SamlToken(IncludeToken::Always, [$chunk], [$attr]);
+        $SamlToken = new SamlToken([$chunk], [$includeToken, $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($SamlToken),
