@@ -52,7 +52,7 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
      */
     final public function __construct(
         protected RequestSecurityTokenTemplate $requestSecurityTokenTemplate,
-        protected Issuer|IssuerName|null $issuer,
+        protected Issuer|IssuerName|null $issuer = null,
         ?IncludeToken $includeToken = null,
         array $elts = [],
         array $namespacedAttributes = [],
