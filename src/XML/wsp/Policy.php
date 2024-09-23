@@ -161,7 +161,10 @@ final class Policy extends AbstractOperatorContentType
     public function toXML(DOMElement $parent = null): DOMElement
     {
         $e = parent::toXML($parent);
-        $e->setAttribute('Name', $this->getName());
+
+        if ($this->getName() !== null) {
+            $e->setAttribute('Name', $this->getName());
+        }
 
         $this->getId()?->toXML($e);
 
