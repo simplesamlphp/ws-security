@@ -10,10 +10,8 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
-use ValueError;
 
 use function array_pop;
-use function is_string;
 use function sprintf;
 
 /**
