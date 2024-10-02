@@ -1,0 +1,4 @@
+<t:Status xmlns:t="http://schemas.xmlsoap.org/ws/2005/02/trust">
+  <t:Code>http://schemas.xmlsoap.org/ws/2005/02/trust/status/invalid</t:Code>
+  <t:Reason>phpunit</t:Reason>
+</t:Status>

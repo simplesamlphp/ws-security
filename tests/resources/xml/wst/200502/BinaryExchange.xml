@@ -1,0 +1,1 @@
+<t:BinaryExchange xmlns:t="http://schemas.xmlsoap.org/ws/2005/02/trust" xmlns:ssp="urn:x-simplesamlphp:namespace" ValueType="urn:x-simplesamlphp:namespace" EncodingType="urn:x-simplesamlphp:namespace" ssp:attr1="testval1">phpunit</t:BinaryExchange>

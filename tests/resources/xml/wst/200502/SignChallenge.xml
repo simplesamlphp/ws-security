@@ -1,0 +1,4 @@
+<t:SignChallenge xmlns:t="http://schemas.xmlsoap.org/ws/2005/02/trust" xmlns:ssp="urn:x-simplesamlphp:namespace" xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" ssp:attr1="testval1">
+  <t:Challenge>accepted</t:Challenge>
+  <wsa:MessageID soapenv:mustUnderstand="1">uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de</wsa:MessageID>
+</t:SignChallenge>
