@@ -25,8 +25,8 @@ abstract class AbstractPart extends AbstractExtensibleAttributesDocumented
      */
     public function __construct(
         protected string $name,
-        protected ?string $element,
-        protected ?string $type,
+        protected ?string $element = null,
+        protected ?string $type = null,
         array $attributes = [],
     ) {
         Assert::validNCName($name, SchemaViolationException::class);
