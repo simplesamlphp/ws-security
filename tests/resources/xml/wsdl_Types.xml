@@ -1,3 +1,0 @@
-<wsdl:types xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>
-</wsdl:types>

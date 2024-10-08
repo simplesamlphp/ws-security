@@ -329,9 +329,6 @@ return [
         'ServiceName' => '\SimpleSAML\WSSecurity\XML\wsaw\ServiceName',
         'UsingAddressing' => '\SimpleSAML\WSSecurity\XML\wsaw\UsingAddressing',
     ],
-    'http://schemas.xmlsoap.org/wsdl/' => [
-        'definitions' => '\SimpleSAML\WSSecurity\XML\wsdl\Definitions',
-    ],
     'http://schemas.xmlsoap.org/ws/2004/09/policy' => [
         'All' => '\SimpleSAML\WSSecurity\XML\wsp\All',
         'AppliesTo' => '\SimpleSAML\WSSecurity\XML\wsp\AppliesTo',

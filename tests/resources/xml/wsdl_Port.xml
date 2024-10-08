@@ -1,3 +1,0 @@
-<wsdl:port xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="CustomName" binding="ssp:CustomBinding">
-  <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>
-</wsdl:port>
