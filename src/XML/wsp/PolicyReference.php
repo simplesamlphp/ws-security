@@ -37,7 +37,7 @@ final class PolicyReference extends AbstractWspElement
     public function __construct(
         protected string $URI,
         protected ?string $Digest = null,
-        protected ?string $DigestAlgorithm = null,
+        protected ?string $DigestAlgorithm = 'http://schemas.xmlsoap.org/ws/2004/09/policy/Sha1Exc',
         array $namespacedAttributes = [],
     ) {
         Assert::validURI($URI, SchemaViolationException::class);
@@ -67,11 +67,11 @@ final class PolicyReference extends AbstractWspElement
 
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDigestAlgorithm(): string
+    public function getDigestAlgorithm(): ?string
     {
-        return $this->DigestAlgorithm ?? 'http://schemas.xmlsoap.org/ws/2004/09/policy/Sha1Exc';
+        return $this->DigestAlgorithm;
     }
 
 
@@ -124,10 +124,14 @@ final class PolicyReference extends AbstractWspElement
     {
         $e = $this->instantiateParentElement($parent);
         $e->setAttribute('URI', $this->getURI());
+
         if ($this->getDigest() !== null) {
             $e->setAttribute('Digest', $this->getDigest());
         }
-        $e->setAttribute('DigestAlgorithm', $this->getDigestAlgorithm());
+
+        if ($this->getDigestAlgorithm() !== null) {
+            $e->setAttribute('DigestAlgorithm', $this->getDigestAlgorithm());
+        }
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);
