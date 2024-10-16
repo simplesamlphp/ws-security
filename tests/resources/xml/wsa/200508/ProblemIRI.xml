@@ -1,1 +1,1 @@
-<wsa:ProblemIRI xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1">https://login.microsoftonline.com/login.srf</wsa:ProblemIRI>
+<wsa10:ProblemIRI xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1">https://login.microsoftonline.com/login.srf</wsa10:ProblemIRI>

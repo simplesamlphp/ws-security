@@ -1,4 +1,4 @@
-<wsa:ProblemAction xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:test="value">
-  <wsa:Action ssp:test="value">https://login.microsoftonline.com/login.srf</wsa:Action>
-  <wsa:SoapAction>http://www.example.com/</wsa:SoapAction>
-</wsa:ProblemAction>
+<wsa10:ProblemAction xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:test="value">
+  <wsa10:Action ssp:test="value">https://login.microsoftonline.com/login.srf</wsa10:Action>
+  <wsa10:SoapAction>http://www.example.com/</wsa10:SoapAction>
+</wsa10:ProblemAction>

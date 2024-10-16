@@ -81,7 +81,7 @@ final class ProblemActionTest extends TestCase
         $wsans = C::NS_ADDR_200508;
         $problemAction = new ProblemAction();
         $this->assertEquals(
-            "<wsa:ProblemAction xmlns:wsa=\"$wsans\"/>",
+            "<wsa10:ProblemAction xmlns:wsa10=\"$wsans\"/>",
             strval($problemAction),
         );
         $this->assertTrue($problemAction->isEmptyElement());

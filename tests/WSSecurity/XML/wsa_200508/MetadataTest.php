@@ -76,7 +76,7 @@ final class MetadataTest extends TestCase
     {
         $metadata = new Metadata([], []);
         $this->assertEquals(
-            '<wsa:Metadata xmlns:wsa="http://www.w3.org/2005/08/addressing"/>',
+            '<wsa10:Metadata xmlns:wsa10="http://www.w3.org/2005/08/addressing"/>',
             strval($metadata),
         );
         $this->assertTrue($metadata->isEmptyElement());

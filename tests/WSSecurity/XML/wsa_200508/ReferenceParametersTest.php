@@ -76,7 +76,7 @@ final class ReferenceParametersTest extends TestCase
     {
         $referenceParameters = new ReferenceParameters([], []);
         $this->assertEquals(
-            '<wsa:ReferenceParameters xmlns:wsa="http://www.w3.org/2005/08/addressing"/>',
+            '<wsa10:ReferenceParameters xmlns:wsa10="http://www.w3.org/2005/08/addressing"/>',
             strval($referenceParameters),
         );
         $this->assertTrue($referenceParameters->isEmptyElement());

@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP\Constants as SOAP;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsa_200508\MessageID;
+use SimpleSAML\WSSecurity\XML\wsa_200408\MessageID;
 use SimpleSAML\WSSecurity\XML\wst_200502\AbstractRequestSecurityTokenResponseType;
 use SimpleSAML\WSSecurity\XML\wst_200502\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst_200502\RequestSecurityTokenResponse;

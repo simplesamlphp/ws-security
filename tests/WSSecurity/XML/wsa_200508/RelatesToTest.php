@@ -66,7 +66,7 @@ final class RelatesToTest extends TestCase
     {
         $relatesTo = new RelatesTo(null, []);
         $this->assertEquals(
-            '<wsa:RelatesTo xmlns:wsa="http://www.w3.org/2005/08/addressing"/>',
+            '<wsa10:RelatesTo xmlns:wsa10="http://www.w3.org/2005/08/addressing"/>',
             strval($relatesTo),
         );
         $this->assertTrue($relatesTo->isEmptyElement());

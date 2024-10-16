@@ -1,1 +1,1 @@
-<wsa:SoapAction xmlns:wsa="http://www.w3.org/2005/08/addressing">http://www.example.com/</wsa:SoapAction>
+<wsa10:SoapAction xmlns:wsa10="http://www.w3.org/2005/08/addressing">http://www.example.com/</wsa10:SoapAction>

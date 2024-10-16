@@ -18,5 +18,5 @@ abstract class AbstractWsaElement extends AbstractElement
     public const NS = C::NS_ADDR_200508;
 
     /** @var string */
-    public const NS_PREFIX = 'wsa';
+    public const NS_PREFIX = 'wsa10';
 }

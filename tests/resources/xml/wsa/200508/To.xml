@@ -1,1 +1,1 @@
-<wsa:To xmlns:wsa="http://www.w3.org/2005/08/addressing" ssp:attr="test" xmlns:ssp="urn:x-simplesamlphp:namespace">https://login.microsoftonline.com/login.srf</wsa:To>
+<wsa10:To xmlns:wsa10="http://www.w3.org/2005/08/addressing" ssp:attr="test" xmlns:ssp="urn:x-simplesamlphp:namespace">https://login.microsoftonline.com/login.srf</wsa10:To>

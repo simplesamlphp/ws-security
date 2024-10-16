@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wst_200502;
 
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
+use SimpleSAML\WSSecurity\XML\wsa_200408\AbstractEndpointReferenceType;
 
 /**
  * An Issuer element
@@ -22,8 +22,7 @@ final class Issuer extends AbstractEndpointReferenceType
 
     /** The exclusions for the xs:any element */
     public const XS_ANY_ELT_EXCLUSIONS = [
-        ['http://www.w3.org/2005/08/addressing', 'Address'],
-        ['http://www.w3.org/2005/08/addressing', 'Metadata'],
-        ['http://www.w3.org/2005/08/addressing', 'ReferenceParameters'],
+        ['http://schemas.xmlsoap.org/ws/2004/08/addressing', 'Address'],
+        ['http://schemas.xmlsoap.org/ws/2004/08/addressing', 'ReferenceParameters'],
     ];
 }

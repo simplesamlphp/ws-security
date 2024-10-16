@@ -1,5 +1,5 @@
-<wsa:Metadata xmlns:wsa="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1">
+<wsa10:Metadata xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1">
   <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
     <m:Item>Apples</m:Item>
   </m:GetPrice>
-</wsa:Metadata>
+</wsa10:Metadata>

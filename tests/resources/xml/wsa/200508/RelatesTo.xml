@@ -1,1 +1,1 @@
-<wsa:RelatesTo xmlns:wsa="http://www.w3.org/2005/08/addressing" RelationshipType="http://www.w3.org/2005/08/addressing/reply" xmlns:test="urn:test:something" test:attr1="testval1" />
+<wsa10:RelatesTo xmlns:wsa10="http://www.w3.org/2005/08/addressing" RelationshipType="http://www.w3.org/2005/08/addressing/reply" xmlns:test="urn:test:something" test:attr1="testval1" />

@@ -57,7 +57,7 @@ final class ProblemHeaderQNameTest extends TestCase
     {
         $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'value1');
 
-        $problemHeaderQName = new ProblemHeaderQName('wsa:Action', [$attr1]);
+        $problemHeaderQName = new ProblemHeaderQName('wsa10:Action', [$attr1]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
