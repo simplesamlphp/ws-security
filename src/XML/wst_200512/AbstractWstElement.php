@@ -18,5 +18,5 @@ abstract class AbstractWstElement extends AbstractElement
     public const NS = C::NS_TRUST_200512;
 
     /** @var string */
-    public const NS_PREFIX = 'wst';
+    public const NS_PREFIX = 'trust';
 }

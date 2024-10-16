@@ -1,1 +1,1 @@
-<wst:AuthenticationType xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">urn:x-simplesamlphp:namespace</wst:AuthenticationType>
+<trust:AuthenticationType xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">urn:x-simplesamlphp:namespace</trust:AuthenticationType>

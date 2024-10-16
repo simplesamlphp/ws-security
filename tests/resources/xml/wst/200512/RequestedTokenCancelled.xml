@@ -1,1 +1,1 @@
-<wst:RequestedTokenCancelled xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/" />
+<trust:RequestedTokenCancelled xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512/" />

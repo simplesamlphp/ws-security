@@ -81,7 +81,7 @@ final class ParticipantsTest extends TestCase
         $wstns = C::NS_TRUST_200512;
         $participants = new Participants();
         $this->assertEquals(
-            "<wst:Participants xmlns:wst=\"$wstns\"/>",
+            "<trust:Participants xmlns:trust=\"$wstns\"/>",
             strval($participants),
         );
         $this->assertTrue($participants->isEmptyElement());

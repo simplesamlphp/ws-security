@@ -1,1 +1,1 @@
-<wst:Reason xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">phpunit</wst:Reason>
+<trust:Reason xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">phpunit</trust:Reason>

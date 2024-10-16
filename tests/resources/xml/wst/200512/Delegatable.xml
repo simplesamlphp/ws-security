@@ -1,1 +1,1 @@
-<wst:Delegatable xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">true</wst:Delegatable>
+<trust:Delegatable xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">true</trust:Delegatable>

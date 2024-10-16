@@ -1,1 +1,1 @@
-<wst:BinaryExchange xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/" xmlns:ssp="urn:x-simplesamlphp:namespace" ValueType="urn:x-simplesamlphp:namespace" EncodingType="urn:x-simplesamlphp:namespace" ssp:attr1="testval1">phpunit</wst:BinaryExchange>
+<trust:BinaryExchange xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512/" xmlns:ssp="urn:x-simplesamlphp:namespace" ValueType="urn:x-simplesamlphp:namespace" EncodingType="urn:x-simplesamlphp:namespace" ssp:attr1="testval1">phpunit</trust:BinaryExchange>

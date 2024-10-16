@@ -1,1 +1,1 @@
-<wst:EncryptionAlgorithm xmlns:wst="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">urn:x-simplesamlphp:namespace</wst:EncryptionAlgorithm>
+<trust:EncryptionAlgorithm xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512/">urn:x-simplesamlphp:namespace</trust:EncryptionAlgorithm>

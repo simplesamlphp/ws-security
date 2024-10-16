@@ -18,7 +18,7 @@ final class Issuer extends AbstractEndpointReferenceType
     public const NS = C::NS_TRUST_200512;
 
     /** @var string */
-    public const NS_PREFIX = 'wst';
+    public const NS_PREFIX = 'trust';
 
     /** The exclusions for the xs:any element */
     public const XS_ANY_ELT_EXCLUSIONS = [
