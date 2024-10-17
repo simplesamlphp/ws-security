@@ -25,6 +25,7 @@ abstract class AbstractPasswordString extends AbstractAttributedString
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
+        #[\SensitiveParameter]
         string $content,
         ?string $Id = null,
         protected ?string $Type = null,
