@@ -2,6 +2,7 @@
     "name": "simplesamlphp/ws-security",
     "description": "WS-Security PHP library",
     "license": "LGPL-2.1-or-later",
+    "type": "simplesamlphp-xmlprovider",
     "authors": [
         {
             "name": "Tim van Dijen",
