@@ -79,7 +79,7 @@ abstract class AbstractAssertionType extends AbstractFedElement
     /**
      * Add this AssertionType to an XML element.
      *
-     * @param \DOMElement $parent The element we should append this username token to.
+     * @param \DOMElement $parent The element we should append this AssertionType to.
      * @return \DOMElement
      */
     public function toXML(DOMElement $parent = null): DOMElement
