@@ -74,7 +74,7 @@ final class Anonymous extends AbstractAnonymousType
      * @param \DOMElement|null $parent The element we should append this class to.
      * @return \DOMElement The XML element after adding the data corresponding to this Anonymous.
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::toXML($parent);
 

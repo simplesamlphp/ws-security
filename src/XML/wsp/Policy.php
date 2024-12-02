@@ -158,7 +158,7 @@ final class Policy extends AbstractOperatorContentType
      * @param \DOMElement|null $parent The element we should add this wsp:Policy to
      * @return \DOMElement This wsp:Policy element.
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::toXML($parent);
 

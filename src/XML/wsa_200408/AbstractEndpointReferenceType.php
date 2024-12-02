@@ -173,10 +173,10 @@ abstract class AbstractEndpointReferenceType extends AbstractWsaElement
     /**
      * Add this endpoint reference to an XML element.
      *
-     * @param \DOMElement $parent The element we should append this endpoint to.
+     * @param \DOMElement|null $parent The element we should append this endpoint to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
 

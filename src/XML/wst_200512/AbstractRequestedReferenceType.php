@@ -67,10 +67,10 @@ abstract class AbstractRequestedReferenceType extends AbstractWstElement
     /**
      * Add this RequestedReferenceType to an XML element.
      *
-     * @param \DOMElement $parent The element we should append this element to.
+     * @param \DOMElement|null $parent The element we should append this element to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
 

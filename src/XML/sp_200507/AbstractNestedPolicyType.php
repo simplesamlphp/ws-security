@@ -70,7 +70,7 @@ abstract class AbstractNestedPolicyType extends AbstractSpElement
      * @param \DOMElement|null $parent The element we should append this AbstractNestedPolicyType to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
 

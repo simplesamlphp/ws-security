@@ -94,7 +94,7 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
      * @param \DOMElement $parent The element we should append this username token to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::toXML($parent);
 

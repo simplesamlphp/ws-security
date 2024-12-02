@@ -102,10 +102,10 @@ abstract class AbstractSignChallengeType extends AbstractWstElement
     /**
      * Add this SignChallengeType to an XML element.
      *
-     * @param \DOMElement $parent The element we should append this username token to.
+     * @param \DOMElement|null $parent The element we should append this username token to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
 

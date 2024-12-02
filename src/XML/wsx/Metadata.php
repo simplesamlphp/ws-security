@@ -94,10 +94,10 @@ final class Metadata extends AbstractWsxElement
     /**
      * Add this Metadata to an XML element.
      *
-     * @param \DOMElement $parent The element we should append this Metadata to.
+     * @param \DOMElement|null $parent The element we should append this Metadata to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
 

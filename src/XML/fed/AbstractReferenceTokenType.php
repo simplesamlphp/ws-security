@@ -137,10 +137,10 @@ abstract class AbstractReferenceTokenType extends AbstractFedElement
     /**
      * Add this ReferenceToken to an XML element.
      *
-     * @param \DOMElement $parent The element we should append this ReferenceToken to.
+     * @param \DOMElement|null $parent The element we should append this ReferenceToken to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
 

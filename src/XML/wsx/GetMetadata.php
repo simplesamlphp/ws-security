@@ -108,10 +108,10 @@ final class GetMetadata extends AbstractWsxElement
     /**
      * Add this GetMetadata to an XML element.
      *
-     * @param \DOMElement $parent The element we should append this GetMetadata to.
+     * @param \DOMElement|null $parent The element we should append this GetMetadata to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
 

@@ -60,7 +60,7 @@ abstract class AbstractReferenceDigestType extends AbstractFedElement
      * @param \DOMElement|null $parent
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
         $e->textContent = $this->getContent();

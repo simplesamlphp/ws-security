@@ -91,7 +91,7 @@ abstract class AbstractKeyValueTokenType extends AbstractSpElement
      * @param \DOMElement|null $parent The element we should append this element to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
 

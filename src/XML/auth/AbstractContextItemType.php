@@ -132,7 +132,7 @@ abstract class AbstractContextItemType extends AbstractAuthElement
      * @param \DOMElement $parent The element we should append this username token to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
 

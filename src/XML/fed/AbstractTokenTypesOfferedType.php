@@ -93,10 +93,10 @@ abstract class AbstractTokenTypesOfferedType extends AbstractFedElement
     /**
      * Add this TokenTypesOffered to an XML element.
      *
-     * @param \DOMElement $parent The element we should append this TokenTypesOffered to.
+     * @param \DOMElement|null $parent The element we should append this TokenTypesOffered to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
 

@@ -83,10 +83,10 @@ abstract class AbstractClaimTypesOfferedType extends AbstractFedElement
     /**
      * Add this ClaimTypesOfferedType to an XML element.
      *
-     * @param \DOMElement $parent The element we should append this ClaimTypesOfferedType to.
+     * @param \DOMElement|null $parent The element we should append this ClaimTypesOfferedType to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
 

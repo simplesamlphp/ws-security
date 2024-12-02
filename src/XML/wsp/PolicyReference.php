@@ -120,7 +120,7 @@ final class PolicyReference extends AbstractWspElement
      * @param \DOMElement|null $parent The element we should add this wsp:Policy to
      * @return \DOMElement This wsp:PolicyReference element.
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
         $e->setAttribute('URI', $this->getURI());

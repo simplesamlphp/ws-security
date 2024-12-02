@@ -91,7 +91,7 @@ final class RelatesTo extends AbstractWsaElement
      * @param \DOMElement|null $parent The element we should add this RelatesTo to.
      * @return \DOMElement This Header-element.
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
 

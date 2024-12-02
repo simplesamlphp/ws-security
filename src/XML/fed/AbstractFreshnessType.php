@@ -104,10 +104,10 @@ abstract class AbstractFreshnessType extends AbstractFedElement
     /**
      * Add this IssuerNameType to an XML element.
      *
-     * @param \DOMElement $parent The element we should append this issuer name to.
+     * @param \DOMElement|null $parent The element we should append this issuer name to.
      * @return \DOMElement
      */
-    public function toXML(DOMElement $parent = null): DOMElement
+    public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
         $e->textContent = $this->getContent();
