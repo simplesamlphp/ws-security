@@ -50,25 +50,15 @@ final class RelatesToTest extends TestCase
     {
         $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
 
-        $relatesTo = new RelatesTo('http://www.w3.org/2005/08/addressing/reply', [$domAttr]);
-        $this->assertFalse($relatesTo->isEmptyElement());
+        $relatesTo = new RelatesTo(
+            'urn:x-simplesamlphp:namespace',
+            'http://www.w3.org/2005/08/addressing/reply',
+            [$domAttr],
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($relatesTo),
         );
-    }
-
-
-    /**
-     */
-    public function testMarshallingWithNoContent(): void
-    {
-        $relatesTo = new RelatesTo(null, []);
-        $this->assertEquals(
-            '<wsa10:RelatesTo xmlns:wsa10="http://www.w3.org/2005/08/addressing"/>',
-            strval($relatesTo),
-        );
-        $this->assertTrue($relatesTo->isEmptyElement());
     }
 }

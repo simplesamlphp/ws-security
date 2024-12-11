@@ -9,9 +9,8 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\URIElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
-
-use function is_null;
 
 /**
  * Class representing a wsa:RelatesTo element.
@@ -21,6 +20,7 @@ use function is_null;
 final class RelatesTo extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
+    use URIElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -29,15 +29,18 @@ final class RelatesTo extends AbstractWsaElement
     /**
      * Initialize a wsa:RelatesTo
      *
+     * @param string $content
      * @param string|null $RelationshipType
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
+        string $content,
         protected ?string $RelationshipType = 'http://www.w3.org/2005/08/addressing/reply',
         array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidURI($RelationshipType, SchemaViolationException::class);
 
+        $this->setContent($content);
         $this->setAttributesNS($namespacedAttributes);
     }
 
@@ -50,17 +53,6 @@ final class RelatesTo extends AbstractWsaElement
     public function getRelationshipType(): ?string
     {
         return $this->RelationshipType;
-    }
-
-
-    /**
-     * Test if an object, at the state it's in, would produce an empty XML-element
-     *
-     * @return bool
-     */
-    public function isEmptyElement(): bool
-    {
-        return is_null($this->RelationshipType) && empty($this->namespacedAttributes);
     }
 
 
@@ -79,6 +71,7 @@ final class RelatesTo extends AbstractWsaElement
         Assert::same($xml->namespaceURI, RelatesTo::NS, InvalidDOMElementException::class);
 
         return new static(
+            $xml->textContent,
             self::getOptionalAttribute($xml, 'RelationshipType', null),
             self::getAttributesNSFromXML($xml),
         );
@@ -94,6 +87,7 @@ final class RelatesTo extends AbstractWsaElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
+        $e->textContent = $this->getContent();
 
         if ($this->getRelationshipType() !== null) {
             $e->setAttribute('RelationshipType', $this->getRelationshipType());
