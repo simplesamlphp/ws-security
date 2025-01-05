@@ -20,4 +20,7 @@ abstract class AbstractFedElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'fed';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/ws-federation.xsd';
 }

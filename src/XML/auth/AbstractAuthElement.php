@@ -20,4 +20,7 @@ abstract class AbstractAuthElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'auth';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/ws-authorization.xsd';
 }

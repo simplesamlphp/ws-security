@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+
 /**
  * An InitiatorSignatureToken element
  *
  * @package simplesamlphp/ws-security
  */
-final class InitiatorSignatureToken extends AbstractNestedPolicyType
+final class InitiatorSignatureToken extends AbstractNestedPolicyType implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
 }

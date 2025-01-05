@@ -20,4 +20,7 @@ abstract class AbstractWsawElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'wsaw';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/ws-addr-wsdl.xsd';
 }

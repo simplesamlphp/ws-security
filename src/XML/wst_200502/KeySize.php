@@ -7,15 +7,17 @@ namespace SimpleSAML\WSSecurity\XML\wst_200502;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\IntegerElementTrait;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 
 /**
  * Class representing WS-trust KeySize.
  *
  * @package simplesamlphp/ws-security
  */
-final class KeySize extends AbstractWstElement
+final class KeySize extends AbstractWstElement implements SchemaValidatableElementInterface
 {
     use IntegerElementTrait;
+    use SchemaValidatableElementTrait;
 
     /**
      * KeySize constructor.

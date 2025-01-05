@@ -20,4 +20,7 @@ abstract class AbstractWsseElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'wsse';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/oasis-200401-wss-wssecurity-secext-1.0.xsd';
 }

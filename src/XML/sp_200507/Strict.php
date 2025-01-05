@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+
 /**
  * An Strict element
  *
  * @package simplesamlphp/ws-security
  */
-final class Strict extends AbstractQNameAssertionType
+final class Strict extends AbstractQNameAssertionType implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
 }

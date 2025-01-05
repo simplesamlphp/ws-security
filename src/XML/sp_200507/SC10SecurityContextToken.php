@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+
 /**
  * An SC10SecurityContextToken element
  *
  * @package simplesamlphp/ws-security
  */
-final class SC10SecurityContextToken extends AbstractQNameAssertionType
+final class SC10SecurityContextToken extends AbstractQNameAssertionType implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
 }

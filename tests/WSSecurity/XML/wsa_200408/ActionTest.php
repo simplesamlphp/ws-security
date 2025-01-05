@@ -39,8 +39,6 @@ final class ActionTest extends TestCase
     {
         self::$testedClass = Action::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr-200408.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa/200408/Action.xml',
         );

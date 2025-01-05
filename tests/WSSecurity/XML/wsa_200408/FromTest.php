@@ -56,8 +56,6 @@ final class FromTest extends TestCase
     {
         self::$testedClass = From::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr-200408.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa/200408/From.xml',
         );

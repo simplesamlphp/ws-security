@@ -43,8 +43,6 @@ final class ClaimTypeTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-authorization.xsd';
-
         self::$testedClass = ClaimType::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

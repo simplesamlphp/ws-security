@@ -9,6 +9,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XML\XsNamespace as NS;
 
 use function str_replace;
@@ -18,9 +19,10 @@ use function str_replace;
  *
  * @package simplesamlphp/ws-security
  */
-final class PolicyReference extends AbstractWspElement
+final class PolicyReference extends AbstractWspElement implements SchemaValidatableElementInterface
 {
     use ExtendableAttributesTrait;
+    use SchemaValidatableElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;

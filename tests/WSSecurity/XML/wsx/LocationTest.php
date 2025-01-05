@@ -34,8 +34,6 @@ final class LocationTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/MetadataExchange.xsd';
-
         self::$testedClass = Location::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

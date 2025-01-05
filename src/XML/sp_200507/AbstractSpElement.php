@@ -19,4 +19,7 @@ abstract class AbstractSpElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'sp';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/ws-securitypolicy-1.1.xsd';
 }

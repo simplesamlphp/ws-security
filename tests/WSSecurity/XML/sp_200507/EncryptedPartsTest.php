@@ -41,8 +41,6 @@ final class EncryptedPartsTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-securitypolicy-1.1.xsd';
-
         self::$testedClass = EncryptedParts::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

@@ -54,8 +54,6 @@ final class FaultToTest extends TestCase
     {
         self::$testedClass = FaultTo::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr-200508.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa/200508/FaultTo.xml',
         );

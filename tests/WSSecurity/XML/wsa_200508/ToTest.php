@@ -39,8 +39,6 @@ final class ToTest extends TestCase
     {
         self::$testedClass = To::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr-200508.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa/200508/To.xml',
         );

@@ -19,4 +19,7 @@ abstract class AbstractWsxElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'wsx';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/MetadataExchange.xsd';
 }

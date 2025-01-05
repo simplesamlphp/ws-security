@@ -60,8 +60,6 @@ final class AttributeServiceEndpointTest extends TestCase
     {
         self::$testedClass = AttributeServiceEndpoint::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
             dirname(__FILE__, 4) . '/resources/xml/fed_AttributeServiceEndpoint.xml',
         );

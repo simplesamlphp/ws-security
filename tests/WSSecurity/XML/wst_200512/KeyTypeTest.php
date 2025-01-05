@@ -36,8 +36,6 @@ final class KeyTypeTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-trust-200512.xsd';
-
         self::$testedClass = KeyType::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

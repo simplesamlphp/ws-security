@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wst_200502;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+
 /**
  * A ProofEncryption element
  *
  * @package simplesamlphp/ws-security
  */
-final class ProofEncryption extends AbstractProofEncryptionType
+final class ProofEncryption extends AbstractProofEncryptionType implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
 }

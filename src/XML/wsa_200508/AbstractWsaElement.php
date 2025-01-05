@@ -19,4 +19,7 @@ abstract class AbstractWsaElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'wsa10';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/ws-addr-200508.xsd';
 }

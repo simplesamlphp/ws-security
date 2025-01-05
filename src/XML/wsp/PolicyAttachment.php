@@ -14,6 +14,7 @@ use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XML\XsNamespace as NS;
 
 use function array_merge;
@@ -23,10 +24,11 @@ use function array_merge;
  *
  * @package simplesamlphp/ws-security
  */
-final class PolicyAttachment extends AbstractWspElement
+final class PolicyAttachment extends AbstractWspElement implements SchemaValidatableElementInterface
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+    use SchemaValidatableElementTrait;
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;

@@ -37,8 +37,6 @@ final class MustNotSendCancelTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/mssp.xsd';
-
         self::$testedClass = MustNotSendCancel::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

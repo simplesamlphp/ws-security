@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\fed;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+
 /**
  * Class defining the SingleSignOutNotificationEndpoints element
  *
  * @package simplesamlphp/ws-security
  */
-final class SingleSignOutNotificationEndpoints extends AbstractEndpointType
+final class SingleSignOutNotificationEndpoints extends AbstractEndpointType implements
+    SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
 }

@@ -39,8 +39,6 @@ final class GetMetadataTest extends TestCase
     {
         self::$testedClass = GetMetadata::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/MetadataExchange.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsx_GetMetadata.xml',
         );

@@ -33,8 +33,6 @@ final class AutomaticPseudonymsTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
-
         self::$testedClass = AutomaticPseudonyms::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

@@ -38,8 +38,6 @@ final class RequestedUnattachedReferenceTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-trust-200512.xsd';
-
         self::$testedClass = RequestedUnattachedReference::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

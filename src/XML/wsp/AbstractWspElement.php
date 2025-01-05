@@ -19,4 +19,7 @@ abstract class AbstractWspElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'wsp';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/ws-policy-200409.xsd';
 }

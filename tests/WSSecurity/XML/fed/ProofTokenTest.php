@@ -39,8 +39,6 @@ final class ProofTokenTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
-
         self::$testedClass = ProofToken::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

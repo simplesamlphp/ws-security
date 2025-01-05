@@ -7,14 +7,17 @@ namespace SimpleSAML\WSSecurity\XML\wst_200502;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 
 /**
  * A AllowPostdating element
  *
  * @package simplesamlphp/ws-security
  */
-final class AllowPostdating extends AbstractWstElement
+final class AllowPostdating extends AbstractWstElement implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
+
     /**
      * Convert XML into a class instance
      *

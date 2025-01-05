@@ -9,6 +9,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XML\URIElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
 
@@ -17,9 +18,10 @@ use SimpleSAML\XML\XsNamespace as NS;
  *
  * @package simplesamlphp/ws-security
  */
-final class RelatesTo extends AbstractWsaElement
+final class RelatesTo extends AbstractWsaElement implements SchemaValidatableElementInterface
 {
     use ExtendableAttributesTrait;
+    use SchemaValidatableElementTrait;
     use URIElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */

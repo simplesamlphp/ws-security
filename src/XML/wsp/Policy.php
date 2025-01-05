@@ -12,6 +12,7 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**
@@ -19,9 +20,10 @@ use SimpleSAML\XML\XsNamespace as NS;
  *
  * @package simplesamlphp/ws-security
  */
-final class Policy extends AbstractOperatorContentType
+final class Policy extends AbstractOperatorContentType implements SchemaValidatableElementInterface
 {
     use ExtendableAttributesTrait;
+    use SchemaValidatableElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;

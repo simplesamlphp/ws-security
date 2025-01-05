@@ -8,6 +8,7 @@ use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 
 use function array_pop;
 
@@ -16,8 +17,10 @@ use function array_pop;
  *
  * @package simplesamlphp/ws-security
  */
-final class ProblemAction extends AbstractProblemActionType
+final class ProblemAction extends AbstractProblemActionType implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
+
     /**
      * Convert XML into a class instance
      *

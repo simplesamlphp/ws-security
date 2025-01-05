@@ -39,8 +39,6 @@ final class UseKeyTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-trust-200512.xsd';
-
         self::$testedClass = UseKey::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

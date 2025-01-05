@@ -41,8 +41,6 @@ final class TimestampTest extends TestCase
     {
         self::$testedClass = Timestamp::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/oasis-200401-wss-wssecurity-utility-1.0.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsu_Timestamp.xml',
         );

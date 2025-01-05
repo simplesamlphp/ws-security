@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+
 /**
  * An RequireClientEntropy element
  *
  * @package simplesamlphp/ws-security
  */
-final class RequireClientEntropy extends AbstractQNameAssertionType
+final class RequireClientEntropy extends AbstractQNameAssertionType implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
 }

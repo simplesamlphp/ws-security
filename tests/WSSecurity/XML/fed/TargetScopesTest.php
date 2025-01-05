@@ -57,8 +57,6 @@ final class TargetScopesTest extends TestCase
     {
         self::$testedClass = TargetScopes::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
             dirname(__FILE__, 4) . '/resources/xml/fed_TargetScopes.xml',
         );

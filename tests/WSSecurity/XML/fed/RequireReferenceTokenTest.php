@@ -41,8 +41,6 @@ final class RequireReferenceTokenTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
-
         self::$testedClass = RequireReferenceToken::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

@@ -39,8 +39,6 @@ final class X509TokenTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-securitypolicy-1.1.xsd';
-
         self::$testedClass = X509Token::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

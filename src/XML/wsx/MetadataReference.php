@@ -9,6 +9,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**
@@ -16,9 +17,10 @@ use SimpleSAML\XML\XsNamespace as NS;
  *
  * @package simplesamlphp/ws-security
  */
-final class MetadataReference extends AbstractWsxElement
+final class MetadataReference extends AbstractWsxElement implements SchemaValidatableElementInterface
 {
     use ExtendableElementTrait;
+    use SchemaValidatableElementTrait;
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;

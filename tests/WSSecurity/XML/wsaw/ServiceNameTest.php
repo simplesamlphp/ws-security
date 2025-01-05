@@ -39,8 +39,6 @@ final class ServiceNameTest extends TestCase
     {
         self::$testedClass = ServiceName::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr-wsdl.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsaw_ServiceName.xml',
         );

@@ -46,8 +46,6 @@ final class WebBindingTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
-
         self::$testedClass = WebBinding::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

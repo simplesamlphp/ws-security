@@ -23,7 +23,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
-#[Group('wsp')]
+#[Group('wsse')]
 #[CoversClass(Password::class)]
 #[CoversClass(AbstractPasswordString::class)]
 #[CoversClass(AbstractAttributedString::class)]

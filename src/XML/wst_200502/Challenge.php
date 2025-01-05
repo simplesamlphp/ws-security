@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wst_200502;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XML\StringElementTrait;
 
 /**
@@ -11,8 +12,9 @@ use SimpleSAML\XML\StringElementTrait;
  *
  * @package simplesamlphp/ws-security
  */
-final class Challenge extends AbstractWstElement
+final class Challenge extends AbstractWstElement implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
     use StringElementTrait;
 
 

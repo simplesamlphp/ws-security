@@ -41,8 +41,6 @@ final class AdditionalContextTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-authorization.xsd';
-
         self::$testedClass = AdditionalContext::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

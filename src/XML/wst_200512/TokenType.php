@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XML\URIElementTrait;
 
 /**
@@ -11,8 +12,9 @@ use SimpleSAML\XML\URIElementTrait;
  *
  * @package simplesamlphp/ws-security
  */
-final class TokenType extends AbstractWstElement
+final class TokenType extends AbstractWstElement implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
     use URIElementTrait;
 
 

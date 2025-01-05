@@ -38,8 +38,6 @@ final class RequestedAttachedReferenceTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-trust-200512.xsd';
-
         self::$testedClass = RequestedAttachedReference::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

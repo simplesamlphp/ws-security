@@ -39,8 +39,6 @@ final class RetryAfterTest extends TestCase
     {
         self::$testedClass = RetryAfter::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-addr-200508.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsa/200508/RetryAfter.xml',
         );

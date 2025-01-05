@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsu;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+
 /**
  * Class defining the Expires element
  *
  * @package simplesamlphp/ws-security
  */
-final class Expires extends AbstractAttributedDateTime
+final class Expires extends AbstractAttributedDateTime implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
 }

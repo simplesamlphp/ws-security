@@ -44,8 +44,6 @@ final class RequiresGenericClaimDialectTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
-
         self::$testedClass = RequiresGenericClaimDialect::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

@@ -38,8 +38,6 @@ final class MetadataSectionTest extends TestCase
     {
         self::$testedClass = MetadataSection::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/MetadataExchange.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::FromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsx_MetadataSection.xml',
         );

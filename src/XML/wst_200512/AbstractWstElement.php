@@ -19,4 +19,7 @@ abstract class AbstractWstElement extends AbstractElement
 
     /** @var string */
     public const NS_PREFIX = 'trust';
+
+    /** @var string */
+    public const SCHEMA = 'resources/schemas/ws-trust-200512.xsd';
 }

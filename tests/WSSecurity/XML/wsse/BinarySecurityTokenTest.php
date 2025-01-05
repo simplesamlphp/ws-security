@@ -25,7 +25,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
-#[Group('wsp')]
+#[Group('wsse')]
 #[CoversClass(BinarySecurityToken::class)]
 #[CoversClass(AbstractBinarySecurityTokenType::class)]
 #[CoversClass(AbstractEncodedString::class)]
@@ -42,8 +42,6 @@ final class BinarySecurityTokenTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         self::$testedClass = BinarySecurityToken::class;
-
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/oasis-200401-wss-wssecurity-secext-1.0.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsse_BinarySecurityToken.xml',

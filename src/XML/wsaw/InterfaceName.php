@@ -7,14 +7,17 @@ namespace SimpleSAML\WSSecurity\XML\wsaw;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 
 /**
  * Class defining the InterfaceName element
  *
  * @package simplesamlphp/ws-security
  */
-final class InterfaceName extends AbstractAttributedQNameType
+final class InterfaceName extends AbstractAttributedQNameType implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
+
     /**
      * Create an instance of this object from its XML representation.
      *

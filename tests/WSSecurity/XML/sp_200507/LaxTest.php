@@ -36,8 +36,6 @@ final class LaxTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-securitypolicy-1.1.xsd';
-
         self::$testedClass = Lax::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

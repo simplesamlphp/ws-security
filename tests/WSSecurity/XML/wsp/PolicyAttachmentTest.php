@@ -46,8 +46,6 @@ final class PolicyAttachmentTest extends TestCase
     {
         self::$testedClass = PolicyAttachment::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-policy-200409.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsp_PolicyAttachment.xml',
         );

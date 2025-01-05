@@ -36,8 +36,6 @@ final class WssSamlV20Token11Test extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-securitypolicy-1.1.xsd';
-
         self::$testedClass = WssSamlV20Token11::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

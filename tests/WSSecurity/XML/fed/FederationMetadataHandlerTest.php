@@ -37,8 +37,6 @@ final class FederationMetadataHandlerTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
-
         self::$testedClass = FederationMetadataHandler::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

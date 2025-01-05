@@ -36,8 +36,6 @@ final class RequireExternalReferenceTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-securitypolicy-1.1.xsd';
-
         self::$testedClass = RequireExternalReference::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

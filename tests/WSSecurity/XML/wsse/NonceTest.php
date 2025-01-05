@@ -24,7 +24,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
-#[Group('wsp')]
+#[Group('wsse')]
 #[CoversClass(Nonce::class)]
 #[CoversClass(AbstractEncodedString::class)]
 #[CoversClass(AbstractAttributedString::class)]
@@ -40,8 +40,6 @@ final class NonceTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         self::$testedClass = Nonce::class;
-
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/oasis-200401-wss-wssecurity-secext-1.0.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsse_Nonce.xml',

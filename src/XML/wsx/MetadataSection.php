@@ -11,6 +11,7 @@ use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XML\SerializableElementInterface;
 use SimpleSAML\XML\XsNamespace as NS;
 
@@ -22,10 +23,11 @@ use function array_pop;
  *
  * @package simplesamlphp/ws-security
  */
-final class MetadataSection extends AbstractWsxElement
+final class MetadataSection extends AbstractWsxElement implements SchemaValidatableElementInterface
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+    use SchemaValidatableElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;

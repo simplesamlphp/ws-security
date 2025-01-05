@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wst_200502;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+
 /**
  * A BinarySecret element
  *
  * @package simplesamlphp/ws-security
  */
-final class BinarySecret extends AbstractBinarySecretType
+final class BinarySecret extends AbstractBinarySecretType implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
 }

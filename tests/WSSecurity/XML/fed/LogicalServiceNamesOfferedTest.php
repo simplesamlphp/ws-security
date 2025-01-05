@@ -40,8 +40,6 @@ final class LogicalServiceNamesOfferedTest extends TestCase
     {
         self::$testedClass = LogicalServiceNamesOffered::class;
 
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-federation.xsd';
-
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/fed_LogicalServiceNamesOffered.xml',
         );

@@ -9,6 +9,7 @@ use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XML\XsNamespace as NS;
 
 use function array_pop;
@@ -18,9 +19,10 @@ use function array_pop;
  *
  * @package simplesamlphp/ws-security
  */
-final class GetMetadata extends AbstractWsxElement
+final class GetMetadata extends AbstractWsxElement implements SchemaValidatableElementInterface
 {
     use ExtendableAttributesTrait;
+    use SchemaValidatableElementTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;

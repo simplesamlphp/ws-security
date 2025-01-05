@@ -7,14 +7,17 @@ namespace SimpleSAML\WSSecurity\XML\wst_200512;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 
 /**
  * A RequestKET element
  *
  * @package simplesamlphp/ws-security
  */
-final class RequestKET extends AbstractWstElement
+final class RequestKET extends AbstractWstElement implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
+
     /**
      * Convert XML into a class instance
      *

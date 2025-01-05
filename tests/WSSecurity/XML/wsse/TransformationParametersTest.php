@@ -24,7 +24,7 @@ use function strval;
  *
  * @package simplesamlphp/ws-security
  */
-#[Group('wsp')]
+#[Group('wsse')]
 #[CoversClass(TransformationParameters::class)]
 #[CoversClass(AbstractTransformationParametersType::class)]
 #[CoversClass(AbstractWsseElement::class)]
@@ -39,8 +39,6 @@ final class TransformationParametersTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         self::$testedClass = TransformationParameters::class;
-
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/oasis-200401-wss-wssecurity-secext-1.0.xsd';
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
             dirname(__FILE__, 4) . '/resources/xml/wsse_TransformationParameters.xml',

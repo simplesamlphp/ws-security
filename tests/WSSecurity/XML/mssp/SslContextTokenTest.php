@@ -39,8 +39,6 @@ final class SslContextTokenTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/mssp.xsd';
-
         self::$testedClass = SslContextToken::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

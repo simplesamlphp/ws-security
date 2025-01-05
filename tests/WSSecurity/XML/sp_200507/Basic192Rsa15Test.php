@@ -36,8 +36,6 @@ final class Basic192Rsa15Test extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-securitypolicy-1.1.xsd';
-
         self::$testedClass = Basic192Rsa15::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(

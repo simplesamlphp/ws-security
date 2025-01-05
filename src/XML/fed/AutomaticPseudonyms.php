@@ -7,6 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 use DOMElement;
 use SimpleSAML\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
 use SimpleSAML\XML\StringElementTrait;
 
 use function in_array;
@@ -17,8 +18,9 @@ use function sprintf;
  *
  * @package simplesamlphp/ws-security
  */
-final class AutomaticPseudonyms extends AbstractFedElement
+final class AutomaticPseudonyms extends AbstractFedElement implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
     use StringElementTrait;
 
 

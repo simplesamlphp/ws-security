@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
+use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+
 /**
- * An ProtectTokens element
+ * A ProtectTokens element
  *
  * @package simplesamlphp/ws-security
  */
-final class ProtectTokens extends AbstractQNameAssertionType
+final class ProtectTokens extends AbstractQNameAssertionType implements SchemaValidatableElementInterface
 {
+    use SchemaValidatableElementTrait;
 }

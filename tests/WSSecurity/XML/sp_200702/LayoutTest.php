@@ -45,8 +45,6 @@ final class LayoutTest extends TestCase
      */
     public static function setUpBeforeClass(): void
     {
-        self::$schemaFile = dirname(__FILE__, 5) . '/resources/schemas/ws-securitypolicy-1.2.xsd';
-
         self::$testedClass = Layout::class;
 
         self::$xmlRepresentation = DOMDocumentFactory::fromFile(
