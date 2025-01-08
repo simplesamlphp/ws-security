@@ -14,7 +14,7 @@
         "ext-dom": "*",
         "ext-spl": "*",
 
-        "simplesamlphp/assert": "~1.6.0",
+        "simplesamlphp/assert": "~1.7.0",
         "simplesamlphp/composer-xmlprovider-installer": "~1.0.0",
         "simplesamlphp/saml2": "^5@dev",
         "simplesamlphp/xml-security": "~1.12.0",
