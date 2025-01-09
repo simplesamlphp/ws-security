@@ -6,7 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\wsu;
 
 use DateTimeImmutable;
 use DOMElement;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Exception\ProtocolViolationException;
 use SimpleSAML\XML\Attribute as XMLAttribute;

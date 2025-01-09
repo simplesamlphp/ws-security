@@ -14,14 +14,14 @@
         "ext-dom": "*",
         "ext-spl": "*",
 
-        "simplesamlphp/assert": "~1.8.0",
-        "simplesamlphp/composer-xmlprovider-installer": "~1.0.0",
+        "simplesamlphp/assert": "~1.8.1",
+        "simplesamlphp/composer-xmlprovider-installer": "~1.0.1",
         "simplesamlphp/saml2": "^5@dev",
-        "simplesamlphp/xml-security": "~1.12.0",
+        "simplesamlphp/xml-security": "~1.13.0",
         "simplesamlphp/xml-common": "~1.24.0"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "^1.8"
+        "simplesamlphp/simplesamlphp-test-framework": "~1.8.0"
     },
     "autoload": {
         "psr-4": {
