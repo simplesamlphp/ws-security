@@ -6,9 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DateTimeImmutable;
 use DOMElement;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\Assert\Assert as SAMLAssert;
 use SimpleSAML\SAML2\XML\md\{ContactPerson, Extensions, KeyDescriptor, Organization};
+use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
