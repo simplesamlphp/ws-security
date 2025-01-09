@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wsp;
 
 use DOMElement;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
@@ -43,7 +43,7 @@ final class PolicyReference extends AbstractWspElement implements SchemaValidata
         array $namespacedAttributes = [],
     ) {
         Assert::validURI($URI, SchemaViolationException::class);
-        Assert::nullOrStringPlausibleBase64($Digest, SchemaViolationException::class);
+        Assert::nullOrValidBase64($Digest, SchemaViolationException::class);
         Assert::nullOrValidURI($DigestAlgorithm, SchemaViolationException::class);
 
         $this->setAttributesNS($namespacedAttributes);

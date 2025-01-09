@@ -6,7 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
 use DOMNodeList;
 use DOMXPath;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\StringElementTrait;
 

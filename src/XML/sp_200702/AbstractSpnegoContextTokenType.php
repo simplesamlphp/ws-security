@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
 use DOMElement;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;

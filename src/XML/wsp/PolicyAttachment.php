@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wsp;
 
 use DOMElement;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\XML\wsp\AppliesTo;
 use SimpleSAML\WSSecurity\XML\wsp\Policy;
 use SimpleSAML\WSSecurity\XML\wsp\PolicyReference;

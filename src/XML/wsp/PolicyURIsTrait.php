@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsp;
 
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Assert\Assert;
 
 /**
  * Trait grouping common functionality for elements that can hold a PolicyURIs attribute.

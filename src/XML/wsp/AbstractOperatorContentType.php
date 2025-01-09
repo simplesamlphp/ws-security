@@ -6,7 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\wsp;
 
 use DOMElement;
 use InvalidArgumentException;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;

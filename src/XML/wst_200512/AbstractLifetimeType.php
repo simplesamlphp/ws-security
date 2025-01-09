@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
 use DOMElement;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\XML\wsu\Created;
 use SimpleSAML\WSSecurity\XML\wsu\Expires;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;

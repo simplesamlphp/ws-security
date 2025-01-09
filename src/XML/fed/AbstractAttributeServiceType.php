@@ -6,9 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DateTimeImmutable;
 use DOMElement;
-use SimpleSAML\Assert\Assert;
 use SimpleSAML\SAML2\XML\md\Extensions;
 use SimpleSAML\SAML2\XML\md\Organization;
+use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\MissingElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;

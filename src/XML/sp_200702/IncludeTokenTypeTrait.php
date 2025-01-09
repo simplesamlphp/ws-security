@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Assert\Assert;
 
 use function is_string;
 

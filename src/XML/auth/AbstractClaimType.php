@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
-use SimpleSAML\Assert\Assert;
+use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\XML\auth\ConstrainedValue;
 use SimpleSAML\WSSecurity\XML\auth\Description;
 use SimpleSAML\WSSecurity\XML\auth\DisplayName;
