@@ -7,8 +7,8 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\{ExtendableAttributesTrait, TypedTextContentTrait};
+use SimpleSAML\XML\Type\StringValue;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**
@@ -19,17 +19,20 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractAttributeExtensibleString extends AbstractFedElement
 {
     use ExtendableAttributesTrait;
-    use StringElementTrait;
+    use TypedTextContentTrait;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
 
     /**
-     * @param string $content
+     * @param \SimpleSAML\XML\Type\StringValue $content
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
-    final public function __construct(string $content, array $namespacedAttributes = [])
+    final public function __construct(StringValue $content, array $namespacedAttributes = [])
     {
         $this->setContent($content);
         $this->setAttributesNS($namespacedAttributes);
@@ -48,7 +51,7 @@ abstract class AbstractAttributeExtensibleString extends AbstractFedElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            $xml->textContent,
+            StringValue::fromString($xml->textContent),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -63,7 +66,7 @@ abstract class AbstractAttributeExtensibleString extends AbstractFedElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

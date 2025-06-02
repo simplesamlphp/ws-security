@@ -7,8 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**

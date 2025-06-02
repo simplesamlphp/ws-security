@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\{CoversClass, Group};
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
-use SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedSingleValueType;
-use SimpleSAML\WSSecurity\XML\auth\Value;
-use SimpleSAML\WSSecurity\XML\auth\ValueLowerBound;
+use SimpleSAML\WSSecurity\XML\auth\{
+    AbstractAuthElement,
+    AbstractConstrainedSingleValueType,
+    Value,
+    ValueLowerBound,
+};
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -51,7 +53,9 @@ final class ValueLowerBoundTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $valueLowerBound = new ValueLowerBound(new Value('MyValue'));
+        $valueLowerBound = new ValueLowerBound(
+            new Value(StringValue::fromString('MyValue')),
+        );
 
         $this->assertFalse($valueLowerBound->isEmptyElement());
         $this->assertEquals(

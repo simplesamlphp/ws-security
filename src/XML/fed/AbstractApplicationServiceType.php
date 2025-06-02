@@ -6,12 +6,12 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DateTimeImmutable;
 use DOMElement;
-use SimpleSAML\SAML2\XML\md\Extensions;
-use SimpleSAML\SAML2\XML\md\Organization;
+use SimpleSAML\SAML2\Type\{SAMLAnyURIValue, SAMLDateTimeValue, SAMLStringValue};
+use SimpleSAML\SAML2\XML\md\{Extensions, Organization};
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XML\Exception\{MissingElementException, SchemaViolationException};
+use SimpleSAML\XML\Type\{AnyURIValue, DurationValue, IDValue};
 
 /**
  * A ApplicationServiceType
@@ -34,11 +34,11 @@ abstract class AbstractApplicationServiceType extends AbstractWebServiceDescript
      * ApplicationServiceType constructor.
      *
      * @param string[] $protocolSupportEnumeration A set of URI specifying the protocols supported.
-     * @param string|null $ID The ID for this document. Defaults to null.
-     * @param \DateTimeImmutable|null $validUntil Unix time of validity for this document. Defaults to null.
-     * @param string|null $cacheDuration Maximum time this document can be cached. Defaults to null.
+     * @param \SimpleSAML\XML\Type\IDValue|null $ID The ID for this document. Defaults to null.
+     * @param \SimpleSAML\SAML2\Type\DateTimeValue|null $validUntil Unix time of validity for this document. Defaults to null.
+     * @param \SimpleSAML\XML\Type\DurationValue|null $cacheDuration Maximum time this document can be cached. Defaults to null.
      * @param \SimpleSAML\SAML2\XML\md\Extensions|null $extensions An array of extensions. Defaults to an empty array.
-     * @param string|null $errorURL An URI where to redirect users for support. Defaults to null.
+     * @param \SimpleSAML\SAML2\Type\SAMLAnyURIValue|null $errorURL An URI where to redirect users for support. Defaults to null.
      * @param \SimpleSAML\SAML2\XML\md\KeyDescriptor[] $keyDescriptor An array of KeyDescriptor elements.
      *   Defaults to an empty array.
      * @param \SimpleSAML\SAML2\XML\md\Organization|null $organization
@@ -53,19 +53,19 @@ abstract class AbstractApplicationServiceType extends AbstractWebServiceDescript
      * @param \SimpleSAML\WSSecurity\XML\fed\ClaimTypesRequested|null $claimTypesRequested
      * @param \SimpleSAML\WSSecurity\XML\fed\AutomaticPseudonyms|null $automaticPseudonyms
      * @param \SimpleSAML\WSSecurity\XML\fed\TargetScopes|null $targetScopes
-     * @param string|null $serviceDisplayName
-     * @param string|null $serviceDescription
+     * @param \SimpleSAML\SAML2\Type\SAMLStringValue|null $serviceDisplayName
+     * @param \SimpleSAML\SAML2\Type\SAMLStringValue|null $serviceDescription
      * @param \SimpleSAML\WSSecurity\XML\fed\ApplicationServiceEndpoint[] $applicationServiceEndpoint
      * @param \SimpleSAML\WSSecurity\XML\fed\SingleSignOutNotificationEndpoint[] $singleSignOutNotificationEndpoint
      * @param \SimpleSAML\WSSecurity\XML\fed\PassiveRequestorEndpoint[] $passiveRequestorEndpoint
      */
     final public function __construct(
         array $protocolSupportEnumeration,
-        ?string $ID = null,
-        ?DateTimeImmutable $validUntil = null,
-        ?string $cacheDuration = null,
+        ?IDValue $ID = null,
+        ?SAMLDateTimeValue $validUntil = null,
+        ?DurationValue $cacheDuration = null,
         ?Extensions $extensions = null,
-        ?string $errorURL = null,
+        ?SAMLAnyURIValue $errorURL = null,
         array $keyDescriptor = [],
         ?Organization $organization = null,
         array $contact = [],
@@ -77,8 +77,8 @@ abstract class AbstractApplicationServiceType extends AbstractWebServiceDescript
         ?ClaimTypesRequested $claimTypesRequested = null,
         ?AutomaticPseudonyms $automaticPseudonyms = null,
         ?TargetScopes $targetScopes = null,
-        ?string $serviceDisplayName = null,
-        ?string $serviceDescription = null,
+        ?SAMLStringValue $serviceDisplayName = null,
+        ?SAMLStringValue $serviceDescription = null,
         protected array $applicationServiceEndpoint = [],
         protected array $singleSignOutNotificationEndpoint = [],
         protected array $passiveRequestorEndpoint = [],

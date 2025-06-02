@@ -4,18 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\{CoversClass, Group};
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\fed\AbstractAssertionType;
-use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
-use SimpleSAML\WSSecurity\XML\fed\ReferenceToken11;
-use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\WSSecurity\XML\fed\{AbstractAssertionType, AbstractFedElement, ReferenceToken11};
+use SimpleSAML\XML\{Attribute as XMLAttribute, Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Type\StringValue;
 
 use function dirname;
 
@@ -50,7 +45,7 @@ final class ReferenceToken11Test extends TestCase
             dirname(__FILE__, 4) . '/resources/xml/fed_ReferenceToken11.xml',
         );
 
-        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
 
         self::$chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',

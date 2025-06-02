@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\fed;
 
 use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XML\URIElementTrait;
+use SimpleSAML\XML\Type\AnyURIValue;
+use SimpleSAML\XML\TypedTextContentTrait;
 
 /**
  * A Realm element
@@ -15,14 +16,8 @@ use SimpleSAML\XML\URIElementTrait;
 final class Realm extends AbstractFedElement implements SchemaValidatableElementInterface
 {
     use SchemaValidatableElementTrait;
-    use URIElementTrait;
+    use TypedTextContentTrait;
 
-
-    /**
-     * @param string $content
-     */
-    public function __construct(string $content)
-    {
-        $this->setContent($content);
-    }
+    /** @var string */
+    public const TEXTCONTENT_TYPE = AnyURIValue::class;
 }

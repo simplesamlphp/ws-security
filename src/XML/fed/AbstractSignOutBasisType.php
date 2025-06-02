@@ -6,10 +6,8 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\Exception\{InvalidDOMElementException, MissingElementException};
+use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**

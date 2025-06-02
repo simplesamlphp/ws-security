@@ -7,9 +7,11 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
+use SimpleSAML\XML\Type\BooleanValue;
 use SimpleSAML\XML\XsNamespace as NS;
+
+use function var_export;
 
 /**
  * Class defining the RequestPseudonymType element
@@ -31,14 +33,14 @@ abstract class AbstractRequestPseudonymType extends AbstractFedElement
     /**
      * AbstractRequestPseudonymType constructor
      *
-     * @param bool|null $SingleUse
-     * @param bool|null $Lookup
+     * @param \SimpleSAML\XML\Type\BooleanValue|null $SingleUse
+     * @param \SimpleSAML\XML\Type\BooleanValue|null $Lookup
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected ?bool $SingleUse = null,
-        protected ?bool $Lookup = null,
+        protected ?BooleanValue $SingleUse = null,
+        protected ?BooleanValue $Lookup = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
@@ -48,18 +50,18 @@ abstract class AbstractRequestPseudonymType extends AbstractFedElement
 
 
     /**
-     * @return bool|null
+     * @return \SimpleSAML\XML\Type\BooleanValue|null
      */
-    public function getSingleUse(): ?bool
+    public function getSingleUse(): ?BooleanValue
     {
         return $this->SingleUse;
     }
 
 
     /**
-     * @return bool|null
+     * @return \SimpleSAML\XML\Type\BooleanValue|null
      */
-    public function getLookup(): ?bool
+    public function getLookup(): ?BooleanValue
     {
         return $this->Lookup;
     }
@@ -94,8 +96,8 @@ abstract class AbstractRequestPseudonymType extends AbstractFedElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            self::getOptionalBooleanAttribute($xml, 'SingleUse', null),
-            self::getOptionalBooleanAttribute($xml, 'Lookup', null),
+            self::getOptionalAttribute($xml, 'SingleUse', BooleanValue::class, null),
+            self::getOptionalAttribute($xml, 'Lookup', BooleanValue::class, null),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -114,12 +116,12 @@ abstract class AbstractRequestPseudonymType extends AbstractFedElement
 
         $singleUse = $this->getSingleUse();
         if ($singleUse !== null) {
-            $e->setAttribute('SingleUse', $singleUse ? 'true' : 'false');
+            $e->setAttribute('SingleUse', var_export($singleUse->toBoolean(), true));
         }
 
         $lookup = $this->getLookup();
         if ($lookup !== null) {
-            $e->setAttribute('Lookup', $lookup ? 'true' : 'false');
+            $e->setAttribute('Lookup', var_export($lookup->toBoolean(), true));
         }
 
         foreach ($this->getAttributesNS() as $attr) {

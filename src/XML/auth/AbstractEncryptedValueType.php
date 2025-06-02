@@ -6,10 +6,13 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XML\Exception\{
+    InvalidDOMElementException,
+    MissingElementException,
+    SchemaViolationException,
+    TooManyElementsException,
+};
+use SimpleSAML\XML\Type\AnyURIValue;
 use SimpleSAML\XMLSecurity\XML\xenc\EncryptedData;
 
 use function array_pop;
@@ -25,22 +28,21 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
      * AbstractEncryptedValueType constructor.
      *
      * @param \SimpleSAML\XMLSecurity\XML\xenc\EncryptedData $encryptedData
-     * @param string|null $descriptionCondition
+     * @param \SimpleSAML\XML\Type\AnyURIValue|null $descriptionCondition
      */
     final public function __construct(
         protected EncryptedData $encryptedData,
-        protected ?string $descriptionCondition = null,
+        protected ?AnyURIValue $descriptionCondition = null,
     ) {
-        Assert::nullOrValidURI($descriptionCondition, SchemaViolationException::class);
     }
 
 
     /**
      * Get the value of the $descriptionCondition property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XML\Type\AnyURIValue|null
      */
-    public function getDescriptionCondition(): ?string
+    public function getDescriptionCondition(): ?AnyURIValue
     {
         return $this->descriptionCondition;
     }
@@ -77,7 +79,7 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
 
         return new static(
             array_pop($encryptedData),
-            self::getOptionalAttribute($xml, 'DescriptionCondition', null),
+            self::getOptionalAttribute($xml, 'DescriptionCondition', AnyURIValue::class, null),
         );
     }
 
@@ -91,7 +93,7 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('DescriptionCondition', $this->getDescriptionCondition());
+        $e->setAttribute('DescriptionCondition', $this->getDescriptionCondition()->getValue());
 
         $this->getEncryptedData()->toXML($e);
 

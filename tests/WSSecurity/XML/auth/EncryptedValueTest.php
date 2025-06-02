@@ -4,20 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\{CoversClass, Group};
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
-use SimpleSAML\WSSecurity\XML\auth\AbstractEncryptedValueType;
-use SimpleSAML\WSSecurity\XML\auth\EncryptedValue;
+use SimpleSAML\WSSecurity\XML\auth\{AbstractAuthElement, AbstractEncryptedValueType, EncryptedValue};
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XMLSecurity\XML\ds\KeyInfo;
-use SimpleSAML\XMLSecurity\XML\xenc\CipherData;
-use SimpleSAML\XMLSecurity\XML\xenc\CipherValue;
-use SimpleSAML\XMLSecurity\XML\xenc\EncryptedData;
-use SimpleSAML\XMLSecurity\XML\xenc\EncryptedKey;
-use SimpleSAML\XMLSecurity\XML\xenc\EncryptionMethod;
+use SimpleSAML\XMLSecurity\XML\xenc\{CipherData, CipherValue, EncryptedData, EncryptedKey, EncryptionMethod};
+use SimpleSAML\XML\Type\{AnyURIValue, Base64BinaryValue, IDValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -57,29 +51,41 @@ final class EncryptedValueTest extends TestCase
     public function testMarshalling(): void
     {
         $encryptedData = new EncryptedData(
-            new CipherData(new CipherValue('/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI=')),
-            'MyID',
-            'http://www.w3.org/2001/04/xmlenc#Element',
-            'text/plain',
-            'urn:x-simplesamlphp:encoding',
-            new EncryptionMethod('http://www.w3.org/2001/04/xmlenc#aes128-cbc'),
+            new CipherData(
+                new CipherValue(
+                    Base64BinaryValue::fromString('/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI='),
+                ),
+            ),
+            IDValue::fromString('MyID'),
+            AnyURIValue::fromString('http://www.w3.org/2001/04/xmlenc#Element'),
+            StringValue::fromString('text/plain'),
+            AnyURIValue::fromString('urn:x-simplesamlphp:encoding'),
+            new EncryptionMethod(
+                AnyURIValue::fromString('http://www.w3.org/2001/04/xmlenc#aes128-cbc'),
+            ),
             new KeyInfo(
                 [
                     new EncryptedKey(
-                        new CipherData(new CipherValue('/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI=')),
+                        new CipherData(
+                            new CipherValue(
+                                Base64BinaryValue::fromString('/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI='),
+                            ),
+                        ),
                         null,
                         null,
                         null,
                         null,
                         null,
                         null,
-                        new EncryptionMethod('http://www.w3.org/2001/04/xmldsig-more#rsa-sha256'),
+                        new EncryptionMethod(
+                            AnyURIValue::fromString('http://www.w3.org/2001/04/xmldsig-more#rsa-sha256'),
+                        ),
                     ),
                 ],
             ),
         );
 
-        $encryptedValue = new EncryptedValue($encryptedData, 'urn:some:uri');
+        $encryptedValue = new EncryptedValue($encryptedData, AnyURIValue::fromString('urn:some:uri'));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

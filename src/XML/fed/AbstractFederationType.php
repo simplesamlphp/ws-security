@@ -6,10 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\Exception\{InvalidDOMElementException, SchemaViolationException};
+use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
+use SimpleSAML\XML\Type\AnyURIValue;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**
@@ -32,26 +31,24 @@ abstract class AbstractFederationType extends AbstractFedElement
     /**
      * AbstractFederationType constructor
      *
-     * @param string|null $FederationID
+     * @param \SimpleSAML\XML\Type\AnyURIValue|null $FederationID
      * @param list<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected ?string $FederationID = null,
+        protected ?AnyURIValue $FederationID = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($FederationID, SchemaViolationException::class);
-
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XML\Type\AnyURIValue|null
      */
-    public function getFederationID(): ?string
+    public function getFederationID(): ?AnyURIValue
     {
         return $this->FederationID;
     }
@@ -85,7 +82,7 @@ abstract class AbstractFederationType extends AbstractFedElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            self::getOptionalAttribute($xml, 'FederationID', null),
+            self::getOptionalAttribute($xml, 'FederationID', AnyURIValue::class, null),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -103,7 +100,7 @@ abstract class AbstractFederationType extends AbstractFedElement
         $e = parent::instantiateParentElement($parent);
 
         if ($this->getFederationID() !== null) {
-            $e->setAttribute('FederationID', $this->getFederationID());
+            $e->setAttribute('FederationID', $this->getFederationID()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {

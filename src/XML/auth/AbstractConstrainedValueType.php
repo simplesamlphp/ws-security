@@ -6,15 +6,15 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XML\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
 use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\Type\BooleanValue;
 use SimpleSAML\XML\XsNamespace as NS;
 
 use function array_filter;
 use function array_merge;
 use function array_pop;
+use function var_export;
 
 /**
  * Class defining the ConstrainedValueType element
@@ -41,12 +41,12 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
      *   \SimpleSAML\WSSecurity\XML\auth\ValueOneOf
      * ) $value
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param bool|null $assertConstraint
+     * @param \SimpleSAML\XML\Type\BooleanValue|null $assertConstraint
      */
     final public function __construct(
         protected ValueLessThan|ValueLessThanOrEqual|ValueGreaterThan|ValueGreaterThanOrEqual|ValueInRangen|ValueOneOf $value,
         array $children = [],
-        protected ?bool $assertConstraint = null,
+        protected ?BooleanValue $assertConstraint = null,
     ) {
         $this->setElements($children);
     }
@@ -73,9 +73,9 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
     /**
      * Get the value of the assertConstraint property.
      *
-     * @return bool|null
+     * @return \SimpleSAML\XML\Type\BooleanValue|null
      */
-    public function getAssertConstraint(): ?bool
+    public function getAssertConstraint(): ?BooleanValue
     {
         return $this->assertConstraint;
     }
@@ -116,7 +116,7 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
         return new static(
             array_pop($value),
             self::getChildElementsFromXML($xml),
-            self::getOptionalBooleanAttribute($xml, 'AssertConstraint', null),
+            self::getOptionalAttribute($xml, 'AssertConstraint', BooleanValue::class, null),
         );
     }
 
@@ -132,7 +132,7 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
         $e = $this->instantiateParentElement($parent);
 
         if ($this->getAssertConstraint() !== null) {
-            $e->setAttribute('AssertConstraint', $this->getAssertConstraint() ? 'true' : 'false');
+            $e->setAttribute('AssertConstraint', var_export($this->getAssertConstraint()->toBoolean(), true));
         }
 
         $this->getValue()->toXML($e);
