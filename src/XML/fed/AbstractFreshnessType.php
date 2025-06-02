@@ -6,15 +6,14 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\Exception\{InvalidDOMElementException, SchemaViolationException};
+use SimpleSAML\XML\{ExtendableAttributesTrait, TypedTextContentTrait};
+use SimpleSAML\XML\Type\{BooleanValue, UnsignedIntValue};
 use SimpleSAML\XML\XsNamespace as NS;
 
 use function intval;
 use function sprintf;
-use function strval;
+use function var_export;
 
 /**
  * Class defining the FreshnessType element
@@ -23,8 +22,11 @@ use function strval;
  */
 abstract class AbstractFreshnessType extends AbstractFedElement
 {
-    use StringElementTrait;
+    use TypedTextContentTrait;
     use ExtendableAttributesTrait;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = UnsignedIntValue::class;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -33,46 +35,24 @@ abstract class AbstractFreshnessType extends AbstractFedElement
     /**
      * AbstractFreshnessType constructor
      *
-     * @param int $content
-     * @param bool|null $AllowCache
+     * @param \SimpleSAML\XML\Type\UnsignedIntValue $content
+     * @param \SimpleSAML\XML\Type\BooleanValue|null $AllowCache
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        int $content,
-        protected ?bool $AllowCache = null,
+        UnsignedIntValue $content,
+        protected ?BooleanValue $AllowCache = null,
         array $namespacedAttributes = [],
     ) {
-        $this->setContent(strval($content));
+        $this->setContent($content);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * Validate the content of the element.
-     *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \Exception on failure
-     * @return void
+     * @return \SimpleSAML\XML\Type\BooleanValue|null
      */
-    protected function validateContent(string $content): void
-    {
-        Assert::natural(
-            intval($content),
-            sprintf(
-                'The value \'%s\' of an %s:%s element must an unsigned integer.',
-                $content,
-                static::NS_PREFIX,
-                static::getLocalName(),
-            ),
-            SchemaViolationException::class,
-        );
-    }
-
-
-    /**
-     * @return bool|null
-     */
-    public function getAllowCache(): ?bool
+    public function getAllowCache(): ?BooleanValue
     {
         return $this->AllowCache;
     }
@@ -91,11 +71,10 @@ abstract class AbstractFreshnessType extends AbstractFedElement
     {
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
-        Assert::integerish($xml->textContent, SchemaViolationException::class);
 
         return new static(
-            intval($xml->textContent),
-            self::getOptionalBooleanAttribute($xml, 'AllowCache', null),
+            UnsignedIntValue::fromString($xml->textContent),
+            self::getOptionalAttribute($xml, 'AllowCache', BooleanValue::class, null),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -110,10 +89,10 @@ abstract class AbstractFreshnessType extends AbstractFedElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         if ($this->getAllowCache() !== null) {
-            $e->setAttribute('AllowCache', $this->getAllowCache() ? 'true' : 'false');
+            $e->setAttribute('AllowCache', var_export($this->getAllowCache()->toBoolean(), true));
         }
 
         foreach ($this->getAttributesNS() as $attr) {

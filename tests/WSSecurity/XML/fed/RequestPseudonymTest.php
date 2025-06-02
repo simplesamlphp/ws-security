@@ -4,17 +4,12 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\{CoversClass, Group};
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
-use SimpleSAML\WSSecurity\XML\fed\AbstractRequestPseudonymType;
-use SimpleSAML\WSSecurity\XML\fed\RequestPseudonym;
-use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\WSSecurity\XML\fed\{AbstractFedElement, AbstractRequestPseudonymType, RequestPseudonym};
+use SimpleSAML\XML\{Attribute as XMLAttribute, Chunk, DOMDocumentFactory};
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Type\{BooleanValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -54,14 +49,14 @@ final class RequestPseudonymTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
         $child = DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
         );
 
         $requestPseudonym = new RequestPseudonym(
-            true,
-            false,
+            BooleanValue::fromBoolean(true),
+            BooleanValue::fromBoolean(false),
             [new Chunk($child->documentElement)],
             [$attr1],
         );

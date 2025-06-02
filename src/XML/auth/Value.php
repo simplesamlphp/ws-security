@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\auth;
 
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\Type\StringValue;
+use SimpleSAML\XML\TypedTextContentTrait;
 
 /**
  * Class representing WS-authorization Value.
@@ -13,14 +14,8 @@ use SimpleSAML\XML\StringElementTrait;
  */
 final class Value extends AbstractAuthElement
 {
-    use StringElementTrait;
+    use TypedTextContentTrait;
 
-
-    /**
-     * @param string $content
-     */
-    public function __construct(string $content)
-    {
-        $this->setContent($content);
-    }
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 }

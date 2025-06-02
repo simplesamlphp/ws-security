@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\{CoversClass, Group};
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\fed\AbstractAttributeExtensibleString;
-use SimpleSAML\WSSecurity\XML\fed\AbstractAttributeExtensibleURI;
-use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
-use SimpleSAML\WSSecurity\XML\fed\ReferenceType;
-use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\WSSecurity\XML\fed\{
+    AbstractAttributeExtensibleString,
+    AbstractAttributeExtensibleURI,
+    AbstractFedElement,
+    ReferenceType,
+};
+use SimpleSAML\XML\{Attribute as XMLAttribute, DOMDocumentFactory};
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\Type\{AnyURIValue, StringValue};
 
 use function dirname;
 
@@ -53,8 +54,8 @@ final class ReferenceTypeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
-        $referenceType = new ReferenceType(C::NAMESPACE, [$attr1]);
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $referenceType = new ReferenceType(AnyURIValue::fromString(C::NAMESPACE), [$attr1]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

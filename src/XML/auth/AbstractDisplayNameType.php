@@ -7,8 +7,8 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\{ExtendableAttributesTrait, TypedTextContentTrait};
+use SimpleSAML\XML\Type\StringValue;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**
@@ -19,7 +19,10 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractDisplayNameType extends AbstractAuthElement
 {
     use ExtendableAttributesTrait;
-    use StringElementTrait;
+    use TypedTextContentTrait;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -28,10 +31,10 @@ abstract class AbstractDisplayNameType extends AbstractAuthElement
     /**
      * AbstractDisplayNameType constructor.
      *
-     * @param string $value The value string.
+     * @param \SimpleSAML\XML\Type\StringValue $value The value string.
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
-    final public function __construct(string $value, array $namespacedAttributes = [])
+    final public function __construct(StringValue $value, array $namespacedAttributes = [])
     {
         $this->setContent($value);
         $this->setAttributesNS($namespacedAttributes);
@@ -52,7 +55,7 @@ abstract class AbstractDisplayNameType extends AbstractAuthElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        return new static($xml->textContent, self::getAttributesNSFromXML($xml));
+        return new static(StringValue::fromString($xml->textContent), self::getAttributesNSFromXML($xml));
     }
 
 
@@ -65,7 +68,7 @@ abstract class AbstractDisplayNameType extends AbstractAuthElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

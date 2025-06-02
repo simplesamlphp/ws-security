@@ -8,11 +8,9 @@ use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
+use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
+use SimpleSAML\XML\Type\NCNameValue;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**
@@ -44,19 +42,17 @@ abstract class AbstractSignOutType extends AbstractFedElement
      *
      * @param \SimpleSAML\WSSecurity\XML\fed\SignOutBasis $signOutBasis
      * @param \SimpleSAML\WSSecurity\XML\fed\Realm|null $realm
-     * @param string|null $Id
+     * @param \SimpleSAML\XML\Type\NCNameValue|null $Id
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected SignOutBasis $signOutBasis,
         protected ?Realm $realm = null,
-        protected ?string $Id = null,
+        protected ?NCNameValue $Id = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidNCName($Id);
-
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -87,9 +83,9 @@ abstract class AbstractSignOutType extends AbstractFedElement
     /**
      * Collect the value of the Id-property
      *
-     * @return string|null
+     * @return \SimpleSAML\XML\Type\NCNameValue|null
      */
-    public function getId(): ?string
+    public function getId(): ?NCNameValue
     {
         return $this->Id;
     }
@@ -119,7 +115,9 @@ abstract class AbstractSignOutType extends AbstractFedElement
         return new static(
             array_pop($signOutBasis),
             array_pop($realm),
-            $xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id') ? $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id') : null,
+            $xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')
+                ? NCNameValue::fromString($xml->getAttributeNS(C::NS_SEC_UTIL, 'Id'))
+                : null,
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );

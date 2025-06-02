@@ -4,22 +4,22 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\{CoversClass, Group};
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath;
-use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
-use SimpleSAML\WSSecurity\XML\auth\AbstractClaimType;
-use SimpleSAML\WSSecurity\XML\auth\ClaimType;
-use SimpleSAML\WSSecurity\XML\auth\Description;
-use SimpleSAML\WSSecurity\XML\auth\DisplayName;
-use SimpleSAML\WSSecurity\XML\auth\DisplayValue;
-use SimpleSAML\WSSecurity\XML\auth\Value;
-use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
-use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\WSSecurity\XML\auth\{
+    AbstractAuthElement,
+    AbstractClaimType,
+    ClaimType,
+    Description,
+    DisplayName,
+    DisplayValue,
+    Value,
+};
+use SimpleSAML\XML\{Attribute as XMLAttribute, DOMDocumentFactory};
+use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
+use SimpleSAML\XML\Type\{AnyURIValue, BooleanValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -59,14 +59,14 @@ final class ClaimTypeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $claimType = new ClaimType(
-            C::NAMESPACE,
-            true,
-            new DisplayName('someDisplayName'),
-            new Description('someDescription'),
-            new DisplayValue('someDisplayValue'),
-            new Value('someValue'),
+            AnyURIValue::fromString(C::NAMESPACE),
+            BooleanValue::fromBoolean(true),
+            new DisplayName(StringValue::fromString('someDisplayName')),
+            new Description(StringValue::fromString('someDescription')),
+            new DisplayValue(StringValue::fromString('someDisplayValue')),
+            new Value(StringValue::fromString('someValue')),
             [$attr],
         );
 
@@ -81,14 +81,14 @@ final class ClaimTypeTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $claimType = new ClaimType(
-            C::NAMESPACE,
-            true,
-            new DisplayName('someDisplayName'),
-            new Description('someDescription'),
-            new DisplayValue('someDisplayValue'),
-            new Value('someValue'),
+            AnyURIValue::fromString(C::NAMESPACE),
+            BooleanValue::fromBoolean(true),
+            new DisplayName(StringValue::fromString('someDisplayName')),
+            new Description(StringValue::fromString('someDescription')),
+            new DisplayValue(StringValue::fromString('someDisplayValue')),
+            new Value(StringValue::fromString('someValue')),
             [$attr],
         );
         $claimTypeElement = $claimType->toXML();

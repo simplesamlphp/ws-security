@@ -4,22 +4,21 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\DataProvider;
-use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\{CoversClass, DataProvider, Group};
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
-use SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedValueType;
-use SimpleSAML\WSSecurity\XML\auth\ConstrainedValue;
-//use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
-use SimpleSAML\WSSecurity\XML\auth\Value;
-use SimpleSAML\WSSecurity\XML\auth\ValueGreaterThan;
-use SimpleSAML\WSSecurity\XML\auth\ValueGreaterThanOrEqual;
-use SimpleSAML\WSSecurity\XML\auth\ValueLessThan;
-use SimpleSAML\WSSecurity\XML\auth\ValueLessThanOrEqual;
-use SimpleSAML\XML\Attribute as XMLAttribute;
-//use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\WSSecurity\XML\auth\{
+    AbstractAuthElement,
+    AbstractConstrainedValueType,
+    ConstrainedValue,
+    //StructuredValue,
+    Value,
+    ValueGreaterThan,
+    ValueGreaterThanOrEqual,
+    ValueLessThan,
+    ValueLessThanOrEqual,
+};
+use SimpleSAML\XML\{Attribute as XMLAttribute,/*Chunk,*/ DOMDocumentFactory};
+use SimpleSAML\XML\Type\{BooleanValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -48,19 +47,19 @@ final class ConstrainedValueTest extends TestCase
     {
         self::$resourcePath = dirname(__FILE__, 4) . '/resources/xml/';
 
-        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
         $child = DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
         );
 
-/**
+        /**
         self::$structuredValue = new StructuredValue(
             [new Chunk($child->documentElement)],
             [$attr1],
         );
-*/
+        */
 
-        self::$value = new Value('MyValue');
+        self::$value = new Value(StringValue::fromString('MyValue'));
     }
 
 
@@ -91,7 +90,7 @@ final class ConstrainedValueTest extends TestCase
          * ) $item
          */
         $item = new $class(self::$value, null);
-        $constrainedValue = new ConstrainedValue($item, [], true);
+        $constrainedValue = new ConstrainedValue($item, [], BooleanValue::fromBoolean(true));
 
         $this->assertEquals(
             $xmlRepresentation->saveXML($xmlRepresentation->documentElement),

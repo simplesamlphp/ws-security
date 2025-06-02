@@ -5,19 +5,19 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DOMElement;
-use PHPUnit\Framework\Attributes\CoversClass;
-use PHPUnit\Framework\Attributes\Group;
+use PHPUnit\Framework\Attributes\{CoversClass, Group};
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceEPR;
-use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
-use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractWsaElement;
-use SimpleSAML\WSSecurity\XML\wsa_200508\Address;
-use SimpleSAML\WSSecurity\XML\wsa_200508\Metadata;
-use SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters;
-use SimpleSAML\XML\Attribute;
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\WSSecurity\XML\wsa_200508\{
+    AbstractEndpointReferenceType,
+    AbstractWsaElement,
+    Address,
+    Metadata,
+    ReferenceParameters,
+};
+use SimpleSAML\XML\{Attribute as XMLAttribute, Chunk, DOMDocumentFactory};
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\Type\{AnyURIValue, StringValue};
 
 use function dirname;
 use function strval;
@@ -78,17 +78,20 @@ final class ReferenceEPRTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', 'testval2');
-        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr3', 'testval3');
-        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', 'testval4');
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', StringValue::fromString('testval2'));
+        $attr3 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr3', StringValue::fromString('testval3'));
+        $attr4 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', StringValue::fromString('testval4'));
 
         $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)], [$attr3]);
         $metadata = new Metadata([new Chunk(self::$metadataContent)], [$attr4]);
         $chunk = new Chunk(self::$customContent);
 
         $referenceEPR = new ReferenceEPR(
-            new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
+            new Address(
+                AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'),
+                [$attr2],
+            ),
             $referenceParameters,
             $metadata,
             [$chunk],

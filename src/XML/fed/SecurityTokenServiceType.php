@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\fed;
 
-use DateTimeImmutable;
 use DOMElement;
-use SimpleSAML\SAML2\Assert\Assert as SAMLAssert;
+use SimpleSAML\SAML2\Assert\Assert;
+use SimpleSAML\SAML2\Type\{SAMLDateTimeValue, SAMLStringValue};
 use SimpleSAML\SAML2\XML\md\{ContactPerson, Extensions, KeyDescriptor, Organization};
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XML\Exception\{InvalidDOMElementException, SchemaViolationException, TooManyElementsException};
+use SimpleSAML\XML\Type\{DurationValue, IDValue};
 use SimpleSAML\XMLSecurity\XML\ds\Signature;
 
 use function preg_split;
@@ -51,8 +50,6 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
         Assert::same($type, static::XSI_TYPE_PREFIX . ':' . static::XSI_TYPE_NAME,);
 
         $protocols = self::getAttribute($xml, 'protocolSupportEnumeration');
-        $validUntil = self::getOptionalAttribute($xml, 'validUntil', null);
-        SAMLAssert::nullOrValidDateTime($validUntil);
 
         $orgs = Organization::getChildrenOfClass($xml);
         Assert::maxCount(
@@ -136,11 +133,11 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
 
         $securityTokenServiceType = new static(
             preg_split('/[\s]+/', trim($protocols)),
-            self::getOptionalAttribute($xml, 'ID', null),
-            $validUntil !== null ? new DateTimeImmutable($validUntil) : null,
-            self::getOptionalAttribute($xml, 'cacheDuration', null),
+            self::getOptionalAttribute($xml, 'ID', IDValue::class, null),
+            self::getOptionalAttribute($xml, 'validUntil', SAMLDateTimeValue, null),
+            self::getOptionalAttribute($xml, 'cacheDuration', DurationValue::class, null),
             array_pop($extensions),
-            self::getOptionalAttribute($xml, 'errorURL', null),
+            self::getOptionalAttribute($xml, 'errorURL', SAMLAnyURIValue::class, null),
             KeyDescriptor::getChildrenOfClass($xml),
             array_pop($orgs),
             ContactPerson::getChildrenOfClass($xml),
@@ -152,8 +149,8 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
             array_pop($claimTypesRequested),
             array_pop($automaticPseudonyms),
             array_pop($targetScopes),
-            self::getOptionalAttribute($xml, 'ServiceDisplayName', null),
-            self::getOptionalAttribute($xml, 'ServiceDescription', null),
+            self::getOptionalAttribute($xml, 'ServiceDisplayName', SAMLStringValue::class, null),
+            self::getOptionalAttribute($xml, 'ServiceDescription', SAMLStringValue::class, null),
             SecurityTokenServiceEndpoint::getChildrenOfClass($xml),
             SingleSignOutSubscriptionEndpoint::getChildrenOfClass($xml),
             SingleSignOutNotificationEndpoint::getChildrenOfClass($xml),

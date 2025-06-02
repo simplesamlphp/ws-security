@@ -7,8 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\XML\wsa_200508\EndpointReference;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
+use SimpleSAML\XML\Exception\{InvalidDOMElementException, MissingElementException};
 
 /**
  * An EndpointType

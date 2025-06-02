@@ -6,12 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\SerializableElementInterface;
+use SimpleSAML\XML\Exception\{InvalidDOMElementException, SchemaViolationException, TooManyElementsException};
+use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait, SerializableElementInterface};
+use SimpleSAML\XML\Type\AnyURIValue;
 use SimpleSAML\XML\XsNamespace as NS;
 
 use function array_pop;
@@ -36,22 +33,19 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     /**
      * AbstractContextItemType constructor
      *
-     * @param string $Name
-     * @param string|null $Scope
+     * @param \SimpleSAML\XML\Type\AnyURIValue $Name
+     * @param \SimpleSAML\XML\Type\AnyURIValue|null $Scope
      * @param \SimpleSAML\WSSecurity\XML\auth\Value|null $value
      * @param \SimpleSAML\XML\SerializableElementInterface|null $child
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected string $Name,
-        protected ?string $Scope = null,
+        protected AnyURIValue $Name,
+        protected ?AnyURIValue $Scope = null,
         protected ?Value $value = null,
         ?SerializableElementInterface $child = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::validURI($Name);
-        Assert::nullOrValidURI($Scope);
-
         // One of both must exist, they can't be both null
         Assert::inArray(null, [$value, $child], SchemaViolationException::class);
         Assert::notSame($value, $child, SchemaViolationException::class);
@@ -77,9 +71,9 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     /**
      * Get the value of the Name property.
      *
-     * @return string
+     * @return \SimpleSAML\XML\Type\AnyURIValue
      */
-    public function getName(): string
+    public function getName(): AnyURIValue
     {
         return $this->Name;
     }
@@ -88,9 +82,9 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     /**
      * Get the value of the Scope property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XML\Type\AnyURIValue|null
      */
-    public function getScope(): ?string
+    public function getScope(): ?AnyURIValue
     {
         return $this->Scope;
     }
@@ -117,8 +111,8 @@ abstract class AbstractContextItemType extends AbstractAuthElement
         Assert::maxCount($children, 1, TooManyElementsException::class);
 
         return new static(
-            self::getAttribute($xml, 'Name'),
-            self::getOptionalAttribute($xml, 'Scope'),
+            self::getAttribute($xml, 'Name', AnyURIValue::class),
+            self::getOptionalAttribute($xml, 'Scope', AnyURIValue::class, null),
             array_pop($value),
             array_pop($children),
             self::getAttributesNSFromXML($xml),
@@ -136,9 +130,9 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        $e->setAttribute('Name', $this->getName());
+        $e->setAttribute('Name', $this->getName()->getValue());
         if ($this->getScope() !== null) {
-            $e->setAttribute('Scope', $this->getScope());
+            $e->setAttribute('Scope', $this->getScope()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {

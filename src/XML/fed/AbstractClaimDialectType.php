@@ -6,10 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\Exception\{InvalidDOMElementException, SchemaViolationException};
+use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
+use SimpleSAML\XML\Type\AnyURIValue;
 use SimpleSAML\XML\XsNamespace as NS;
 
 /**
@@ -32,16 +31,15 @@ abstract class AbstractClaimDialectType extends AbstractFedElement
     /**
      * AbstractClaimDialectType constructor
      *
-     * @param string|null $Uri
+     * @param \SimpleSAML\XML\Type\AnyURIValue|null $Uri
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected ?string $Uri = null,
+        protected ?AnyURIValue $Uri = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($Uri, SchemaViolationException::class);
         // Next one is debatable since the schema allows an empty element, but that makes zero sense
         Assert::allNotEmpty([$Uri, $children, $namespacedAttributes]);
 
@@ -51,9 +49,9 @@ abstract class AbstractClaimDialectType extends AbstractFedElement
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XML\Type\AnyURIValue|null
      */
-    public function getUri(): ?string
+    public function getUri(): ?AnyURIValue
     {
         return $this->Uri;
     }
@@ -74,7 +72,7 @@ abstract class AbstractClaimDialectType extends AbstractFedElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            self::getOptionalAttribute($xml, 'Uri', null),
+            self::getOptionalAttribute($xml, 'Uri', AnyURIValue::class, null),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -92,7 +90,7 @@ abstract class AbstractClaimDialectType extends AbstractFedElement
         $e = parent::instantiateParentElement($parent);
 
         if ($this->getUri() !== null) {
-            $e->setAttribute('Uri', $this->getUri());
+            $e->setAttribute('Uri', $this->getUri()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {
