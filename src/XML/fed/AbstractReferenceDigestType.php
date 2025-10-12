@@ -6,10 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\{ExtendableAttributesTrait, TypedTextContentTrait};
-use SimpleSAML\XML\Type\Base64BinaryValue;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * An AbstractReferenceDigestType element
@@ -29,7 +30,7 @@ abstract class AbstractReferenceDigestType extends AbstractFedElement
 
 
     /**
-     * @param \SimpleSAML\XML\Type\Base64BinaryValue $content
+     * @param \SimpleSAML\XMLSchema\Type\Base64BinaryValue $content
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     final public function __construct(Base64BinaryValue $content, array $namespacedAttributes)

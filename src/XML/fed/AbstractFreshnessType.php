@@ -11,8 +11,6 @@ use SimpleSAML\XML\{ExtendableAttributesTrait, TypedTextContentTrait};
 use SimpleSAML\XML\Type\{BooleanValue, UnsignedIntValue};
 use SimpleSAML\XML\XsNamespace as NS;
 
-use function intval;
-use function sprintf;
 use function var_export;
 
 /**

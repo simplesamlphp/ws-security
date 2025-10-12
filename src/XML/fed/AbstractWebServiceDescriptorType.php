@@ -5,9 +5,16 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
-use SimpleSAML\SAML2\Type\{SAMLAnyURIValue, SAMLDateTimeValue, SAMLStringValue};
-use SimpleSAML\SAML2\XML\md\{AbstractRoleDescriptor, Extensions, Organization};
-use SimpleSAML\XML\Type\{DurationValue, IDValue};
+use SimpleSAML\SAML2\Type\AnyURIListValue;
+use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
+use SimpleSAML\SAML2\Type\SAMLDateTimeValue;
+use SimpleSAML\SAML2\Type\SAMLStringValue;
+use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptor;
+use SimpleSAML\SAML2\XML\md\Extensions;
+use SimpleSAML\SAML2\XML\md\Organization;
+use SimpleSAML\XMLSchema\Type\DurationValue;
+use SimpleSAML\XMLSchema\Type\IDValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
 
 /**
  * An WebServiceDescriptorType
@@ -19,13 +26,17 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
     /**
      * WebServiceDescriptorType constructor.
      *
-     * @param string $type The xsi-type of the element
-     * @param string[] $protocolSupportEnumeration A set of URI specifying the protocols supported.
-     * @param \SimpleSAML\XML\Type\IDValue|null $ID The ID for this document. Defaults to null.
-     * @param \SimpleSAML\SAML2\Type\SAMLDateTimeValue|null $validUntil Unix time of validity for this document. Defaults to null.
-     * @param \SimpleSAML\XML\Type\DurationValue|null $cacheDuration Maximum time this document can be cached. Defaults to null.
+     * @param \SimpleSAML\XMLSchema\Type\QNameValue $type The xsi-type of the element
+     * @param \SimpleSAML\SAML2\Type\AnyURIListValue $protocolSupportEnumeration
+     *   A set of URI specifying the protocols supported.
+     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $ID The ID for this document. Defaults to null.
+     * @param \SimpleSAML\SAML2\Type\SAMLDateTimeValue|null $validUntil
+     *   Unix time of validity for this document. Defaults to null.
+     * @param \SimpleSAML\XMLSchema\Type\DurationValue|null $cacheDuration
+     *   Maximum time this document can be cached. Defaults to null.
      * @param \SimpleSAML\SAML2\XML\md\Extensions|null $extensions An array of extensions. Defaults to an empty array.
-     * @param \SimpleSAML\SAML2\Type\SAMLAnyURIValue|null $errorURL An URI where to redirect users for support. Defaults to null.
+     * @param \SimpleSAML\SAML2\Type\SAMLAnyURIValue|null $errorURL
+     *   An URI where to redirect users for support. Defaults to null.
      * @param \SimpleSAML\SAML2\XML\md\KeyDescriptor[] $keyDescriptors An array of KeyDescriptor elements.
      *   Defaults to an empty array.
      * @param \SimpleSAML\SAML2\XML\md\Organization|null $organization
@@ -44,8 +55,8 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
      * @param \SimpleSAML\SAML2\Type\SAMLStringValue|null $serviceDescription
      */
     protected function __construct(
-        string $type,
-        array $protocolSupportEnumeration,
+        QNameValue $type,
+        AnyURIListValue $protocolSupportEnumeration,
         ?IDValue $ID = null,
         ?SAMLDateTimeValue $validUntil = null,
         ?DurationValue $cacheDuration = null,

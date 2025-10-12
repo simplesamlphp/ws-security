@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\auth;
 
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 
 /**
  * Class representing WS-authorization ClaimType.

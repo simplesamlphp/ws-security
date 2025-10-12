@@ -6,10 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait};
-use SimpleSAML\XML\Type\BooleanValue;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function var_export;
 
@@ -33,8 +34,8 @@ abstract class AbstractRequestPseudonymType extends AbstractFedElement
     /**
      * AbstractRequestPseudonymType constructor
      *
-     * @param \SimpleSAML\XML\Type\BooleanValue|null $SingleUse
-     * @param \SimpleSAML\XML\Type\BooleanValue|null $Lookup
+     * @param \SimpleSAML\XMLSchema\Type\BooleanValue|null $SingleUse
+     * @param \SimpleSAML\XMLSchema\Type\BooleanValue|null $Lookup
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
@@ -50,7 +51,7 @@ abstract class AbstractRequestPseudonymType extends AbstractFedElement
 
 
     /**
-     * @return \SimpleSAML\XML\Type\BooleanValue|null
+     * @return \SimpleSAML\XMLSchema\Type\BooleanValue|null
      */
     public function getSingleUse(): ?BooleanValue
     {
@@ -59,7 +60,7 @@ abstract class AbstractRequestPseudonymType extends AbstractFedElement
 
 
     /**
-     * @return \SimpleSAML\XML\Type\BooleanValue|null
+     * @return \SimpleSAML\XMLSchema\Type\BooleanValue|null
      */
     public function getLookup(): ?BooleanValue
     {
@@ -87,7 +88,7 @@ abstract class AbstractRequestPseudonymType extends AbstractFedElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

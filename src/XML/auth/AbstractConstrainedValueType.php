@@ -6,10 +6,12 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, MissingElementException, TooManyElementsException};
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\Type\BooleanValue;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_filter;
 use function array_merge;
@@ -41,7 +43,7 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
      *   \SimpleSAML\WSSecurity\XML\auth\ValueOneOf
      * ) $value
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param \SimpleSAML\XML\Type\BooleanValue|null $assertConstraint
+     * @param \SimpleSAML\XMLSchema\Type\BooleanValue|null $assertConstraint
      */
     final public function __construct(
         protected ValueLessThan|ValueLessThanOrEqual|ValueGreaterThan|ValueGreaterThanOrEqual|ValueInRangen|ValueOneOf $value,
@@ -73,7 +75,7 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
     /**
      * Get the value of the assertConstraint property.
      *
-     * @return \SimpleSAML\XML\Type\BooleanValue|null
+     * @return \SimpleSAML\XMLSchema\Type\BooleanValue|null
      */
     public function getAssertConstraint(): ?BooleanValue
     {
@@ -87,7 +89,7 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
