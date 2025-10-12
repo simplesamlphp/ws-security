@@ -16,8 +16,8 @@
 
         "simplesamlphp/assert": "~1.9.2",
         "simplesamlphp/saml2": "dev-feature/xsd-types",
-        "simplesamlphp/xml-common": "~2.0.1",
-        "simplesamlphp/xml-security": "~2.0.0",
+        "simplesamlphp/xml-common": "~2.0.3",
+        "simplesamlphp/xml-security": "~2.0.3",
         "simplesamlphp/xml-soap": "~2.0.1"
     },
     "require-dev": {

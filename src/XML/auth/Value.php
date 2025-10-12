@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\auth;
 
-use SimpleSAML\XML\Type\StringValue;
 use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 /**
  * Class representing WS-authorization Value.

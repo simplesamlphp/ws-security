@@ -6,10 +6,14 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, SchemaViolationException, TooManyElementsException};
-use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait, SerializableElementInterface};
-use SimpleSAML\XML\Type\AnyURIValue;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\SerializableElementInterface;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_pop;
 
@@ -33,8 +37,8 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     /**
      * AbstractContextItemType constructor
      *
-     * @param \SimpleSAML\XML\Type\AnyURIValue $Name
-     * @param \SimpleSAML\XML\Type\AnyURIValue|null $Scope
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $Name
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $Scope
      * @param \SimpleSAML\WSSecurity\XML\auth\Value|null $value
      * @param \SimpleSAML\XML\SerializableElementInterface|null $child
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
@@ -71,7 +75,7 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     /**
      * Get the value of the Name property.
      *
-     * @return \SimpleSAML\XML\Type\AnyURIValue
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
     public function getName(): AnyURIValue
     {
@@ -82,7 +86,7 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     /**
      * Get the value of the Scope property.
      *
-     * @return \SimpleSAML\XML\Type\AnyURIValue|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
     public function getScope(): ?AnyURIValue
     {
@@ -96,7 +100,7 @@ abstract class AbstractContextItemType extends AbstractAuthElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

@@ -6,13 +6,10 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\{
-    InvalidDOMElementException,
-    MissingElementException,
-    SchemaViolationException,
-    TooManyElementsException,
-};
-use SimpleSAML\XML\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 use SimpleSAML\XMLSecurity\XML\xenc\EncryptedData;
 
 use function array_pop;
@@ -28,7 +25,7 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
      * AbstractEncryptedValueType constructor.
      *
      * @param \SimpleSAML\XMLSecurity\XML\xenc\EncryptedData $encryptedData
-     * @param \SimpleSAML\XML\Type\AnyURIValue|null $descriptionCondition
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $descriptionCondition
      */
     final public function __construct(
         protected EncryptedData $encryptedData,
@@ -40,7 +37,7 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
     /**
      * Get the value of the $descriptionCondition property.
      *
-     * @return \SimpleSAML\XML\Type\AnyURIValue|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
     public function getDescriptionCondition(): ?AnyURIValue
     {
@@ -65,7 +62,7 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

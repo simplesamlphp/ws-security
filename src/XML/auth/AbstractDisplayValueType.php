@@ -6,10 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\{ExtendableAttributesTrait, TypedTextContentTrait};
-use SimpleSAML\XML\Type\StringValue;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing WS-authorization DisplayValueType.
@@ -31,7 +32,7 @@ abstract class AbstractDisplayValueType extends AbstractAuthElement
     /**
      * AbstractDisplayValueType constructor.
      *
-     * @param \SimpleSAML\XML\Type\StringValue $value The value string.
+     * @param \SimpleSAML\XMLSchema\Type\StringValue $value The value string.
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(StringValue $value, array $namespacedAttributes = [])
@@ -47,7 +48,7 @@ abstract class AbstractDisplayValueType extends AbstractAuthElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

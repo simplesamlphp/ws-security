@@ -5,16 +5,23 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
-use SimpleSAML\SAML2\Assert\Assert;
-use SimpleSAML\SAML2\Type\{SAMLDateTimeValue, SAMLStringValue};
-use SimpleSAML\SAML2\XML\md\{ContactPerson, Extensions, KeyDescriptor, Organization};
+use SimpleSAML\SAML2\Type\AnyURIListValue;
+use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
+use SimpleSAML\SAML2\Type\SAMLDateTimeValue;
+use SimpleSAML\SAML2\Type\SAMLStringValue;
+use SimpleSAML\SAML2\XML\md\ContactPerson;
+use SimpleSAML\SAML2\XML\md\Extensions;
+use SimpleSAML\SAML2\XML\md\KeyDescriptor;
+use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, SchemaViolationException, TooManyElementsException};
-use SimpleSAML\XML\Type\{DurationValue, IDValue};
+use SimpleSAML\XMLSchema\Constants as C;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\DurationValue;
+use SimpleSAML\XMLSchema\Type\IDValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
 use SimpleSAML\XMLSecurity\XML\ds\Signature;
-
-use function preg_split;
 
 /**
  * Class representing WS-federation SecurityTokenServiceType RoleDescriptor.
@@ -29,9 +36,9 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
-     * @throws \SimpleSAML\XML\Exception\TooManyElementsException
+     * @throws \SimpleSAML\XMLSchema\Exception\TooManyElementsException
      *   if too many child-elements of a type are specified
      */
     public static function fromXML(DOMElement $xml): static
@@ -45,11 +52,7 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
             SchemaViolationException::class,
         );
 
-        $type = $xml->getAttributeNS(C::NS_XSI, 'type');
-        Assert::validQName($type, SchemaViolationException::class);
-        Assert::same($type, static::XSI_TYPE_PREFIX . ':' . static::XSI_TYPE_NAME,);
-
-        $protocols = self::getAttribute($xml, 'protocolSupportEnumeration');
+        $type = QNameValue::fromDocument($xml->getAttributeNS(C::NS_XSI, 'type'), $xml);
 
         $orgs = Organization::getChildrenOfClass($xml);
         Assert::maxCount(
@@ -132,9 +135,10 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
         );
 
         $securityTokenServiceType = new static(
-            preg_split('/[\s]+/', trim($protocols)),
+            $type,
+            self::getAttribute($xml, 'protocolSupportEnumeration', AnyURIListValue::class),
             self::getOptionalAttribute($xml, 'ID', IDValue::class, null),
-            self::getOptionalAttribute($xml, 'validUntil', SAMLDateTimeValue, null),
+            self::getOptionalAttribute($xml, 'validUntil', SAMLDateTimeValue::class, null),
             self::getOptionalAttribute($xml, 'cacheDuration', DurationValue::class, null),
             array_pop($extensions),
             self::getOptionalAttribute($xml, 'errorURL', SAMLAnyURIValue::class, null),

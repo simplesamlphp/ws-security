@@ -6,20 +6,21 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\WSSecurity\XML\auth\{
-    ConstrainedValue,
-    Description,
-    DisplayName,
-    DisplayValue,
-    EncryptedValue,
-    StructuredValue,
-    Value,
-};
-use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, TooManyElementsException};
-use SimpleSAML\XML\{ExtendableAttributesTrait, ExtendableElementTrait, SerializableElementInterface};
-use SimpleSAML\XML\Type\{AnyURIValue, BooleanValue};
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\WSSecurity\XML\auth\ConstrainedValue;
+use SimpleSAML\WSSecurity\XML\auth\Description;
+use SimpleSAML\WSSecurity\XML\auth\DisplayName;
+use SimpleSAML\WSSecurity\XML\auth\DisplayValue;
+use SimpleSAML\WSSecurity\XML\auth\EncryptedValue;
+use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
+use SimpleSAML\WSSecurity\XML\auth\Value;
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XML\SerializableElementInterface;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_filter;
 use function array_merge;
@@ -46,8 +47,8 @@ abstract class AbstractClaimType extends AbstractAuthElement
     /**
      * AbstractClaimType constructor
      *
-     * @param \SimpleSAML\XML\Type\AnyURIValue $uri
-     * @param \SimpleSAML\XML\Type\BooleanValue|null $optional
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $uri
+     * @param \SimpleSAML\XMLSchema\Type\BooleanValue|null $optional
      * @param \SimpleSAML\WSSecurity\XML\auth\DisplayName|null $displayName
      * @param \SimpleSAML\WSSecurity\XML\auth\Description|null $description
      * @param \SimpleSAML\WSSecurity\XML\auth\DisplayValue|null $displayValue
@@ -138,7 +139,7 @@ abstract class AbstractClaimType extends AbstractAuthElement
     /**
      * Get the value of the uri property.
      *
-     * @return \SimpleSAML\XML\Type\AnyURIValue
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
     public function getURI(): AnyURIValue
     {
@@ -149,7 +150,7 @@ abstract class AbstractClaimType extends AbstractAuthElement
     /**
      * Get the value of the optional property.
      *
-     * @return \SimpleSAML\XML\Type\BooleanValue|null
+     * @return \SimpleSAML\XMLSchema\Type\BooleanValue|null
      */
     public function getOptional(): ?BooleanValue
     {
@@ -163,7 +164,7 @@ abstract class AbstractClaimType extends AbstractAuthElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
