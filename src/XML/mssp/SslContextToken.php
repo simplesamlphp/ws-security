@@ -6,7 +6,8 @@ namespace SimpleSAML\WSSecurity\XML\mssp;
 
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\sp_200507\AbstractTokenAssertionType;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 
 /**
  * An SslContextToken element
