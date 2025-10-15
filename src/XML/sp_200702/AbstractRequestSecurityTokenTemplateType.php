@@ -9,7 +9,8 @@ use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function sprintf;
 
@@ -38,17 +39,15 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
     /**
      * AbstractRequestSecurityTokenTemplateType constructor.
      *
-     * @param string|null $trustVersion
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $trustVersion
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected ?string $trustVersion = null,
+        protected ?AnyURIValue $trustVersion = null,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($trustVersion);
-
         $this->setElements($elts);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -57,9 +56,9 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
     /**
      * Collect the value of the trustVersion property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getTrustVersion(): ?string
+    public function getTrustVersion(): ?AnyURIValue
     {
         return $this->trustVersion;
     }
@@ -72,7 +71,9 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
      */
     public function isEmptyElement(): bool
     {
-        return empty($this->trustVersion) && empty($this->elements) && empty($this->namespacedAttributes);
+        return empty($this->getTrustVersion())
+            && empty($this->getElements())
+            && empty($this->getAttributesNS());
     }
 
 
@@ -102,7 +103,7 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
         );
 
         return new static(
-            self::getOptionalAttribute($xml, 'TrustVersion', null),
+            self::getOptionalAttribute($xml, 'TrustVersion', AnyURIValue::class, null),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -120,7 +121,7 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
         $e = $this->instantiateParentElement($parent);
 
         if ($this->getTrustVersion() !== null) {
-            $e->setAttribute('TrustVersion', $this->getTrustVersion());
+            $e->setAttribute('TrustVersion', $this->getTrustVersion()->getValue());
         }
 
         foreach ($this->getElements() as $elt) {

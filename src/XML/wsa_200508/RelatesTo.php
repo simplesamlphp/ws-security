@@ -6,12 +6,14 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200508;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XML\URIElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing a wsa:RelatesTo element.
@@ -22,7 +24,10 @@ final class RelatesTo extends AbstractWsaElement implements SchemaValidatableEle
 {
     use ExtendableAttributesTrait;
     use SchemaValidatableElementTrait;
-    use URIElementTrait;
+    use TypedTextContentTrait;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = AnyURIValue::class;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -31,17 +36,15 @@ final class RelatesTo extends AbstractWsaElement implements SchemaValidatableEle
     /**
      * Initialize a wsa:RelatesTo
      *
-     * @param string $content
-     * @param string|null $RelationshipType
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $content
+     * @param \SimpleSAML\XMLSchema\Type\QNameValue|null $RelationshipType
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
-        string $content,
-        protected ?string $RelationshipType = 'http://www.w3.org/2005/08/addressing/reply',
+        AnyURIValue $content,
+        protected ?QNameValue $RelationshipType,
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($RelationshipType, SchemaViolationException::class);
-
         $this->setContent($content);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -50,9 +53,9 @@ final class RelatesTo extends AbstractWsaElement implements SchemaValidatableEle
     /**
      * Collect the value of the RelationshipType property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\QNameValue|null
      */
-    public function getRelationshipType(): ?string
+    public function getRelationshipType(): ?QNameValue
     {
         return $this->RelationshipType;
     }
@@ -64,7 +67,7 @@ final class RelatesTo extends AbstractWsaElement implements SchemaValidatableEle
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -73,8 +76,10 @@ final class RelatesTo extends AbstractWsaElement implements SchemaValidatableEle
         Assert::same($xml->namespaceURI, RelatesTo::NS, InvalidDOMElementException::class);
 
         return new static(
-            $xml->textContent,
-            self::getOptionalAttribute($xml, 'RelationshipType', null),
+            AnyURIValue::fromString($xml->textContent),
+            $xml->hasAttribute('RelationshipType')
+                ? QNameValue::fromDocument($xml->getAttribute('RelationshipType'), $xml)
+                : null,
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -89,10 +94,10 @@ final class RelatesTo extends AbstractWsaElement implements SchemaValidatableEle
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         if ($this->getRelationshipType() !== null) {
-            $e->setAttribute('RelationshipType', $this->getRelationshipType());
+            $e->setAttribute('RelationshipType', $this->getRelationshipType()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {
