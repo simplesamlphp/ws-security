@@ -6,11 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200508;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\Type\AnyURIValue;
 use SimpleSAML\XML\TypedTextContentTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing WS-addressing AttributedURIType.
@@ -35,7 +35,7 @@ abstract class AbstractAttributedURIType extends AbstractWsaElement
     /**
      * AbstractAttributedURIType constructor.
      *
-     * @param \SimpleSAML\XML\Type\AnyURIValue $value The localized URI.
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $value The localized URI.
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(AnyURIValue $value, array $namespacedAttributes = [])
@@ -51,7 +51,7 @@ abstract class AbstractAttributedURIType extends AbstractWsaElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

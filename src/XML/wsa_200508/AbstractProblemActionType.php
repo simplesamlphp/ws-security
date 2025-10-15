@@ -6,7 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200508;
 
 use DOMElement;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing WS-addressing ProblemActionType.

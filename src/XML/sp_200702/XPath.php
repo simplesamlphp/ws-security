@@ -8,7 +8,8 @@ use DOMNodeList;
 use DOMXPath;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 /**
  * An XPath element
@@ -17,26 +18,18 @@ use SimpleSAML\XML\StringElementTrait;
  */
 final class XPath extends AbstractSpElement
 {
-    use StringElementTrait;
+    use TypedTextContentTrait;
 
 
-    /**
-     * Initialize an XPath.
-     *
-     * @param string $content
-     */
-    public function __construct(
-        string $content,
-    ) {
-        $this->setContent($content);
-    }
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 
 
     /**
      * Validate the content of the element.
      *
      * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\XML\Exception\SchemaViolationException on failure
+     * @throws \SimpleSAML\XMLSchema\Exception\SchemaViolationException on failure
      * @return void
      */
     protected function validateContent(string $content): void

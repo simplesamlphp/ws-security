@@ -6,10 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200508;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\QNameElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing WS-addressing AttributedQNameType.
@@ -23,7 +24,11 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractAttributedQNameType extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
-    use QNameElementTrait;
+    use TypedTextContentTrait;
+
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = QNameValue::class;
 
     /** The namespace-attribute for the xs:anyElement element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -32,10 +37,10 @@ abstract class AbstractAttributedQNameType extends AbstractWsaElement
     /**
      * AbstractAttributedQNameType constructor.
      *
-     * @param string $value The QName.
+     * @param \SimpleSAML\XMLSchema\Type\QNameValue $value The QName.
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
-    final public function __construct(string $value, array $namespacedAttributes = [])
+    final public function __construct(QNameValue $value, array $namespacedAttributes = [])
     {
         $this->setContent($value);
         $this->setAttributesNS($namespacedAttributes);
@@ -48,7 +53,7 @@ abstract class AbstractAttributedQNameType extends AbstractWsaElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -56,7 +61,7 @@ abstract class AbstractAttributedQNameType extends AbstractWsaElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        return new static($xml->textContent, self::getAttributesNSFromXML($xml));
+        return new static(QNameValue::fromDocument($xml->textContent, $xml), self::getAttributesNSFromXML($xml));
     }
 
 
@@ -69,7 +74,7 @@ abstract class AbstractAttributedQNameType extends AbstractWsaElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

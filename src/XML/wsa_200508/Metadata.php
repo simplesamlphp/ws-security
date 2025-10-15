@@ -6,11 +6,12 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200508;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing a wsa:Metadata element.
@@ -50,7 +51,7 @@ final class Metadata extends AbstractWsaElement implements SchemaValidatableElem
      */
     public function isEmptyElement(): bool
     {
-        return empty($this->elements) && empty($this->namespacedAttributes);
+        return empty($this->getElements()) && empty($this->getAttributesNS());
     }
 
 
@@ -60,7 +61,7 @@ final class Metadata extends AbstractWsaElement implements SchemaValidatableElem
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

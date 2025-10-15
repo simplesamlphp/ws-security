@@ -6,13 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200408;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\XsNamespace as NS;
-
-use function intval;
-use function strval;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\NonNegativeIntegerValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing WS-addressing RetryAfterType.
@@ -25,6 +23,11 @@ use function strval;
 abstract class AbstractRetryAfterType extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
+    use TypedTextContentTrait;
+
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = NonNegativeIntegerValue::class;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -33,25 +36,15 @@ abstract class AbstractRetryAfterType extends AbstractWsaElement
     /**
      * AbstractRetryAfterType constructor.
      *
-     * @param int $value The long.
+     * @param \SimpleSAML\XMLSchema\Type\NonNegativeIntegerValue $value The long.
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected int $value,
+        protected NonNegativeIntegerValue $value,
         array $namespacedAttributes = [],
     ) {
-        Assert::natural($value, SchemaViolationException::class); // Allows 0 as allowed by xs:nonNegativeInteger
-
+        $this->setContent($value);
         $this->setAttributesNS($namespacedAttributes);
-    }
-
-
-    /**
-     * Retrieve the value of the value-attribute
-     */
-    public function getValue(): int
-    {
-        return $this->value;
     }
 
 
@@ -61,7 +54,7 @@ abstract class AbstractRetryAfterType extends AbstractWsaElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -69,7 +62,7 @@ abstract class AbstractRetryAfterType extends AbstractWsaElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        return new static(intval($xml->textContent), self::getAttributesNSFromXML($xml));
+        return new static(NonNegativeIntegerValue::fromString($xml->textContent), self::getAttributesNSFromXML($xml));
     }
 
 
@@ -82,7 +75,7 @@ abstract class AbstractRetryAfterType extends AbstractWsaElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = strval($this->getValue());
+        $e->textContent = $this->getContent()->getValue();
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

@@ -6,11 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200508;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\UnsignedLongValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing WS-addressing AttributedLongType.
@@ -20,10 +20,14 @@ use SimpleSAML\XML\XsNamespace as NS;
  *
  * @package simplesamlphp/ws-security
  */
-abstract class AbstractAttributedLongType extends AbstractWsaElement
+abstract class AbstractAttributedUnsignedLongType extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
-    use StringElementTrait;
+    use TypedTextContentTrait;
+
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = UnsignedLongValue::class;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -32,28 +36,13 @@ abstract class AbstractAttributedLongType extends AbstractWsaElement
     /**
      * AbstractAttributedLongType constructor.
      *
-     * @param string $value The long.
+     * @param \SimpleSAML\XMLSchema\Type\UnsignedLongValue $value The long.
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
-    final public function __construct(string $value, array $namespacedAttributes = [])
+    final public function __construct(UnsignedLongValue $value, array $namespacedAttributes = [])
     {
         $this->setContent($value);
         $this->setAttributesNS($namespacedAttributes);
-    }
-
-
-    /**
-     * Validate the content of the element.
-     *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\XML\Exception\SchemaViolationException on failure
-     * @return void
-     */
-    protected function validateContent(string $content): void
-    {
-        $content = intval($content);
-        Assert::natural($content, SchemaViolationException::class);
-        Assert::range($content, 0, 18446744073709551615, SchemaViolationException::class);
     }
 
 
@@ -63,7 +52,7 @@ abstract class AbstractAttributedLongType extends AbstractWsaElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -71,7 +60,7 @@ abstract class AbstractAttributedLongType extends AbstractWsaElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        return new static($xml->textContent, self::getAttributesNSFromXML($xml));
+        return new static(UnsignedLongValue::fromString($xml->textContent), self::getAttributesNSFromXML($xml));
     }
 
 
@@ -84,7 +73,7 @@ abstract class AbstractAttributedLongType extends AbstractWsaElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

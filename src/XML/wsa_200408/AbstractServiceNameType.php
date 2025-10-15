@@ -6,11 +6,12 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200408;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\QNameElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\NCNameValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing WS-addressing ServiceNameType.
@@ -24,7 +25,10 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractServiceNameType extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
-    use QNameElementTrait;
+    use TypedTextContentTrait;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = QNameValue::class;
 
     /** The namespace-attribute for the xs:anyElement element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -33,17 +37,15 @@ abstract class AbstractServiceNameType extends AbstractWsaElement
     /**
      * AbstractServiceNameType constructor.
      *
-     * @param string $value The QName.
-     * @param string|null $portName The PortName.
+     * @param \SimpleSAML\XMLSchema\Type\QNameValue $value The QName.
+     * @param \SimpleSAML\XMLSchema\Type\NCNameValue|null $portName The PortName.
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        string $value,
-        protected ?string $portName = null,
+        QNameValue $value,
+        protected ?NCNameValue $portName = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidNCName($portName, SchemaViolationException::class);
-
         $this->setContent($value);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -52,7 +54,7 @@ abstract class AbstractServiceNameType extends AbstractWsaElement
     /**
      * Get the value of the portName property
      */
-    public function getPortName(): ?string
+    public function getPortName(): ?NCNameValue
     {
         return $this->portName;
     }
@@ -64,7 +66,7 @@ abstract class AbstractServiceNameType extends AbstractWsaElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -73,8 +75,8 @@ abstract class AbstractServiceNameType extends AbstractWsaElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            $xml->textContent,
-            self::getOptionalAttribute($xml, 'PortName', null),
+            QNameValue::fromDocument($xml->textContent, $xml),
+            self::getOptionalAttribute($xml, 'PortName', NCNameValue::class, null),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -89,10 +91,10 @@ abstract class AbstractServiceNameType extends AbstractWsaElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         if ($this->getPortName() !== null) {
-            $e->setAttribute('PortName', $this->getPortName());
+            $e->setAttribute('PortName', $this->getPortName()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {

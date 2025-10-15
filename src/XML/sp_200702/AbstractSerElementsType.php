@@ -10,7 +10,8 @@ use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function sprintf;
 
@@ -40,18 +41,17 @@ abstract class AbstractSerElementsType extends AbstractSpElement
      * AbstractSerElementsType constructor.
      *
      * @param list<\SimpleSAML\WSSecurity\XML\sp_200702\XPath> $xpath
-     * @param string|null $xpathVersion
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $xpathVersion
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected array $xpath,
-        protected ?string $xpathVersion = null,
+        protected ?AnyURIValue $xpathVersion = null,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
         Assert::minCount($xpath, 1, SchemaViolationException::class);
-        Assert::nullOrValidURI($xpathVersion);
 
         $this->setElements($elts);
         $this->setAttributesNS($namespacedAttributes);
@@ -72,9 +72,9 @@ abstract class AbstractSerElementsType extends AbstractSpElement
     /**
      * Collect the value of the XPathVersion property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getXPathVersion(): ?string
+    public function getXPathVersion(): ?AnyURIValue
     {
         return $this->xpathVersion;
     }
@@ -103,7 +103,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
 
         return new static(
             XPath::getChildrenOfClass($xml),
-            $xml->hasAttributeNS(self::NS, 'XPathVersion') ? $xml->getAttributeNS(self::NS, 'XPathVersion') : null,
+            $xml->hasAttributeNS(self::NS, 'XPathVersion') ? $xml->getAttributeNS(self::NS, 'XPathVersion', AnyURIValue) : null,
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -121,7 +121,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
         $e = $this->instantiateParentElement($parent);
 
         if ($this->getXPathVersion() !== null) {
-            $e->setAttributeNS(self::NS, 'sp:XPathVersion', $this->getXPathVersion());
+            $e->setAttributeNS(self::NS, 'sp:XPathVersion', $this->getXPathVersion()->getValue());
         }
 
         foreach ($this->getXPath() as $xpath) {
