@@ -14,7 +14,7 @@
         "ext-dom": "*",
         "ext-spl": "*",
 
-        "simplesamlphp/assert": "~1.9.2",
+        "simplesamlphp/assert": "~1.9.1",
         "simplesamlphp/saml2": "dev-feature/xsd-types",
         "simplesamlphp/xml-common": "~2.1.2",
         "simplesamlphp/xml-security": "~2.0.5",
