@@ -10,8 +10,10 @@ use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Type\IDValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function array_unshift;
 
@@ -25,35 +27,37 @@ use function array_unshift;
 abstract class AbstractAttributedString extends AbstractWsseElement
 {
     use ExtendableAttributesTrait;
-    use StringElementTrait;
+    use TypedTextContentTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 
 
     /**
      * AbstractAttributedString constructor
      *
-     * @param string $content
-     * @param string|null $Id
+     * @param \SimpleSAML\XMLSchema\Type\StringValue $content
+     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $Id
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
-        string $content,
-        protected ?string $Id = null,
+        StringValue $content,
+        protected ?IDValue $Id = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidNCName($Id);
-
         $this->setContent($content);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\IDValue|null
      */
-    public function getId(): ?string
+    public function getId(): ?IDValue
     {
         return $this->Id;
     }
@@ -95,7 +99,7 @@ abstract class AbstractAttributedString extends AbstractWsseElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         $attributes = $this->getAttributesNS();
         if ($this->getId() !== null) {

@@ -55,7 +55,10 @@ final class InterfaceNameTest extends TestCase
     public function testMarshalling(): void
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $interfaceName = new InterfaceName(QNameValue('{urn:x-simplesamlphp:namespace}ssp:Chunk'), [$attr]);
+        $interfaceName = new InterfaceName(
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
+            [$attr],
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

@@ -8,6 +8,9 @@ use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\IDValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 /**
  * Abstract class defining the EncodedString type
@@ -21,27 +24,25 @@ abstract class AbstractEncodedString extends AbstractAttributedString
     /**
      * AbstractEncodedString constructor
      *
-     * @param string $content
-     * @param string|null $Id
-     * @param string|null $EncodingType
+     * @param \SimpleSAML\XMLSchema\Type\StringValue $content
+     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $Id
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $EncodingType
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
-        string $content,
-        ?string $Id = null,
-        protected ?string $EncodingType = null,
+        StringValue $content,
+        ?IDValue $Id = null,
+        protected ?AnyURIValue $EncodingType = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($EncodingType);
-
         parent::__construct($content, $Id, $namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getEncodingType(): ?string
+    public function getEncodingType(): ?AnyURIValue
     {
         return $this->EncodingType;
     }
@@ -90,7 +91,7 @@ abstract class AbstractEncodedString extends AbstractAttributedString
         $e = parent::toXML($parent);
 
         if ($this->getEncodingType() !== null) {
-            $e->setAttribute('EncodingType', $this->getEncodingType());
+            $e->setAttribute('EncodingType', $this->getEncodingType()->getValue());
         }
 
         return $e;

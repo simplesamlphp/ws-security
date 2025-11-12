@@ -55,7 +55,11 @@ final class ServiceNameTest extends TestCase
     public function testMarshalling(): void
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $serviceName = new ServiceName(QNameValue('{urn:x-simplesamlphp:namespace}ssp:Chunk'), 'PHPUnit', [$attr]);
+        $serviceName = new ServiceName(
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
+            'PHPUnit',
+            [$attr],
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

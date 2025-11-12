@@ -8,6 +8,9 @@ use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\IDValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 /**
  * Abstract class defining the PasswordString type
@@ -19,28 +22,26 @@ abstract class AbstractPasswordString extends AbstractAttributedString
     /**
      * AbstractPasswordString constructor
      *
-     * @param string $content
-     * @param string|null $Id
-     * @param string|null $Type
+     * @param \SimpleSAML\XMLSchema\Type\StringValue $content
+     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $Id
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $Type
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         #[\SensitiveParameter]
-        string $content,
-        ?string $Id = null,
-        protected ?string $Type = null,
+        StringValue $content,
+        ?IDValue $Id = null,
+        protected ?AnyURIValue $Type = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($Type);
-
         parent::__construct($content, $Id, $namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getType(): ?string
+    public function getType(): ?AnyURIValue
     {
         return $this->Type;
     }
@@ -72,9 +73,9 @@ abstract class AbstractPasswordString extends AbstractAttributedString
         }
 
         return new static(
-            $xml->textContent,
+            StringValue::fromString($xml->textContent),
             $Id,
-            self::getOptionalAttribute($xml, 'Type', null),
+            self::getOptionalAttribute($xml, 'Type', AnyURIValue::class, null),
             $nsAttributes,
         );
     }
@@ -89,7 +90,7 @@ abstract class AbstractPasswordString extends AbstractAttributedString
         $e = parent::toXML($parent);
 
         if ($this->getType() !== null) {
-            $e->setAttribute('Type', $this->getType());
+            $e->setAttribute('Type', $this->getType()->getValue());
         }
 
         return $e;

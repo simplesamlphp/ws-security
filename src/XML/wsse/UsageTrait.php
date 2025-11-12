@@ -4,33 +4,31 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsse;
 
-use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 /**
  * @package simplesamlphp/ws-security
  */
 trait UsageTrait
 {
-    /** @var string|null */
+    /** @var \SimpleSAML\XMLSchema\Type\AnyURIValue|null */
     protected ?string $usage;
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getUsage(): ?string
+    public function getUsage(): ?AnyURIValue
     {
         return $this->usage;
     }
 
 
     /**
-     * @param string $usage|null
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $usage|null
      */
-    private function setUsage(?string $usage): void
+    private function setUsage(?AnyURIValue $usage): void
     {
-        Assert::nullOrValidURI($usage, SchemaViolationException::class);
         $this->usage = $usage;
     }
 }

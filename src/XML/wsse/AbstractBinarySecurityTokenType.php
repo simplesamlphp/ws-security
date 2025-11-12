@@ -8,8 +8,10 @@ use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\IDValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 /**
  * Class defining the BinarySecurityTokenType element
@@ -25,29 +27,28 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
     /**
      * AbstractBinarySecurityTokenType constructor
      *
-     * @param string $content
-     * @param string|null $valueType
-     * @param string|null $Id
-     * @param string|null $EncodingType
+     * @param \SimpleSAML\XMLSchema\Type\StringValue $content
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $valueType
+     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $Id
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $EncodingType
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        string $content,
-        protected ?string $valueType = null,
-        ?string $Id = null,
+        StringValue $content,
+        protected ?AnyURIValue $valueType = null,
+        ?IDValue $Id = null,
         ?string $EncodingType = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($valueType, SchemaViolationException::class);
-
+        Assert::validBase64Binary($content->getValue());
         parent::__construct($content, $Id, $EncodingType, $namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getValueType(): ?string
+    public function getValueType(): ?AnyURIValue
     {
         return $this->valueType;
     }
@@ -79,10 +80,10 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
         }
 
         return new static(
-            $xml->textContent,
-            self::getOptionalAttribute($xml, 'ValueType', null),
+            StringValue::fromString($xml->textContent),
+            self::getOptionalAttribute($xml, 'ValueType', AnyURIValue::class, null),
             $Id,
-            self::getOptionalAttribute($xml, 'EncodingType', null),
+            self::getOptionalAttribute($xml, 'EncodingType', AnyURIValue::class, null),
             $nsAttributes,
         );
     }
@@ -99,7 +100,7 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
         $e = parent::toXML($parent);
 
         if ($this->getValueType() !== null) {
-            $e->setAttribute('ValueType', $this->getValueType());
+            $e->setAttribute('ValueType', $this->getValueType()->getValue());
         }
 
         return $e;

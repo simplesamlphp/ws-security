@@ -14,6 +14,7 @@ use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Type\IDValue;
 
 use function array_pop;
 use function array_unshift;
@@ -27,6 +28,7 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -49,27 +51,25 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
      * AbstractUsernameTokenType constructor
      *
      * @param \SimpleSAML\WSSecurity\XML\wsse\Username $username
-     * @param string|null $Id
+     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $Id
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     final public function __construct(
         protected Username $username,
-        protected ?string $Id = null,
+        protected ?IDValue $Id = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidNCName($Id);
-
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\IDValue|null
      */
-    public function getId(): ?string
+    public function getId(): ?IDValue
     {
         return $this->Id;
     }
@@ -102,9 +102,14 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
         Assert::minCount($username, 1, MissingElementException::class);
         Assert::maxCount($username, 1, TooManyElementsException::class);
 
+        $Id = null;
+        if ($xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')) {
+            $ID = $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id');
+        }
+
         return new static(
             array_pop($username),
-            $xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id') ? $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id') : null,
+            $Id,
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
