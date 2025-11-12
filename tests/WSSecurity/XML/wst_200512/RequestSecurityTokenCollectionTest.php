@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wst_200512;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\SOAP\Constants as SOAP;
+use SimpleSAML\SOAP11\Type\MustUnderstandValue;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa_200508\MessageID;
 use SimpleSAML\WSSecurity\XML\wst_200512\AbstractRequestSecurityTokenCollectionType;
@@ -56,14 +56,14 @@ final class RequestSecurityTokenCollectionTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute(SOAP::NS_SOAP_ENV_11, 'soapenv', 'mustUnderstand', '1');
-        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
-        $attr3 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', 'testval2');
-        $msgId1 = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$attr1]);
-        $msgId2 = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7df', [$attr1]);
+        $mustUnderstand = MustUnderstandValue::fromBoolean(true);
+        $msgId1 = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$mustUnderstand->toAttribute()]);
+        $msgId2 = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7df', [$mustUnderstand->toAttribute()]);
 
-        $requestSecurityToken1 = new RequestSecurityToken(C::NAMESPACE, [$msgId1], [$attr2]);
-        $requestSecurityToken2 = new RequestSecurityToken(C::NAMESPACE, [$msgId2], [$attr3]);
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
+        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', 'testval2');
+        $requestSecurityToken1 = new RequestSecurityToken(C::NAMESPACE, [$msgId1], [$attr1]);
+        $requestSecurityToken2 = new RequestSecurityToken(C::NAMESPACE, [$msgId2], [$attr2]);
 
         $requestSecurityTokenCollection = new RequestSecurityTokenCollection([
             $requestSecurityToken1,

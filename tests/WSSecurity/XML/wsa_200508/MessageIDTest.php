@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa_200508;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\SOAP\Constants as C;
+use SimpleSAML\SOAP11\Type\MustUnderstandValue;
 use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractAttributedURIType;
 use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa_200508\MessageID;
@@ -54,8 +54,8 @@ final class MessageIDTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute(C::NS_SOAP_ENV_11, 'soapenv', 'mustUnderstand', '1');
-        $msgId = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$attr1]);
+        $mustUnderstand = MustUnderstandValue::fromBoolean(true);
+        $msgId = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$mustUnderstand->toAttribute()]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

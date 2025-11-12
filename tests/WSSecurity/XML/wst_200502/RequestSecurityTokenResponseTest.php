@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wst_200502;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\SOAP\Constants as SOAP;
+use SimpleSAML\SOAP11\Type\MustUnderstandValue;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa_200408\MessageID;
 use SimpleSAML\WSSecurity\XML\wst_200502\AbstractRequestSecurityTokenResponseType;
@@ -57,15 +57,15 @@ final class RequestSecurityTokenResponseTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute(SOAP::NS_SOAP_ENV_11, 'soapenv', 'mustUnderstand', '1');
-        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
-        $msgId = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$attr1]);
+        $mustUnderstand = MustUnderstandValue::fromBoolean(true);
+        $msgId = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$mustUnderstand->toAttribute()]);
 
-        $RequestSecurityTokenResponse = new RequestSecurityTokenResponse(C::NAMESPACE, [$msgId], [$attr2]);
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
+        $requestSecurityTokenResponse = new RequestSecurityTokenResponse(C::NAMESPACE, [$msgId], [$attr1]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($RequestSecurityTokenResponse),
+            strval($requestSecurityTokenResponse),
         );
     }
 
@@ -75,8 +75,8 @@ final class RequestSecurityTokenResponseTest extends TestCase
      */
     public function testMarshallingEmpty(): void
     {
-        $RequestSecurityTokenResponse = new RequestSecurityTokenResponse();
+        $requestSecurityTokenResponse = new RequestSecurityTokenResponse();
 
-        $this->assertTrue($RequestSecurityTokenResponse->isEmptyElement());
+        $this->assertTrue($requestSecurityTokenResponse->isEmptyElement());
     }
 }
