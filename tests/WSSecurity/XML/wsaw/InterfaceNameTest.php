@@ -15,6 +15,7 @@ use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\QNameValue;
 
 use function dirname;
 
@@ -54,7 +55,7 @@ final class InterfaceNameTest extends TestCase
     public function testMarshalling(): void
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $interfaceName = new InterfaceName('ssp:Chunk', [$attr]);
+        $interfaceName = new InterfaceName(QNameValue('{urn:x-simplesamlphp:namespace}ssp:Chunk'), [$attr]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

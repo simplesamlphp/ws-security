@@ -8,8 +8,10 @@ use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\QNameElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Type\NCNameValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
 
 /**
  * Abstract class defining the ServiceNameType type
@@ -19,26 +21,27 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractServiceNameType extends AbstractWsawElement
 {
     use ExtendableAttributesTrait;
-    use QNameElementTrait;
+    use TypedTextContentTrait;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = QNameValue::class;
 
 
     /**
      * AbstractServiceName constructor
      *
-     * @param string $value
-     * @param string|null $endpointName
+     * @param \SimpleSAML\XMLSchema\Type\QNameValue $value
+     * @param \SimpleSAML\XMLSchema\Type\NCNameValue|null $endpointName
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     public function __construct(
-        string $value,
+        QNameValue $value,
         protected ?string $endpointName = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidNCName($endpointName, SchemaViolationException::class);
-
         $this->setContent($value);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -47,9 +50,9 @@ abstract class AbstractServiceNameType extends AbstractWsawElement
     /**
      * Collect the value of the endpointName property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\NCNameValue|null
      */
-    public function getEndpointName(): ?string
+    public function getEndpointName(): ?NCNameValue
     {
         return $this->endpointName;
     }
@@ -64,10 +67,10 @@ abstract class AbstractServiceNameType extends AbstractWsawElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         if ($this->getEndpointName() !== null) {
-            $e->setAttribute('EndpointName', $this->getEndpointName());
+            $e->setAttribute('EndpointName', $this->getEndpointName()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {
