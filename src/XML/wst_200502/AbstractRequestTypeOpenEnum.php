@@ -6,9 +6,10 @@ namespace SimpleSAML\WSSecurity\XML\wst_200502;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function array_map;
 use function explode;
@@ -23,7 +24,11 @@ use function implode;
  */
 abstract class AbstractRequestTypeOpenEnum extends AbstractWstElement
 {
-    use StringElementTrait;
+    use TypedTextContentTrait;
+
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 
 
     /**
@@ -39,7 +44,7 @@ abstract class AbstractRequestTypeOpenEnum extends AbstractWstElement
         );
         Assert::allValidURI($values, SchemaViolationException::class);
 
-        $this->setContent(implode(' ', $values));
+        $this->setContent(StringValue::fromString(implode(' ', $values)));
     }
 
 
@@ -49,7 +54,7 @@ abstract class AbstractRequestTypeOpenEnum extends AbstractWstElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

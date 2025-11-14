@@ -6,11 +6,12 @@ namespace SimpleSAML\WSSecurity\XML\wst_200502;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * A BinaryExchangeType element
@@ -20,27 +21,28 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractBinaryExchangeType extends AbstractWstElement
 {
     use ExtendableAttributesTrait;
-    use StringElementTrait;
+    use TypedTextContentTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
+
 
     /**
-     * @param string $content
-     * @param string $valueType
-     * @param string $encodingType
+     * @param \SimpleSAML\XMLSchema\Type\StringValue $content
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $valueType
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $encodingType
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        string $content,
-        protected string $valueType,
-        protected string $encodingType,
+        StringValue $content,
+        protected AnyURIValue $valueType,
+        protected AnyURIValue $encodingType,
         array $namespacedAttributes,
     ) {
-        Assert::validURI($valueType, SchemaViolationException::class);
-        Assert::validURI($encodingType, SchemaViolationException::class);
-
         $this->setContent($content);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -49,9 +51,9 @@ abstract class AbstractBinaryExchangeType extends AbstractWstElement
     /**
      * Get the valueType property.
      *
-     * @return string
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
-    public function getValueType(): string
+    public function getValueType(): AnyURIValue
     {
         return $this->valueType;
     }
@@ -60,9 +62,9 @@ abstract class AbstractBinaryExchangeType extends AbstractWstElement
     /**
      * Get the valueType property.
      *
-     * @return string
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
-    public function getEncodingType(): string
+    public function getEncodingType(): AnyURIValue
     {
         return $this->encodingType;
     }
@@ -74,7 +76,7 @@ abstract class AbstractBinaryExchangeType extends AbstractWstElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -83,9 +85,9 @@ abstract class AbstractBinaryExchangeType extends AbstractWstElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            $xml->textContent,
-            self::getAttribute($xml, 'ValueType'),
-            self::getAttribute($xml, 'EncodingType'),
+            StringValue::fromString($xml->textContent),
+            self::getAttribute($xml, 'ValueType', AnyURIValue::class),
+            self::getAttribute($xml, 'EncodingType', AnyURIValue::class),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -100,10 +102,10 @@ abstract class AbstractBinaryExchangeType extends AbstractWstElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
-        $e->setAttribute('ValueType', $this->getValueType());
-        $e->setAttribute('EncodingType', $this->getEncodingType());
+        $e->setAttribute('ValueType', $this->getValueType()->getValue());
+        $e->setAttribute('EncodingType', $this->getEncodingType()->getValue());
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

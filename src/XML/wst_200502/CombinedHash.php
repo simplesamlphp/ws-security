@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wst_200502;
 
-use SimpleSAML\XML\Base64ElementTrait;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
 
 /**
  * A CombinedHash element
@@ -14,15 +16,10 @@ use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementT
  */
 final class CombinedHash extends AbstractWstElement implements SchemaValidatableElementInterface
 {
-    use Base64ElementTrait;
     use SchemaValidatableElementTrait;
+    use TypedTextContentTrait;
 
 
-    /**
-     * @param string $content
-     */
-    public function __construct(string $content)
-    {
-        $this->setContent($content);
-    }
+    /** @var string */
+    public const TEXTCONTENT_TYPE = Base64BinaryValue::class;
 }
