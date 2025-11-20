@@ -8,7 +8,8 @@ use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function array_map;
 use function explode;
@@ -23,7 +24,10 @@ use function implode;
  */
 abstract class AbstractComputedKeyOpenEnum extends AbstractWstElement
 {
-    use StringElementTrait;
+    use TypedTextContentTrait;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 
 
     /**

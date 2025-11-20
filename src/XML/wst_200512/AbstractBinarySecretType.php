@@ -6,11 +6,12 @@ namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Base64ElementTrait;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Base64BinaryValue;
 
 use function array_map;
 use function explode;
@@ -23,23 +24,28 @@ use function implode;
  */
 abstract class AbstractBinarySecretType extends AbstractWstElement
 {
-    use Base64ElementTrait;
     use ExtendableAttributesTrait;
+    use TypedTextContentTrait;
+
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = Base64BinaryValue::class;
 
     /** @var string|\SimpleSAML\XML\XsNamespace */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+
 
     /** @var string[]|null */
     protected ?array $Type;
 
 
     /**
-     * @param string $content
+     * @param \SimpleSAML\XMLSchema\Type\Base64BinaryValue $content
      * @param (\SimpleSAML\WSSecurity\XML\wst_200512\BinarySecretTypeEnum|string)[]|null $Type
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        string $content,
+        Base64BinaryValue $content,
         ?array $Type = null,
         array $namespacedAttributes = [],
     ) {
@@ -85,7 +91,7 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            $xml->textContent,
+            Base64BinaryValue::fromString($xml->textContent),
             explode(' ', self::getAttribute($xml, 'Type')),
             self::getAttributesNSFromXML($xml),
         );
@@ -101,7 +107,7 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         if ($this->getType() !== null) {
             $e->setAttribute('Type', implode(' ', $this->getType()));
