@@ -36,6 +36,7 @@ final class SignOutTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /** @var \SimpleSAML\XML\Chunk $basis */
     protected static Chunk $basis;
 

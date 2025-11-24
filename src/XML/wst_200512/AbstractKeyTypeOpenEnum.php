@@ -8,7 +8,8 @@ use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\StringElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function array_map;
 use function explode;
@@ -23,7 +24,11 @@ use function implode;
  */
 abstract class AbstractKeyTypeOpenEnum extends AbstractWstElement
 {
-    use StringElementTrait;
+    use TypedTextContentTrait;
+
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 
 
     /**
@@ -39,7 +44,7 @@ abstract class AbstractKeyTypeOpenEnum extends AbstractWstElement
         );
         Assert::allValidURI($values, SchemaViolationException::class);
 
-        $this->setContent(implode(' ', $values));
+        $this->setContent(StringValue::fromString(implode(' ', $values)));
     }
 
 

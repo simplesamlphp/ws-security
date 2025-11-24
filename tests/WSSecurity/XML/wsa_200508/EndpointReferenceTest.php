@@ -37,6 +37,7 @@ final class EndpointReferenceTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /** @var \DOMElement $referenceParametersContent */
     protected static DOMElement $referenceParametersContent;
 

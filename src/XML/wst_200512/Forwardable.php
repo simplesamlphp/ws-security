@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
-use SimpleSAML\XML\BooleanElementTrait;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\BooleanValue
 
 /**
  * A Forwardable element
@@ -14,15 +16,10 @@ use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementT
  */
 final class Forwardable extends AbstractWstElement implements SchemaValidatableElementInterface
 {
-    use BooleanElementTrait;
     use SchemaValidatableElementTrait;
+    use TypedTextContentTrait;
 
 
-    /**
-     * @param string $content
-     */
-    public function __construct(string $content)
-    {
-        $this->setContent($content);
-    }
+    /** @var string */
+    public const TEXTCONTENT_TYPE = BooleanValue::class;
 }

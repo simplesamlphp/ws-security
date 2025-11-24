@@ -33,6 +33,7 @@ final class AdditionalContextProcessedTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /** @var \SimpleSAML\XML\Chunk $chunk */
     protected static Chunk $chunk;
 

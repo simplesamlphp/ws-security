@@ -29,6 +29,7 @@ final class ReferencePropertiesTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /** @var \DOMElement $ReferencePropertiesContent */
     private static DOMElement $ReferencePropertiesContent;
 

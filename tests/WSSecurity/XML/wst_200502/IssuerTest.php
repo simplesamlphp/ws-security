@@ -34,6 +34,7 @@ final class IssuerTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /** @var \DOMElement $referenceParametersContent */
     protected static DOMElement $referenceParametersContent;
 

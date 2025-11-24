@@ -31,6 +31,7 @@ final class SignOutBasisTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /** @var \SimpleSAML\XML\Chunk $chunk */
     protected static Chunk $chunk;
 

@@ -38,6 +38,7 @@ final class AttributeServiceEndpointsTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /** @var \DOMElement $endpointReference */
     protected static DOMElement $endpointReference;
 

@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
-use PHPUnit\Framework\Attributes\{CoversClass, Group};
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\fed\{AbstractFedElement, AbstractReferenceDigestType, ReferenceDigest};
+use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
+use SimpleSAML\WSSecurity\XML\fed\AbstractReferenceDigestType;
+use SimpleSAML\WSSecurity\XML\fed\ReferenceDigest;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XML\Type\{Base64BinaryValue, StringValue};
+use SimpleSAML\XML\Type\Base64BinaryValue;
+use SimpleSAML\XML\Type\StringValue;
 
 use function dirname;
 

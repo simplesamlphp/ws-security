@@ -4,18 +4,19 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
-use PHPUnit\Framework\Attributes\{CoversClass, Group};
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\auth\{
-    AbstractAuthElement,
-    AbstractContextItemType,
-    ContextItem,
-    Value,
-};
-use SimpleSAML\XML\{Attribute as XMLAttribute, DOMDocumentFactory};
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractContextItemType;
+use SimpleSAML\WSSecurity\XML\auth\ContextItem;
+use SimpleSAML\WSSecurity\XML\auth\Value;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XML\Type\{AnyURIValue, StringValue};
+use SimpleSAML\XML\Type\AnyURIValue;
+use SimpleSAML\XML\Type\StringValue;
 
 use function dirname;
 use function strval;

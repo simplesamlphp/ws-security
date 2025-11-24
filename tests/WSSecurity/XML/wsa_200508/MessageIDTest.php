@@ -11,7 +11,6 @@ use SimpleSAML\SOAP11\Type\MustUnderstandValue;
 use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractAttributedURIType;
 use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa_200508\MessageID;
-use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;

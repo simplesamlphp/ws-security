@@ -43,6 +43,7 @@ final class SecureConversationTokenTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /** @var \DOMElement $referencePropertiesContent */
     protected static DOMElement $referencePropertiesContent;
 

@@ -43,6 +43,7 @@ final class SpnegoContextTokenTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /** @var \DOMElement $referencePropertiesContent */
     protected static DOMElement $referencePropertiesContent;
 

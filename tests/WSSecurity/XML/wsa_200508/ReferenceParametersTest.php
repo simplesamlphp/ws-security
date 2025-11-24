@@ -32,6 +32,7 @@ final class ReferenceParametersTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /** @var \DOMElement $referenceParametersContent */
     private static DOMElement $referenceParametersContent;
 

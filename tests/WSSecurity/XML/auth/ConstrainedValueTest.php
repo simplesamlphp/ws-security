@@ -4,21 +4,24 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
-use PHPUnit\Framework\Attributes\{CoversClass, DataProvider, Group};
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\XML\auth\{
-    AbstractAuthElement,
-    AbstractConstrainedValueType,
-    ConstrainedValue,
-    //StructuredValue,
-    Value,
-    ValueGreaterThan,
-    ValueGreaterThanOrEqual,
-    ValueLessThan,
-    ValueLessThanOrEqual,
-};
-use SimpleSAML\XML\{Attribute as XMLAttribute,/*Chunk,*/ DOMDocumentFactory};
-use SimpleSAML\XML\Type\{BooleanValue, StringValue};
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractConstrainedValueType;
+use SimpleSAML\WSSecurity\XML\auth\ConstrainedValue;
+//use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
+use SimpleSAML\WSSecurity\XML\auth\Value;
+use SimpleSAML\WSSecurity\XML\auth\ValueGreaterThan;
+use SimpleSAML\WSSecurity\XML\auth\ValueGreaterThanOrEqual;
+use SimpleSAML\WSSecurity\XML\auth\ValueLessThan;
+use SimpleSAML\WSSecurity\XML\auth\ValueLessThanOrEqual;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+//use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\Type\BooleanValue;
+use SimpleSAML\XML\Type\StringValue;
 
 use function dirname;
 use function strval;

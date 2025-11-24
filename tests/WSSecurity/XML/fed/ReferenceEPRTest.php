@@ -5,19 +5,21 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DOMElement;
-use PHPUnit\Framework\Attributes\{CoversClass, Group};
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceEPR;
-use SimpleSAML\WSSecurity\XML\wsa_200508\{
-    AbstractEndpointReferenceType,
-    AbstractWsaElement,
-    Address,
-    Metadata,
-    ReferenceParameters,
-};
-use SimpleSAML\XML\{Attribute as XMLAttribute, Chunk, DOMDocumentFactory};
+use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
+use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractWsaElement;
+use SimpleSAML\WSSecurity\XML\wsa_200508\Address;
+use SimpleSAML\WSSecurity\XML\wsa_200508\Metadata;
+use SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XML\Type\{AnyURIValue, StringValue};
+use SimpleSAML\XML\Type\AnyURIValue;
+use SimpleSAML\XML\Type\StringValue;
 
 use function dirname;
 use function strval;

@@ -41,6 +41,7 @@ final class RecipientSignatureTokenTest extends TestCase
     /** @var \SimpleSAML\XML\Attribute $attr */
     protected static XMLAttribute $attr;
 
+
     /**
      */
     public static function setUpBeforeClass(): void

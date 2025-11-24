@@ -34,11 +34,13 @@ final class AsymmetricBindingTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /** @var \SimpleSAML\XML\Chunk $chunk */
     protected static Chunk $chunk;
 
     /** @var \SimpleSAML\XML\Attribute $attr */
     protected static XMLAttribute $attr;
+
 
     /**
      */

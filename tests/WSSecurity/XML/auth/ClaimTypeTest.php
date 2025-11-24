@@ -4,22 +4,25 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\auth;
 
-use PHPUnit\Framework\Attributes\{CoversClass, Group};
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\Utils\XPath;
-use SimpleSAML\WSSecurity\XML\auth\{
-    AbstractAuthElement,
-    AbstractClaimType,
-    ClaimType,
-    Description,
-    DisplayName,
-    DisplayValue,
-    Value,
-};
-use SimpleSAML\XML\{Attribute as XMLAttribute, DOMDocumentFactory};
-use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
-use SimpleSAML\XML\Type\{AnyURIValue, BooleanValue, StringValue};
+use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
+use SimpleSAML\WSSecurity\XML\auth\AbstractClaimType;
+use SimpleSAML\WSSecurity\XML\auth\ClaimType;
+use SimpleSAML\WSSecurity\XML\auth\Description;
+use SimpleSAML\WSSecurity\XML\auth\DisplayName;
+use SimpleSAML\WSSecurity\XML\auth\DisplayValue;
+use SimpleSAML\WSSecurity\XML\auth\Value;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\Type\AnyURIValue;
+use SimpleSAML\XML\Type\BooleanValue;
+use SimpleSAML\XML\Type\StringValue;
 
 use function dirname;
 use function strval;

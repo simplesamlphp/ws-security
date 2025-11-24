@@ -27,7 +27,6 @@ use function strval;
 #[Group('fed')]
 #[CoversClass(ProofToken::class)]
 #[CoversClass(AbstractProofTokenType::class)]
-#[CoversClass(AbstractProofTokenType::class)]
 #[CoversClass(AbstractFedElement::class)]
 final class ProofTokenTest extends TestCase
 {

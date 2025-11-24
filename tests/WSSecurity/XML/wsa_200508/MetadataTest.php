@@ -32,6 +32,7 @@ final class MetadataTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /** @var \DOMElement $MetadataContent */
     private static DOMElement $metadataContent;
 

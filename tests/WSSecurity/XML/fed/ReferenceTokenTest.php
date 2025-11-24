@@ -5,27 +5,29 @@ declare(strict_types=1);
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
 use DOMElement;
-use PHPUnit\Framework\Attributes\{CoversClass, Group};
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\fed\{
-    AbstractReferenceTokenType,
-    ReferenceDigest,
-    ReferenceEPR,
-    ReferenceToken,
-    ReferenceType,
-    SerialNo,
-};
-use SimpleSAML\WSSecurity\XML\wsa_200508\{
-    AbstractEndpointReferenceType,
-    AbstractWsaElement,
-    Address,
-    Metadata,
-    ReferenceParameters,
-};
-use SimpleSAML\XML\{Attribute as XMLAttribute, Chunk, DOMDocumentFactory};
-use SimpleSAML\XML\TestUtils\{SchemaValidationTestTrait, SerializableElementTestTrait};
-use SimpleSAML\XML\Type\{AnyURIValue, Base64BinaryValue, StringValue};
+use SimpleSAML\WSSecurity\XML\fed\AbstractReferenceTokenType;
+use SimpleSAML\WSSecurity\XML\fed\ReferenceDigest;
+use SimpleSAML\WSSecurity\XML\fed\ReferenceEPR;
+use SimpleSAML\WSSecurity\XML\fed\ReferenceToken;
+use SimpleSAML\WSSecurity\XML\fed\ReferenceType;
+use SimpleSAML\WSSecurity\XML\fed\SerialNo;
+use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
+use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractWsaElement;
+use SimpleSAML\WSSecurity\XML\wsa_200508\Address;
+use SimpleSAML\WSSecurity\XML\wsa_200508\Metadata;
+use SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters;
+use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XML\Chunk;
+use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
+use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XML\Type\AnyURIValue;
+use SimpleSAML\XML\Type\Base64BinaryValue;
+use SimpleSAML\XML\Type\StringValue;
 
 use function dirname;
 use function strval;
