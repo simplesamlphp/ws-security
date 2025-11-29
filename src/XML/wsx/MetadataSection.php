@@ -6,14 +6,16 @@ namespace SimpleSAML\WSSecurity\XML\wsx;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 use SimpleSAML\XML\SerializableElementInterface;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_merge;
 use function array_pop;
@@ -42,21 +44,19 @@ final class MetadataSection extends AbstractWsxElement implements SchemaValidata
      * @param (\SimpleSAML\XML\SerializableElementInterface|
      *         \SimpleSAML\WSSecurity\XML\wsx\MetadataReference|
      *         \SimpleSAML\WSSecurity\XML\wsx\Location) $child
-     * @param string $Dialect
-     * @param string|null $Identifier
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $Dialect
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $Identifier
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected SerializableElementInterface|MetadataReference|Location $child,
-        protected string $Dialect,
-        protected ?string $Identifier = null,
+        protected AnyURIValue $Dialect,
+        protected ?AnyURIValue $Identifier = null,
         array $namespacedAttributes = [],
     ) {
         if (!($child instanceof MetadataReference) && !($child instanceof Location)) {
             Assert::notSame($child->toXML()->namespaceURI, static::NS);
         }
-        Assert::validURI($Dialect);
-        Assert::nullOrValidURI($Identifier);
 
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -78,9 +78,9 @@ final class MetadataSection extends AbstractWsxElement implements SchemaValidata
     /**
      * Get the Dialect property.
      *
-     * @return string
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
-    public function getDialect(): string
+    public function getDialect(): AnyURIValue
     {
         return $this->Dialect;
     }
@@ -89,9 +89,9 @@ final class MetadataSection extends AbstractWsxElement implements SchemaValidata
     /**
      * Get the Identifier property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getIdentifier(): ?string
+    public function getIdentifier(): ?AnyURIValue
     {
         return $this->Identifier;
     }
@@ -103,7 +103,7 @@ final class MetadataSection extends AbstractWsxElement implements SchemaValidata
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -121,8 +121,8 @@ final class MetadataSection extends AbstractWsxElement implements SchemaValidata
 
         return new static(
             array_pop($children),
-            self::getAttribute($xml, 'Dialect'),
-            self::getOptionalAttribute($xml, 'Identifier', null),
+            self::getAttribute($xml, 'Dialect', AnyURIValue::class),
+            self::getOptionalAttribute($xml, 'Identifier', AnyURIValue::class, null),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -137,10 +137,10 @@ final class MetadataSection extends AbstractWsxElement implements SchemaValidata
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
-        $e->setAttribute('Dialect', $this->getDialect());
+        $e->setAttribute('Dialect', $this->getDialect()->getValue());
 
         if ($this->getIdentifier() !== null) {
-            $e->setAttribute('Identifier', $this->getIdentifier());
+            $e->setAttribute('Identifier', $this->getIdentifier()->getValue());
         }
 
         $this->getChild()->toXML($e);
