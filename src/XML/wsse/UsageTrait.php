@@ -12,7 +12,7 @@ use SimpleSAML\XMLSchema\Type\AnyURIValue;
 trait UsageTrait
 {
     /** @var \SimpleSAML\XMLSchema\Type\AnyURIValue|null */
-    protected ?string $usage;
+    protected ?AnyURIValue $usage;
 
 
     /**

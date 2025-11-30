@@ -7,9 +7,9 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Type\AnyURIValue;
-use SimpleSAML\XMLSchema\Type\IDValue;
 use SimpleSAML\XMLSchema\Type\StringValue;
 
 /**
@@ -25,15 +25,15 @@ abstract class AbstractEncodedString extends AbstractAttributedString
      * AbstractEncodedString constructor
      *
      * @param \SimpleSAML\XMLSchema\Type\StringValue $content
-     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $Id
-     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $EncodingType
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $EncodingType
      */
     public function __construct(
         StringValue $content,
         ?IDValue $Id = null,
-        protected ?AnyURIValue $EncodingType = null,
         array $namespacedAttributes = [],
+        protected ?AnyURIValue $EncodingType = null,
     ) {
         parent::__construct($content, $Id, $namespacedAttributes);
     }
@@ -54,7 +54,7 @@ abstract class AbstractEncodedString extends AbstractAttributedString
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -67,17 +67,17 @@ abstract class AbstractEncodedString extends AbstractAttributedString
         $Id = null;
         foreach ($nsAttributes as $i => $attr) {
             if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
-                $Id = $attr->getAttrValue();
+                $Id = IDValue::fromString($attr->getAttrValue()->getValue());
                 unset($nsAttributes[$i]);
                 break;
             }
         }
 
         return new static(
-            $xml->textContent,
+            StringValue::fromString($xml->textContent),
             $Id,
-            self::getOptionalAttribute($xml, 'EncodingType', null),
             $nsAttributes,
+            self::getOptionalAttribute($xml, 'EncodingType', AnyURIValue::class, null),
         );
     }
 

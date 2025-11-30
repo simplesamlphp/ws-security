@@ -7,11 +7,12 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Type\AnyURIValue;
-use SimpleSAML\XMLSchema\Type\IDValue;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
+use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
 use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class defining the BinarySecurityTokenType element
@@ -28,20 +29,20 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
      * AbstractBinarySecurityTokenType constructor
      *
      * @param \SimpleSAML\XMLSchema\Type\StringValue $content
-     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $valueType
-     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $Id
-     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $EncodingType
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $valueType
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $EncodingType
      */
     final public function __construct(
         StringValue $content,
-        protected ?AnyURIValue $valueType = null,
         ?IDValue $Id = null,
-        ?string $EncodingType = null,
         array $namespacedAttributes = [],
+        protected ?AnyURIValue $valueType = null,
+        ?AnyURIValue $EncodingType = null,
     ) {
         Assert::validBase64Binary($content->getValue());
-        parent::__construct($content, $Id, $EncodingType, $namespacedAttributes);
+        parent::__construct($content, $Id, $namespacedAttributes, $EncodingType);
     }
 
 
@@ -60,7 +61,7 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -73,7 +74,7 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
         $Id = null;
         foreach ($nsAttributes as $i => $attr) {
             if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
-                $Id = $attr->getAttrValue();
+                $Id = IDValue::fromString($attr->getAttrValue()->getValue());
                 unset($nsAttributes[$i]);
                 break;
             }
@@ -81,10 +82,10 @@ abstract class AbstractBinarySecurityTokenType extends AbstractEncodedString
 
         return new static(
             StringValue::fromString($xml->textContent),
-            self::getOptionalAttribute($xml, 'ValueType', AnyURIValue::class, null),
             $Id,
-            self::getOptionalAttribute($xml, 'EncodingType', AnyURIValue::class, null),
             $nsAttributes,
+            self::getOptionalAttribute($xml, 'ValueType', AnyURIValue::class, null),
+            self::getOptionalAttribute($xml, 'EncodingType', AnyURIValue::class, null),
         );
     }
 
