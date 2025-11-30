@@ -6,9 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 
 /**
  * A RequestSecurityTokenCollectionType element
@@ -49,7 +49,7 @@ abstract class AbstractRequestSecurityTokenCollectionType extends AbstractWstEle
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

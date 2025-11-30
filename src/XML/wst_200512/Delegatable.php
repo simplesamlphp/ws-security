@@ -7,6 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wst_200512;
 use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XML\SchemaValidatableElementInterface;
 use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
 
 /**
  * A Delegatable element
