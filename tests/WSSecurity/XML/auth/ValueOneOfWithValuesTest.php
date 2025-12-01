@@ -13,7 +13,7 @@ use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\WSSecurity\XML\auth\ValueOneOf;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XML\Type\StringValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;

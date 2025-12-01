@@ -7,13 +7,15 @@ namespace SimpleSAML\WSSecurity\XML\wsp;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class defining the Policy element
@@ -32,27 +34,22 @@ final class Policy extends AbstractOperatorContentType implements SchemaValidata
     /**
      * Initialize a wsp:Policy
      *
-     * @param string|null $Name
-     * @param \SimpleSAML\XML\Attribute|null $Id
      * @param (\SimpleSAML\WSSecurity\XML\wsp\All|
      *         \SimpleSAML\WSSecurity\XML\wsp\ExactlyOne|
      *         \SimpleSAML\WSSecurity\XML\wsp\Policy|
      *         \SimpleSAML\WSSecurity\XML\wsp\PolicyReference)[] $operatorContent
-     * @param \SimpleSAML\XML\Chunk[] $children
+     * @param \SimpleSAML\XML\SerializableElementInterface[] $children
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $Name
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     public function __construct(
-        protected ?string $Name = null,
-        protected ?XMLAttribute $Id = null,
         array $operatorContent = [],
         array $children = [],
+        protected ?AnyURIValue $Name = null,
+        protected ?IDValue $Id = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($Name, SchemaViolationException::class);
-        if ($Id !== null) {
-            Assert::validNCName($Id->getAttrValue(), SchemaViolationException::class);
-        }
-
         $this->setAttributesNS($namespacedAttributes);
 
         parent::__construct($operatorContent, $children);
@@ -60,18 +57,18 @@ final class Policy extends AbstractOperatorContentType implements SchemaValidata
 
 
     /**
-     * @return \SimpleSAML\XML\Attribute|null
+     * @return \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null
      */
-    public function getId(): ?XMLAttribute
+    public function getId(): ?IDValue
     {
         return $this->Id;
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getName(): ?string
+    public function getName(): ?AnyURIValue
     {
         return $this->Name;
     }
@@ -97,7 +94,7 @@ final class Policy extends AbstractOperatorContentType implements SchemaValidata
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     #[\Override]
@@ -108,7 +105,7 @@ final class Policy extends AbstractOperatorContentType implements SchemaValidata
 
         $Id = null;
         if ($xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')) {
-            $Id = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id'));
+            $Id = IDValue::fromString($xml->getAttributeNS(C::NS_SEC_UTIL, 'Id'));
         }
 
         $namespacedAttributes = self::getAttributesNSFromXML($xml);
@@ -145,10 +142,10 @@ final class Policy extends AbstractOperatorContentType implements SchemaValidata
         }
 
         return new static(
-            self::getOptionalAttribute($xml, 'Name', null),
-            $Id,
             $operatorContent,
             $children,
+            self::getOptionalAttribute($xml, 'Name', AnyURIValue::class, null),
+            $Id,
             $namespacedAttributes,
         );
     }
@@ -165,10 +162,10 @@ final class Policy extends AbstractOperatorContentType implements SchemaValidata
         $e = parent::toXML($parent);
 
         if ($this->getName() !== null) {
-            $e->setAttribute('Name', $this->getName());
+            $e->setAttribute('Name', $this->getName()->getValue());
         }
 
-        $this->getId()?->toXML($e);
+        $this->getId()?->toAttribute()->toXML($e);
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

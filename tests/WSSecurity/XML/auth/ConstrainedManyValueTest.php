@@ -17,7 +17,7 @@ use SimpleSAML\WSSecurity\XML\auth\ValueOneOf;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\Type\StringValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 /**
  * Tests for auth:ConstrainedManyValueType.

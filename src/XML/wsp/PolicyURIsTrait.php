@@ -5,18 +5,21 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wsp;
 
 use SimpleSAML\WSSecurity\Assert\Assert;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 /**
  * Trait grouping common functionality for elements that can hold a PolicyURIs attribute.
  *
  * @package simplesamlphp/ws-security
+ * @phpstan-ignore trait.unused
  */
 trait PolicyURIsTrait
 {
     /**
      * The PolicyURIs.
      *
-     * @var string[]
+     * @var \SimpleSAML\XMLSchema\Type\AnyURIValue[]
      */
     protected array $PolicyURIs;
 
@@ -24,7 +27,7 @@ trait PolicyURIsTrait
     /**
      * Collect the value of the PolicyURIs-property
      *
-     * @return array
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue[]
      */
     public function getPolicyURIs(): array
     {
@@ -35,11 +38,11 @@ trait PolicyURIsTrait
     /**
      * Set the value of the PolicyURIs-property
      *
-     * @param array $PolicyURIs
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue[] $PolicyURIs
      */
     protected function setPolicyURIs(array $PolicyURIs): void
     {
-        Assert::allValidURI($PolicyURIs);
+        Assert::allIsInstanceOf($PolicyURIs, AnyURIValue::class, SchemaViolationException::class);
         $this->PolicyURIs = $PolicyURIs;
     }
 }

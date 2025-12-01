@@ -20,8 +20,8 @@ use SimpleSAML\WSSecurity\XML\auth\ValueLessThanOrEqual;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 //use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
-use SimpleSAML\XML\Type\BooleanValue;
-use SimpleSAML\XML\Type\StringValue;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;

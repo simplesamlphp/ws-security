@@ -11,7 +11,7 @@ use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
 use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XML\Type\StringValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;

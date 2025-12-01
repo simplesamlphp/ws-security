@@ -12,11 +12,14 @@ use SimpleSAML\WSSecurity\XML\wsp\AbstractOperatorContentType;
 use SimpleSAML\WSSecurity\XML\wsp\AbstractWspElement;
 use SimpleSAML\WSSecurity\XML\wsp\ExactlyOne;
 use SimpleSAML\WSSecurity\XML\wsp\Policy;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -56,13 +59,13 @@ final class PolicyTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('testval1'));
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
         )->documentElement);
 
-        $Id = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', 'MyId');
-        $policy = new Policy('phpunit', $Id, [new ExactlyOne([])], [$chunk], [$attr]);
+        $Id = IDValue::fromString('MyId');
+        $policy = new Policy([new ExactlyOne([])], [$chunk], AnyURIValue::fromString('phpunit'), $Id, [$attr]);
 
         $this->assertFalse($policy->isEmptyElement());
 
