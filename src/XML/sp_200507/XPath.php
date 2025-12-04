@@ -28,7 +28,7 @@ final class XPath extends AbstractSpElement
      * Validate the content of the element.
      *
      * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\XML\Exception\SchemaViolationException on failure
+     * @throws \SimpleSAML\XMLSchema\Exception\SchemaViolationException on failure
      * @return void
      */
     protected function validateContent(string $content): void

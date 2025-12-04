@@ -6,12 +6,13 @@ namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 use ValueError;
 
 use function array_pop;
@@ -93,7 +94,7 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
      * @param \DOMElement $xml The XML element we should load.
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -112,9 +113,9 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
         Assert::minCount($requestSecurityTokenTemplate, 1, MissingElementException::class);
         Assert::maxCount($requestSecurityTokenTemplate, 1, TooManyElementsException::class);
 
-        $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', null);
+        $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', StringValue::class, null);
         try {
-            $includeToken = IncludeToken::from($includeToken);
+            $includeToken = IncludeToken::from($includeToken->getValue());
         } catch (ValueError) {
         }
 

@@ -6,10 +6,10 @@ namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 use SimpleSAML\XMLSchema\Type\AnyURIValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
@@ -88,7 +88,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
      * @param \DOMElement $xml The XML element we should load.
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -103,7 +103,9 @@ abstract class AbstractSerElementsType extends AbstractSpElement
 
         return new static(
             XPath::getChildrenOfClass($xml),
-            $xml->hasAttributeNS(self::NS, 'XPathVersion') ? $xml->getAttributeNS(self::NS, 'XPathVersion', AnyURIValue) : null,
+            $xml->hasAttributeNS(self::NS, 'XPathVersion')
+                ? AnyURIValue::fromString($xml->getAttributeNS(self::NS, 'XPathVersion'))
+                : null,
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -129,7 +131,6 @@ abstract class AbstractSerElementsType extends AbstractSpElement
         }
 
         foreach ($this->getElements() as $elt) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
             $elt->toXML($e);
         }
 

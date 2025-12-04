@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\auth\DisplayValue;
 use SimpleSAML\WSSecurity\XML\auth\EncryptedValue;
 use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
 use SimpleSAML\WSSecurity\XML\auth\Value;
+use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\SerializableElementInterface;
@@ -22,7 +23,6 @@ use SimpleSAML\XMLSchema\Type\AnyURIValue;
 use SimpleSAML\XMLSchema\Type\BooleanValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
-use function array_filter;
 use function array_merge;
 use function array_pop;
 use function var_export;
@@ -78,8 +78,8 @@ abstract class AbstractClaimType extends AbstractAuthElement
                 $value instanceof StructuredValue ||
                 $value instanceof EncryptedValue)
         ) {
-            /** @psalm-var \SimpleSAML\XML\AbstractElement|\SimpleSAML\XML\Chunk $value */
-            Assert::notSame($value->getNamespaceURI(), static::NS);
+            /** @var \SimpleSAML\XML\Chunk|\SimpleSAML\XML\AbstractElement $value */
+            Assert::notSame($value instanceof Chunk ? $value->getNamespaceURI() : $value::getNamespaceURI(), static::NS);
         }
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -187,13 +187,13 @@ abstract class AbstractClaimType extends AbstractAuthElement
         $constrainedValue = ConstrainedValue::getChildrenOfClass($xml);
         $otherValue = self::getChildElementsFromXML($xml);
 
-        $value = array_filter(array_merge(
+        $value = array_merge(
             $simpleValue,
             $structuredValue,
             $encryptedValue,
             $constrainedValue,
             $otherValue,
-        ));
+        );
         Assert::maxCount($value, 1, TooManyElementsException::class);
 
         return new static(

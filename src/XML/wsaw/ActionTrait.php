@@ -5,13 +5,14 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wsaw;
 
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 /**
  * Trait adding methods to handle elements that define the action-attribute.
  *
  * @package simplesamlphp/ws-security
+ *
+ * @phpstan-ignore trait.unused
  */
 trait ActionTrait
 {
@@ -36,7 +37,6 @@ trait ActionTrait
      * Set the value of the action property.
      *
      * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $action
-     * @throws \SimpleSAML\XML\Exception\SchemViolationException
      */
     protected function setAction(?AnyURIValue $action): void
     {

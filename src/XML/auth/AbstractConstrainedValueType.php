@@ -13,7 +13,6 @@ use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 use SimpleSAML\XMLSchema\Type\BooleanValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
-use function array_filter;
 use function array_merge;
 use function array_pop;
 use function var_export;
@@ -104,14 +103,14 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
         $valueInRangen = ValueInRangen::getChildrenOfClass($xml);
         $valueOneOf = ValueOneOf::getChildrenOfClass($xml);
 
-        $value = array_filter(array_merge(
+        $value = array_merge(
             $valueLessThan,
             $valueLessThanOrEqual,
             $valueGreaterThan,
             $valueGreaterThanOrEqual,
             $valueInRangen,
             $valueOneOf,
-        ));
+        );
         Assert::minCount($value, 1, MissingElementException::class);
         Assert::maxCount($value, 1, TooManyElementsException::class);
 

@@ -6,10 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function sprintf;
 
@@ -38,12 +39,12 @@ abstract class AbstractHttpsTokenType extends AbstractSpElement
     /**
      * HttpsTokenType constructor.
      *
-     * @param bool $requireClientCertificate
+     * @param \SimpleSAML\XMLSchema\Type\BooleanValue $requireClientCertificate
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected bool $requireClientCertificate,
+        protected BooleanValue $requireClientCertificate,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
@@ -54,8 +55,10 @@ abstract class AbstractHttpsTokenType extends AbstractSpElement
 
     /**
      * Get the value of the RequireClientCertificate-attribute
+     *
+     * @return \SimpleSAML\XMLSchema\Type\BooleanValue
      */
-    public function getRequireClientCertificate(): bool
+    public function getRequireClientCertificate(): BooleanValue
     {
         return $this->requireClientCertificate;
     }
@@ -67,7 +70,7 @@ abstract class AbstractHttpsTokenType extends AbstractSpElement
      * @param \DOMElement $xml The XML element we should load.
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -81,7 +84,7 @@ abstract class AbstractHttpsTokenType extends AbstractSpElement
         );
 
         return new static(
-            self::getBooleanAttribute($xml, 'RequireClientCertificate'),
+            self::getAttribute($xml, 'RequireClientCertificate', BooleanValue::class),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -98,7 +101,10 @@ abstract class AbstractHttpsTokenType extends AbstractSpElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        $e->setAttribute('RequireClientCertificate', $this->getRequireClientCertificate() ? 'true' : 'false');
+        $e->setAttribute(
+            'RequireClientCertificate',
+            $this->getRequireClientCertificate()->toBoolean() ? 'true' : 'false',
+        );
 
         foreach ($this->getElements() as $elt) {
             $elt->toXML($e);

@@ -7,7 +7,7 @@ namespace SimpleSAML\WSSecurity\XML\wsaw;
 use DOMElement;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 use SimpleSAML\XMLSchema\Type\QNameValue;
 
 /**

@@ -6,12 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wsaw;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
-use SimpleSAML\XML\XsNamespace as NS;
 use SimpleSAML\XMLSchema\Type\NCNameValue;
 use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Abstract class defining the ServiceNameType type
@@ -39,7 +38,7 @@ abstract class AbstractServiceNameType extends AbstractWsawElement
      */
     public function __construct(
         QNameValue $value,
-        protected ?string $endpointName = null,
+        protected ?NCNameValue $endpointName = null,
         array $namespacedAttributes = [],
     ) {
         $this->setContent($value);

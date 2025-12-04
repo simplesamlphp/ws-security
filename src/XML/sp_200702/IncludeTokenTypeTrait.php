@@ -12,6 +12,8 @@ use function is_string;
  * Trait grouping common functionality for elements that can hold IncludeToken attributes.
  *
  * @package simplesamlphp/ws-security
+ *
+ * @phpstan-ignore trait.unused
  */
 trait IncludeTokenTypeTrait
 {
