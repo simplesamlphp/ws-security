@@ -6,10 +6,13 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, SchemaViolationException};
-use SimpleSAML\XML\{ExtendableAttributesTrait, TypedTextContentTrait};
-use SimpleSAML\XML\Type\{BooleanValue, UnsignedIntValue};
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\UnsignedIntValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function var_export;
 
@@ -33,8 +36,8 @@ abstract class AbstractFreshnessType extends AbstractFedElement
     /**
      * AbstractFreshnessType constructor
      *
-     * @param \SimpleSAML\XML\Type\UnsignedIntValue $content
-     * @param \SimpleSAML\XML\Type\BooleanValue|null $AllowCache
+     * @param \SimpleSAML\XMLSchema\Type\UnsignedIntValue $content
+     * @param \SimpleSAML\XMLSchema\Type\BooleanValue|null $AllowCache
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
@@ -48,7 +51,7 @@ abstract class AbstractFreshnessType extends AbstractFedElement
 
 
     /**
-     * @return \SimpleSAML\XML\Type\BooleanValue|null
+     * @return \SimpleSAML\XMLSchema\Type\BooleanValue|null
      */
     public function getAllowCache(): ?BooleanValue
     {
@@ -62,7 +65,7 @@ abstract class AbstractFreshnessType extends AbstractFedElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

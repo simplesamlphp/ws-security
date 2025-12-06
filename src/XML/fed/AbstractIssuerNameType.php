@@ -6,10 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\{InvalidDOMElementException, SchemaViolationException};
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\Type\AnyURIValue;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class defining the IssuerNameType element
@@ -27,7 +28,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
     /**
      * AbstractIssuerNameType constructor
      *
-     * @param \SimpleSAML\XML\Type\AnyURIValue $Uri
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $Uri
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
@@ -39,7 +40,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
 
 
     /**
-     * @return \SimpleSAML\XML\Type\AnyURIValue
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
     public function getUri(): AnyURIValue
     {
@@ -53,7 +54,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

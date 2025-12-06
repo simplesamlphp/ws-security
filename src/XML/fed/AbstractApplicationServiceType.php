@@ -5,12 +5,20 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
-use SimpleSAML\SAML2\Type\{SAMLAnyURIValue, SAMLDateTimeValue, SAMLStringValue};
-use SimpleSAML\SAML2\XML\md\{Extensions, Organization};
+use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
+use SimpleSAML\SAML2\Type\SAMLAnyURIListValue;
+use SimpleSAML\SAML2\Type\SAMLDateTimeValue;
+use SimpleSAML\SAML2\Type\SAMLStringValue;
+use SimpleSAML\SAML2\XML\md\Extensions;
+use SimpleSAML\SAML2\XML\md\Organization;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\XML\Exception\{MissingElementException, SchemaViolationException};
-use SimpleSAML\XML\Type\{AnyURIValue, DurationValue, IDValue};
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\DurationValue;
+use SimpleSAML\XMLSchema\Type\IDValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
 
 /**
  * A ApplicationServiceType
@@ -32,10 +40,11 @@ abstract class AbstractApplicationServiceType extends AbstractWebServiceDescript
     /**
      * ApplicationServiceType constructor.
      *
-     * @param string[] $protocolSupportEnumeration A set of URI specifying the protocols supported.
-     * @param \SimpleSAML\XML\Type\IDValue|null $ID The ID for this document. Defaults to null.
-     * @param \SimpleSAML\SAML2\Type\DateTimeValue|null $validUntil Unix time of validity for this document. Defaults to null.
-     * @param \SimpleSAML\XML\Type\DurationValue|null $cacheDuration Maximum time this document can be cached. Defaults to null.
+     * @param \SimpleSAML\XMLSchema\Type\QNameValue $type The xsi-type of the element
+     * @param \SimpleSAML\SAML2\Type\SAMLAnyURIListValue $protocolSupportEnumeration A set of URI specifying the protocols supported.
+     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $ID The ID for this document. Defaults to null.
+     * @param \SimpleSAML\SAML2\Type\SAMLDateTimeValue|null $validUntil Unix time of validity for this document. Defaults to null.
+     * @param \SimpleSAML\XMLSchema\Type\DurationValue|null $cacheDuration Maximum time this document can be cached. Defaults to null.
      * @param \SimpleSAML\SAML2\XML\md\Extensions|null $extensions An array of extensions. Defaults to an empty array.
      * @param \SimpleSAML\SAML2\Type\SAMLAnyURIValue|null $errorURL An URI where to redirect users for support. Defaults to null.
      * @param \SimpleSAML\SAML2\XML\md\KeyDescriptor[] $keyDescriptor An array of KeyDescriptor elements.
@@ -59,7 +68,8 @@ abstract class AbstractApplicationServiceType extends AbstractWebServiceDescript
      * @param \SimpleSAML\WSSecurity\XML\fed\PassiveRequestorEndpoint[] $passiveRequestorEndpoint
      */
     final public function __construct(
-        array $protocolSupportEnumeration,
+        QNameValue $type,
+        SAMLAnyURIListValue $protocolSupportEnumeration,
         ?IDValue $ID = null,
         ?SAMLDateTimeValue $validUntil = null,
         ?DurationValue $cacheDuration = null,
@@ -100,7 +110,7 @@ abstract class AbstractApplicationServiceType extends AbstractWebServiceDescript
         );
 
         parent::__construct(
-            static::XSI_TYPE_PREFIX . ':' . static::XSI_TYPE_NAME,
+            $type,
             $protocolSupportEnumeration,
             $ID,
             $validUntil,

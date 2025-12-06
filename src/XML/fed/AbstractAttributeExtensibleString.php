@@ -6,10 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\{ExtendableAttributesTrait, TypedTextContentTrait};
-use SimpleSAML\XML\Type\StringValue;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * An AbstractAttributeExtensibleString element
@@ -29,7 +30,7 @@ abstract class AbstractAttributeExtensibleString extends AbstractFedElement
 
 
     /**
-     * @param \SimpleSAML\XML\Type\StringValue $content
+     * @param \SimpleSAML\XMLSchema\Type\StringValue $content
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     final public function __construct(StringValue $content, array $namespacedAttributes = [])

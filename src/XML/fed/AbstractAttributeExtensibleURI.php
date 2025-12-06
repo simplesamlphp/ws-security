@@ -6,11 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\Type\AnyURIValue;
 use SimpleSAML\XML\TypedTextContentTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * An AbstractAttributeExtensibleURI element
@@ -30,7 +30,7 @@ abstract class AbstractAttributeExtensibleURI extends AbstractFedElement
 
 
     /**
-     * @param \SimpleSAML\XML\Type\AnyURIValue $content
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $content
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     final public function __construct(AnyURIValue $content, array $namespacedAttributes = [])

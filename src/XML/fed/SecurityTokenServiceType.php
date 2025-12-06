@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
-use SimpleSAML\SAML2\Type\AnyURIListValue;
 use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
+use SimpleSAML\SAML2\Type\SAMLAnyURIListValue;
 use SimpleSAML\SAML2\Type\SAMLDateTimeValue;
 use SimpleSAML\SAML2\Type\SAMLStringValue;
 use SimpleSAML\SAML2\XML\md\ContactPerson;
@@ -136,7 +136,7 @@ final class SecurityTokenServiceType extends AbstractSecurityTokenServiceType
 
         $securityTokenServiceType = new static(
             $type,
-            self::getAttribute($xml, 'protocolSupportEnumeration', AnyURIListValue::class),
+            self::getAttribute($xml, 'protocolSupportEnumeration', SAMLAnyURIListValue::class),
             self::getOptionalAttribute($xml, 'ID', IDValue::class, null),
             self::getOptionalAttribute($xml, 'validUntil', SAMLDateTimeValue::class, null),
             self::getOptionalAttribute($xml, 'cacheDuration', DurationValue::class, null),
