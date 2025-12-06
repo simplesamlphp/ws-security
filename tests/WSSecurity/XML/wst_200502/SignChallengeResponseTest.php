@@ -18,6 +18,8 @@ use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -59,10 +61,13 @@ final class SignChallengeResponseTest extends TestCase
     public function testMarshalling(): void
     {
         $mustUnderstand = MustUnderstandValue::fromBoolean(true);
-        $msgId = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$mustUnderstand->toAttribute()]);
+        $msgId = new MessageID(
+            AnyURIValue::fromString('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de'),
+            [$mustUnderstand->toAttribute()],
+        );
 
-        $challenge = new Challenge('accepted');
-        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
+        $challenge = new Challenge(StringValue::fromString('accepted'));
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('testval1'));
 
         $signChallengeResponse = new SignChallengeResponse($challenge, [$msgId], [$attr1]);
 

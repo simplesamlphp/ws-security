@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wst_200502\Code;
 use SimpleSAML\WSSecurity\XML\wst_200502\StatusCodeEnum;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 
@@ -50,7 +51,7 @@ final class CodeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $code = new Code([StatusCodeEnum::Invalid]);
+        $code = new Code(AnyURIValue::fromString(StatusCodeEnum::Invalid->value));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

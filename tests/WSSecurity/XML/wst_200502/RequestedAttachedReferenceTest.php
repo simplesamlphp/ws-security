@@ -11,11 +11,14 @@ use SimpleSAML\WSSecurity\XML\wsse\SecurityTokenReference;
 use SimpleSAML\WSSecurity\XML\wst_200502\AbstractRequestedReferenceType;
 use SimpleSAML\WSSecurity\XML\wst_200502\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst_200502\RequestedAttachedReference;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -56,14 +59,14 @@ final class RequestedAttachedReferenceTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
         $child = DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
         );
 
         $securityTokenReference = new SecurityTokenReference(
-            'SomeID',
-            'SomeUsage',
+            IDValue::fromString('SomeID'),
+            AnyURIValue::fromString('SomeUsage'),
             [new Chunk($child->documentElement)],
             [$attr1],
         );

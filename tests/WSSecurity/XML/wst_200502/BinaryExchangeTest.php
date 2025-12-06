@@ -15,6 +15,8 @@ use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -55,8 +57,13 @@ final class BinaryExchangeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
-        $binaryExchange = new BinaryExchange('phpunit', C::NAMESPACE, C::NAMESPACE, [$attr1]);
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $binaryExchange = new BinaryExchange(
+            StringValue::fromString('phpunit'),
+            AnyURIValue::fromString(C::NAMESPACE),
+            AnyURIValue::fromString(C::NAMESPACE),
+            [$attr1],
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

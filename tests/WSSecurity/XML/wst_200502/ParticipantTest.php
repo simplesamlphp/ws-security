@@ -14,6 +14,7 @@ use SimpleSAML\WSSecurity\XML\wst_200502\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst_200502\Participant;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 
@@ -52,7 +53,10 @@ final class ParticipantTest extends TestCase
     public function testMarshalling(): void
     {
         $mustUnderstand = MustUnderstandValue::fromBoolean(true);
-        $msgId = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$mustUnderstand->toAttribute()]);
+        $msgId = new MessageID(
+            AnyURIValue::fromString('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de'),
+            [$mustUnderstand->toAttribute()],
+        );
 
         $participant = new Participant($msgId);
 

@@ -104,7 +104,7 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
 
         $Id = null;
         if ($xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')) {
-            $ID = $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id');
+            $Id = IDValue::fromString($xml->getAttributeNS(C::NS_SEC_UTIL, 'Id'));
         }
 
         return new static(
@@ -128,7 +128,7 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
 
         $attributes = $this->getAttributesNS();
         if ($this->getId() !== null) {
-            $idAttr = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', $this->getId());
+            $idAttr = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', $this->getId()->getValue());
             array_unshift($attributes, $idAttr);
         }
 
@@ -138,7 +138,6 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
 
         $this->getUsername()->toXML($e);
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {
                 $child->toXML($e);

@@ -1,3 +1,3 @@
-<t:Participant xmlns:t="http://schemas.xmlsoap.org/ws/2005/02/trust" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
-  <wsa:MessageID soapenv:mustUnderstand="1">uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de</wsa:MessageID>
+<t:Participant xmlns:t="http://schemas.xmlsoap.org/ws/2005/02/trust" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
+  <wsa:MessageID SOAP-ENV:mustUnderstand="1">uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de</wsa:MessageID>
 </t:Participant>

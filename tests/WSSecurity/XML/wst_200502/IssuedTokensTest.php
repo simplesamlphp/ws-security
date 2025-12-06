@@ -18,6 +18,8 @@ use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -59,11 +61,18 @@ final class IssuedTokensTest extends TestCase
     public function testMarshalling(): void
     {
         $mustUnderstand = MustUnderstandValue::fromBoolean(true);
-        $msgId = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$mustUnderstand->toAttribute()]);
+        $msgId = new MessageID(
+            AnyURIValue::fromString('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de'),
+            [$mustUnderstand->toAttribute()],
+        );
 
-        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
-        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', 'testval2');
-        $requestSecurityTokenResponse = new RequestSecurityTokenResponse(C::NAMESPACE, [$msgId], [$attr1]);
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', StringValue::fromString('testval2'));
+        $requestSecurityTokenResponse = new RequestSecurityTokenResponse(
+            AnyURIValue::fromString(C::NAMESPACE),
+            [$msgId],
+            [$attr1],
+        );
 
         $issuedTokens = new IssuedTokens(
             [$requestSecurityTokenResponse],

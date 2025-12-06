@@ -16,6 +16,8 @@ use SimpleSAML\WSSecurity\XML\wst_200502\CombinedHash;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
 
 use function dirname;
 
@@ -57,9 +59,14 @@ final class AuthenticatorTest extends TestCase
     public function testMarshalling(): void
     {
         $mustUnderstand = MustUnderstandValue::fromBoolean(true);
-        $msgId = new MessageID('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de', [$mustUnderstand->toAttribute()]);
+        $msgId = new MessageID(
+            AnyURIValue::fromString('uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de'),
+            [$mustUnderstand->toAttribute()],
+        );
 
-        $combinedHash = new CombinedHash('/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI=');
+        $combinedHash = new CombinedHash(
+            Base64BinaryValue::fromString('/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI='),
+        );
         $authenticator = new Authenticator($combinedHash, [$msgId]);
 
         $this->assertEquals(
