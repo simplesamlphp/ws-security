@@ -6,11 +6,8 @@ namespace SimpleSAML\WSSecurity\XML\wsu;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\Exception\ProtocolViolationException;
-use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\WSSecurity\XML\wsu\Type\DateTimeValue;
-use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
@@ -23,6 +20,7 @@ use SimpleSAML\XMLSchema\XML\Constants\NS;
 abstract class AbstractAttributedDateTime extends AbstractWsuElement
 {
     use ExtendableAttributesTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;

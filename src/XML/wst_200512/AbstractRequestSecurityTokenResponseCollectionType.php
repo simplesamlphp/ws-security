@@ -21,6 +21,7 @@ abstract class AbstractRequestSecurityTokenResponseCollectionType extends Abstra
 {
     use ExtendableAttributesTrait;
 
+
     /** The namespace-attribute for the xs:anyAttribute */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 

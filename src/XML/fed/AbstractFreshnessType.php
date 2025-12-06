@@ -9,7 +9,6 @@ use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
-use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 use SimpleSAML\XMLSchema\Type\BooleanValue;
 use SimpleSAML\XMLSchema\Type\UnsignedIntValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
@@ -25,6 +24,7 @@ abstract class AbstractFreshnessType extends AbstractFedElement
 {
     use TypedTextContentTrait;
     use ExtendableAttributesTrait;
+
 
     /** @var string */
     public const TEXTCONTENT_TYPE = UnsignedIntValue::class;

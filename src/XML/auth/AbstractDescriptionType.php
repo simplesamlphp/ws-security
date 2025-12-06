@@ -22,6 +22,7 @@ abstract class AbstractDescriptionType extends AbstractAuthElement
     use ExtendableAttributesTrait;
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = StringValue::class;
 

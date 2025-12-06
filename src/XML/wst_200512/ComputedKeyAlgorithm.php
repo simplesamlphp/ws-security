@@ -19,6 +19,7 @@ final class ComputedKeyAlgorithm extends AbstractWstElement implements SchemaVal
     use SchemaValidatableElementTrait;
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = AnyURIValue::class;
 }

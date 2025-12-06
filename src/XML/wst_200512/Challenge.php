@@ -19,6 +19,7 @@ final class Challenge extends AbstractWstElement implements SchemaValidatableEle
     use SchemaValidatableElementTrait;
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = StringValue::class;
 }

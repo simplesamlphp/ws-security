@@ -25,6 +25,7 @@ abstract class AbstractAttributedURIType extends AbstractWsaElement
     use ExtendableAttributesTrait;
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = AnyURIValue::class;
 

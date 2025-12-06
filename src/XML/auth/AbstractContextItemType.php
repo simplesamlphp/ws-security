@@ -27,6 +27,7 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
 
+
     /** The namespace-attribute for the xs:anyAttribute */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 

@@ -26,6 +26,7 @@ abstract class AbstractAttributedQNameType extends AbstractWsaElement
     use ExtendableAttributesTrait;
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = QNameValue::class;
 

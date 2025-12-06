@@ -18,6 +18,7 @@ final class SslContextToken extends AbstractTokenAssertionType implements Schema
 {
     use SchemaValidatableElementTrait;
 
+
     /** @var string */
     public const NS = C::NS_MSSP;
 

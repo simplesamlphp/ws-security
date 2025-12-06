@@ -10,12 +10,9 @@ use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\SchemaValidatableElementInterface;
 use SimpleSAML\XML\SchemaValidatableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
-use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 use SimpleSAML\XMLSchema\Type\AnyURIValue;
 use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
-
-use function str_replace;
 
 /**
  * Class defining the PolicyReference element
@@ -26,6 +23,7 @@ final class PolicyReference extends AbstractWspElement implements SchemaValidata
 {
     use ExtendableAttributesTrait;
     use SchemaValidatableElementTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;

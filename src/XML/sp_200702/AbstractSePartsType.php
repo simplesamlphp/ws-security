@@ -25,6 +25,7 @@ abstract class AbstractSePartsType extends AbstractSpElement
     use ExtendableElementTrait;
     use ExtendableAttributesTrait;
 
+
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
 

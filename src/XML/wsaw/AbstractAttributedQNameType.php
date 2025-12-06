@@ -7,8 +7,8 @@ namespace SimpleSAML\WSSecurity\XML\wsaw;
 use DOMElement;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
-use SimpleSAML\XMLSchema\XML\Constants\NS;
 use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Abstract class defining the AttributedQName type
@@ -19,6 +19,7 @@ abstract class AbstractAttributedQNameType extends AbstractWsawElement
 {
     use ExtendableAttributesTrait;
     use TypedTextContentTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;

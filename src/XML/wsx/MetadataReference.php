@@ -23,6 +23,7 @@ final class MetadataReference extends AbstractWsxElement implements SchemaValida
     use ExtendableElementTrait;
     use SchemaValidatableElementTrait;
 
+
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
 

@@ -19,6 +19,7 @@ final class Realm extends AbstractFedElement implements SchemaValidatableElement
     use SchemaValidatableElementTrait;
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = AnyURIValue::class;
 }

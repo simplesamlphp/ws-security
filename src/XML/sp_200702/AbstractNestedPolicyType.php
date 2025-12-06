@@ -21,6 +21,7 @@ abstract class AbstractNestedPolicyType extends AbstractSpElement
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
 
+
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
 
@@ -39,7 +40,6 @@ abstract class AbstractNestedPolicyType extends AbstractSpElement
         $this->setElements($elements);
         $this->setAttributesNS($attributes);
     }
-
 
 
     /**

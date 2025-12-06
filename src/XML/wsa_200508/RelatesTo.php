@@ -26,6 +26,7 @@ final class RelatesTo extends AbstractWsaElement implements SchemaValidatableEle
     use SchemaValidatableElementTrait;
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = AnyURIValue::class;
 

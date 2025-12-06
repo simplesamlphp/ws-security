@@ -6,8 +6,8 @@ namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function sprintf;
@@ -20,6 +20,7 @@ use function sprintf;
 abstract class AbstractQNameAssertionType extends AbstractSpElement
 {
     use ExtendableAttributesTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;

@@ -19,6 +19,7 @@ final class AutomaticPseudonyms extends AbstractFedElement implements SchemaVali
     use SchemaValidatableElementTrait;
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = BooleanValue::class;
 }

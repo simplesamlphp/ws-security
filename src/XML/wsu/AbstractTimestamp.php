@@ -7,7 +7,6 @@ namespace SimpleSAML\WSSecurity\XML\wsu;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
-use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
@@ -24,6 +23,7 @@ abstract class AbstractTimestamp extends AbstractWsuElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;

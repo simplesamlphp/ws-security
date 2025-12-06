@@ -7,7 +7,6 @@ namespace SimpleSAML\WSSecurity\XML\wsu;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
-use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
@@ -23,6 +22,7 @@ abstract class AbstractAttributedURI extends AbstractWsuElement
 {
     use ExtendableAttributesTrait;
     use TypedTextContentTrait;
+
 
     /** @var string */
     public const TEXTCONTENT_TYPE = AnyURIValue::class;

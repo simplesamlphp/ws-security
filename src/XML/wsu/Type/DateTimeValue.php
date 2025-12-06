@@ -13,7 +13,10 @@ use SimpleSAML\XMLSchema\Type\DateTimeValue as BaseDateTimeValue;
  */
 class DateTimeValue extends BaseDateTimeValue
 {
-    // Lowercase p as opposed to the base-class to covert the timestamp to UTC as demanded by the WSSecurity specifications
+    /**
+     * Lowercase p as opposed to the base-class to covert the timestamp to UTC as required
+     * by the WSSecurity specifications
+     */
     public const DATETIME_FORMAT = 'Y-m-d\\TH:i:sp';
 
 

@@ -18,6 +18,7 @@ final class MustNotSendCancel extends AbstractQNameAssertionType implements Sche
 {
     use SchemaValidatableElementTrait;
 
+
     /** @var string */
     public const NS = C::NS_MSSP;
 

@@ -16,6 +16,7 @@ final class Value extends AbstractAuthElement
 {
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = StringValue::class;
 }

@@ -22,6 +22,7 @@ abstract class AbstractAttributeExtensibleURI extends AbstractFedElement
     use TypedTextContentTrait;
     use ExtendableAttributesTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = AnyURIValue::class;
 

@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\fed;
 
 use SimpleSAML\WSSecurity\XML\sp_200702\AbstractTokenAssertionType;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 
 /**
  * An RequireReferenceToken element
@@ -15,6 +16,7 @@ use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementT
 final class RequireReferenceToken extends AbstractTokenAssertionType implements SchemaValidatableElementInterface
 {
     use SchemaValidatableElementTrait;
+
 
     /** @var string */
     public const NS = AbstractFedElement::NS;

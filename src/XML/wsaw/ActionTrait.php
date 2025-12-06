@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsaw;
 
-use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 /**

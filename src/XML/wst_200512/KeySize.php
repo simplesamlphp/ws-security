@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
-use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\SchemaValidatableElementInterface;
 use SimpleSAML\XML\SchemaValidatableElementTrait;
 use SimpleSAML\XML\TypedTextContentTrait;

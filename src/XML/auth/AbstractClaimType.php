@@ -37,6 +37,7 @@ abstract class AbstractClaimType extends AbstractAuthElement
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
 
+
     /** The namespace-attribute for the xs:anyAttribute */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
@@ -79,7 +80,10 @@ abstract class AbstractClaimType extends AbstractAuthElement
                 $value instanceof EncryptedValue)
         ) {
             /** @var \SimpleSAML\XML\Chunk|\SimpleSAML\XML\AbstractElement $value */
-            Assert::notSame($value instanceof Chunk ? $value->getNamespaceURI() : $value::getNamespaceURI(), static::NS);
+            Assert::notSame(
+                $value instanceof Chunk ? $value->getNamespaceURI() : $value::getNamespaceURI(),
+                static::NS,
+            );
         }
         $this->setAttributesNS($namespacedAttributes);
     }

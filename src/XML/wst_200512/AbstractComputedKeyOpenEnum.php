@@ -18,6 +18,7 @@ abstract class AbstractComputedKeyOpenEnum extends AbstractWstElement
 {
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = AnyURIListValue::class;
 }

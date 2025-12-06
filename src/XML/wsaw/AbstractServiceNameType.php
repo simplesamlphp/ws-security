@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wsaw;
 
 use DOMElement;
-use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XMLSchema\Type\NCNameValue;
@@ -21,6 +20,7 @@ abstract class AbstractServiceNameType extends AbstractWsawElement
 {
     use ExtendableAttributesTrait;
     use TypedTextContentTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;

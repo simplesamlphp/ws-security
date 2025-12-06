@@ -23,6 +23,7 @@ abstract class AbstractSignChallengeType extends AbstractWstElement
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
 
+
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::ANY;
 

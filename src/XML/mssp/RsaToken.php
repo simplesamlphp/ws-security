@@ -18,6 +18,7 @@ final class RsaToken extends AbstractTokenAssertionType implements SchemaValidat
 {
     use SchemaValidatableElementTrait;
 
+
     /** @var string */
     public const NS = C::NS_MSSP;
 

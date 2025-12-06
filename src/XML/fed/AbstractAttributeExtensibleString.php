@@ -22,6 +22,7 @@ abstract class AbstractAttributeExtensibleString extends AbstractFedElement
     use ExtendableAttributesTrait;
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = StringValue::class;
 

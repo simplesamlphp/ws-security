@@ -20,6 +20,7 @@ final class InterfaceName extends AbstractAttributedQNameType implements SchemaV
 {
     use SchemaValidatableElementTrait;
 
+
     /**
      * Create an instance of this object from its XML representation.
      *

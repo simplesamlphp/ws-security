@@ -18,6 +18,7 @@ final class RequireClientCertificate extends AbstractQNameAssertionType implemen
 {
     use SchemaValidatableElementTrait;
 
+
     /** @var string */
     public const NS = C::NS_MSSP;
 

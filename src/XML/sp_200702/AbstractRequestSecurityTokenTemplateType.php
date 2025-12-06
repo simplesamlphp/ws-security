@@ -24,6 +24,7 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
 
+
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
 

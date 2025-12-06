@@ -19,6 +19,7 @@ final class RequestedTokenCancelled extends AbstractWstElement implements Schema
 {
     use SchemaValidatableElementTrait;
 
+
     /**
      * Convert XML into a class instance
      *

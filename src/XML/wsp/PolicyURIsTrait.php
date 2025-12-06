@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsp;
 
-use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
-use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\Helper\AnyURIListValue;
 
 /**
  * Trait grouping common functionality for elements that can hold a PolicyURIs attribute.
@@ -19,17 +17,17 @@ trait PolicyURIsTrait
     /**
      * The PolicyURIs.
      *
-     * @var \SimpleSAML\XMLSchema\Type\AnyURIValue[]
+     * @var \SimpleSAML\XMLSchema\Type\Helper\AnyURIListValue
      */
-    protected array $PolicyURIs;
+    protected AnyURIListValue $PolicyURIs;
 
 
     /**
      * Collect the value of the PolicyURIs-property
      *
-     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue[]
+     * @return \SimpleSAML\XMLSchema\Type\Helper\AnyURIListValue
      */
-    public function getPolicyURIs(): array
+    public function getPolicyURIs(): AnyURIListValue
     {
         return $this->PolicyURIs;
     }
@@ -38,11 +36,10 @@ trait PolicyURIsTrait
     /**
      * Set the value of the PolicyURIs-property
      *
-     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue[] $PolicyURIs
+     * @param \SimpleSAML\XMLSchema\Type\Helper\AnyURIListValue $PolicyURIs
      */
-    protected function setPolicyURIs(array $PolicyURIs): void
+    protected function setPolicyURIs(AnyURIListValue $PolicyURIs): void
     {
-        Assert::allIsInstanceOf($PolicyURIs, AnyURIValue::class, SchemaViolationException::class);
         $this->PolicyURIs = $PolicyURIs;
     }
 }

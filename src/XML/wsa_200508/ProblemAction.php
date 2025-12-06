@@ -22,6 +22,7 @@ final class ProblemAction extends AbstractProblemActionType implements SchemaVal
 {
     use SchemaValidatableElementTrait;
 
+
     /**
      * Convert XML into a class instance
      *

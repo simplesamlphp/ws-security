@@ -22,6 +22,7 @@ abstract class AbstractReferenceDigestType extends AbstractFedElement
     use ExtendableAttributesTrait;
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = Base64BinaryValue::class;
 

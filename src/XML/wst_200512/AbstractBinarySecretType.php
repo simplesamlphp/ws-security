@@ -9,7 +9,6 @@ use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
-use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
 use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
 use SimpleSAML\XMLSchema\Type\Helper\AnyURIListValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;

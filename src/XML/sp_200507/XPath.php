@@ -20,6 +20,7 @@ final class XPath extends AbstractSpElement
 {
     use TypedTextContentTrait;
 
+
     /** @var string */
     public const TEXTCONTENT_TYPE = StringValue::class;
 

@@ -19,6 +19,7 @@ final class AllowPostdating extends AbstractWstElement implements SchemaValidata
 {
     use SchemaValidatableElementTrait;
 
+
     /**
      * Convert XML into a class instance
      *

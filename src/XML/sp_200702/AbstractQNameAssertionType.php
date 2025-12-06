@@ -21,6 +21,7 @@ abstract class AbstractQNameAssertionType extends AbstractSpElement
 {
     use ExtendableAttributesTrait;
 
+
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
 
