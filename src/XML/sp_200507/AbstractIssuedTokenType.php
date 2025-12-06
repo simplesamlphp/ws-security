@@ -6,17 +6,15 @@ namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
+use SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
-use SimpleSAML\XMLSchema\Type\StringValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
-use ValueError;
 
 use function array_pop;
-use function is_string;
 use function sprintf;
 
 /**
@@ -48,14 +46,14 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
      *
      * @param \SimpleSAML\WSSecurity\XML\sp_200507\RequestSecurityTokenTemplate $requestSecurityTokenTemplate
      * @param \SimpleSAML\WSSecurity\XML\sp_200507\Issuer|null $issuer
-     * @param \SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken|string|null $includeToken
+     * @param \SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue|null $includeToken
      * @param list<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected RequestSecurityTokenTemplate $requestSecurityTokenTemplate,
         protected ?Issuer $issuer = null,
-        IncludeToken|string|null $includeToken = null,
+        ?IncludeTokenValue $includeToken = null,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
@@ -114,16 +112,10 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
         Assert::minCount($requestSecurityTokenTemplate, 1, MissingElementException::class);
         Assert::maxCount($requestSecurityTokenTemplate, 1, TooManyElementsException::class);
 
-        $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', StringValue::class, null);
-        try {
-            $includeToken = IncludeToken::from($includeToken->getValue());
-        } catch (ValueError) {
-        }
-
         return new static(
             $requestSecurityTokenTemplate[0],
             array_pop($issuer),
-            $includeToken,
+            self::getOptionalAttribute($xml, 'IncludeToken', IncludeTokenValue::class, null),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -141,10 +133,7 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
         $e = $this->instantiateParentElement($parent);
 
         if ($this->getIncludeToken() !== null) {
-            $e->setAttribute(
-                'IncludeToken',
-                is_string($this->getIncludeToken()) ? $this->getIncludeToken() : $this->getIncludeToken()->value,
-            );
+            $e->setAttribute('IncludeToken', $this->getIncludeToken()->getValue());
         }
 
         if ($this->getIssuer() !== null) {
@@ -154,7 +143,6 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
         $this->getRequestSecurityTokenTemplate()->toXML($e);
 
         foreach ($this->getElements() as $elt) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
             $elt->toXML($e);
         }
 

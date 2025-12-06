@@ -1,0 +1,23 @@
+<?php
+
+declare(strict_types=1);
+
+namespace SimpleSAML\WSSecurity\XML\sp_200702\Type;
+
+use SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken;
+use SimpleSAML\XMLSchema\Type\AnyURIValue as BaseAnyURIValue;
+
+/**
+ * @package simplesaml/ws-security
+ */
+class IncludeTokenValue extends BaseAnyURIValue
+{
+    /**
+     * @param \SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken $value
+     * @return static
+     */
+    public static function fromEnum(IncludeToken $value): static
+    {
+        return new static($value->value);
+    }
+}

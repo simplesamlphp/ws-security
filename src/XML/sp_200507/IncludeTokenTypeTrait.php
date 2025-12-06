@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
-use SimpleSAML\WSSecurity\Assert\Assert;
-
-use function is_string;
+use SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue;
 
 /**
  * Trait grouping common functionality for elements that can hold IncludeToken attributes.
@@ -18,17 +16,17 @@ trait IncludeTokenTypeTrait
     /**
      * The included token.
      *
-     * @var \SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken|string|null
+     * @var \SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue|null
      */
-    protected IncludeToken|string|null $includeToken;
+    protected ?IncludeTokenValue $includeToken;
 
 
     /**
      * Collect the value of the includeToken-property
      *
-     * @return \SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken|string|null
+     * @return \SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue|null
      */
-    public function getIncludeToken(): IncludeToken|string|null
+    public function getIncludeToken(): ?IncludeTokenValue
     {
         return $this->includeToken;
     }
@@ -37,14 +35,10 @@ trait IncludeTokenTypeTrait
     /**
      * Set the value of the includeToken-property
      *
-     * @param \SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken|string|null $includeToken
+     * @param \SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue|null $includeToken
      */
-    protected function setIncludeToken(IncludeToken|string|null $includeToken): void
+    protected function setIncludeToken(?IncludeTokenValue $includeToken = null): void
     {
-        if (is_string($includeToken)) {
-            Assert::validURI($includeToken);
-        }
-
         $this->includeToken = $includeToken;
     }
 }
