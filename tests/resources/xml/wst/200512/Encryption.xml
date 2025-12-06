@@ -1,3 +1,3 @@
-<trust:Encryption xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa10="http://www.w3.org/2005/08/addressing">
-  <wsa10:MessageID soapenv:mustUnderstand="1">uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de</wsa10:MessageID>
+<trust:Encryption xmlns:trust="http://docs.oasis-open.org/ws-sx/ws-trust/200512/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsa10="http://www.w3.org/2005/08/addressing">
+  <wsa10:MessageID SOAP-ENV:mustUnderstand="1">uuid:d0ccf3cd-2dce-4c1a-a5d6-be8912ecd7de</wsa10:MessageID>
 </trust:Encryption>

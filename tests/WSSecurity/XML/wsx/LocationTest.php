@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wsx\Location;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 
@@ -50,7 +51,7 @@ final class LocationTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $location = new Location(C::NAMESPACE);
+        $location = new Location(AnyURIValue::fromString(C::NAMESPACE));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

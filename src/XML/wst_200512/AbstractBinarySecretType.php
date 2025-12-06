@@ -9,8 +9,8 @@ use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
-use SimpleSAML\XMLSchema\Type\Helper\AnyURIListValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
@@ -33,12 +33,12 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
 
     /**
      * @param \SimpleSAML\XMLSchema\Type\Base64BinaryValue $content
-     * @param \SimpleSAML\XMLSchema\Type\Helper\AnyURIListValue|null $Type
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $Type
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         Base64BinaryValue $content,
-        protected ?AnyURIListValue $Type = null,
+        protected ?AnyURIValue $Type = null,
         array $namespacedAttributes = [],
     ) {
         $this->setContent($content);
@@ -49,9 +49,9 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
     /**
      * Get the Type property.
      *
-     * @return \SimpleSAML\XMLSchema\Type\Helper\AnyURIListValue|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getType(): ?AnyURIListValue
+    public function getType(): ?AnyURIValue
     {
         return $this->Type;
     }
@@ -73,7 +73,7 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
 
         return new static(
             Base64BinaryValue::fromString($xml->textContent),
-            self::getAttribute($xml, 'Type', AnyURIListValue::class),
+            self::getAttribute($xml, 'Type', AnyURIValue::class),
             self::getAttributesNSFromXML($xml),
         );
     }

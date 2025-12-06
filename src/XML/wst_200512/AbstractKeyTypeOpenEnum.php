@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
 use SimpleSAML\XML\TypedTextContentTrait;
-use SimpleSAML\XMLSchema\Type\Helper\AnyURIListValue;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 /**
  * A KeyTypeOpenEnum element
@@ -20,5 +20,5 @@ abstract class AbstractKeyTypeOpenEnum extends AbstractWstElement
 
 
     /** @var string */
-    public const TEXTCONTENT_TYPE = AnyURIListValue::class;
+    public const TEXTCONTENT_TYPE = AnyURIValue::class;
 }

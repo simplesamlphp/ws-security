@@ -14,6 +14,8 @@ use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -52,12 +54,12 @@ final class MetadataSectionTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
 
         $metadataSection = new MetadataSection(
-            new Location('urn:x-simplesamlphp:namespace'),
-            'urn:x-simplesamlphp:namespace',
-            'urn:x-simplesamlphp:namespace',
+            new Location(AnyURIValue::fromString('urn:x-simplesamlphp:namespace')),
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
             [$attr1],
         );
 

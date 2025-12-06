@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wst_200512\SignWith;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 
@@ -50,7 +51,7 @@ final class SignWithTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $signWith = new SignWith(C::NAMESPACE);
+        $signWith = new SignWith(AnyURIValue::fromString(C::NAMESPACE));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

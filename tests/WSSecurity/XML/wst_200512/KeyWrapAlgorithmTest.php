@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wst_200512\KeyWrapAlgorithm;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 
@@ -50,7 +51,7 @@ final class KeyWrapAlgorithmTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $keyWrapAlgorithm = new KeyWrapAlgorithm(C::NAMESPACE);
+        $keyWrapAlgorithm = new KeyWrapAlgorithm(AnyURIValue::fromString(C::NAMESPACE));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

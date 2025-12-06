@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wsx\Identifier;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 
@@ -50,7 +51,7 @@ final class IdentifierTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $identifier = new Identifier(C::NAMESPACE);
+        $identifier = new Identifier(AnyURIValue::fromString(C::NAMESPACE));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

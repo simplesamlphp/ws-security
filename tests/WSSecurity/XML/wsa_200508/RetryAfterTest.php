@@ -7,7 +7,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa_200508;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractAttributedLongType;
+use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractAttributedUnsignedLongType;
 use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa_200508\RetryAfter;
 use SimpleSAML\XML\Attribute;
@@ -25,7 +25,7 @@ use function strval;
  */
 #[Group('wsa')]
 #[CoversClass(RetryAfter::class)]
-#[CoversClass(AbstractAttributedLongType::class)]
+#[CoversClass(AbstractAttributedUnsignedLongType::class)]
 #[CoversClass(AbstractWsaElement::class)]
 final class RetryAfterTest extends TestCase
 {

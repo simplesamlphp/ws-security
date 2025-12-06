@@ -14,6 +14,7 @@ use SimpleSAML\WSSecurity\XML\wst_200512\KeyTypeEnum;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 
@@ -52,7 +53,7 @@ final class KeyTypeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $keyType = new KeyType([KeyTypeEnum::PublicKey]);
+        $keyType = new KeyType(AnyURIValue::fromString(KeyTypeEnum::PublicKey->value));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
