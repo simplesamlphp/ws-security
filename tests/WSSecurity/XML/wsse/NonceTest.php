@@ -11,10 +11,13 @@ use SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString;
 use SimpleSAML\WSSecurity\XML\wsse\AbstractEncodedString;
 use SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement;
 use SimpleSAML\WSSecurity\XML\wsse\Nonce;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -56,13 +59,13 @@ final class NonceTest extends TestCase
     public function testMarshalling(): void
     {
         $content = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
-        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
 
         $nonce = new Nonce(
-            $content,
-            'SomeID',
-            'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd#base64binary',
+            StringValue::fromString($content),
+            IDValue::fromString('SomeID'),
             [$attr1],
+            AnyURIValue::fromString('http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd#base64binary'),
         );
 
         $this->assertEquals(

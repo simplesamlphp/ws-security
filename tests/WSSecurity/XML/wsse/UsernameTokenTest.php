@@ -11,6 +11,7 @@ use SimpleSAML\WSSecurity\XML\wsse\AbstractUsernameTokenType;
 use SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement;
 use SimpleSAML\WSSecurity\XML\wsse\Username;
 use SimpleSAML\WSSecurity\XML\wsse\UsernameToken;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -58,14 +59,18 @@ final class UsernameTokenTest extends TestCase
     {
         $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
         $attr2 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', StringValue::fromString('testval2'));
-        $username = new Username('johndoe@example.com', 'OtherID', [$attr2]);
+        $username = new Username(
+            StringValue::fromString('johndoe@example.com'),
+            IDValue::fromString('OtherID'),
+            [$attr2],
+        );
         $child = DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
         );
 
         $usernameToken = new UsernameToken(
             $username,
-            'SomeID',
+            IDValue::fromString('SomeID'),
             [new Chunk($child->documentElement)],
             [$attr1],
         );

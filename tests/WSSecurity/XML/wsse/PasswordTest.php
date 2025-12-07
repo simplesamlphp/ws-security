@@ -11,9 +11,12 @@ use SimpleSAML\WSSecurity\XML\wsse\AbstractAttributedString;
 use SimpleSAML\WSSecurity\XML\wsse\AbstractPasswordString;
 use SimpleSAML\WSSecurity\XML\wsse\AbstractWsseElement;
 use SimpleSAML\WSSecurity\XML\wsse\Password;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -53,8 +56,13 @@ final class PasswordTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
-        $password = new Password('secret', 'SomeID', 'SomeType', [$attr]);
+        $attr = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $password = new Password(
+            StringValue::fromString('secret'),
+            IDValue::fromString('SomeID'),
+            [$attr],
+            AnyURIValue::fromString('SomeType'),
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
