@@ -12,7 +12,6 @@ use SimpleSAML\XML\SchemaValidatableElementTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Type\AnyURIValue;
-use SimpleSAML\XMLSchema\Type\QNameValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
@@ -38,12 +37,12 @@ final class RelatesTo extends AbstractWsaElement implements SchemaValidatableEle
      * Initialize a wsa:RelatesTo
      *
      * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $content
-     * @param \SimpleSAML\XMLSchema\Type\QNameValue|null $RelationshipType
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $RelationshipType
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
         AnyURIValue $content,
-        protected ?QNameValue $RelationshipType,
+        protected ?AnyURIValue $RelationshipType,
         array $namespacedAttributes = [],
     ) {
         $this->setContent($content);
@@ -54,9 +53,9 @@ final class RelatesTo extends AbstractWsaElement implements SchemaValidatableEle
     /**
      * Collect the value of the RelationshipType property.
      *
-     * @return \SimpleSAML\XMLSchema\Type\QNameValue|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getRelationshipType(): ?QNameValue
+    public function getRelationshipType(): ?AnyURIValue
     {
         return $this->RelationshipType;
     }
@@ -78,9 +77,7 @@ final class RelatesTo extends AbstractWsaElement implements SchemaValidatableEle
 
         return new static(
             AnyURIValue::fromString($xml->textContent),
-            $xml->hasAttribute('RelationshipType')
-                ? QNameValue::fromDocument($xml->getAttribute('RelationshipType'), $xml)
-                : null,
+            self::getOptionalAttribute($xml, 'RelationshipType', AnyURIValue::class, null),
             self::getAttributesNSFromXML($xml),
         );
     }

@@ -11,6 +11,7 @@ use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa_200508\SoapAction;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 use function strval;
@@ -48,7 +49,7 @@ final class SoapActionTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $soapAction = new SoapAction('http://www.example.com/');
+        $soapAction = new SoapAction(AnyURIValue::fromString('http://www.example.com/'));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

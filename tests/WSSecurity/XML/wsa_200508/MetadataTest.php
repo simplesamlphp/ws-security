@@ -15,6 +15,7 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -57,7 +58,7 @@ final class MetadataTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'value1');
+        $domAttr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('value1'));
 
         $metadata = new Metadata([new Chunk(self::$metadataContent)], [$domAttr]);
         $this->assertFalse($metadata->isEmptyElement());

@@ -15,6 +15,7 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -57,7 +58,7 @@ final class ReferenceParametersTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
+        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', StringValue::fromString('testval1'));
 
         $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)], [$domAttr]);
         $this->assertFalse($referenceParameters->isEmptyElement());

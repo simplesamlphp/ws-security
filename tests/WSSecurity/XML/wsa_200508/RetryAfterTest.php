@@ -14,6 +14,8 @@ use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\Type\UnsignedLongValue;
 
 use function dirname;
 use function strval;
@@ -53,8 +55,8 @@ final class RetryAfterTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', 'value');
-        $retryAfter = new RetryAfter('1234567890', [$attr]);
+        $attr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', StringValue::fromString('value'));
+        $retryAfter = new RetryAfter(UnsignedLongValue::fromString('1234567890'), [$attr]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

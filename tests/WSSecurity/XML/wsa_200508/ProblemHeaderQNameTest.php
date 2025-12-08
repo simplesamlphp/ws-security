@@ -14,6 +14,10 @@ use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\NCNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
 
 use function dirname;
 use function strval;
@@ -53,9 +57,16 @@ final class ProblemHeaderQNameTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'value1');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('value1'));
 
-        $problemHeaderQName = new ProblemHeaderQName('wsa10:Action', [$attr1]);
+        $problemHeaderQName = new ProblemHeaderQName(
+            QNameValue::fromParts(
+                NCNameValue::fromString('Action'),
+                AnyURIValue::fromString(AbstractWsaElement::NS),
+                NCNameValue::fromString('wsa10'),
+            ),
+            [$attr1],
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
