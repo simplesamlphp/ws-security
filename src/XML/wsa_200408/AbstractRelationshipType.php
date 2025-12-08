@@ -46,8 +46,6 @@ abstract class AbstractRelationshipType extends AbstractWsaElement
         protected ?QNameValue $relationshipType = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::validQName($relationshipType);
-
         $this->setContent($value);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -78,9 +76,7 @@ abstract class AbstractRelationshipType extends AbstractWsaElement
 
         return new static(
             AnyURIValue::fromString($xml->textContent),
-            $xml->hasAttribute('RelationshipType')
-                ? QNameValue::fromDocument('RelationshipType', $xml)
-                : null,
+            self::getOptionalAttribute($xml, 'RelationshipType', QNameValue::class, null),
             self::getAttributesNSFromXML($xml),
         );
     }

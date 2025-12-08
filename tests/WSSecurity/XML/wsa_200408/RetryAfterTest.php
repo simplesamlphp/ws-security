@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wsa_200408\RetryAfter;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\NonNegativeIntegerValue;
 
 use function dirname;
 use function strval;
@@ -52,7 +53,7 @@ final class RetryAfterTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $retryAfter = new RetryAfter(30);
+        $retryAfter = new RetryAfter(NonNegativeIntegerValue::fromInteger(30));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

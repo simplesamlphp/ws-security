@@ -98,9 +98,7 @@ abstract class AbstractHeaderType extends AbstractSpElement
 
         return new static(
             $namespace,
-            $xml->hasAttribute('Name')
-                ? QNameValue::fromString('{' . $namespace . '}' . $xml->getAttribute('Name'))
-                : null,
+            $xml->hasAttribute('Name') ? QNameValue::fromString($xml->getAttribute('Name')) : null,
             $namespacedAttributes,
         );
     }

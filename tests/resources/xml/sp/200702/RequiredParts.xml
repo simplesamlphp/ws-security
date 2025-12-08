@@ -1,4 +1,4 @@
 <sp:RequiredParts xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1">
-  <sp:Header Name="ssp:name" Namespace="urn:x-simplesamlphp:namespace" ssp:attr1="value1"/>
+  <sp:Header Name="name" Namespace="urn:x-simplesamlphp:namespace" ssp:attr1="value1"/>
   <ssp:Chunk>some</ssp:Chunk>
 </sp:RequiredParts>

@@ -13,6 +13,8 @@ use SimpleSAML\WSSecurity\XML\wsa_200408\Address;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -51,8 +53,8 @@ final class AddressTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', 'value');
-        $Address = new Address('https://login.microsoftonline.com/login.srf', [$attr1]);
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', StringValue::fromString('value'));
+        $Address = new Address(AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'), [$attr1]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

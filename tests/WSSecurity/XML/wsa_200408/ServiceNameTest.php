@@ -13,6 +13,9 @@ use SimpleSAML\WSSecurity\XML\wsa_200408\ServiceName;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\NCNameValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -51,8 +54,12 @@ final class ServiceNameTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', 'value');
-        $serviceName = new ServiceName('ssp:Chunk', 'PHPUnit', [$attr1]);
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', StringValue::fromString('value'));
+        $serviceName = new ServiceName(
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
+            NCNameValue::fromString('PHPUnit'),
+            [$attr1],
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
