@@ -15,7 +15,7 @@
         "ext-spl": "*",
 
         "simplesamlphp/assert": "~1.8.1",
-        "simplesamlphp/saml2": "^5@dev",
+        "simplesamlphp/saml2": "^5.0",
         "simplesamlphp/xml-security": "~1.13.0",
         "simplesamlphp/xml-common": "~1.25.0"
     },
