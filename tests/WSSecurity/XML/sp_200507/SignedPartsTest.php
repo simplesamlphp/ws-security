@@ -19,6 +19,9 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -72,9 +75,13 @@ final class SignedPartsTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $body = new Body();
-        $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
+        $header = new Header(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}name'),
+            [$attr],
+        );
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
@@ -91,9 +98,13 @@ final class SignedPartsTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $body = new Body();
-        $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
+        $header = new Header(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}name'),
+            [$attr],
+        );
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);

@@ -13,11 +13,14 @@ use SimpleSAML\WSSecurity\XML\sp_200507\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200507\TransportToken;
 use SimpleSAML\WSSecurity\XML\wsp\ExactlyOne;
 use SimpleSAML\WSSecurity\XML\wsp\Policy;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -60,7 +63,7 @@ final class TransportTokenTest extends TestCase
             dirname(__FILE__, 4) . '/resources/xml/sp/200507/TransportToken.xml',
         );
 
-        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
 
         self::$some = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
@@ -70,7 +73,12 @@ final class TransportTokenTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Other</ssp:Chunk>',
         )->documentElement);
 
-        $Id = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', 'MyId');
-        self::$policy = new Policy('phpunit', $Id, [new ExactlyOne()], [self::$other], [self::$attr]);
+        self::$policy = new Policy(
+            [new ExactlyOne()],
+            [self::$other],
+            AnyURIValue::fromString('phpunit'),
+            IDValue::fromString('MyId'),
+            [self::$attr],
+        );
     }
 }

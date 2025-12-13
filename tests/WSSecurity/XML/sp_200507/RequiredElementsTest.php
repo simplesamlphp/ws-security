@@ -18,6 +18,8 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -52,13 +54,18 @@ final class RequiredElementsTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $xpath = new XPath('/bookstore/book[price>35.00]/title');
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $xpath = new XPath(StringValue::fromString('/bookstore/book[price>35.00]/title'));
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $requiredElements = new RequiredElements([$xpath], 'urn:x-simplesamlphp:version', [$chunk], [$attr]);
+        $requiredElements = new RequiredElements(
+            [$xpath],
+            AnyURIValue::fromString('urn:x-simplesamlphp:version'),
+            [$chunk],
+            [$attr],
+        );
         $requiredElementsElement = $requiredElements->toXML();
 
         // Test for an XPath
@@ -87,13 +94,19 @@ final class RequiredElementsTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $xpath = new XPath('/bookstore/book[price>35.00]/title');
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $xpath = new XPath(StringValue::fromString('/bookstore/book[price>35.00]/title'));
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $requiredElements = new RequiredElements([$xpath], 'urn:x-simplesamlphp:version', [$chunk], [$attr]);
+        $requiredElements = new RequiredElements(
+            [$xpath],
+            AnyURIValue::fromString('urn:x-simplesamlphp:version'),
+            [$chunk],
+            [$attr],
+        );
+
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($requiredElements),

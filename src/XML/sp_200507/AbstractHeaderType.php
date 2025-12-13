@@ -27,6 +27,12 @@ abstract class AbstractHeaderType extends AbstractSpElement
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
 
+    /** The exclusions for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_EXCLUSIONS = [
+        [null, 'Name'],
+        [null, 'Namespace'],
+    ];
+
 
     /**
      * AbstractHeaderType constructor.
@@ -88,17 +94,11 @@ abstract class AbstractHeaderType extends AbstractSpElement
         );
 
         $namespacedAttributes = self::getAttributesNSFromXML($xml);
-        foreach ($namespacedAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === null) {
-                if ($attr->getAttrName() === 'Name' || $attr->getAttrName() === 'Namespace') {
-                    unset($namespacedAttributes[$i]);
-                }
-            }
-        }
+        $namespace = self::getAttribute($xml, 'Namespace', AnyURIValue::class);
 
         return new static(
-            self::getAttribute($xml, 'Namespace', AnyURIValue::class),
-            self::getOptionalAttribute($xml, 'Name', QNameValue::class, null),
+            $namespace,
+            $xml->hasAttribute('Name') ? QNameValue::fromString($xml->getAttribute('Name')) : null,
             $namespacedAttributes,
         );
     }
