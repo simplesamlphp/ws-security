@@ -103,7 +103,7 @@ final class ReplyToTest extends TestCase
         );
         $chunk = new Chunk(self::$customContent);
 
-        $ReplyTo = new ReplyTo(
+        $replyTo = new ReplyTo(
             new Address(AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'), [$attr2]),
             $referenceProperties,
             $referenceParameters,
@@ -115,7 +115,7 @@ final class ReplyToTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($ReplyTo),
+            strval($replyTo),
         );
     }
 
@@ -141,7 +141,7 @@ final class ReplyToTest extends TestCase
         );
         $chunk = new Chunk(self::$customContent);
 
-        $ReplyTo = new ReplyTo(
+        $replyTo = new ReplyTo(
             new Address(AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'), [$attr2]),
             $referenceProperties,
             $referenceParameters,
@@ -152,19 +152,20 @@ final class ReplyToTest extends TestCase
         );
 
         // Test for an Address
-        $ReplyToElement = $ReplyTo->toXML();
-        $xpCache = XPath::getXPath($ReplyToElement);
-        $ReplyToElements = XPath::xpQuery($ReplyToElement, './wsa:Address', $xpCache);
-        $this->assertCount(1, $ReplyToElements);
+        $replyToElement = $replyTo->toXML();
+        $xpCache = XPath::getXPath($replyToElement);
+        $replyToElements = XPath::xpQuery($replyToElement, './wsa:Address', $xpCache);
+        $this->assertCount(1, $replyToElements);
 
         // Test ordering of ReplyTo contents
-        /** @psalm-var \DOMElement[] $ReplyToElements */
-        $ReplyToElements = XPath::xpQuery($ReplyToElement, './wsa:Address/following-sibling::*', $xpCache);
-        $this->assertCount(5, $ReplyToElements);
-        $this->assertEquals('wsa:ReferenceProperties', $ReplyToElements[0]->tagName);
-        $this->assertEquals('wsa:ReferenceParameters', $ReplyToElements[1]->tagName);
-        $this->assertEquals('wsa:PortType', $ReplyToElements[2]->tagName);
-        $this->assertEquals('wsa:ServiceName', $ReplyToElements[3]->tagName);
-        $this->assertEquals('ssp:Chunk', $ReplyToElements[4]->tagName);
+        /** @var \DOMElement[] $replyToElements */
+        $replyToElements = XPath::xpQuery($replyToElement, './wsa:Address/following-sibling::*', $xpCache);
+
+        $this->assertCount(5, $replyToElements);
+        $this->assertEquals('wsa:ReferenceProperties', $replyToElements[0]->tagName);
+        $this->assertEquals('wsa:ReferenceParameters', $replyToElements[1]->tagName);
+        $this->assertEquals('wsa:PortType', $replyToElements[2]->tagName);
+        $this->assertEquals('wsa:ServiceName', $replyToElements[3]->tagName);
+        $this->assertEquals('ssp:Chunk', $replyToElements[4]->tagName);
     }
 }

@@ -122,8 +122,9 @@ final class ClientPseudonymTest extends TestCase
         $this->assertCount(1, $clientPseudonymElements);
 
         // Test ordering of ClientPseudonym contents
-        /** @psalm-var \DOMElement[] $clientPseudonymElements */
+        /** @var \DOMElement[] $clientPseudonymElements */
         $clientPseudonymElements = XPath::xpQuery($clientPseudonymElement, './fed:PPID/following-sibling::*', $xpCache);
+
         $this->assertCount(3, $clientPseudonymElements);
         $this->assertEquals('fed:DisplayName', $clientPseudonymElements[0]->tagName);
         $this->assertEquals('fed:EMail', $clientPseudonymElements[1]->tagName);

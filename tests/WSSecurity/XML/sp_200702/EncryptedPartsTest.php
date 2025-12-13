@@ -113,20 +113,20 @@ final class EncryptedPartsTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $EncryptedParts = new EncryptedParts($body, [$header], $attachments, [$chunk], [$attr]);
-        $EncryptedPartsElement = $EncryptedParts->toXML();
+        $encryptedParts = new EncryptedParts($body, [$header], $attachments, [$chunk], [$attr]);
+        $encryptedPartsElement = $encryptedParts->toXML();
 
         // Test for a Body
-        $xpCache = XPath::getXPath($EncryptedPartsElement);
-        $EncryptedPartsElements = XPath::xpQuery($EncryptedPartsElement, './sp:Body', $xpCache);
-        $this->assertCount(1, $EncryptedPartsElements);
+        $xpCache = XPath::getXPath($encryptedPartsElement);
+        $encryptedPartsElements = XPath::xpQuery($encryptedPartsElement, './sp:Body', $xpCache);
+        $this->assertCount(1, $encryptedPartsElements);
 
         // Test ordering of EncryptedParts contents
-        /** @psalm-var \DOMElement[] $EncryptedPartsElements */
-        $EncryptedPartsElements = XPath::xpQuery($EncryptedPartsElement, './sp:Body/following-sibling::*', $xpCache);
-        $this->assertCount(3, $EncryptedPartsElements);
-        $this->assertEquals('sp:Header', $EncryptedPartsElements[0]->tagName);
-        $this->assertEquals('sp:Attachments', $EncryptedPartsElements[1]->tagName);
-        $this->assertEquals('ssp:Chunk', $EncryptedPartsElements[2]->tagName);
+        /** @var \DOMElement[] $encryptedPartsElements */
+        $encryptedPartsElements = XPath::xpQuery($encryptedPartsElement, './sp:Body/following-sibling::*', $xpCache);
+        $this->assertCount(3, $encryptedPartsElements);
+        $this->assertEquals('sp:Header', $encryptedPartsElements[0]->tagName);
+        $this->assertEquals('sp:Attachments', $encryptedPartsElements[1]->tagName);
+        $this->assertEquals('ssp:Chunk', $encryptedPartsElements[2]->tagName);
     }
 }

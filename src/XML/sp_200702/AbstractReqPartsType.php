@@ -121,8 +121,9 @@ abstract class AbstractReqPartsType extends AbstractSpElement
         }
 
         foreach ($this->getElements() as $elt) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
-            $elt->toXML($e);
+            if (!$elt->isEmptyElement()) {
+                $elt->toXML($e);
+            }
         }
 
         foreach ($this->getAttributesNS() as $attr) {

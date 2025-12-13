@@ -136,8 +136,9 @@ abstract class AbstractOperatorContentType extends AbstractWspElement
         }
 
         foreach ($this->getElements() as $c) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $c */
-            $c->toXML($e);
+            if (!$c->isEmptyElement()) {
+                $c->toXML($e);
+            }
         }
 
         return $e;

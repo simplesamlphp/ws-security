@@ -80,19 +80,20 @@ final class RequiredPartsTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $RequiredParts = new RequiredParts([$header], [$chunk], [$attr]);
-        $RequiredPartsElement = $RequiredParts->toXML();
+        $requiredParts = new RequiredParts([$header], [$chunk], [$attr]);
+        $requiredPartsElement = $requiredParts->toXML();
 
         // Test for a Header
-        $xpCache = XPath::getXPath($RequiredPartsElement);
-        $RequiredPartsElements = XPath::xpQuery($RequiredPartsElement, './sp:Header', $xpCache);
-        $this->assertCount(1, $RequiredPartsElements);
+        $xpCache = XPath::getXPath($requiredPartsElement);
+        $requiredPartsElements = XPath::xpQuery($requiredPartsElement, './sp:Header', $xpCache);
+        $this->assertCount(1, $requiredPartsElements);
 
         // Test ordering of RequiredParts contents
-        /** @psalm-var \DOMElement[] $RequiredPartsElements */
-        $RequiredPartsElements = XPath::xpQuery($RequiredPartsElement, './sp:Header/following-sibling::*', $xpCache);
-        $this->assertCount(1, $RequiredPartsElements);
-        $this->assertEquals('ssp:Chunk', $RequiredPartsElements[0]->tagName);
+        /** @var \DOMElement[] $requiredPartsElements */
+        $requiredPartsElements = XPath::xpQuery($requiredPartsElement, './sp:Header/following-sibling::*', $xpCache);
+
+        $this->assertCount(1, $requiredPartsElements);
+        $this->assertEquals('ssp:Chunk', $requiredPartsElements[0]->tagName);
     }
 
 
@@ -114,10 +115,10 @@ final class RequiredPartsTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $RequiredParts = new RequiredParts([$header], [$chunk], [$attr]);
+        $requiredParts = new RequiredParts([$header], [$chunk], [$attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($RequiredParts),
+            strval($requiredParts),
         );
     }
 }

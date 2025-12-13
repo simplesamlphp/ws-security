@@ -72,12 +72,13 @@ final class SpnegoContextTokenTest extends TestCase
         $this->assertCount(1, $spnegoContextTokenElements);
 
         // Test ordering of SpnegoContextToken contents
-        /** @psalm-var \DOMElement[] $spnegoContextTokenElements */
+        /** @var \DOMElement[] $spnegoContextTokenElements */
         $spnegoContextTokenElements = XPath::xpQuery(
             $spnegoContextTokenElement,
             './sp:IssuerName/following-sibling::*',
             $xpCache,
         );
+
         $this->assertCount(1, $spnegoContextTokenElements);
         $this->assertEquals('ssp:Chunk', $spnegoContextTokenElements[0]->tagName);
     }

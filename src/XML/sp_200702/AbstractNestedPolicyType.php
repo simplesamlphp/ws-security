@@ -90,8 +90,9 @@ abstract class AbstractNestedPolicyType extends AbstractSpElement
         }
 
         foreach ($this->getElements() as $element) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $element */
-            $element->toXML($e);
+            if (!$element->isEmptyElement()) {
+                $element->toXML($e);
+            }
         }
 
         return $e;

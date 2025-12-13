@@ -76,12 +76,13 @@ final class SecureConversationTokenTest extends TestCase
         $this->assertCount(1, $secureConversationTokenElements);
 
         // Test ordering of SecureConversationToken contents
-        /** @psalm-var \DOMElement[] $secureConversationTokenElements */
+        /** @var \DOMElement[] $secureConversationTokenElements */
         $secureConversationTokenElements = XPath::xpQuery(
             $secureConversationTokenElement,
             './sp:IssuerName/following-sibling::*',
             $xpCache,
         );
+
         $this->assertCount(1, $secureConversationTokenElements);
         $this->assertEquals('ssp:Chunk', $secureConversationTokenElements[0]->tagName);
     }
@@ -108,6 +109,7 @@ final class SecureConversationTokenTest extends TestCase
             [$chunk],
             [$includeToken->toAttribute(), $attr],
         );
+
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($secureConversationToken),

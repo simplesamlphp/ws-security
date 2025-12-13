@@ -83,8 +83,9 @@ final class IssuedTokenTest extends TestCase
         $this->assertCount(1, $issuedTokenElements);
 
         // Test ordering of IssuedToken contents
-        /** @psalm-var \DOMElement[] $issuedTokenElements */
+        /** @var \DOMElement[] $issuedTokenElements */
         $issuedTokenElements = XPath::xpQuery($issuedTokenElement, './sp:IssuerName/following-sibling::*', $xpCache);
+
         $this->assertCount(2, $issuedTokenElements);
         $this->assertEquals('sp:RequestSecurityTokenTemplate', $issuedTokenElements[0]->tagName);
         $this->assertEquals('ssp:Chunk', $issuedTokenElements[1]->tagName);

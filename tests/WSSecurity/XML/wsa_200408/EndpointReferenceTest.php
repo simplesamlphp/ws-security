@@ -158,7 +158,7 @@ final class EndpointReferenceTest extends TestCase
         $this->assertCount(1, $endpointReferenceElements);
 
         // Test ordering of EndpointReference contents
-        /** @psalm-var \DOMElement[] $endpointReferenceElements */
+        /** @var \DOMElement[] $endpointReferenceElements */
         $endpointReferenceElements = XPath::xpQuery(
             $endpointReferenceElement,
             './wsa:Address/following-sibling::*',

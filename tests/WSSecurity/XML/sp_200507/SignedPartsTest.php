@@ -109,19 +109,20 @@ final class SignedPartsTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $SignedParts = new SignedParts($body, [$header], [$chunk], [$attr]);
-        $SignedPartsElement = $SignedParts->toXML();
+        $signedParts = new SignedParts($body, [$header], [$chunk], [$attr]);
+        $signedPartsElement = $signedParts->toXML();
 
         // Test for a Body
-        $xpCache = XPath::getXPath($SignedPartsElement);
-        $SignedPartsElements = XPath::xpQuery($SignedPartsElement, './sp:Body', $xpCache);
-        $this->assertCount(1, $SignedPartsElements);
+        $xpCache = XPath::getXPath($signedPartsElement);
+        $signedPartsElements = XPath::xpQuery($signedPartsElement, './sp:Body', $xpCache);
+        $this->assertCount(1, $signedPartsElements);
 
         // Test ordering of SignedParts contents
-        /** @psalm-var \DOMElement[] $SignedPartsElements */
-        $SignedPartsElements = XPath::xpQuery($SignedPartsElement, './sp:Body/following-sibling::*', $xpCache);
-        $this->assertCount(2, $SignedPartsElements);
-        $this->assertEquals('sp:Header', $SignedPartsElements[0]->tagName);
-        $this->assertEquals('ssp:Chunk', $SignedPartsElements[1]->tagName);
+        /** @var \DOMElement[] $signedPartsElements */
+        $signedPartsElements = XPath::xpQuery($signedPartsElement, './sp:Body/following-sibling::*', $xpCache);
+
+        $this->assertCount(2, $signedPartsElements);
+        $this->assertEquals('sp:Header', $signedPartsElements[0]->tagName);
+        $this->assertEquals('ssp:Chunk', $signedPartsElements[1]->tagName);
     }
 }

@@ -74,7 +74,7 @@ final class RequiredElementsTest extends TestCase
         $this->assertCount(1, $requiredElementsElements);
 
         // Test ordering of RequiredElements contents
-        /** @psalm-var \DOMElement[] $requiredElementsElements */
+        /** @var \DOMElement[] $requiredElementsElements */
         $requiredElementsElements = XMLXPath::xpQuery(
             $requiredElementsElement,
             './sp:XPath/following-sibling::*',

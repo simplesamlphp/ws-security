@@ -97,7 +97,6 @@ abstract class AbstractTokenAssertionType extends AbstractSpElement
         $e = $this->instantiateParentElement($parent);
 
         foreach ($this->getElements() as $elt) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
             $elt->toXML($e);
         }
 

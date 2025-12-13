@@ -76,7 +76,6 @@ final class ReferenceProperties extends AbstractWsaElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {
                 $child->toXML($e);

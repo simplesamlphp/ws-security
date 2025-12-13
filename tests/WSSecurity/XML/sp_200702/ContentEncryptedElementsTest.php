@@ -78,12 +78,13 @@ final class ContentEncryptedElementsTest extends TestCase
         $this->assertCount(1, $contentEncryptedElementsElements);
 
         // Test ordering of ContentEncryptedElements contents
-        /** @psalm-var \DOMElement[] $contentEncryptedElementsElements */
+        /** @var \DOMElement[] $contentEncryptedElementsElements */
         $contentEncryptedElementsElements = XMLXPath::xpQuery(
             $contentEncryptedElementsElement,
             './sp:XPath/following-sibling::*',
             $xpCache,
         );
+
         $this->assertCount(1, $contentEncryptedElementsElements);
         $this->assertEquals('ssp:Chunk', $contentEncryptedElementsElements[0]->tagName);
     }

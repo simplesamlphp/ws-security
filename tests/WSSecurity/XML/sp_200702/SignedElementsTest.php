@@ -60,29 +60,29 @@ final class SignedElementsTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $SignedElements = new SignedElements(
+        $signedElements = new SignedElements(
             [$xpath],
             AnyURIValue::fromString('urn:x-simplesamlphp:version'),
             [$chunk],
             [$attr],
         );
-        $SignedElementsElement = $SignedElements->toXML();
+        $signedElementsElement = $signedElements->toXML();
 
         // Test for an XPath
-        $xpCache = XMLXPath::getXPath($SignedElementsElement);
-        $SignedElementsElements = XMLXPath::xpQuery($SignedElementsElement, './sp:XPath', $xpCache);
-        $this->assertCount(1, $SignedElementsElements);
+        $xpCache = XMLXPath::getXPath($signedElementsElement);
+        $signedElementsElements = XMLXPath::xpQuery($signedElementsElement, './sp:XPath', $xpCache);
+        $this->assertCount(1, $signedElementsElements);
 
         // Test ordering of SignedElements contents
-        /** @psalm-var \DOMElement[] $SignedElementsElements */
-        $SignedElementsElements = XMLXPath::xpQuery(
-            $SignedElementsElement,
+        /** @var \DOMElement[] $signedElementsElements */
+        $signedElementsElements = XMLXPath::xpQuery(
+            $signedElementsElement,
             './sp:XPath/following-sibling::*',
             $xpCache,
         );
 
-        $this->assertCount(1, $SignedElementsElements);
-        $this->assertEquals('ssp:Chunk', $SignedElementsElements[0]->tagName);
+        $this->assertCount(1, $signedElementsElements);
+        $this->assertEquals('ssp:Chunk', $signedElementsElements[0]->tagName);
     }
 
 
@@ -100,7 +100,7 @@ final class SignedElementsTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $SignedElements = new SignedElements(
+        $signedElements = new SignedElements(
             [$xpath],
             AnyURIValue::fromString('urn:x-simplesamlphp:version'),
             [$chunk],
@@ -108,7 +108,7 @@ final class SignedElementsTest extends TestCase
         );
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($SignedElements),
+            strval($signedElements),
         );
     }
 }

@@ -186,8 +186,9 @@ final class PseudonymTest extends TestCase
         $this->assertCount(1, $pseudonymBasisElements);
 
         // Test ordering of Pseudonym contents
-        /** @psalm-var \DOMElement[] $pseudonymElements */
+        /** @var \DOMElement[] $pseudonymElements */
         $pseudonymElements = XPath::xpQuery($pseudonymElement, './fed:PseudonymBasis/following-sibling::*', $xpCache);
+
         $this->assertCount(5, $pseudonymElements);
         $this->assertEquals('fed:RelativeTo', $pseudonymElements[0]->tagName);
         $this->assertEquals('wsu:Expires', $pseudonymElements[1]->tagName);

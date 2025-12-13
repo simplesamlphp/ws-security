@@ -139,7 +139,6 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
 
         $this->getValue()->toXML($e);
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {
                 $child->toXML($e);

@@ -129,8 +129,9 @@ final class SignOutTest extends TestCase
         $this->assertCount(1, $signOutElements);
 
         // Test ordering of SignOUt contents
-        /** @psalm-var \DOMElement[] $signOutElements */
+        /** @var \DOMElement[] $signOutElements */
         $signOutElements = XPath::xpQuery($signOutElement, './fed:Realm/following-sibling::*', $xpCache);
+
         $this->assertCount(2, $signOutElements);
         $this->assertEquals('fed:SignOutBasis', $signOutElements[0]->tagName);
         $this->assertEquals('ssp:Chunk', $signOutElements[1]->tagName);
