@@ -1,3 +1,3 @@
-<sp:X509Token xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy" xmlns:ssp="urn:x-simplesamlphp:namespace" sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Always" ssp:attr1="value1">
+<sp:X509Token xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy" xmlns:ssp="urn:x-simplesamlphp:namespace" IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Always" ssp:attr1="value1">
   <ssp:Chunk>some</ssp:Chunk>
 </sp:X509Token>

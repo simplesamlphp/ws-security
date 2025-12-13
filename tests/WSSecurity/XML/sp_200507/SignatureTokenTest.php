@@ -63,7 +63,7 @@ final class SignatureTokenTest extends TestCase
             dirname(__FILE__, 4) . '/resources/xml/sp/200507/SignatureToken.xml',
         );
 
-        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
 
         self::$some = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',

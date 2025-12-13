@@ -21,6 +21,7 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\NCNameValue;
 use SimpleSAML\XMLSchema\Type\QNameValue;
 use SimpleSAML\XMLSchema\Type\StringValue;
 
@@ -94,7 +95,7 @@ final class IssuerTest extends TestCase
         $portType = new PortType(QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'), [$attr3]);
         $serviceName = new ServiceName(
             QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
-            'PHPUnit',
+            NCNameValue::fromString('PHPUnit'),
             [$attr4],
         );
         $chunk = new Chunk(self::$customContent);

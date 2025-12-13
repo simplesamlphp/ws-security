@@ -74,15 +74,14 @@ final class SignedElementsTest extends TestCase
         $this->assertCount(1, $SignedElementsElements);
 
         // Test ordering of SignedElements contents
-        /** @psalm-var \DOMElement[] $SignedElementsElements */
-        $SignedElementsElements = XMLXPath::xpQuery(
+        $signedElementsElements = XMLXPath::xpQuery(
             $SignedElementsElement,
             './sp:XPath/following-sibling::*',
             $xpCache,
         );
 
-        $this->assertCount(1, $SignedElementsElements);
-        $this->assertEquals('ssp:Chunk', $SignedElementsElements[0]->tagName);
+        $this->assertCount(1, $signedElementsElements);
+        $this->assertEquals('ssp:Chunk', $signedElementsElements[0]->tagName);
     }
 
 
@@ -100,7 +99,7 @@ final class SignedElementsTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $SignedElements = new SignedElements(
+        $signedElements = new SignedElements(
             [$xpath],
             AnyURIValue::fromString('urn:x-simplesamlphp:version'),
             [$chunk],
@@ -109,7 +108,7 @@ final class SignedElementsTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($SignedElements),
+            strval($signedElements),
         );
     }
 }

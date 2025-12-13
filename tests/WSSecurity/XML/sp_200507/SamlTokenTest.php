@@ -78,7 +78,7 @@ final class SamlTokenTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $SamlToken = new SamlToken([$chunk], [$includeToken, $attr]);
+        $SamlToken = new SamlToken([$chunk], [$includeToken->toAttribute(), $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($SamlToken),

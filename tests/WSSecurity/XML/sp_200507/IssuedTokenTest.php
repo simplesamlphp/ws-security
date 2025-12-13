@@ -16,6 +16,7 @@ use SimpleSAML\WSSecurity\XML\sp_200507\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp_200507\IssuedToken;
 use SimpleSAML\WSSecurity\XML\sp_200507\Issuer;
 use SimpleSAML\WSSecurity\XML\sp_200507\RequestSecurityTokenTemplate;
+use SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue;
 use SimpleSAML\WSSecurity\XML\wsa_200408\Address;
 use SimpleSAML\WSSecurity\XML\wsa_200408\PortType;
 use SimpleSAML\WSSecurity\XML\wsa_200408\ReferenceParameters;
@@ -27,6 +28,7 @@ use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
 use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\NCNameValue;
 use SimpleSAML\XMLSchema\Type\QNameValue;
 use SimpleSAML\XMLSchema\Type\StringValue;
 
@@ -88,7 +90,11 @@ final class IssuedTokenTest extends TestCase
         $referenceProperties = new ReferenceProperties([new Chunk(self::$referencePropertiesContent)]);
 
         $portType = new PortType(QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'), [$attr3]);
-        $serviceName = new ServiceName(QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'), 'PHPUnit', [$attr4]);
+        $serviceName = new ServiceName(
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
+            NCNameValue::fromString('PHPUnit'),
+            [$attr4],
+        );
 
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
@@ -113,7 +119,7 @@ final class IssuedTokenTest extends TestCase
         $issuedToken = new IssuedToken(
             $requestSecurityTokenTemplate,
             $issuer,
-            IncludeToken::Always,
+            IncludeTokenValue::fromEnum(IncludeToken::Always),
             [$chunk],
             [$attr1],
         );
@@ -152,7 +158,7 @@ final class IssuedTokenTest extends TestCase
         $portType = new PortType(QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'), [$attr3]);
         $serviceName = new ServiceName(
             QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
-            'PHPUnit',
+            NCNameValue::fromString('PHPUnit'),
             [$attr4],
         );
 
@@ -179,7 +185,7 @@ final class IssuedTokenTest extends TestCase
         $issuedToken = new IssuedToken(
             $requestSecurityTokenTemplate,
             $issuer,
-            IncludeToken::Always,
+            IncludeTokenValue::fromEnum(IncludeToken::Always),
             [$chunk],
             [$attr1],
         );

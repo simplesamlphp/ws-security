@@ -12,6 +12,7 @@ use SimpleSAML\WSSecurity\XML\sp_200507\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200507\AbstractTokenAssertionType;
 use SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken;
 use SimpleSAML\WSSecurity\XML\sp_200507\KerberosToken;
+use SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -72,12 +73,12 @@ final class KerberosTokenTest extends TestCase
     public function testMarshalling(): void
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
-        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_11, 'sp', 'IncludeToken', IncludeToken::Always->value);
+        $includeToken = IncludeTokenValue::fromEnum(IncludeToken::Always);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $KerberosToken = new KerberosToken([$chunk], [$includeToken, $attr]);
+        $KerberosToken = new KerberosToken([$chunk], [$includeToken->toAttribute(), $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($KerberosToken),

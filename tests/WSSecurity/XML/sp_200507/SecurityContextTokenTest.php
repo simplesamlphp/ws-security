@@ -58,12 +58,12 @@ final class SecurityContextTokenTest extends TestCase
     public function testMarshallingEmptyElement(): void
     {
         $spns = C::NS_SEC_POLICY_11;
-        $SecurityContextToken = new SecurityContextToken();
+        $securityContextToken = new SecurityContextToken();
         $this->assertEquals(
             "<sp:SecurityContextToken xmlns:sp=\"$spns\"/>",
-            strval($SecurityContextToken),
+            strval($securityContextToken),
         );
-        $this->assertTrue($SecurityContextToken->isEmptyElement());
+        $this->assertTrue($securityContextToken->isEmptyElement());
     }
 
 
@@ -78,10 +78,10 @@ final class SecurityContextTokenTest extends TestCase
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $SecurityContextToken = new SecurityContextToken([$chunk], [$includeToken, $attr]);
+        $securityContextToken = new SecurityContextToken([$chunk], [$includeToken->toAttribute(), $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($SecurityContextToken),
+            strval($securityContextToken),
         );
     }
 }

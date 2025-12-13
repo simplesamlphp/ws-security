@@ -49,8 +49,6 @@ abstract class AbstractRequestSecurityTokenTemplateType extends AbstractSpElemen
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($trustVersion);
-
         $this->setElements($elts);
         $this->setAttributesNS($namespacedAttributes);
     }
