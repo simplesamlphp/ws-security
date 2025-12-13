@@ -12,7 +12,6 @@ use SimpleSAML\WSSecurity\Utils\XPath;
 use SimpleSAML\WSSecurity\XML\sp_200507\AbstractSecureConversationTokenType;
 use SimpleSAML\WSSecurity\XML\sp_200507\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken;
-use SimpleSAML\WSSecurity\XML\sp_200507\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp_200507\Issuer;
 use SimpleSAML\WSSecurity\XML\sp_200507\SecureConversationToken;
 use SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue;
@@ -40,7 +39,6 @@ use function dirname;
  */
 #[Group('sp')]
 #[CoversClass(SecureConversationToken::class)]
-#[CoversClass(IncludeTokenTypeTrait::class)]
 #[CoversClass(AbstractSecureConversationTokenType::class)]
 #[CoversClass(AbstractSpElement::class)]
 final class SecureConversationTokenTest extends TestCase

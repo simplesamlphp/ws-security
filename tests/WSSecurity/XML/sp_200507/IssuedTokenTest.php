@@ -12,7 +12,6 @@ use SimpleSAML\WSSecurity\Utils\XPath;
 use SimpleSAML\WSSecurity\XML\sp_200507\AbstractIssuedTokenType;
 use SimpleSAML\WSSecurity\XML\sp_200507\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken;
-use SimpleSAML\WSSecurity\XML\sp_200507\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp_200507\IssuedToken;
 use SimpleSAML\WSSecurity\XML\sp_200507\Issuer;
 use SimpleSAML\WSSecurity\XML\sp_200507\RequestSecurityTokenTemplate;
@@ -41,7 +40,6 @@ use function dirname;
  */
 #[Group('sp')]
 #[CoversClass(IssuedToken::class)]
-#[CoversClass(IncludeTokenTypeTrait::class)]
 #[CoversClass(AbstractIssuedTokenType::class)]
 #[CoversClass(AbstractSpElement::class)]
 final class IssuedTokenTest extends TestCase

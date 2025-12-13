@@ -22,7 +22,7 @@ use function dirname;
  * @package simplesamlphp/ws-security
  */
 #[Group('sp')]
-#[CoversClass(WssX509Pkcs7Token10Test::class)]
+#[CoversClass(WssX509Pkcs7Token10::class)]
 #[CoversClass(AbstractQNameAssertionType::class)]
 #[CoversClass(AbstractSpElement::class)]
 final class WssX509Pkcs7Token10Test extends TestCase

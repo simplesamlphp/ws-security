@@ -12,7 +12,6 @@ use SimpleSAML\WSSecurity\XML\sp_200702\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200702\AbstractTokenAssertionType;
 use SimpleSAML\WSSecurity\XML\sp_200702\HttpsToken;
 use SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken;
-use SimpleSAML\WSSecurity\XML\sp_200702\IncludeTokenTypeTrait;
 use SimpleSAML\WSSecurity\XML\sp_200702\Type\IncludeTokenValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
@@ -30,7 +29,6 @@ use function dirname;
  */
 #[Group('sp')]
 #[CoversClass(HttpsToken::class)]
-#[CoversClass(IncludeTokenTypeTrait::class)]
 #[CoversClass(AbstractTokenAssertionType::class)]
 #[CoversClass(AbstractSpElement::class)]
 final class HttpsTokenTest extends TestCase
