@@ -7,11 +7,13 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\StringElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_unshift;
 
@@ -25,35 +27,37 @@ use function array_unshift;
 abstract class AbstractAttributedString extends AbstractWsseElement
 {
     use ExtendableAttributesTrait;
-    use StringElementTrait;
+    use TypedTextContentTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = StringValue::class;
 
 
     /**
      * AbstractAttributedString constructor
      *
-     * @param string $content
-     * @param string|null $Id
+     * @param \SimpleSAML\XMLSchema\Type\StringValue $content
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     public function __construct(
-        string $content,
-        protected ?string $Id = null,
+        StringValue $content,
+        protected ?IDValue $Id = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidNCName($Id);
-
         $this->setContent($content);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null
      */
-    public function getId(): ?string
+    public function getId(): ?IDValue
     {
         return $this->Id;
     }
@@ -65,7 +69,7 @@ abstract class AbstractAttributedString extends AbstractWsseElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -78,13 +82,13 @@ abstract class AbstractAttributedString extends AbstractWsseElement
         $Id = null;
         foreach ($nsAttributes as $i => $attr) {
             if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
-                $Id = $attr->getAttrValue();
+                $Id = IDValue::fromString($attr->getAttrValue()->getValue());
                 unset($nsAttributes[$i]);
                 break;
             }
         }
 
-        return new static($xml->textContent, $Id, $nsAttributes);
+        return new static(StringValue::fromString($xml->textContent), $Id, $nsAttributes);
     }
 
 
@@ -95,7 +99,7 @@ abstract class AbstractAttributedString extends AbstractWsseElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         $attributes = $this->getAttributesNS();
         if ($this->getId() !== null) {

@@ -6,13 +6,14 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\SerializableElementInterface;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_pop;
 
@@ -26,6 +27,7 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
 
+
     /** The namespace-attribute for the xs:anyAttribute */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
@@ -36,22 +38,19 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     /**
      * AbstractContextItemType constructor
      *
-     * @param string $Name
-     * @param string|null $Scope
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $Name
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $Scope
      * @param \SimpleSAML\WSSecurity\XML\auth\Value|null $value
      * @param \SimpleSAML\XML\SerializableElementInterface|null $child
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected string $Name,
-        protected ?string $Scope = null,
+        protected AnyURIValue $Name,
+        protected ?AnyURIValue $Scope = null,
         protected ?Value $value = null,
         ?SerializableElementInterface $child = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::validURI($Name);
-        Assert::nullOrValidURI($Scope);
-
         // One of both must exist, they can't be both null
         Assert::inArray(null, [$value, $child], SchemaViolationException::class);
         Assert::notSame($value, $child, SchemaViolationException::class);
@@ -77,9 +76,9 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     /**
      * Get the value of the Name property.
      *
-     * @return string
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
-    public function getName(): string
+    public function getName(): AnyURIValue
     {
         return $this->Name;
     }
@@ -88,9 +87,9 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     /**
      * Get the value of the Scope property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getScope(): ?string
+    public function getScope(): ?AnyURIValue
     {
         return $this->Scope;
     }
@@ -102,7 +101,7 @@ abstract class AbstractContextItemType extends AbstractAuthElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -117,8 +116,8 @@ abstract class AbstractContextItemType extends AbstractAuthElement
         Assert::maxCount($children, 1, TooManyElementsException::class);
 
         return new static(
-            self::getAttribute($xml, 'Name'),
-            self::getOptionalAttribute($xml, 'Scope'),
+            self::getAttribute($xml, 'Name', AnyURIValue::class),
+            self::getOptionalAttribute($xml, 'Scope', AnyURIValue::class, null),
             array_pop($value),
             array_pop($children),
             self::getAttributesNSFromXML($xml),
@@ -136,9 +135,9 @@ abstract class AbstractContextItemType extends AbstractAuthElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        $e->setAttribute('Name', $this->getName());
+        $e->setAttribute('Name', $this->getName()->getValue());
         if ($this->getScope() !== null) {
-            $e->setAttribute('Scope', $this->getScope());
+            $e->setAttribute('Scope', $this->getScope()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {

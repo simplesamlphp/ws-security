@@ -6,13 +6,13 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\SerializableElementInterface;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_pop;
 
@@ -25,6 +25,7 @@ abstract class AbstractPseudonymBasisType extends AbstractFedElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -54,7 +55,7 @@ abstract class AbstractPseudonymBasisType extends AbstractFedElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -87,7 +88,6 @@ abstract class AbstractPseudonymBasisType extends AbstractFedElement
             $attr->toXML($e);
         }
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {
                 $child->toXML($e);

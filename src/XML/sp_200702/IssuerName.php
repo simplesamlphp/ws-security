@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
-use SimpleSAML\XML\URIElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 /**
  * An IssuerName element
@@ -13,16 +14,9 @@ use SimpleSAML\XML\URIElementTrait;
  */
 final class IssuerName extends AbstractSpElement
 {
-    use URIElementTrait;
+    use TypedTextContentTrait;
 
 
-    /**
-     * Initialize an IssuerName.
-     *
-     * @param string $content
-     */
-    public function __construct(string $content)
-    {
-        $this->setContent($content);
-    }
+    /** @var string */
+    public const TEXTCONTENT_TYPE = AnyURIValue::class;
 }

@@ -6,15 +6,12 @@ namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Base64ElementTrait;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\XsNamespace as NS;
-
-use function array_map;
-use function explode;
-use function implode;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * A BinarySecertType element
@@ -23,37 +20,27 @@ use function implode;
  */
 abstract class AbstractBinarySecretType extends AbstractWstElement
 {
-    use Base64ElementTrait;
     use ExtendableAttributesTrait;
+    use TypedTextContentTrait;
+
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = Base64BinaryValue::class;
 
     /** @var string|\SimpleSAML\XML\XsNamespace */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
-    /** @var string[]|null */
-    protected ?array $Type;
-
 
     /**
-     * @param string $content
-     * @param (\SimpleSAML\WSSecurity\XML\wst_200512\BinarySecretTypeEnum|string)[]|null $Type
+     * @param \SimpleSAML\XMLSchema\Type\Base64BinaryValue $content
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $Type
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        string $content,
-        ?array $Type = null,
+        Base64BinaryValue $content,
+        protected ?AnyURIValue $Type = null,
         array $namespacedAttributes = [],
     ) {
-        if ($Type !== null) {
-            $Type = array_map(
-                function (BinarySecretTypeEnum|string $v): string {
-                    return ($v instanceof BinarySecretTypeEnum) ? $v->value : $v;
-                },
-                $Type,
-            );
-            Assert::allValidURI($Type, SchemaViolationException::class);
-            $this->Type = $Type;
-        }
-
         $this->setContent($content);
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -62,9 +49,9 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
     /**
      * Get the Type property.
      *
-     * @return string[]|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getType(): ?array
+    public function getType(): ?AnyURIValue
     {
         return $this->Type;
     }
@@ -76,7 +63,7 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -85,8 +72,8 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            $xml->textContent,
-            explode(' ', self::getAttribute($xml, 'Type')),
+            Base64BinaryValue::fromString($xml->textContent),
+            self::getAttribute($xml, 'Type', AnyURIValue::class),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -101,10 +88,10 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         if ($this->getType() !== null) {
-            $e->setAttribute('Type', implode(' ', $this->getType()));
+            $e->setAttribute('Type', $this->getType()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {

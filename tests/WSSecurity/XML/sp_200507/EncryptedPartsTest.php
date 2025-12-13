@@ -19,6 +19,9 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -57,9 +60,13 @@ final class EncryptedPartsTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $body = new Body();
-        $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
+        $header = new Header(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            QNameValue::fromString('name'),
+            [$attr],
+        );
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
@@ -92,26 +99,31 @@ final class EncryptedPartsTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $body = new Body();
-        $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
+        $header = new Header(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            QNameValue::fromString('name'),
+            [$attr],
+        );
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $EncryptedParts = new EncryptedParts($body, [$header], [$chunk], [$attr]);
-        $EncryptedPartsElement = $EncryptedParts->toXML();
+        $encryptedParts = new EncryptedParts($body, [$header], [$chunk], [$attr]);
+        $encryptedPartsElement = $encryptedParts->toXML();
 
         // Test for a Body
-        $xpCache = XPath::getXPath($EncryptedPartsElement);
-        $EncryptedPartsElements = XPath::xpQuery($EncryptedPartsElement, './sp:Body', $xpCache);
-        $this->assertCount(1, $EncryptedPartsElements);
+        $xpCache = XPath::getXPath($encryptedPartsElement);
+        $encryptedPartsElements = XPath::xpQuery($encryptedPartsElement, './sp:Body', $xpCache);
+        $this->assertCount(1, $encryptedPartsElements);
 
         // Test ordering of EncryptedParts contents
-        /** @psalm-var \DOMElement[] $EncryptedPartsElements */
-        $EncryptedPartsElements = XPath::xpQuery($EncryptedPartsElement, './sp:Body/following-sibling::*', $xpCache);
-        $this->assertCount(2, $EncryptedPartsElements);
-        $this->assertEquals('sp:Header', $EncryptedPartsElements[0]->tagName);
-        $this->assertEquals('ssp:Chunk', $EncryptedPartsElements[1]->tagName);
+        /** @var \DOMElement[] $encryptedPartsElements */
+        $encryptedPartsElements = XPath::xpQuery($encryptedPartsElement, './sp:Body/following-sibling::*', $xpCache);
+
+        $this->assertCount(2, $encryptedPartsElements);
+        $this->assertEquals('sp:Header', $encryptedPartsElements[0]->tagName);
+        $this->assertEquals('ssp:Chunk', $encryptedPartsElements[1]->tagName);
     }
 }

@@ -11,6 +11,7 @@ use SimpleSAML\WSSecurity\XML\wst_200502\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst_200502\Reason;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -47,7 +48,7 @@ final class ReasonTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $reason = new Reason('phpunit');
+        $reason = new Reason(StringValue::fromString('phpunit'));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

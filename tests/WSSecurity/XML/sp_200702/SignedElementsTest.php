@@ -18,6 +18,8 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -52,30 +54,35 @@ final class SignedElementsTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $xpath = new XPath('/bookstore/book[price>35.00]/title');
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $xpath = new XPath(StringValue::fromString('/bookstore/book[price>35.00]/title'));
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $SignedElements = new SignedElements([$xpath], 'urn:x-simplesamlphp:version', [$chunk], [$attr]);
-        $SignedElementsElement = $SignedElements->toXML();
+        $signedElements = new SignedElements(
+            [$xpath],
+            AnyURIValue::fromString('urn:x-simplesamlphp:version'),
+            [$chunk],
+            [$attr],
+        );
+        $signedElementsElement = $signedElements->toXML();
 
         // Test for an XPath
-        $xpCache = XMLXPath::getXPath($SignedElementsElement);
-        $SignedElementsElements = XMLXPath::xpQuery($SignedElementsElement, './sp:XPath', $xpCache);
-        $this->assertCount(1, $SignedElementsElements);
+        $xpCache = XMLXPath::getXPath($signedElementsElement);
+        $signedElementsElements = XMLXPath::xpQuery($signedElementsElement, './sp:XPath', $xpCache);
+        $this->assertCount(1, $signedElementsElements);
 
         // Test ordering of SignedElements contents
-        /** @psalm-var \DOMElement[] $SignedElementsElements */
-        $SignedElementsElements = XMLXPath::xpQuery(
-            $SignedElementsElement,
+        /** @var \DOMElement[] $signedElementsElements */
+        $signedElementsElements = XMLXPath::xpQuery(
+            $signedElementsElement,
             './sp:XPath/following-sibling::*',
             $xpCache,
         );
 
-        $this->assertCount(1, $SignedElementsElements);
-        $this->assertEquals('ssp:Chunk', $SignedElementsElements[0]->tagName);
+        $this->assertCount(1, $signedElementsElements);
+        $this->assertEquals('ssp:Chunk', $signedElementsElements[0]->tagName);
     }
 
 
@@ -87,16 +94,21 @@ final class SignedElementsTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $xpath = new XPath('/bookstore/book[price>35.00]/title');
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $xpath = new XPath(StringValue::fromString('/bookstore/book[price>35.00]/title'));
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $SignedElements = new SignedElements([$xpath], 'urn:x-simplesamlphp:version', [$chunk], [$attr]);
+        $signedElements = new SignedElements(
+            [$xpath],
+            AnyURIValue::fromString('urn:x-simplesamlphp:version'),
+            [$chunk],
+            [$attr],
+        );
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($SignedElements),
+            strval($signedElements),
         );
     }
 }

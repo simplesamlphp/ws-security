@@ -6,9 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200408;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing a wsa:ReferenceParameters element.
@@ -18,6 +18,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 final class ReferenceParameters extends AbstractWsaElement
 {
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::ANY;
@@ -51,7 +52,7 @@ final class ReferenceParameters extends AbstractWsaElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -75,7 +76,6 @@ final class ReferenceParameters extends AbstractWsaElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {
                 $child->toXML($e);

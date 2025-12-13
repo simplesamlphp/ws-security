@@ -17,6 +17,8 @@ use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -56,11 +58,11 @@ final class ProblemActionTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', 'value');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', StringValue::fromString('value'));
 
         $problemAction = new ProblemAction(
-            new Action('https://login.microsoftonline.com/login.srf', [$attr1]),
-            new SoapAction('http://www.example.com/'),
+            new Action(AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'), [$attr1]),
+            new SoapAction(AnyURIValue::fromString('http://www.example.com/')),
             [$attr1],
         );
 

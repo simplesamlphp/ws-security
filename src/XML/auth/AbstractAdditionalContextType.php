@@ -7,10 +7,10 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\XML\auth\ContextItem;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class defining the AdditionalContextType element
@@ -21,6 +21,7 @@ abstract class AbstractAdditionalContextType extends AbstractAuthElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -63,7 +64,7 @@ abstract class AbstractAdditionalContextType extends AbstractAuthElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static

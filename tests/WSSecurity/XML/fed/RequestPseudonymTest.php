@@ -15,6 +15,8 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -54,14 +56,14 @@ final class RequestPseudonymTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
         $child = DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
         );
 
         $requestPseudonym = new RequestPseudonym(
-            true,
-            false,
+            BooleanValue::fromBoolean(true),
+            BooleanValue::fromBoolean(false),
             [new Chunk($child->documentElement)],
             [$attr1],
         );

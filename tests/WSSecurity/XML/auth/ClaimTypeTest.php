@@ -20,6 +20,9 @@ use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -59,14 +62,14 @@ final class ClaimTypeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $claimType = new ClaimType(
-            C::NAMESPACE,
-            true,
-            new DisplayName('someDisplayName'),
-            new Description('someDescription'),
-            new DisplayValue('someDisplayValue'),
-            new Value('someValue'),
+            AnyURIValue::fromString(C::NAMESPACE),
+            BooleanValue::fromBoolean(true),
+            new DisplayName(StringValue::fromString('someDisplayName')),
+            new Description(StringValue::fromString('someDescription')),
+            new DisplayValue(StringValue::fromString('someDisplayValue')),
+            new Value(StringValue::fromString('someValue')),
             [$attr],
         );
 
@@ -81,14 +84,14 @@ final class ClaimTypeTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $claimType = new ClaimType(
-            C::NAMESPACE,
-            true,
-            new DisplayName('someDisplayName'),
-            new Description('someDescription'),
-            new DisplayValue('someDisplayValue'),
-            new Value('someValue'),
+            AnyURIValue::fromString(C::NAMESPACE),
+            BooleanValue::fromBoolean(true),
+            new DisplayName(StringValue::fromString('someDisplayName')),
+            new Description(StringValue::fromString('someDescription')),
+            new DisplayValue(StringValue::fromString('someDisplayValue')),
+            new Value(StringValue::fromString('someValue')),
             [$attr],
         );
         $claimTypeElement = $claimType->toXML();
@@ -99,7 +102,7 @@ final class ClaimTypeTest extends TestCase
         $this->assertCount(1, $claimTypeElements);
 
         // Test ordering of ClaimType contents
-        /** @psalm-var \DOMElement[] $claimTypeElements */
+        /** @var \DOMElement[] $claimTypeElements */
         $claimTypeElements = XPath::xpQuery($claimTypeElement, './auth:DisplayName/following-sibling::*', $xpCache);
         $this->assertCount(3, $claimTypeElements);
         $this->assertEquals('auth:Description', $claimTypeElements[0]->tagName);

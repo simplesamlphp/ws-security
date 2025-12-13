@@ -10,17 +10,18 @@
         }
     ],
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "ext-dom": "*",
         "ext-spl": "*",
 
-        "simplesamlphp/assert": "~1.8.1",
-        "simplesamlphp/saml2": "^5.0",
-        "simplesamlphp/xml-security": "~1.13.0",
-        "simplesamlphp/xml-common": "~1.25.0"
+        "simplesamlphp/assert": "~1.9",
+        "simplesamlphp/saml2": "~6.0",
+        "simplesamlphp/xml-common": "~2.4",
+        "simplesamlphp/xml-security": "~2.0",
+        "simplesamlphp/xml-soap": "~2.0"
     },
     "require-dev": {
-        "simplesamlphp/simplesamlphp-test-framework": "~1.9.2"
+        "simplesamlphp/simplesamlphp-test-framework": "~1.10"
     },
     "autoload": {
         "psr-4": {

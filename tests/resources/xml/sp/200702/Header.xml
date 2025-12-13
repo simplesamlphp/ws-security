@@ -1,1 +1,1 @@
-<sp:Header xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:ssp="urn:x-simplesamlphp:namespace" Name="ssp:name" Namespace="urn:x-simplesamlphp:namespace" ssp:attr1="value1"/>
+<sp:Header xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:ssp="urn:x-simplesamlphp:namespace" Name="name" Namespace="urn:x-simplesamlphp:namespace" ssp:attr1="value1"/>

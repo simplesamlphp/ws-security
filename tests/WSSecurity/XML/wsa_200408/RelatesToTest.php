@@ -14,6 +14,9 @@ use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -53,12 +56,16 @@ final class RelatesToTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', 'value');
-        $RelatesTo = new RelatesTo('https://login.microsoftonline.com/login.srf', 'ssp:Chunk', [$attr1]);
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', StringValue::fromString('value'));
+        $relatesTo = new RelatesTo(
+            AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'),
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
+            [$attr1],
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($RelatesTo),
+            strval($relatesTo),
         );
     }
 }

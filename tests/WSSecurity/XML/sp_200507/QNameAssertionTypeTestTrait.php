@@ -6,6 +6,7 @@ namespace SimpleSAML\Test\WSSecurity\XML\sp_200507;
 
 use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\XML\Attribute as XMLAttribute;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function strval;
 
@@ -24,7 +25,7 @@ trait QNameAssertionTypeTestTrait
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $qns = new static::$testedClass([$attr]);
 
         $this->assertEquals(

@@ -16,6 +16,7 @@ class Constants extends \SimpleSAML\SAML2\Constants
      * The namespace for WS-Addressing protocol.
      */
     public const NS_ADDR_200408 = 'http://schemas.xmlsoap.org/ws/2004/08/addressing';
+
     public const NS_ADDR_200508 = 'http://www.w3.org/2005/08/addressing';
 
     /**
@@ -37,6 +38,7 @@ class Constants extends \SimpleSAML\SAML2\Constants
      * The namespace for WS-Trust protocol.
      */
     public const NS_TRUST_200502 = 'http://schemas.xmlsoap.org/ws/2005/02/trust';
+
     public const NS_TRUST_200512 = 'http://docs.oasis-open.org/ws-sx/ws-trust/200512/';
 
     /**
@@ -48,6 +50,7 @@ class Constants extends \SimpleSAML\SAML2\Constants
      * The namespace for the Web Service Security Policy protocol.
      */
     public const NS_SEC_POLICY_11 = 'http://schemas.xmlsoap.org/ws/2005/07/securitypolicy';
+
     public const NS_SEC_POLICY_12 = 'http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702';
 
     /**
@@ -79,15 +82,25 @@ class Constants extends \SimpleSAML\SAML2\Constants
      * The schema-defined wsa fault codes
      */
     public const WSA_FAULT_INVALID_ADDRESSING_HEADER = 'InvalidAddressingHeader';
+
     public const WSA_FAULT_INVALID_ADDRESS = 'InvalidAddress';
+
     public const WSA_FAULT_INVALID_EPR = 'InvalidEPR';
+
     public const WSA_FAULT_INVALID_CARDINALITY = 'InvalidCardinality';
+
     public const WSA_FAULT_MISSING_ADDRESS_IN_EPR = 'MissingAddressInEPR';
+
     public const WSA_FAULT_DUPLICATE_MESSAGEID = 'DupicateMessageID';
+
     public const WSA_FAULT_ACTION_MISMATCH = 'ActionMismatch';
+
     public const WSA_FAULT_MESSAGE_ADDRESSING_HEADER_REQUIRED = 'MessageAddressingHeaderRequired';
+
     public const WSA_FAULT_DESTINATION_UNREACHABLE = 'DestinationUnreachable';
+
     public const WSA_FAULT_ACTION_NOT_SUPPORTED = 'ActionNotSupported';
+
     public const WSA_FAULT_ENDPOINT_UNAVAILABLE = 'EndpointUnavailable';
 
     public const FAULT_CODES = [
@@ -107,6 +120,7 @@ class Constants extends \SimpleSAML\SAML2\Constants
     /**
      */
     public const WST_REFID_PIN = 'http://docs.oasis-open.org/ws-sx/ws-trust/200802/challenge/PIN';
+
     public const WST_REFID_OTP = 'http://docs.oasis-open.org/ws-sx/ws-trust/200802/challenge/OTP';
 
     /**

@@ -15,6 +15,9 @@ use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\Type\UnsignedIntValue;
 
 use function dirname;
 
@@ -36,6 +39,7 @@ final class FreshnessTest extends TestCase
     /** @var \SimpleSAML\XML\Attribute $attr */
     protected static XMLAttribute $attr;
 
+
     /**
      */
     public static function setUpBeforeClass(): void
@@ -56,8 +60,8 @@ final class FreshnessTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
-        $freshness = new Freshness(123, true, [$attr1]);
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $freshness = new Freshness(UnsignedIntValue::fromInteger(123), BooleanValue::fromBoolean(true), [$attr1]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

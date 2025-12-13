@@ -17,6 +17,7 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -42,6 +43,7 @@ final class WebBindingTest extends TestCase
     /** @var \SimpleSAML\XML\Attribute $attr */
     protected static XMLAttribute $attr;
 
+
     /**
      */
     public static function setUpBeforeClass(): void
@@ -52,7 +54,7 @@ final class WebBindingTest extends TestCase
             dirname(__FILE__, 4) . '/resources/xml/fed_WebBinding.xml',
         );
 
-        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
 
         self::$chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',

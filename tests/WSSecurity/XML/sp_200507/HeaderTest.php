@@ -14,6 +14,9 @@ use SimpleSAML\WSSecurity\XML\sp_200507\Header;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -51,8 +54,12 @@ final class HeaderTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
+        $header = new Header(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            QNameValue::fromString('name'),
+            [$attr],
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

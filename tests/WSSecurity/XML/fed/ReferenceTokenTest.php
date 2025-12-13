@@ -25,6 +25,9 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -99,14 +102,14 @@ final class ReferenceTokenTest extends TestCase
     {
         $doc = DOMDocumentFactory::fromString('<root/>');
 
-        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
-        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', 'testval2');
-        $attr3 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr3', 'testval3');
-        $attr4 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr4', 'testval4');
-        $attr5 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr5', 'testval5');
-        $attr6 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr6', 'testval6');
-        $attr7 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr7', 'testval7');
-        $attr8 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr8', 'testval8');
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', StringValue::fromString('testval2'));
+        $attr3 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr3', StringValue::fromString('testval3'));
+        $attr4 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr4', StringValue::fromString('testval4'));
+        $attr5 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr5', StringValue::fromString('testval5'));
+        $attr6 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr6', StringValue::fromString('testval6'));
+        $attr7 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr7', StringValue::fromString('testval7'));
+        $attr8 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr8', StringValue::fromString('testval8'));
 
         $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)], [$attr4]);
         $metadata = new Metadata([new Chunk(self::$metadataContent)], [$attr5]);
@@ -114,16 +117,22 @@ final class ReferenceTokenTest extends TestCase
         $some = new Chunk(self::$some);
 
         $referenceEPR = new ReferenceEPR(
-            new Address('https://login.microsoftonline.com/login.srf', [$attr3]),
+            new Address(
+                AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'),
+                [$attr3],
+            ),
             $referenceParameters,
             $metadata,
             [$chunk],
             [$attr2],
         );
 
-        $referenceDigest = new ReferenceDigest('/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI=', [$attr6]);
-        $referenceType = new ReferenceType(C::NAMESPACE, [$attr7]);
-        $serialNo = new SerialNo(C::NAMESPACE, [$attr8]);
+        $referenceDigest = new ReferenceDigest(
+            Base64BinaryValue::fromString('/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI='),
+            [$attr6],
+        );
+        $referenceType = new ReferenceType(AnyURIValue::fromString(C::NAMESPACE), [$attr7]);
+        $serialNo = new SerialNo(AnyURIValue::fromString(C::NAMESPACE), [$attr8]);
 
         $referenceToken = new ReferenceToken(
             [$referenceEPR],

@@ -6,7 +6,8 @@ namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 
 /**
  * An Issuer element
@@ -16,6 +17,7 @@ use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementT
 final class Issuer extends AbstractEndpointReferenceType implements SchemaValidatableElementInterface
 {
     use SchemaValidatableElementTrait;
+
 
     /** @var string */
     public const NS = C::NS_TRUST_200512;

@@ -11,6 +11,7 @@ use SimpleSAML\WSSecurity\XML\auth\AbstractAuthElement;
 use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -48,7 +49,7 @@ final class ValueTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $value = new Value('MyValue');
+        $value = new Value(StringValue::fromString('MyValue'));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

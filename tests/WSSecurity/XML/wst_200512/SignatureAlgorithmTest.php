@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wst_200512\SignatureAlgorithm;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 
@@ -50,7 +51,7 @@ final class SignatureAlgorithmTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $signatureAlgorithm = new SignatureAlgorithm(C::NAMESPACE);
+        $signatureAlgorithm = new SignatureAlgorithm(AnyURIValue::fromString(C::NAMESPACE));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

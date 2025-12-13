@@ -7,8 +7,10 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 /**
  * Class defining the KeyIdentifierType element
@@ -20,29 +22,27 @@ abstract class AbstractKeyIdentifierType extends AbstractEncodedString
     /**
      * AbstractKeyIdentifierType constructor
      *
-     * @param string $content
-     * @param string|null $valueType
-     * @param string|null $Id
-     * @param string|null $EncodingType
+     * @param \SimpleSAML\XMLSchema\Type\StringValue $content
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $valueType
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $EncodingType
      */
     final public function __construct(
-        string $content,
-        protected ?string $valueType = null,
-        ?string $Id = null,
-        ?string $EncodingType = null,
+        StringValue $content,
+        ?IDValue $Id = null,
         array $namespacedAttributes = [],
+        protected ?AnyURIValue $valueType = null,
+        ?AnyURIValue $EncodingType = null,
     ) {
-        Assert::nullOrValidURI($valueType, SchemaViolationException::class);
-
-        parent::__construct($content, $Id, $EncodingType, $namespacedAttributes);
+        parent::__construct($content, $Id, $namespacedAttributes, $EncodingType);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getValueType(): ?string
+    public function getValueType(): ?AnyURIValue
     {
         return $this->valueType;
     }
@@ -54,7 +54,7 @@ abstract class AbstractKeyIdentifierType extends AbstractEncodedString
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -67,18 +67,18 @@ abstract class AbstractKeyIdentifierType extends AbstractEncodedString
         $Id = null;
         foreach ($nsAttributes as $i => $attr) {
             if ($attr->getNamespaceURI() === C::NS_SEC_UTIL && $attr->getAttrName() === 'Id') {
-                $Id = $attr->getAttrValue();
+                $Id = IDValue::fromString($attr->getAttrValue()->getValue());
                 unset($nsAttributes[$i]);
                 break;
             }
         }
 
         return new static(
-            $xml->textContent,
-            self::getOptionalAttribute($xml, 'ValueType', null),
+            StringValue::fromString($xml->textContent),
             $Id,
-            self::getOptionalAttribute($xml, 'EncodingType', null),
             $nsAttributes,
+            self::getOptionalAttribute($xml, 'ValueType', AnyURIValue::class, null),
+            self::getOptionalAttribute($xml, 'EncodingType', AnyURIValue::class, null),
         );
     }
 
@@ -94,7 +94,7 @@ abstract class AbstractKeyIdentifierType extends AbstractEncodedString
         $e = parent::toXML($parent);
 
         if ($this->getValueType() !== null) {
-            $e->setAttribute('ValueType', $this->getValueType());
+            $e->setAttribute('ValueType', $this->getValueType()->getValue());
         }
 
         return $e;

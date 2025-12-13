@@ -1,5 +1,5 @@
-<wsa10:ReferenceParameters xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:test="urn:test:something" test:attr1="testval1">
-  <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+<wsa10:ReferenceParameters xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:test="urn:test:something" xmlns:m="https://www.w3schools.com/prices" test:attr1="testval1">
+  <m:GetPrice>
     <m:Item>Apples</m:Item>
   </m:GetPrice>
 </wsa10:ReferenceParameters>

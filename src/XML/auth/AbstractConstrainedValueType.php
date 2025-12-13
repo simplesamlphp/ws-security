@@ -6,15 +6,16 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
-use function array_filter;
 use function array_merge;
 use function array_pop;
+use function var_export;
 
 /**
  * Class defining the ConstrainedValueType element
@@ -24,6 +25,7 @@ use function array_pop;
 abstract class AbstractConstrainedValueType extends AbstractAuthElement
 {
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
@@ -41,12 +43,12 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
      *   \SimpleSAML\WSSecurity\XML\auth\ValueOneOf
      * ) $value
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
-     * @param bool|null $assertConstraint
+     * @param \SimpleSAML\XMLSchema\Type\BooleanValue|null $assertConstraint
      */
     final public function __construct(
         protected ValueLessThan|ValueLessThanOrEqual|ValueGreaterThan|ValueGreaterThanOrEqual|ValueInRangen|ValueOneOf $value,
         array $children = [],
-        protected ?bool $assertConstraint = null,
+        protected ?BooleanValue $assertConstraint = null,
     ) {
         $this->setElements($children);
     }
@@ -73,9 +75,9 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
     /**
      * Get the value of the assertConstraint property.
      *
-     * @return bool|null
+     * @return \SimpleSAML\XMLSchema\Type\BooleanValue|null
      */
-    public function getAssertConstraint(): ?bool
+    public function getAssertConstraint(): ?BooleanValue
     {
         return $this->assertConstraint;
     }
@@ -87,7 +89,7 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -102,21 +104,21 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
         $valueInRangen = ValueInRangen::getChildrenOfClass($xml);
         $valueOneOf = ValueOneOf::getChildrenOfClass($xml);
 
-        $value = array_filter(array_merge(
+        $value = array_merge(
             $valueLessThan,
             $valueLessThanOrEqual,
             $valueGreaterThan,
             $valueGreaterThanOrEqual,
             $valueInRangen,
             $valueOneOf,
-        ));
+        );
         Assert::minCount($value, 1, MissingElementException::class);
         Assert::maxCount($value, 1, TooManyElementsException::class);
 
         return new static(
             array_pop($value),
             self::getChildElementsFromXML($xml),
-            self::getOptionalBooleanAttribute($xml, 'AssertConstraint', null),
+            self::getOptionalAttribute($xml, 'AssertConstraint', BooleanValue::class, null),
         );
     }
 
@@ -132,12 +134,11 @@ abstract class AbstractConstrainedValueType extends AbstractAuthElement
         $e = $this->instantiateParentElement($parent);
 
         if ($this->getAssertConstraint() !== null) {
-            $e->setAttribute('AssertConstraint', $this->getAssertConstraint() ? 'true' : 'false');
+            $e->setAttribute('AssertConstraint', var_export($this->getAssertConstraint()->toBoolean(), true));
         }
 
         $this->getValue()->toXML($e);
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {
                 $child->toXML($e);

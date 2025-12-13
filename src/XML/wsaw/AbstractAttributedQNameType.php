@@ -6,8 +6,9 @@ namespace SimpleSAML\WSSecurity\XML\wsaw;
 
 use DOMElement;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\QNameElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Abstract class defining the AttributedQName type
@@ -17,20 +18,24 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractAttributedQNameType extends AbstractWsawElement
 {
     use ExtendableAttributesTrait;
-    use QNameElementTrait;
+    use TypedTextContentTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = QNameValue::class;
 
 
     /**
      * AbstractAttributedQNameType constructor
      *
-     * @param string $value
+     * @param \SimpleSAML\XMLSchema\Type\QNameValue $value
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     public function __construct(
-        string $value,
+        QNameValue $value,
         array $namespacedAttributes = [],
     ) {
         $this->setContent($value);
@@ -47,7 +52,7 @@ abstract class AbstractAttributedQNameType extends AbstractWsawElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

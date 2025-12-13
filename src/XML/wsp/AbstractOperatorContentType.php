@@ -9,10 +9,10 @@ use InvalidArgumentException;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\Constants as C;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\SerializableElementInterface;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing a wsp:OperatorContentType element.
@@ -24,6 +24,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractOperatorContentType extends AbstractWspElement
 {
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
@@ -90,7 +91,7 @@ abstract class AbstractOperatorContentType extends AbstractWspElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -135,8 +136,9 @@ abstract class AbstractOperatorContentType extends AbstractWspElement
         }
 
         foreach ($this->getElements() as $c) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $c */
-            $c->toXML($e);
+            if (!$c->isEmptyElement()) {
+                $c->toXML($e);
+            }
         }
 
         return $e;

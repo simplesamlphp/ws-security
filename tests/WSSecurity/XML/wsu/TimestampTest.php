@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsu;
 
-use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -13,6 +12,8 @@ use SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement;
 use SimpleSAML\WSSecurity\XML\wsu\Created;
 use SimpleSAML\WSSecurity\XML\wsu\Expires;
 use SimpleSAML\WSSecurity\XML\wsu\Timestamp;
+use SimpleSAML\WSSecurity\XML\wsu\Type\DateTimeValue;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -55,9 +56,9 @@ final class TimestampTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $created = new Created(new DateTimeImmutable('2001-09-13T08:42:00Z'));
-        $expires = new Expires(new DateTimeImmutable('2001-10-13T09:00:00Z'));
-        $timestamp = new Timestamp($created, $expires, 'abc123', [], []);
+        $created = new Created(DateTimeValue::fromString('2001-09-13T08:42:00Z'));
+        $expires = new Expires(DateTimeValue::fromString('2001-10-13T09:00:00Z'));
+        $timestamp = new Timestamp($created, $expires, IDValue::fromString('abc123'), [], []);
 
         $this->assertFalse($timestamp->isEmptyElement());
         $this->assertEquals(

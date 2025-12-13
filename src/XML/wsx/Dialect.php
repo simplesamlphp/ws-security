@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsx;
 
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XML\URIElementTrait;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 /**
  * An Dialect element
@@ -15,14 +17,9 @@ use SimpleSAML\XML\URIElementTrait;
 final class Dialect extends AbstractWsxElement implements SchemaValidatableElementInterface
 {
     use SchemaValidatableElementTrait;
-    use URIElementTrait;
+    use TypedTextContentTrait;
 
 
-    /**
-     * @param string $content
-     */
-    public function __construct(string $content)
-    {
-        $this->setContent($content);
-    }
+    /** @var string */
+    public const TEXTCONTENT_TYPE = AnyURIValue::class;
 }

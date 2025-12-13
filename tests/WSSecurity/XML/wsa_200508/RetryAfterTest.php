@@ -7,13 +7,15 @@ namespace SimpleSAML\Test\WSSecurity\XML\wsa_200508;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractAttributedLongType;
+use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractAttributedUnsignedLongType;
 use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractWsaElement;
 use SimpleSAML\WSSecurity\XML\wsa_200508\RetryAfter;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\Type\UnsignedLongValue;
 
 use function dirname;
 use function strval;
@@ -25,7 +27,7 @@ use function strval;
  */
 #[Group('wsa')]
 #[CoversClass(RetryAfter::class)]
-#[CoversClass(AbstractAttributedLongType::class)]
+#[CoversClass(AbstractAttributedUnsignedLongType::class)]
 #[CoversClass(AbstractWsaElement::class)]
 final class RetryAfterTest extends TestCase
 {
@@ -53,8 +55,8 @@ final class RetryAfterTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', 'value');
-        $retryAfter = new RetryAfter('1234567890', [$attr]);
+        $attr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test', StringValue::fromString('value'));
+        $retryAfter = new RetryAfter(UnsignedLongValue::fromString('1234567890'), [$attr]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

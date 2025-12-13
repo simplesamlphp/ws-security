@@ -6,7 +6,7 @@ namespace SimpleSAML\WSSecurity\XML\wsa_200508;
 
 use DOMElement;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class representing WS-addressing ProblemActionType.
@@ -20,6 +20,7 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractProblemActionType extends AbstractWsaElement
 {
     use ExtendableAttributesTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;

@@ -6,10 +6,10 @@ namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class defining the IssuerNameType element
@@ -20,6 +20,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
 {
     use ExtendableAttributesTrait;
 
+
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
@@ -27,23 +28,21 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
     /**
      * AbstractIssuerNameType constructor
      *
-     * @param string $Uri
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $Uri
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected string $Uri,
+        protected AnyURIValue $Uri,
         array $namespacedAttributes = [],
     ) {
-        Assert::validURI($Uri, SchemaViolationException::class);
-
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
-    public function getUri(): string
+    public function getUri(): AnyURIValue
     {
         return $this->Uri;
     }
@@ -55,7 +54,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -64,7 +63,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            self::getAttribute($xml, 'Uri'),
+            self::getAttribute($xml, 'Uri', AnyURIValue::class),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -79,7 +78,7 @@ abstract class AbstractIssuerNameType extends AbstractFedElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = parent::instantiateParentElement($parent);
-        $e->setAttribute('Uri', $this->getUri());
+        $e->setAttribute('Uri', $this->getUri()->getValue());
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

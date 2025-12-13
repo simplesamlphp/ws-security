@@ -6,14 +6,13 @@ namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
-use ValueError;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_pop;
-use function is_string;
 use function sprintf;
 
 /**
@@ -27,6 +26,7 @@ abstract class AbstractSecureConversationTokenType extends AbstractSpElement
     use ExtendableElementTrait;
     use IncludeTokenTypeTrait;
 
+
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
 
@@ -35,7 +35,7 @@ abstract class AbstractSecureConversationTokenType extends AbstractSpElement
 
     /** The exclusions for the xs:anyAttribute element */
     public const XS_ANY_ATTR_EXCLUSIONS = [
-        [null, 'IncludeToken'],
+        ['http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702', 'IncludeToken'],
     ];
 
 
@@ -43,13 +43,13 @@ abstract class AbstractSecureConversationTokenType extends AbstractSpElement
      * SecureConversationTokenType constructor.
      *
      * @param \SimpleSAML\WSSecurity\XML\sp_200507\Issuer|null $issuer
-     * @param \SimpleSAML\WSSecurity\XML\sp_200507\IncludeToken|string|null $includeToken
+     * @param \SimpleSAML\WSSecurity\XML\sp_200507\Type\IncludeTokenValue|null $includeToken
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?Issuer $issuer,
-        IncludeToken|string|null $includeToken = null,
+        ?IncludeTokenValue $includeToken = null,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
@@ -92,7 +92,7 @@ abstract class AbstractSecureConversationTokenType extends AbstractSpElement
      * @param \DOMElement $xml The XML element we should load.
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -107,15 +107,9 @@ abstract class AbstractSecureConversationTokenType extends AbstractSpElement
 
         $issuer = Issuer::getChildrenOfClass($xml);
 
-        $includeToken = self::getOptionalAttribute($xml, 'IncludeToken', null);
-        try {
-            $includeToken = IncludeToken::from($includeToken);
-        } catch (ValueError) {
-        }
-
         return new static(
             array_pop($issuer),
-            $includeToken,
+            self::getOptionalAttribute($xml, 'IncludeToken', IncludeTokenValue::class, null),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -133,10 +127,7 @@ abstract class AbstractSecureConversationTokenType extends AbstractSpElement
         $e = $this->instantiateParentElement($parent);
 
         if ($this->getIncludeToken() !== null) {
-            $e->setAttribute(
-                'IncludeToken',
-                is_string($this->getIncludeToken()) ? $this->getIncludeToken() : $this->getIncludeToken()->value,
-            );
+            $e->setAttribute('IncludeToken', $this->getIncludeToken()->getValue());
         }
 
         if ($this->getIssuer() !== null) {
@@ -144,7 +135,6 @@ abstract class AbstractSecureConversationTokenType extends AbstractSpElement
         }
 
         foreach ($this->getElements() as $elt) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
             $elt->toXML($e);
         }
 

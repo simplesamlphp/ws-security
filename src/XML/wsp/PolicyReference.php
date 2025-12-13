@@ -6,13 +6,13 @@ namespace SimpleSAML\WSSecurity\XML\wsp;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
-use SimpleSAML\XML\XsNamespace as NS;
-
-use function str_replace;
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class defining the PolicyReference element
@@ -24,6 +24,7 @@ final class PolicyReference extends AbstractWspElement implements SchemaValidata
     use ExtendableAttributesTrait;
     use SchemaValidatableElementTrait;
 
+
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
 
@@ -31,47 +32,43 @@ final class PolicyReference extends AbstractWspElement implements SchemaValidata
     /**
      * Initialize a wsp:PolicyReference
      *
-     * @param string $URI
-     * @param string|null $Digest
-     * @param string $DigestAlgorithm
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $URI
+     * @param \SimpleSAML\XMLSchema\Type\Base64BinaryValue|null $Digest
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $DigestAlgorithm
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     public function __construct(
-        protected string $URI,
-        protected ?string $Digest = null,
-        protected ?string $DigestAlgorithm = 'http://schemas.xmlsoap.org/ws/2004/09/policy/Sha1Exc',
+        protected AnyURIValue $URI,
+        protected ?Base64BinaryValue $Digest = null,
+        protected ?AnyURIValue $DigestAlgorithm = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::validURI($URI, SchemaViolationException::class);
-        Assert::nullOrValidBase64($Digest, SchemaViolationException::class);
-        Assert::nullOrValidURI($DigestAlgorithm, SchemaViolationException::class);
-
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
-    public function getURI(): string
+    public function getURI(): AnyURIValue
     {
         return $this->URI;
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\Base64BinaryValue|null
      */
-    public function getDigest(): ?string
+    public function getDigest(): ?Base64BinaryValue
     {
-        return $this->Digest ? str_replace(["\f", "\r", "\n", "\t", "\v", ' '], '', $this->Digest) : null;
+        return $this->Digest;
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getDigestAlgorithm(): ?string
+    public function getDigestAlgorithm(): ?AnyURIValue
     {
         return $this->DigestAlgorithm;
     }
@@ -83,7 +80,7 @@ final class PolicyReference extends AbstractWspElement implements SchemaValidata
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -108,9 +105,9 @@ final class PolicyReference extends AbstractWspElement implements SchemaValidata
         }
 
         return new static(
-            self::getAttribute($xml, 'URI'),
-            self::getOptionalAttribute($xml, 'Digest', null),
-            self::getOptionalAttribute($xml, 'DigestAlgorithm', null),
+            self::getAttribute($xml, 'URI', AnyURIValue::class),
+            self::getOptionalAttribute($xml, 'Digest', Base64BinaryValue::class, null),
+            self::getOptionalAttribute($xml, 'DigestAlgorithm', AnyURIValue::class, null),
             $namespacedAttributes,
         );
     }
@@ -125,14 +122,14 @@ final class PolicyReference extends AbstractWspElement implements SchemaValidata
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('URI', $this->getURI());
+        $e->setAttribute('URI', $this->getURI()->getValue());
 
         if ($this->getDigest() !== null) {
-            $e->setAttribute('Digest', $this->getDigest());
+            $e->setAttribute('Digest', $this->getDigest()->getValue());
         }
 
         if ($this->getDigestAlgorithm() !== null) {
-            $e->setAttribute('DigestAlgorithm', $this->getDigestAlgorithm());
+            $e->setAttribute('DigestAlgorithm', $this->getDigestAlgorithm()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {

@@ -17,11 +17,15 @@ use SimpleSAML\WSSecurity\XML\wsp\Policy;
 use SimpleSAML\WSSecurity\XML\wsp\PolicyAttachment;
 use SimpleSAML\WSSecurity\XML\wsp\PolicyReference;
 use SimpleSAML\WSSecurity\XML\wsse\Security;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -60,11 +64,11 @@ final class PolicyAttachmentTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
-        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', 'testval2');
-        $attr3 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr3', 'testval3');
-        $attr4 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr4', 'testval4');
-        $attr5 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr5', 'testval5');
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', StringValue::fromString('testval2'));
+        $attr3 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr3', StringValue::fromString('testval3'));
+        $attr4 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr4', StringValue::fromString('testval4'));
+        $attr5 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr5', StringValue::fromString('testval5'));
 
         $some = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
@@ -77,17 +81,23 @@ final class PolicyAttachmentTest extends TestCase
         )->documentElement);
 
         $appliesTo = new AppliesTo(
-            [new EndpointReference(new Address('http://www.fabrikam123.example.com/acct'))],
+            [
+                new EndpointReference(
+                    new Address(
+                        AnyURIValue::fromString('http://www.fabrikam123.example.com/acct'),
+                    ),
+                ),
+            ],
             [$attr2],
         );
 
-        $Id = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', 'MyId');
-        $policy = new Policy('phpunit', $Id, [new ExactlyOne([])], [$other], [$attr3]);
+        $Id = IDValue::fromString('MyId');
+        $policy = new Policy([new ExactlyOne([])], [$other], AnyURIValue::fromString('phpunit'), $Id, [$attr3]);
 
         $policyReference = new PolicyReference(
-            'urn:x-simplesamlphp:phpunit',
-            '/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI=',
-            'http://schemas.xmlsoap.org/ws/2004/09/policy/Sha1Exc',
+            AnyURIValue::fromString('urn:x-simplesamlphp:phpunit'),
+            Base64BinaryValue::fromString('/CTj03d1DB5e2t7CTo9BEzCf5S9NRzwnBgZRlm32REI='),
+            AnyURIValue::fromString('http://schemas.xmlsoap.org/ws/2004/09/policy/Sha1Exc'),
             [$attr4],
         );
 

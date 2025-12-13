@@ -6,11 +6,12 @@ namespace SimpleSAML\WSSecurity\XML\wsu;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\URIElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Abstract class defining the AttributedURI type
@@ -20,7 +21,11 @@ use SimpleSAML\XML\XsNamespace as NS;
 abstract class AbstractAttributedURI extends AbstractWsuElement
 {
     use ExtendableAttributesTrait;
-    use URIElementTrait;
+    use TypedTextContentTrait;
+
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = AnyURIValue::class;
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -29,13 +34,13 @@ abstract class AbstractAttributedURI extends AbstractWsuElement
     /**
      * AbstractAttributedURI constructor
      *
-     * @param string $uri
-     * @param string|null $Id
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $uri
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final protected function __construct(
-        string $uri,
-        protected ?string $Id = null,
+        AnyURIValue $uri,
+        protected ?IDValue $Id = null,
         array $namespacedAttributes = [],
     ) {
         Assert::nullOrValidNCName($Id);
@@ -46,9 +51,9 @@ abstract class AbstractAttributedURI extends AbstractWsuElement
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null
      */
-    public function getId(): ?string
+    public function getId(): ?IDValue
     {
         return $this->Id;
     }
@@ -60,7 +65,7 @@ abstract class AbstractAttributedURI extends AbstractWsuElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -70,10 +75,10 @@ abstract class AbstractAttributedURI extends AbstractWsuElement
 
         $Id = null;
         if ($xml->hasAttributeNS(static::NS, 'Id')) {
-            $Id = $xml->getAttributeNS(static::NS, 'Id');
+            $Id = IDValue::fromString($xml->getAttributeNS(static::NS, 'Id'));
         }
 
-        return new static($xml->textContent, $Id, self::getAttributesNSFromXML($xml));
+        return new static(AnyURIValue::fromString($xml->textContent), $Id, self::getAttributesNSFromXML($xml));
     }
 
 
@@ -84,11 +89,11 @@ abstract class AbstractAttributedURI extends AbstractWsuElement
     final public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         $attributes = $this->getAttributesNS();
         if ($this->getId() !== null) {
-            $attributes[] = new XMLAttribute(static::NS, 'wsu', 'Id', $this->getId());
+            $this->getId()->toAttribute()->toXML($e);
         }
 
         foreach ($attributes as $attr) {

@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wst_200502\AuthenticationType;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 use function dirname;
 
@@ -52,7 +53,7 @@ final class AuthenticationTypeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $authenticationType = new AuthenticationType(C::NAMESPACE);
+        $authenticationType = new AuthenticationType(AnyURIValue::fromString(C::NAMESPACE));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

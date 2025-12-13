@@ -17,6 +17,8 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -33,6 +35,7 @@ final class MetadataReferenceTest extends TestCase
 {
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
+
 
     /** @var \DOMElement $referenceParametersContent */
     protected static DOMElement $referenceParametersContent;
@@ -68,13 +71,13 @@ final class MetadataReferenceTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', 'value1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', 'value2');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', StringValue::fromString('value1'));
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', StringValue::fromString('value2'));
 
         $chunk = new Chunk(self::$customContent);
 
         $endpointReference = new EndpointReference(
-            new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
+            new Address(AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'), [$attr2]),
             null,
             null,
             [$chunk],

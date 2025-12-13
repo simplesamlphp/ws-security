@@ -40,8 +40,8 @@ trait NestedPolicyTypeTestTrait
     public function testMarshallingWithoutNSAttr(): void
     {
         $xml = <<<XML
-<%s:%s xmlns:%s="%s">
-  <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>
+<%s:%s xmlns:%s="%s" xmlns:ssp="urn:x-simplesamlphp:namespace">
+  <ssp:Chunk>Some</ssp:Chunk>
 </%s:%s>
 XML;
         $localName = static::$testedClass::getLocalName();
@@ -108,8 +108,8 @@ XML;
     public function testUnmarshallingWithoutNSAttr(): void
     {
         $xml = <<<XML
-<%s:%s xmlns:%s="%s">
-  <ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>
+<%s:%s xmlns:%s="%s" xmlns:ssp="urn:x-simplesamlphp:namespace">
+  <ssp:Chunk>Some</ssp:Chunk>
 </%s:%s>
 XML;
         $localName = static::$testedClass::getLocalName();

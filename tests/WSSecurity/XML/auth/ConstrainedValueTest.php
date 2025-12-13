@@ -20,6 +20,8 @@ use SimpleSAML\WSSecurity\XML\auth\ValueLessThanOrEqual;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 //use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -48,19 +50,19 @@ final class ConstrainedValueTest extends TestCase
     {
         self::$resourcePath = dirname(__FILE__, 4) . '/resources/xml/';
 
-        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
         $child = DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
         );
 
-/**
+        /**
         self::$structuredValue = new StructuredValue(
             [new Chunk($child->documentElement)],
             [$attr1],
         );
-*/
+        */
 
-        self::$value = new Value('MyValue');
+        self::$value = new Value(StringValue::fromString('MyValue'));
     }
 
 
@@ -91,7 +93,7 @@ final class ConstrainedValueTest extends TestCase
          * ) $item
          */
         $item = new $class(self::$value, null);
-        $constrainedValue = new ConstrainedValue($item, [], true);
+        $constrainedValue = new ConstrainedValue($item, [], BooleanValue::fromBoolean(true));
 
         $this->assertEquals(
             $xmlRepresentation->saveXML($xmlRepresentation->documentElement),

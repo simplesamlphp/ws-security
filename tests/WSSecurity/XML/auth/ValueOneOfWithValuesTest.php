@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\WSSecurity\XML\auth\ValueOneOf;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -51,8 +52,8 @@ final class ValueOneOfWithValuesTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $value1 = new Value('MyValue');
-        $value2 = new Value('MyOtherValue');
+        $value1 = new Value(StringValue::fromString('MyValue'));
+        $value2 = new Value(StringValue::fromString('MyOtherValue'));
         $valueOneOf = new ValueOneOf([$value1, $value2]);
 
         $this->assertEquals(

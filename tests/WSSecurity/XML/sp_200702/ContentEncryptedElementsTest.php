@@ -18,6 +18,8 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -52,15 +54,15 @@ final class ContentEncryptedElementsTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $xpath = new XPath('/bookstore/book[price>35.00]/title');
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $xpath = new XPath(StringValue::fromString('/bookstore/book[price>35.00]/title'));
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $contentEncryptedElements = new ContentEncryptedElements(
             [$xpath],
-            'urn:x-simplesamlphp:version',
+            AnyURIValue::fromString('urn:x-simplesamlphp:version'),
             [$chunk],
             [$attr],
         );
@@ -76,12 +78,13 @@ final class ContentEncryptedElementsTest extends TestCase
         $this->assertCount(1, $contentEncryptedElementsElements);
 
         // Test ordering of ContentEncryptedElements contents
-        /** @psalm-var \DOMElement[] $contentEncryptedElementsElements */
+        /** @var \DOMElement[] $contentEncryptedElementsElements */
         $contentEncryptedElementsElements = XMLXPath::xpQuery(
             $contentEncryptedElementsElement,
             './sp:XPath/following-sibling::*',
             $xpCache,
         );
+
         $this->assertCount(1, $contentEncryptedElementsElements);
         $this->assertEquals('ssp:Chunk', $contentEncryptedElementsElements[0]->tagName);
     }
@@ -95,15 +98,15 @@ final class ContentEncryptedElementsTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $xpath = new XPath('/bookstore/book[price>35.00]/title');
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $xpath = new XPath(StringValue::fromString('/bookstore/book[price>35.00]/title'));
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
         $contentEncryptedElements = new ContentEncryptedElements(
             [$xpath],
-            'urn:x-simplesamlphp:version',
+            AnyURIValue::fromString('urn:x-simplesamlphp:version'),
             [$chunk],
             [$attr],
         );

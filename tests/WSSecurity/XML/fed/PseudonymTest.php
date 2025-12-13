@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\fed;
 
-use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
@@ -16,12 +15,14 @@ use SimpleSAML\WSSecurity\XML\fed\PseudonymBasis;
 use SimpleSAML\WSSecurity\XML\fed\RelativeTo;
 use SimpleSAML\WSSecurity\XML\fed\SecurityToken;
 use SimpleSAML\WSSecurity\XML\wsu\Expires;
+use SimpleSAML\WSSecurity\XML\wsu\Type\DateTimeValue;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
-use SimpleSAML\XML\Utils\XPath;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XPath\XPath;
 
 use function dirname;
 use function strval;
@@ -39,6 +40,7 @@ final class PseudonymTest extends TestCase
 {
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
+
 
     /** @var \SimpleSAML\XML\Chunk $basis */
     protected static Chunk $basis;
@@ -96,11 +98,11 @@ final class PseudonymTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', 'testval2');
-        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr3', 'testval3');
-        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', 'testval4');
-        $attr5 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr5', 'testval5');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', StringValue::fromString('testval2'));
+        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr3', StringValue::fromString('testval3'));
+        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', StringValue::fromString('testval4'));
+        $attr5 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr5', StringValue::fromString('testval5'));
 
         $pseudonymBasis = new PseudonymBasis(
             self::$basis,
@@ -112,7 +114,7 @@ final class PseudonymTest extends TestCase
             [$attr3],
         );
 
-        $expires = new Expires(new DateTimeImmutable('2001-10-13T09:00:00Z'));
+        $expires = new Expires(DateTimeValue::fromString('2001-10-13T09:00:00Z'));
 
         $securityToken = new SecurityToken(
             self::$security,
@@ -142,11 +144,11 @@ final class PseudonymTest extends TestCase
      */
     public function testMarshallingElementOrder(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', 'testval2');
-        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr3', 'testval3');
-        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', 'testval4');
-        $attr5 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr5', 'testval5');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', StringValue::fromString('testval2'));
+        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr3', StringValue::fromString('testval3'));
+        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', StringValue::fromString('testval4'));
+        $attr5 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr5', StringValue::fromString('testval5'));
 
         $pseudonymBasis = new PseudonymBasis(
             self::$basis,
@@ -158,7 +160,7 @@ final class PseudonymTest extends TestCase
             [$attr3],
         );
 
-        $expires = new Expires(new DateTimeImmutable('2001-10-13T09:00:00Z'));
+        $expires = new Expires(DateTimeValue::fromString('2001-10-13T09:00:00Z'));
 
         $securityToken = new SecurityToken(
             self::$security,
@@ -184,8 +186,9 @@ final class PseudonymTest extends TestCase
         $this->assertCount(1, $pseudonymBasisElements);
 
         // Test ordering of Pseudonym contents
-        /** @psalm-var \DOMElement[] $pseudonymElements */
+        /** @var \DOMElement[] $pseudonymElements */
         $pseudonymElements = XPath::xpQuery($pseudonymElement, './fed:PseudonymBasis/following-sibling::*', $xpCache);
+
         $this->assertCount(5, $pseudonymElements);
         $this->assertEquals('fed:RelativeTo', $pseudonymElements[0]->tagName);
         $this->assertEquals('wsu:Expires', $pseudonymElements[1]->tagName);

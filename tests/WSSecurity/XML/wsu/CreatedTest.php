@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\Test\WSSecurity\XML\wsu;
 
-use DateTimeImmutable;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\WSSecurity\XML\wsu\AbstractAttributedDateTime;
 use SimpleSAML\WSSecurity\XML\wsu\AbstractWsuElement;
 use SimpleSAML\WSSecurity\XML\wsu\Created;
+use SimpleSAML\WSSecurity\XML\wsu\Type\DateTimeValue;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
@@ -53,7 +53,7 @@ final class CreatedTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $created = new Created(new DateTimeImmutable('2001-09-13T08:42:00Z'));
+        $created = new Created(DateTimeValue::fromString('2001-09-13T08:42:00Z'));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

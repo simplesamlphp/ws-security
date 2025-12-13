@@ -6,11 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class defining the EmbeddedType element
@@ -22,6 +22,7 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
 
+
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
@@ -32,26 +33,24 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
     /**
      * AbstractEmbeddedType constructor
      *
-     * @param string|null $valueType
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $valueType
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected ?string $valueType = null,
+        protected ?AnyURIValue $valueType = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($valueType, SchemaViolationException::class);
-
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getValueType(): ?string
+    public function getValueType(): ?AnyURIValue
     {
         return $this->valueType;
     }
@@ -76,7 +75,7 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -85,7 +84,7 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            self::getOptionalAttribute($xml, 'ValueType', null),
+            self::getOptionalAttribute($xml, 'ValueType', AnyURIValue::class, null),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -103,14 +102,13 @@ abstract class AbstractEmbeddedType extends AbstractWsseElement
         $e = parent::instantiateParentElement($parent);
 
         if ($this->getValueType() !== null) {
-            $e->setAttribute('ValueType', $this->getValueType());
+            $e->setAttribute('ValueType', $this->getValueType()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);
         }
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {
                 $child->toXML($e);

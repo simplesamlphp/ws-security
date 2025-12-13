@@ -17,6 +17,7 @@ use SimpleSAML\WSSecurity\XML\auth\ValueOneOf;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 /**
  * Tests for auth:ConstrainedManyValueType.
@@ -51,7 +52,7 @@ final class ConstrainedManyValueTest extends TestCase
     #[DataProvider('classProvider')]
     public function testMarshallingIllegalCombination(string $class): void
     {
-        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
         $child = DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
         );
@@ -61,7 +62,7 @@ final class ConstrainedManyValueTest extends TestCase
             [$attr1],
         );
 
-        $value = new Value('MyValue');
+        $value = new Value(StringValue::fromString('MyValue'));
 
         $this->expectException(AssertionFailedException::class);
         new $class([$value], [$structuredValue]);

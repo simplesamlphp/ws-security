@@ -1,5 +1,5 @@
-<sp:AlgorithmSuite xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:attr1="value1">
-  <wsp:Policy xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" Name="phpunit" wsu:Id="MyId" ssp:attr1="value1">
+<sp:AlgorithmSuite xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy" xmlns:ssp="urn:x-simplesamlphp:namespace" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" ssp:attr1="value1">
+  <wsp:Policy Name="phpunit" wsu:Id="MyId" ssp:attr1="value1">
     <wsp:ExactlyOne />
     <ssp:Chunk>Other</ssp:Chunk>
   </wsp:Policy>

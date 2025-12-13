@@ -6,11 +6,12 @@ namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function sprintf;
 
@@ -23,6 +24,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
@@ -40,18 +42,17 @@ abstract class AbstractSerElementsType extends AbstractSpElement
      * AbstractSerElementsType constructor.
      *
      * @param list<\SimpleSAML\WSSecurity\XML\sp_200507\XPath> $xpath
-     * @param string|null $xpathVersion
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $xpathVersion
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elts
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected array $xpath,
-        protected ?string $xpathVersion = null,
+        protected ?AnyURIValue $xpathVersion = null,
         array $elts = [],
         array $namespacedAttributes = [],
     ) {
         Assert::minCount($xpath, 1, SchemaViolationException::class);
-        Assert::nullOrValidURI($xpathVersion);
 
         $this->setElements($elts);
         $this->setAttributesNS($namespacedAttributes);
@@ -72,9 +73,9 @@ abstract class AbstractSerElementsType extends AbstractSpElement
     /**
      * Collect the value of the XPathVersion property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getXPathVersion(): ?string
+    public function getXPathVersion(): ?AnyURIValue
     {
         return $this->xpathVersion;
     }
@@ -88,7 +89,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
      * @param \DOMElement $xml The XML element we should load.
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -103,7 +104,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
 
         return new static(
             XPath::getChildrenOfClass($xml),
-            self::getOptionalAttribute($xml, 'XPathVersion', null),
+            self::getOptionalAttribute($xml, 'XPathVersion', AnyURIValue::class, null),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -121,7 +122,7 @@ abstract class AbstractSerElementsType extends AbstractSpElement
         $e = $this->instantiateParentElement($parent);
 
         if ($this->getXPathVersion() !== null) {
-            $e->setAttribute('XPathVersion', $this->getXPathVersion());
+            $e->setAttribute('XPathVersion', $this->getXPathVersion()->getValue());
         }
 
         foreach ($this->getXPath() as $xpath) {
@@ -129,7 +130,6 @@ abstract class AbstractSerElementsType extends AbstractSpElement
         }
 
         foreach ($this->getElements() as $elt) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
             $elt->toXML($e);
         }
 

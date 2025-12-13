@@ -12,6 +12,7 @@ use SimpleSAML\WSSecurity\XML\wst_200502\Challenge;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -51,7 +52,7 @@ final class ChallengeTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $challenge = new Challenge('accepted');
+        $challenge = new Challenge(StringValue::fromString('accepted'));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

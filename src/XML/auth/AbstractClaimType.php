@@ -14,15 +14,18 @@ use SimpleSAML\WSSecurity\XML\auth\EncryptedValue;
 use SimpleSAML\WSSecurity\XML\auth\StructuredValue;
 use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\XML\Chunk;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
+use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XML\SerializableElementInterface;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
-use function array_filter;
 use function array_merge;
 use function array_pop;
+use function var_export;
 
 /**
  * Class defining the ClaimType element
@@ -32,16 +35,21 @@ use function array_pop;
 abstract class AbstractClaimType extends AbstractAuthElement
 {
     use ExtendableAttributesTrait;
+    use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+
+    /** The namespace-attribute for the xs:any element */
+    public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
 
 
     /**
      * AbstractClaimType constructor
      *
-     * @param string $uri
-     * @param bool|null $optional
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $uri
+     * @param \SimpleSAML\XMLSchema\Type\BooleanValue|null $optional
      * @param \SimpleSAML\WSSecurity\XML\auth\DisplayName|null $displayName
      * @param \SimpleSAML\WSSecurity\XML\auth\Description|null $description
      * @param \SimpleSAML\WSSecurity\XML\auth\DisplayValue|null $displayValue
@@ -56,15 +64,14 @@ abstract class AbstractClaimType extends AbstractAuthElement
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected string $uri,
-        protected ?bool $optional = null,
+        protected AnyURIValue $uri,
+        protected ?BooleanValue $optional = null,
         protected ?DisplayName $displayName = null,
         protected ?Description $description = null,
         protected ?DisplayValue $displayValue = null,
         protected null|Value|EncryptedValue|StructuredValue|ConstrainedValue|SerializableElementInterface $value = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::validURI($uri);
         if (
             !($value === null ||
                 $value instanceof Value ||
@@ -72,8 +79,11 @@ abstract class AbstractClaimType extends AbstractAuthElement
                 $value instanceof StructuredValue ||
                 $value instanceof EncryptedValue)
         ) {
-            /** @psalm-var \SimpleSAML\XML\AbstractElement|\SimpleSAML\XML\Chunk $value */
-            Assert::notSame($value->getNamespaceURI(), static::NS);
+            /** @var \SimpleSAML\XML\Chunk|\SimpleSAML\XML\AbstractElement $value */
+            Assert::notSame(
+                $value instanceof Chunk ? $value->getNamespaceURI() : $value::getNamespaceURI(),
+                static::NS,
+            );
         }
         $this->setAttributesNS($namespacedAttributes);
     }
@@ -133,9 +143,9 @@ abstract class AbstractClaimType extends AbstractAuthElement
     /**
      * Get the value of the uri property.
      *
-     * @return string
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
-    public function getURI(): string
+    public function getURI(): AnyURIValue
     {
         return $this->uri;
     }
@@ -144,9 +154,9 @@ abstract class AbstractClaimType extends AbstractAuthElement
     /**
      * Get the value of the optional property.
      *
-     * @return bool|null
+     * @return \SimpleSAML\XMLSchema\Type\BooleanValue|null
      */
-    public function getOptional(): ?bool
+    public function getOptional(): ?BooleanValue
     {
         return $this->optional;
     }
@@ -158,7 +168,7 @@ abstract class AbstractClaimType extends AbstractAuthElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -179,28 +189,20 @@ abstract class AbstractClaimType extends AbstractAuthElement
         $structuredValue = StructuredValue::getChildrenOfClass($xml);
         $encryptedValue = EncryptedValue::getChildrenOfClass($xml);
         $constrainedValue = ConstrainedValue::getChildrenOfClass($xml);
+        $otherValue = self::getChildElementsFromXML($xml);
 
-        $otherValue = [];
-        foreach ($xml->childNodes as $child) {
-            if (!($child instanceof DOMElement)) {
-                continue;
-            } elseif ($child->namespaceURI !== static::NS) {
-                $otherValue[] = new Chunk($child);
-            }
-        }
-
-        $value = array_filter(array_merge(
+        $value = array_merge(
             $simpleValue,
             $structuredValue,
             $encryptedValue,
             $constrainedValue,
             $otherValue,
-        ));
+        );
         Assert::maxCount($value, 1, TooManyElementsException::class);
 
         return new static(
-            self::getAttribute($xml, 'Uri'),
-            self::getOptionalBooleanAttribute($xml, 'Optional', null),
+            self::getAttribute($xml, 'Uri', AnyURIValue::class),
+            self::getOptionalAttribute($xml, 'Optional', BooleanValue::class, null),
             array_pop($displayName),
             array_pop($description),
             array_pop($displayValue),
@@ -220,9 +222,9 @@ abstract class AbstractClaimType extends AbstractAuthElement
     {
         $e = $this->instantiateParentElement($parent);
 
-        $e->setAttribute('Uri', $this->getURI());
+        $e->setAttribute('Uri', $this->getURI()->getValue());
         if ($this->getOptional() !== null) {
-            $e->setAttribute('Optional', $this->getOptional() ? 'true' : 'false');
+            $e->setAttribute('Optional', var_export($this->getOptional()->toBoolean(), true));
         }
 
         $this->getDisplayName()?->toXML($e);

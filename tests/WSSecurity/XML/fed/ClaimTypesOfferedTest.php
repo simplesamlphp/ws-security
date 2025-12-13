@@ -20,6 +20,9 @@ use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -58,16 +61,16 @@ final class ClaimTypesOfferedTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
-        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', 'testval2');
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', StringValue::fromString('testval2'));
 
         $claimType = new ClaimType(
-            C::NAMESPACE,
-            true,
-            new DisplayName('someDisplayName'),
-            new Description('someDescription'),
-            new DisplayValue('someDisplayValue'),
-            new Value('someValue'),
+            AnyURIValue::fromString(C::NAMESPACE),
+            BooleanValue::fromBoolean(true),
+            new DisplayName(StringValue::fromString('someDisplayName')),
+            new Description(StringValue::fromString('someDescription')),
+            new DisplayValue(StringValue::fromString('someDisplayValue')),
+            new Value(StringValue::fromString('someValue')),
             [$attr2],
         );
 

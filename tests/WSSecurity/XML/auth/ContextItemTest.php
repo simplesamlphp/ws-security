@@ -15,6 +15,8 @@ use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -53,12 +55,12 @@ final class ContextItemTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
 
         $contextItem = new ContextItem(
-            C::NAMESPACE,
-            'urn:x-simplesamlphp:scope',
-            new Value('someValue'),
+            AnyURIValue::fromString(C::NAMESPACE),
+            AnyURIValue::fromString('urn:x-simplesamlphp:scope'),
+            new Value(StringValue::fromString('someValue')),
             null,
             [$attr1],
         );

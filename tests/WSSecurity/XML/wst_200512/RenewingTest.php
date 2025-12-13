@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\wst_200512\Renewing;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
 
 use function dirname;
 
@@ -51,7 +52,10 @@ final class RenewingTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $renewing = new Renewing(true, false);
+        $renewing = new Renewing(
+            BooleanValue::fromBoolean(true),
+            BooleanValue::fromBoolean(false),
+        );
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

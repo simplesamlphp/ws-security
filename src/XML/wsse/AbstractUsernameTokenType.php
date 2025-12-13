@@ -7,13 +7,13 @@ namespace SimpleSAML\WSSecurity\XML\wsse;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_pop;
 use function array_unshift;
@@ -27,6 +27,7 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -49,27 +50,25 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
      * AbstractUsernameTokenType constructor
      *
      * @param \SimpleSAML\WSSecurity\XML\wsse\Username $username
-     * @param string|null $Id
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     final public function __construct(
         protected Username $username,
-        protected ?string $Id = null,
+        protected ?IDValue $Id = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidNCName($Id);
-
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null
      */
-    public function getId(): ?string
+    public function getId(): ?IDValue
     {
         return $this->Id;
     }
@@ -90,7 +89,7 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -102,9 +101,14 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
         Assert::minCount($username, 1, MissingElementException::class);
         Assert::maxCount($username, 1, TooManyElementsException::class);
 
+        $Id = null;
+        if ($xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id')) {
+            $Id = IDValue::fromString($xml->getAttributeNS(C::NS_SEC_UTIL, 'Id'));
+        }
+
         return new static(
             array_pop($username),
-            $xml->hasAttributeNS(C::NS_SEC_UTIL, 'Id') ? $xml->getAttributeNS(C::NS_SEC_UTIL, 'Id') : null,
+            $Id,
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -123,7 +127,7 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
 
         $attributes = $this->getAttributesNS();
         if ($this->getId() !== null) {
-            $idAttr = new XMLAttribute(C::NS_SEC_UTIL, 'wsu', 'Id', $this->getId());
+            $idAttr = $this->getId()->toAttribute();
             array_unshift($attributes, $idAttr);
         }
 
@@ -133,7 +137,6 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
 
         $this->getUsername()->toXML($e);
 
-        /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $child */
         foreach ($this->getElements() as $child) {
             if (!$child->isEmptyElement()) {
                 $child->toXML($e);

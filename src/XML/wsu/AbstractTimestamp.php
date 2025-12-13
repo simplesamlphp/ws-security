@@ -6,11 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wsu;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_pop;
 
@@ -23,6 +23,7 @@ abstract class AbstractTimestamp extends AbstractWsuElement
 {
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
+
 
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
@@ -42,28 +43,26 @@ abstract class AbstractTimestamp extends AbstractWsuElement
      *
      * @param \SimpleSAML\WSSecurity\XML\wsu\Created|null $created
      * @param \SimpleSAML\WSSecurity\XML\wsu\Expires|null $expires
-     * @param string|null $Id
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $elements
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
         protected ?Created $created = null,
         protected ?Expires $expires = null,
-        protected ?string $Id = null,
+        protected ?IDValue $Id = null,
         array $elements = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidNCName($Id);
-
         $this->setElements($elements);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null
      */
-    public function getId(): ?string
+    public function getId(): ?IDValue
     {
         return $this->Id;
     }
@@ -108,7 +107,7 @@ abstract class AbstractTimestamp extends AbstractWsuElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -122,7 +121,7 @@ abstract class AbstractTimestamp extends AbstractWsuElement
 
         $Id = null;
         if ($xml->hasAttributeNS(static::NS, 'Id')) {
-            $Id = $xml->getAttributeNS(static::NS, 'Id');
+            $Id = IDValue::fromString($xml->getAttributeNS(static::NS, 'Id'));
         }
 
         return new static(
@@ -147,7 +146,7 @@ abstract class AbstractTimestamp extends AbstractWsuElement
 
         $attributes = $this->getAttributesNS();
         if ($this->getId() !== null) {
-            $attributes[] = new XMLAttribute(static::NS, 'wsu', 'Id', $this->getId());
+            $this->getId()->toAttribute()->toXML($e);
         }
 
         foreach ($attributes as $attr) {
@@ -158,7 +157,6 @@ abstract class AbstractTimestamp extends AbstractWsuElement
         $this->getExpires()?->toXML($e);
 
         foreach ($this->getElements() as $detail) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $detail */
             $detail->toXML($e);
         }
 

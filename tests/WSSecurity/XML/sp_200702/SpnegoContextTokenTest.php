@@ -14,11 +14,14 @@ use SimpleSAML\WSSecurity\XML\sp_200702\AbstractSpnegoContextTokenType;
 use SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken;
 use SimpleSAML\WSSecurity\XML\sp_200702\IssuerName;
 use SimpleSAML\WSSecurity\XML\sp_200702\SpnegoContextToken;
+use SimpleSAML\WSSecurity\XML\sp_200702\Type\IncludeTokenValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -53,14 +56,14 @@ final class SpnegoContextTokenTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $issuer = new IssuerName('urn:x-simplesamlphp:issuer');
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_12, 'sp', 'IncludeToken', IncludeToken::Always->value);
+        $issuer = new IssuerName(AnyURIValue::fromString('urn:x-simplesamlphp:issuer'));
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
+        $includeToken = IncludeTokenValue::fromEnum(IncludeToken::Always);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $spnegoContextToken = new SpnegoContextToken($issuer, [$chunk], [$includeToken, $attr]);
+        $spnegoContextToken = new SpnegoContextToken($issuer, [$chunk], [$includeToken->toAttribute(), $attr]);
         $spnegoContextTokenElement = $spnegoContextToken->toXML();
 
         // Test for a IssuerName
@@ -69,12 +72,13 @@ final class SpnegoContextTokenTest extends TestCase
         $this->assertCount(1, $spnegoContextTokenElements);
 
         // Test ordering of SpnegoContextToken contents
-        /** @psalm-var \DOMElement[] $spnegoContextTokenElements */
+        /** @var \DOMElement[] $spnegoContextTokenElements */
         $spnegoContextTokenElements = XPath::xpQuery(
             $spnegoContextTokenElement,
             './sp:IssuerName/following-sibling::*',
             $xpCache,
         );
+
         $this->assertCount(1, $spnegoContextTokenElements);
         $this->assertEquals('ssp:Chunk', $spnegoContextTokenElements[0]->tagName);
     }
@@ -88,15 +92,15 @@ final class SpnegoContextTokenTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $includeToken = new XMLAttribute(C::NS_SEC_POLICY_12, 'sp', 'IncludeToken', IncludeToken::Always->value);
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
+        $includeToken = IncludeTokenValue::fromEnum(IncludeToken::Always);
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $issuer = new IssuerName('urn:x-simplesamlphp:issuer');
+        $issuer = new IssuerName(AnyURIValue::fromString('urn:x-simplesamlphp:issuer'));
 
-        $spnegoContextToken = new SpnegoContextToken($issuer, [$chunk], [$includeToken, $attr]);
+        $spnegoContextToken = new SpnegoContextToken($issuer, [$chunk], [$includeToken->toAttribute(), $attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
             strval($spnegoContextToken),

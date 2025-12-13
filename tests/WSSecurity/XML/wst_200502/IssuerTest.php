@@ -17,6 +17,8 @@ use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -33,6 +35,7 @@ use function strval;
 final class IssuerTest extends TestCase
 {
     use SerializableElementTestTrait;
+
 
     /** @var \DOMElement $referenceParametersContent */
     protected static DOMElement $referenceParametersContent;
@@ -72,14 +75,14 @@ final class IssuerTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', 'value2');
-        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', 'value4');
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', StringValue::fromString('value2'));
+        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', StringValue::fromString('value4'));
 
         $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)]);
         $chunk = new Chunk(self::$customContent);
 
         $issuer = new Issuer(
-            new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
+            new Address(AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'), [$attr2]),
             null,
             $referenceParameters,
             null,

@@ -16,6 +16,7 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -41,6 +42,7 @@ final class EncryptionTokenTest extends TestCase
     /** @var \SimpleSAML\XML\Attribute $attr */
     protected static XMLAttribute $attr;
 
+
     /**
      */
     public static function setUpBeforeClass(): void
@@ -51,7 +53,7 @@ final class EncryptionTokenTest extends TestCase
             dirname(__FILE__, 4) . '/resources/xml/sp/200702/EncryptionToken.xml',
         );
 
-        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        self::$attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
 
         self::$chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',

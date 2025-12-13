@@ -13,6 +13,7 @@ use SimpleSAML\WSSecurity\XML\auth\Value;
 use SimpleSAML\WSSecurity\XML\auth\ValueLowerBound;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -51,7 +52,9 @@ final class ValueLowerBoundTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $valueLowerBound = new ValueLowerBound(new Value('MyValue'));
+        $valueLowerBound = new ValueLowerBound(
+            new Value(StringValue::fromString('MyValue')),
+        );
 
         $this->assertFalse($valueLowerBound->isEmptyElement());
         $this->assertEquals(

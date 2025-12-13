@@ -6,11 +6,13 @@ namespace SimpleSAML\WSSecurity\XML\wst_200502;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Base64ElementTrait;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Type\Base64BinaryValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function array_map;
 use function explode;
@@ -23,23 +25,28 @@ use function implode;
  */
 abstract class AbstractBinarySecretType extends AbstractWstElement
 {
-    use Base64ElementTrait;
     use ExtendableAttributesTrait;
+    use TypedTextContentTrait;
+
 
     /** @var string|\SimpleSAML\XML\XsNamespace */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
+
+    /** @var string */
+    public const TEXTCONTENT_TYPE = Base64BinaryValue::class;
+
 
     /** @var string[]|null */
     protected ?array $Type;
 
 
     /**
-     * @param string $content
+     * @param \SimpleSAML\XMLSchema\Type\Base64BinaryValue $content
      * @param (\SimpleSAML\WSSecurity\XML\wst_200502\BinarySecretTypeEnum|string)[]|null $Type
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        string $content,
+        Base64BinaryValue $content,
         ?array $Type = null,
         array $namespacedAttributes = [],
     ) {
@@ -76,7 +83,7 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -85,8 +92,8 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            $xml->textContent,
-            explode(' ', self::getAttribute($xml, 'Type')),
+            Base64BinaryValue::fromString($xml->textContent),
+            explode(' ', self::getAttribute($xml, 'Type', StringValue::class)->getValue()),
             self::getAttributesNSFromXML($xml),
         );
     }
@@ -101,7 +108,7 @@ abstract class AbstractBinarySecretType extends AbstractWstElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getContent();
+        $e->textContent = $this->getContent()->getValue();
 
         if ($this->getType() !== null) {
             $e->setAttribute('Type', implode(' ', $this->getType()));

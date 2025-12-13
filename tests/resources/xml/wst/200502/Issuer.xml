@@ -1,7 +1,7 @@
-<t:Issuer xmlns:t="http://schemas.xmlsoap.org/ws/2005/02/trust" xmlns:ssp="urn:x-simplesamlphp:namespace" ssp:test4="value4">
-  <wsa:Address xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" ssp:test2="value2">https://login.microsoftonline.com/login.srf</wsa:Address>
-  <wsa:ReferenceParameters xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing">
-    <m:GetPrice xmlns:m="https://www.w3schools.com/prices">
+<t:Issuer xmlns:t="http://schemas.xmlsoap.org/ws/2005/02/trust" xmlns:ssp="urn:x-simplesamlphp:namespace" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:m="https://www.w3schools.com/prices" ssp:test4="value4">
+  <wsa:Address ssp:test2="value2">https://login.microsoftonline.com/login.srf</wsa:Address>
+  <wsa:ReferenceParameters>
+    <m:GetPrice>
       <m:Item>Pears</m:Item>
     </m:GetPrice>
   </wsa:ReferenceParameters>

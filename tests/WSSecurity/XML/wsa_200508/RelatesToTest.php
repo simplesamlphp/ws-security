@@ -13,6 +13,8 @@ use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -30,6 +32,7 @@ final class RelatesToTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
+
     /**
      */
     public static function setUpBeforeClass(): void
@@ -46,11 +49,11 @@ final class RelatesToTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', 'testval1');
+        $domAttr = new Attribute('urn:test:something', 'test', 'attr1', StringValue::fromString('testval1'));
 
         $relatesTo = new RelatesTo(
-            'urn:x-simplesamlphp:namespace',
-            'http://www.w3.org/2005/08/addressing/reply',
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            AnyURIValue::fromString('http://www.w3.org/2005/08/addressing/reply'),
             [$domAttr],
         );
 

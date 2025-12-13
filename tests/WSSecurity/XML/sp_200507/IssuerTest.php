@@ -20,6 +20,10 @@ use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\NCNameValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -36,6 +40,7 @@ use function strval;
 final class IssuerTest extends TestCase
 {
     use SerializableElementTestTrait;
+
 
     /** @var \DOMElement $referencePropertiesContent */
     protected static DOMElement $referencePropertiesContent;
@@ -79,20 +84,24 @@ final class IssuerTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', 'value1');
-        $attr2 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', 'value2');
-        $attr3 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', 'value3');
-        $attr4 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', 'value4');
+        $attr1 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', StringValue::fromString('value1'));
+        $attr2 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', StringValue::fromString('value2'));
+        $attr3 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', StringValue::fromString('value3'));
+        $attr4 = new XMLAttribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', StringValue::fromString('value4'));
 
         $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)]);
         $referenceProperties = new ReferenceProperties([new Chunk(self::$referencePropertiesContent)]);
 
-        $portType = new PortType('ssp:Chunk', [$attr3]);
-        $serviceName = new ServiceName('ssp:Chunk', 'PHPUnit', [$attr4]);
+        $portType = new PortType(QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'), [$attr3]);
+        $serviceName = new ServiceName(
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
+            NCNameValue::fromString('PHPUnit'),
+            [$attr4],
+        );
         $chunk = new Chunk(self::$customContent);
 
         $issuer = new Issuer(
-            new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
+            new Address(AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'), [$attr2]),
             $referenceProperties,
             $referenceParameters,
             $portType,

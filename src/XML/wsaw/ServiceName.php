@@ -6,8 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wsaw;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\NCNameValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
 
 /**
  * Class defining the ServiceName element
@@ -18,13 +21,14 @@ final class ServiceName extends AbstractServiceNameType implements SchemaValidat
 {
     use SchemaValidatableElementTrait;
 
+
     /**
      * Create an instance of this object from its XML representation.
      *
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -33,8 +37,8 @@ final class ServiceName extends AbstractServiceNameType implements SchemaValidat
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            $xml->textContent,
-            self::getOptionalAttribute($xml, 'EndpointName', null),
+            QNameValue::fromDocument($xml->textContent, $xml),
+            self::getOptionalAttribute($xml, 'EndpointName', NCNameValue::class, null),
             self::getAttributesNSFromXML($xml),
         );
     }

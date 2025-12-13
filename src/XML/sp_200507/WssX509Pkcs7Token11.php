@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
 
 /**
  * An WssX509Pkcs7Token11 element

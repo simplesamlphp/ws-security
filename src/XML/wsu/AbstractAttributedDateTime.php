@@ -4,15 +4,13 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wsu;
 
-use DateTimeImmutable;
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\Exception\ProtocolViolationException;
-use SimpleSAML\XML\Attribute as XMLAttribute;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\WSSecurity\XML\wsu\Type\DateTimeValue;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Abstract class defining the AttributedDateTime type
@@ -23,6 +21,7 @@ abstract class AbstractAttributedDateTime extends AbstractWsuElement
 {
     use ExtendableAttributesTrait;
 
+
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::OTHER;
 
@@ -30,24 +29,23 @@ abstract class AbstractAttributedDateTime extends AbstractWsuElement
     /**
      * AbstractAttributedDateTime constructor
      *
-     * @param \DateTimeImmutable $dateTime
-     * @param string|null $Id
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\DateTimeValue $dateTime
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected DateTimeImmutable $dateTime,
-        protected ?string $Id = null,
+        protected DateTimeValue $dateTime,
+        protected ?IDValue $Id = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidNCName($Id);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null
      */
-    public function getId(): ?string
+    public function getId(): ?IDValue
     {
         return $this->Id;
     }
@@ -56,9 +54,9 @@ abstract class AbstractAttributedDateTime extends AbstractWsuElement
     /**
      * Collect the value of the dateTime property
      *
-     * @return \DateTimeImmutable
+     * @return \SimpleSAML\WSSecurity\XML\wsu\Type\DateTimeValue
      */
-    public function getDateTime(): DateTimeImmutable
+    public function getDateTime(): DateTimeValue
     {
         return $this->dateTime;
     }
@@ -70,7 +68,7 @@ abstract class AbstractAttributedDateTime extends AbstractWsuElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -78,17 +76,12 @@ abstract class AbstractAttributedDateTime extends AbstractWsuElement
         Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
-        // Time values MUST be expressed in the UTC timezone using the 'Z' timezone identifier
-        // Strip sub-seconds
-        $xml->textContent = preg_replace('/([.][0-9]+)/', '', $xml->textContent, 1);
-        Assert::validDateTime($xml->textContent, ProtocolViolationException::class);
-
         $Id = null;
         if ($xml->hasAttributeNS(static::NS, 'Id')) {
-            $Id = $xml->getAttributeNS(static::NS, 'Id');
+            $Id = IDValue::fromString($xml->getAttributeNS(static::NS, 'Id'));
         }
 
-        return new static(new DateTimeImmutable($xml->textContent), $Id, self::getAttributesNSFromXML($xml));
+        return new static(DateTimeValue::fromString($xml->textContent), $Id, self::getAttributesNSFromXML($xml));
     }
 
 
@@ -99,11 +92,11 @@ abstract class AbstractAttributedDateTime extends AbstractWsuElement
     final public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->textContent = $this->getDateTime()->format(C::DATETIME_FORMAT);
+        $e->textContent = $this->getDateTime()->getValue();
 
         $attributes = $this->getAttributesNS();
         if ($this->getId() !== null) {
-            $attributes[] = new XMLAttribute(static::NS, 'wsu', 'Id', $this->getId());
+            $this->getId()->toAttribute()->toXML($e);
         }
 
         foreach ($attributes as $attr) {

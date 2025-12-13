@@ -18,6 +18,8 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -57,13 +59,15 @@ final class AdditionalContextTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', 'value2');
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
+        $attr2 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr2', StringValue::fromString('value2'));
 
         $contextItem = new ContextItem(
-            C::NAMESPACE,
-            'urn:x-simplesamlphp:scope',
-            new Value('someValue'),
+            AnyURIValue::fromString(C::NAMESPACE),
+            AnyURIValue::fromString('urn:x-simplesamlphp:scope'),
+            new Value(
+                StringValue::fromString('someValue'),
+            ),
             null,
             [$attr1],
         );

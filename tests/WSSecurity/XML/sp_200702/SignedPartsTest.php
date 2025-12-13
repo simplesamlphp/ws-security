@@ -20,6 +20,9 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -73,9 +76,13 @@ final class SignedPartsTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $body = new Body();
-        $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
+        $header = new Header(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}name'),
+            [$attr],
+        );
         $attachments = new Attachments();
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
@@ -93,28 +100,33 @@ final class SignedPartsTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $body = new Body();
-        $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
+        $header = new Header(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}name'),
+            [$attr],
+        );
         $attachments = new Attachments();
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $SignedParts = new SignedParts($body, [$header], $attachments, [$chunk], [$attr]);
-        $SignedPartsElement = $SignedParts->toXML();
+        $signedParts = new SignedParts($body, [$header], $attachments, [$chunk], [$attr]);
+        $signedPartsElement = $signedParts->toXML();
 
         // Test for a Body
-        $xpCache = XPath::getXPath($SignedPartsElement);
-        $SignedPartsElements = XPath::xpQuery($SignedPartsElement, './sp:Body', $xpCache);
-        $this->assertCount(1, $SignedPartsElements);
+        $xpCache = XPath::getXPath($signedPartsElement);
+        $signedPartsElements = XPath::xpQuery($signedPartsElement, './sp:Body', $xpCache);
+        $this->assertCount(1, $signedPartsElements);
 
         // Test ordering of SignedParts contents
-        /** @psalm-var \DOMElement[] $SignedPartsElements */
-        $SignedPartsElements = XPath::xpQuery($SignedPartsElement, './sp:Body/following-sibling::*', $xpCache);
-        $this->assertCount(3, $SignedPartsElements);
-        $this->assertEquals('sp:Header', $SignedPartsElements[0]->tagName);
-        $this->assertEquals('sp:Attachments', $SignedPartsElements[1]->tagName);
-        $this->assertEquals('ssp:Chunk', $SignedPartsElements[2]->tagName);
+        /** @var \DOMElement[] $signedPartsElements */
+        $signedPartsElements = XPath::xpQuery($signedPartsElement, './sp:Body/following-sibling::*', $xpCache);
+
+        $this->assertCount(3, $signedPartsElements);
+        $this->assertEquals('sp:Header', $signedPartsElements[0]->tagName);
+        $this->assertEquals('sp:Attachments', $signedPartsElements[1]->tagName);
+        $this->assertEquals('ssp:Chunk', $signedPartsElements[2]->tagName);
     }
 }

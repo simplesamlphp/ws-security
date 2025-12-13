@@ -6,9 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\sp_200507;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function sprintf;
 
@@ -21,25 +23,29 @@ abstract class AbstractHeaderType extends AbstractSpElement
 {
     use ExtendableAttributesTrait;
 
+
     /** The namespace-attribute for the xs:anyAttribute element */
     public const XS_ANY_ATTR_NAMESPACE = NS::ANY;
+
+    /** The exclusions for the xs:anyAttribute element */
+    public const XS_ANY_ATTR_EXCLUSIONS = [
+        [null, 'Name'],
+        [null, 'Namespace'],
+    ];
 
 
     /**
      * AbstractHeaderType constructor.
      *
-     * @param string $namespace
-     * @param string|null $name
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $namespace
+     * @param \SimpleSAML\XMLSchema\Type\QNameValue|null $name
      * @param list<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected string $namespace,
-        protected ?string $name = null,
+        protected AnyURIValue $namespace,
+        protected ?QNameValue $name = null,
         array $namespacedAttributes = [],
     ) {
-        Assert::validURI($namespace);
-        Assert::nullOrValidQName($name);
-
         $this->setAttributesNS($namespacedAttributes);
     }
 
@@ -47,9 +53,9 @@ abstract class AbstractHeaderType extends AbstractSpElement
     /**
      * Collect the value of the Name property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\QNameValue|null
      */
-    public function getName(): ?string
+    public function getName(): ?QNameValue
     {
         return $this->name;
     }
@@ -58,9 +64,9 @@ abstract class AbstractHeaderType extends AbstractSpElement
     /**
      * Collect the value of the Namespace property.
      *
-     * @return string
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
-    public function getNamespace(): string
+    public function getNamespace(): AnyURIValue
     {
         return $this->namespace;
     }
@@ -74,7 +80,7 @@ abstract class AbstractHeaderType extends AbstractSpElement
      * @param \DOMElement $xml The XML element we should load.
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -88,17 +94,11 @@ abstract class AbstractHeaderType extends AbstractSpElement
         );
 
         $namespacedAttributes = self::getAttributesNSFromXML($xml);
-        foreach ($namespacedAttributes as $i => $attr) {
-            if ($attr->getNamespaceURI() === null) {
-                if ($attr->getAttrName() === 'Name' || $attr->getAttrName() === 'Namespace') {
-                    unset($namespacedAttributes[$i]);
-                }
-            }
-        }
+        $namespace = self::getAttribute($xml, 'Namespace', AnyURIValue::class);
 
         return new static(
-            self::getAttribute($xml, 'Namespace'),
-            self::getOptionalAttribute($xml, 'Name', null),
+            $namespace,
+            $xml->hasAttribute('Name') ? QNameValue::fromString($xml->getAttribute('Name')) : null,
             $namespacedAttributes,
         );
     }
@@ -115,10 +115,10 @@ abstract class AbstractHeaderType extends AbstractSpElement
         $e = $this->instantiateParentElement($parent);
 
         if ($this->getName() !== null) {
-            $e->setAttribute('Name', $this->getName());
+            $e->setAttribute('Name', $this->getName()->getValue());
         }
 
-        $e->setAttribute('Namespace', $this->getNamespace());
+        $e->setAttribute('Namespace', $this->getNamespace()->getValue());
 
         foreach ($this->getAttributesNS() as $attr) {
             $attr->toXML($e);

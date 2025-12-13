@@ -6,11 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 use function sprintf;
 
@@ -23,6 +23,7 @@ abstract class AbstractReqPartsType extends AbstractSpElement
 {
     use ExtendableElementTrait;
     use ExtendableAttributesTrait;
+
 
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::OTHER;
@@ -80,7 +81,7 @@ abstract class AbstractReqPartsType extends AbstractSpElement
      * @param \DOMElement $xml The XML element we should load.
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -120,8 +121,9 @@ abstract class AbstractReqPartsType extends AbstractSpElement
         }
 
         foreach ($this->getElements() as $elt) {
-            /** @psalm-var \SimpleSAML\XML\SerializableElementInterface $elt */
-            $elt->toXML($e);
+            if (!$elt->isEmptyElement()) {
+                $elt->toXML($e);
+            }
         }
 
         foreach ($this->getAttributesNS() as $attr) {

@@ -15,6 +15,8 @@ use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -49,10 +51,16 @@ final class AppliesToTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $domAttr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'value1');
+        $domAttr = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('value1'));
 
         $AppliesTo = new AppliesTo(
-            [new EndpointReference(new Address('http://www.fabrikam123.example.com/acct'))],
+            [
+                new EndpointReference(
+                    new Address(
+                        AnyURIValue::fromString('http://www.fabrikam123.example.com/acct'),
+                    ),
+                ),
+            ],
             [$domAttr],
         );
         $this->assertFalse($AppliesTo->isEmptyElement());

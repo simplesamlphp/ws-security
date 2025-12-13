@@ -29,6 +29,7 @@ final class ReferenceParametersTest extends TestCase
 {
     use SerializableElementTestTrait;
 
+
     /** @var \DOMElement $referenceParametersContent */
     private static DOMElement $referenceParametersContent;
 

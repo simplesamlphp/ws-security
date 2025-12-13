@@ -6,11 +6,11 @@ namespace SimpleSAML\WSSecurity\XML\wst_200502;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
-use SimpleSAML\XML\XsNamespace as NS;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\XML\Constants\NS;
 
 /**
  * Class defining the RequestSecurityTokenType element
@@ -24,6 +24,7 @@ abstract class AbstractRequestSecurityTokenType extends AbstractWstElement
     use ExtendableAttributesTrait;
     use ExtendableElementTrait;
 
+
     /** The namespace-attribute for the xs:any element */
     public const XS_ANY_ELT_NAMESPACE = NS::ANY;
 
@@ -34,26 +35,24 @@ abstract class AbstractRequestSecurityTokenType extends AbstractWstElement
     /**
      * AbstractRequestSecurityTokenType constructor
      *
-     * @param string|null $context
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $context
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
      */
     final public function __construct(
-        protected ?string $context = null,
+        protected ?AnyURIValue $context = null,
         array $children = [],
         array $namespacedAttributes = [],
     ) {
-        Assert::nullOrValidURI($context, SchemaViolationException::class);
-
         $this->setElements($children);
         $this->setAttributesNS($namespacedAttributes);
     }
 
 
     /**
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getContext(): ?string
+    public function getContext(): ?AnyURIValue
     {
         return $this->context;
     }
@@ -78,7 +77,7 @@ abstract class AbstractRequestSecurityTokenType extends AbstractWstElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -87,7 +86,7 @@ abstract class AbstractRequestSecurityTokenType extends AbstractWstElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            self::getOptionalAttribute($xml, 'Context'),
+            self::getOptionalAttribute($xml, 'Context', AnyURIValue::class),
             self::getChildElementsFromXML($xml),
             self::getAttributesNSFromXML($xml),
         );
@@ -105,7 +104,7 @@ abstract class AbstractRequestSecurityTokenType extends AbstractWstElement
         $e = parent::instantiateParentElement($parent);
 
         if ($this->getContext() !== null) {
-            $e->setAttribute('Context', $this->getContext());
+            $e->setAttribute('Context', $this->getContext()->getValue());
         }
 
         foreach ($this->getAttributesNS() as $attr) {

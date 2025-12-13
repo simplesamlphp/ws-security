@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
-use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\IntegerElementTrait;
-use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementTrait};
+use SimpleSAML\XML\SchemaValidatableElementInterface;
+use SimpleSAML\XML\SchemaValidatableElementTrait;
+use SimpleSAML\XML\TypedTextContentTrait;
+use SimpleSAML\XMLSchema\Type\UnsignedIntValue;
 
 /**
  * Class representing WS-trust KeySize.
@@ -16,32 +16,10 @@ use SimpleSAML\XML\{SchemaValidatableElementInterface, SchemaValidatableElementT
  */
 final class KeySize extends AbstractWstElement implements SchemaValidatableElementInterface
 {
-    use IntegerElementTrait;
     use SchemaValidatableElementTrait;
+    use TypedTextContentTrait;
 
 
-    /**
-     * KeySize constructor.
-     *
-     * @param string $value The long.
-     */
-    final public function __construct(string $value)
-    {
-        $this->setContent($value);
-    }
-
-
-    /**
-     * Validate the content of the element.
-     *
-     * @param string $content  The value to go in the XML textContent
-     * @throws \SimpleSAML\XML\Exception\SchemaViolationException on failure
-     * @return void
-     */
-    protected function validateContent(string $content): void
-    {
-        $content = intval($content);
-        Assert::natural($content, SchemaViolationException::class);
-        Assert::range($content, 0, 4294967295, SchemaViolationException::class);
-    }
+    /** @var string */
+    public const TEXTCONTENT_TYPE = UnsignedIntValue::class;
 }

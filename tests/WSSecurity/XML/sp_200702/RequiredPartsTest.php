@@ -18,6 +18,9 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -67,25 +70,30 @@ final class RequiredPartsTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
+        $header = new Header(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}name'),
+            [$attr],
+        );
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $RequiredParts = new RequiredParts([$header], [$chunk], [$attr]);
-        $RequiredPartsElement = $RequiredParts->toXML();
+        $requiredParts = new RequiredParts([$header], [$chunk], [$attr]);
+        $requiredPartsElement = $requiredParts->toXML();
 
         // Test for a Header
-        $xpCache = XPath::getXPath($RequiredPartsElement);
-        $RequiredPartsElements = XPath::xpQuery($RequiredPartsElement, './sp:Header', $xpCache);
-        $this->assertCount(1, $RequiredPartsElements);
+        $xpCache = XPath::getXPath($requiredPartsElement);
+        $requiredPartsElements = XPath::xpQuery($requiredPartsElement, './sp:Header', $xpCache);
+        $this->assertCount(1, $requiredPartsElements);
 
         // Test ordering of RequiredParts contents
-        /** @psalm-var \DOMElement[] $RequiredPartsElements */
-        $RequiredPartsElements = XPath::xpQuery($RequiredPartsElement, './sp:Header/following-sibling::*', $xpCache);
-        $this->assertCount(1, $RequiredPartsElements);
-        $this->assertEquals('ssp:Chunk', $RequiredPartsElements[0]->tagName);
+        /** @var \DOMElement[] $requiredPartsElements */
+        $requiredPartsElements = XPath::xpQuery($requiredPartsElement, './sp:Header/following-sibling::*', $xpCache);
+
+        $this->assertCount(1, $requiredPartsElements);
+        $this->assertEquals('ssp:Chunk', $requiredPartsElements[0]->tagName);
     }
 
 
@@ -97,16 +105,20 @@ final class RequiredPartsTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'value1');
-        $header = new Header('urn:x-simplesamlphp:namespace', 'ssp:name', [$attr]);
+        $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
+        $header = new Header(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            QNameValue::fromString('{urn:x-simplesamlphp}name'),
+            [$attr],
+        );
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',
         )->documentElement);
 
-        $RequiredParts = new RequiredParts([$header], [$chunk], [$attr]);
+        $requiredParts = new RequiredParts([$header], [$chunk], [$attr]);
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($RequiredParts),
+            strval($requiredParts),
         );
     }
 }

@@ -4,33 +4,33 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML;
 
-use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\SchemaViolationException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 
 /**
  * @package simplesamlphp/ws-security
+ *
+ * @phpstan-ignore trait.unused
  */
 trait ReferenceIdentifierTrait
 {
-    /** @var string */
-    protected string $refId;
+    /** @var \SimpleSAML\XMLSchema\Type\AnyURIValue */
+    protected AnyURIValue $refId;
 
 
     /**
-     * @return string
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue
      */
-    public function getRefId(): string
+    public function getRefId(): AnyURIValue
     {
         return $this->refId;
     }
 
 
     /**
-     * @param string $refId
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue $refId
      */
-    private function setRefId(string $refId): void
+    private function setRefId(AnyURIValue $refId): void
     {
-        Assert::validURI($refId, SchemaViolationException::class);
         $this->refId = $refId;
     }
 }

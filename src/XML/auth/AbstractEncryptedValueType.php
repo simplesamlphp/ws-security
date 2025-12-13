@@ -6,10 +6,10 @@ namespace SimpleSAML\WSSecurity\XML\auth;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
-use SimpleSAML\XML\Exception\MissingElementException;
-use SimpleSAML\XML\Exception\SchemaViolationException;
-use SimpleSAML\XML\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\MissingElementException;
+use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
 use SimpleSAML\XMLSecurity\XML\xenc\EncryptedData;
 
 use function array_pop;
@@ -25,22 +25,21 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
      * AbstractEncryptedValueType constructor.
      *
      * @param \SimpleSAML\XMLSecurity\XML\xenc\EncryptedData $encryptedData
-     * @param string|null $descriptionCondition
+     * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $descriptionCondition
      */
     final public function __construct(
         protected EncryptedData $encryptedData,
-        protected ?string $descriptionCondition = null,
+        protected ?AnyURIValue $descriptionCondition = null,
     ) {
-        Assert::nullOrValidURI($descriptionCondition, SchemaViolationException::class);
     }
 
 
     /**
      * Get the value of the $descriptionCondition property.
      *
-     * @return string|null
+     * @return \SimpleSAML\XMLSchema\Type\AnyURIValue|null
      */
-    public function getDescriptionCondition(): ?string
+    public function getDescriptionCondition(): ?AnyURIValue
     {
         return $this->descriptionCondition;
     }
@@ -63,7 +62,7 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
      * @param \DOMElement $xml The XML element we should load
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   If the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -77,7 +76,7 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
 
         return new static(
             array_pop($encryptedData),
-            self::getOptionalAttribute($xml, 'DescriptionCondition', null),
+            self::getOptionalAttribute($xml, 'DescriptionCondition', AnyURIValue::class, null),
         );
     }
 
@@ -91,7 +90,7 @@ abstract class AbstractEncryptedValueType extends AbstractAuthElement
     public function toXML(?DOMElement $parent = null): DOMElement
     {
         $e = $this->instantiateParentElement($parent);
-        $e->setAttribute('DescriptionCondition', $this->getDescriptionCondition());
+        $e->setAttribute('DescriptionCondition', $this->getDescriptionCondition()->getValue());
 
         $this->getEncryptedData()->toXML($e);
 

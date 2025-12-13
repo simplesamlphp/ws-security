@@ -4,11 +4,17 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\fed;
 
-use DateTimeImmutable;
 use DOMElement;
+use SimpleSAML\SAML2\Type\SAMLAnyURIListValue;
+use SimpleSAML\SAML2\Type\SAMLAnyURIValue;
+use SimpleSAML\SAML2\Type\SAMLDateTimeValue;
+use SimpleSAML\SAML2\Type\SAMLStringValue;
 use SimpleSAML\SAML2\XML\md\AbstractRoleDescriptor;
 use SimpleSAML\SAML2\XML\md\Extensions;
 use SimpleSAML\SAML2\XML\md\Organization;
+use SimpleSAML\XMLSchema\Type\DurationValue;
+use SimpleSAML\XMLSchema\Type\IDValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
 
 /**
  * An WebServiceDescriptorType
@@ -20,13 +26,17 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
     /**
      * WebServiceDescriptorType constructor.
      *
-     * @param string $type The xsi-type of the element
-     * @param string[] $protocolSupportEnumeration A set of URI specifying the protocols supported.
-     * @param string|null $ID The ID for this document. Defaults to null.
-     * @param \DateTimeImmutable|null $validUntil Unix time of validity for this document. Defaults to null.
-     * @param string|null $cacheDuration Maximum time this document can be cached. Defaults to null.
+     * @param \SimpleSAML\XMLSchema\Type\QNameValue $type The xsi-type of the element
+     * @param \SimpleSAML\SAML2\Type\SAMLAnyURIListValue $protocolSupportEnumeration
+     *   A set of URI specifying the protocols supported.
+     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $ID The ID for this document. Defaults to null.
+     * @param \SimpleSAML\SAML2\Type\SAMLDateTimeValue|null $validUntil
+     *   Unix time of validity for this document. Defaults to null.
+     * @param \SimpleSAML\XMLSchema\Type\DurationValue|null $cacheDuration
+     *   Maximum time this document can be cached. Defaults to null.
      * @param \SimpleSAML\SAML2\XML\md\Extensions|null $extensions An array of extensions. Defaults to an empty array.
-     * @param string|null $errorURL An URI where to redirect users for support. Defaults to null.
+     * @param \SimpleSAML\SAML2\Type\SAMLAnyURIValue|null $errorURL
+     *   An URI where to redirect users for support. Defaults to null.
      * @param \SimpleSAML\SAML2\XML\md\KeyDescriptor[] $keyDescriptors An array of KeyDescriptor elements.
      *   Defaults to an empty array.
      * @param \SimpleSAML\SAML2\XML\md\Organization|null $organization
@@ -41,17 +51,17 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
      * @param \SimpleSAML\WSSecurity\XML\fed\ClaimTypesRequested|null $claimTypesRequested
      * @param \SimpleSAML\WSSecurity\XML\fed\AutomaticPseudonyms|null $automaticPseudonyms
      * @param \SimpleSAML\WSSecurity\XML\fed\TargetScopes|null $targetScopes
-     * @param string|null $serviceDisplayName
-     * @param string|null $serviceDescription
+     * @param \SimpleSAML\SAML2\Type\SAMLStringValue|null $serviceDisplayName
+     * @param \SimpleSAML\SAML2\Type\SAMLStringValue|null $serviceDescription
      */
     protected function __construct(
-        string $type,
-        array $protocolSupportEnumeration,
-        ?string $ID = null,
-        ?DateTimeImmutable $validUntil = null,
-        ?string $cacheDuration = null,
+        QNameValue $type,
+        SAMLAnyURIListValue $protocolSupportEnumeration,
+        ?IDValue $ID = null,
+        ?SAMLDateTimeValue $validUntil = null,
+        ?DurationValue $cacheDuration = null,
         ?Extensions $extensions = null,
-        ?string $errorURL = null,
+        ?SAMLAnyURIValue $errorURL = null,
         array $keyDescriptors = [],
         ?Organization $organization = null,
         array $contacts = [],
@@ -63,8 +73,8 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
         protected ?ClaimTypesRequested $claimTypesRequested = null,
         protected ?AutomaticPseudonyms $automaticPseudonyms = null,
         protected ?TargetScopes $targetScopes = null,
-        protected ?string $serviceDisplayName = null,
-        protected ?string $serviceDescription = null,
+        protected ?SAMLStringValue $serviceDisplayName = null,
+        protected ?SAMLStringValue $serviceDescription = null,
     ) {
         parent::__construct(
             $type,
@@ -162,9 +172,9 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
     /**
      * Collect the value of the serviceDisplayName-property
      *
-     * @return string|null
+     * @return \SimpleSAML\SAML2\Type\SAMLStringValue|null
      */
-    public function getServiceDisplayName(): ?string
+    public function getServiceDisplayName(): ?SAMLStringValue
     {
         return $this->serviceDisplayName;
     }
@@ -173,9 +183,9 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
     /**
      * Collect the value of the serviceDescription-property
      *
-     * @return string|null
+     * @return \SimpleSAML\SAML2\Type\SAMLStringValue|null
      */
-    public function getServiceDescription(): ?string
+    public function getServiceDescription(): ?SAMLStringValue
     {
         return $this->serviceDescription;
     }
@@ -201,12 +211,12 @@ abstract class AbstractWebServiceDescriptorType extends AbstractRoleDescriptor
 
         $serviceDisplayName = $this->getServiceDisplayName();
         if ($serviceDisplayName !== null) {
-            $e->setAttribute('ServiceDisplayName', $serviceDisplayName);
+            $e->setAttribute('ServiceDisplayName', $serviceDisplayName->getValue());
         }
 
         $serviceDescription = $this->getServiceDescription();
         if ($serviceDescription !== null) {
-            $e->setAttribute('ServiceDescription', $serviceDescription);
+            $e->setAttribute('ServiceDescription', $serviceDescription->getValue());
         }
 
         return $e;

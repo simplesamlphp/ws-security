@@ -22,6 +22,10 @@ use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\NCNameValue;
+use SimpleSAML\XMLSchema\Type\QNameValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 use function strval;
@@ -39,6 +43,7 @@ final class FromTest extends TestCase
 {
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
+
 
     /** @var \DOMElement $referencePropertiesContent */
     protected static DOMElement $referencePropertiesContent;
@@ -82,20 +87,24 @@ final class FromTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', 'value1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', 'value2');
-        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', 'value3');
-        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', 'value4');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', StringValue::fromString('value1'));
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', StringValue::fromString('value2'));
+        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', StringValue::fromString('value3'));
+        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', StringValue::fromString('value4'));
 
         $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)]);
         $referenceProperties = new ReferenceProperties([new Chunk(self::$referencePropertiesContent)]);
 
-        $portType = new PortType('ssp:Chunk', [$attr3]);
-        $serviceName = new ServiceName('ssp:Chunk', 'PHPUnit', [$attr4]);
+        $portType = new PortType(QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'), [$attr3]);
+        $serviceName = new ServiceName(
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
+            NCNameValue::fromString('PHPUnit'),
+            [$attr4],
+        );
         $chunk = new Chunk(self::$customContent);
 
-        $From = new From(
-            new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
+        $from = new From(
+            new Address(AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'), [$attr2]),
             $referenceProperties,
             $referenceParameters,
             $portType,
@@ -106,7 +115,7 @@ final class FromTest extends TestCase
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),
-            strval($From),
+            strval($from),
         );
     }
 
@@ -116,20 +125,24 @@ final class FromTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', 'value1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', 'value2');
-        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', 'value3');
-        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', 'value4');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test1', StringValue::fromString('value1'));
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test2', StringValue::fromString('value2'));
+        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test3', StringValue::fromString('value3'));
+        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'test4', StringValue::fromString('value4'));
 
         $referenceParameters = new ReferenceParameters([new Chunk(self::$referenceParametersContent)]);
         $referenceProperties = new ReferenceProperties([new Chunk(self::$referencePropertiesContent)]);
 
-        $portType = new PortType('ssp:Chunk', [$attr3]);
-        $serviceName = new ServiceName('ssp:Chunk', 'PHPUnit', [$attr4]);
+        $portType = new PortType(QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'), [$attr3]);
+        $serviceName = new ServiceName(
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}ssp:Chunk'),
+            NCNameValue::fromString('PHPUnit'),
+            [$attr4],
+        );
         $chunk = new Chunk(self::$customContent);
 
-        $From = new From(
-            new Address('https://login.microsoftonline.com/login.srf', [$attr2]),
+        $from = new From(
+            new Address(AnyURIValue::fromString('https://login.microsoftonline.com/login.srf'), [$attr2]),
             $referenceProperties,
             $referenceParameters,
             $portType,
@@ -139,19 +152,20 @@ final class FromTest extends TestCase
         );
 
         // Test for an Address
-        $FromElement = $From->toXML();
-        $xpCache = XPath::getXPath($FromElement);
-        $FromElements = XPath::xpQuery($FromElement, './wsa:Address', $xpCache);
-        $this->assertCount(1, $FromElements);
+        $fromElement = $from->toXML();
+        $xpCache = XPath::getXPath($fromElement);
+        $fromElements = XPath::xpQuery($fromElement, './wsa:Address', $xpCache);
+        $this->assertCount(1, $fromElements);
 
         // Test ordering of From contents
-        /** @psalm-var \DOMElement[] $FromElements */
-        $FromElements = XPath::xpQuery($FromElement, './wsa:Address/following-sibling::*', $xpCache);
-        $this->assertCount(5, $FromElements);
-        $this->assertEquals('wsa:ReferenceProperties', $FromElements[0]->tagName);
-        $this->assertEquals('wsa:ReferenceParameters', $FromElements[1]->tagName);
-        $this->assertEquals('wsa:PortType', $FromElements[2]->tagName);
-        $this->assertEquals('wsa:ServiceName', $FromElements[3]->tagName);
-        $this->assertEquals('ssp:Chunk', $FromElements[4]->tagName);
+        /** @var \DOMElement[] $fromElements */
+        $fromElements = XPath::xpQuery($fromElement, './wsa:Address/following-sibling::*', $xpCache);
+
+        $this->assertCount(5, $fromElements);
+        $this->assertEquals('wsa:ReferenceProperties', $fromElements[0]->tagName);
+        $this->assertEquals('wsa:ReferenceParameters', $fromElements[1]->tagName);
+        $this->assertEquals('wsa:PortType', $fromElements[2]->tagName);
+        $this->assertEquals('wsa:ServiceName', $fromElements[3]->tagName);
+        $this->assertEquals('ssp:Chunk', $fromElements[4]->tagName);
     }
 }

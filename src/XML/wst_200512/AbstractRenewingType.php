@@ -6,7 +6,8 @@ namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
 use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\XML\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
 
 /**
  * Class defining the RenewingType element
@@ -18,29 +19,29 @@ abstract class AbstractRenewingType extends AbstractWstElement
     /**
      * AbstractRenewingType constructor
      *
-     * @param bool|null $allow
-     * @param bool|null $ok
+     * @param \SimpleSAML\XMLSchema\Type\BooleanValue|null $allow
+     * @param \SimpleSAML\XMLSchema\Type\BooleanValue|null $ok
      */
     final public function __construct(
-        protected ?bool $allow = null,
-        protected ?bool $ok = null,
+        protected ?BooleanValue $allow = null,
+        protected ?BooleanValue $ok = null,
     ) {
     }
 
 
     /**
-     * @return bool|null
+     * @return \SimpleSAML\XMLSchema\Type\BooleanValue|null
      */
-    public function getAllow(): ?bool
+    public function getAllow(): ?BooleanValue
     {
         return $this->allow;
     }
 
 
     /**
-     * @return bool|null
+     * @return \SimpleSAML\XMLSchema\Type\BooleanValue|null
      */
-    public function getOk(): ?bool
+    public function getOk(): ?BooleanValue
     {
         return $this->ok;
     }
@@ -64,7 +65,7 @@ abstract class AbstractRenewingType extends AbstractWstElement
      * @param \DOMElement $xml
      * @return static
      *
-     * @throws \SimpleSAML\XML\Exception\InvalidDOMElementException
+     * @throws \SimpleSAML\XMLSchema\Exception\InvalidDOMElementException
      *   if the qualified name of the supplied element is wrong
      */
     public static function fromXML(DOMElement $xml): static
@@ -73,8 +74,8 @@ abstract class AbstractRenewingType extends AbstractWstElement
         Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
 
         return new static(
-            self::getOptionalBooleanAttribute($xml, 'Allow', null),
-            self::getOptionalBooleanAttribute($xml, 'OK', null),
+            self::getOptionalAttribute($xml, 'Allow', BooleanValue::class, null),
+            self::getOptionalAttribute($xml, 'OK', BooleanValue::class, null),
         );
     }
 
@@ -90,11 +91,11 @@ abstract class AbstractRenewingType extends AbstractWstElement
         $e = parent::instantiateParentElement($parent);
 
         if ($this->getAllow() !== null) {
-            $e->setAttribute('Allow', $this->getAllow() ? 'true' : 'false');
+            $e->setAttribute('Allow', $this->getAllow()->getValue());
         }
 
         if ($this->getOk() !== null) {
-            $e->setAttribute('OK', $this->getOk() ? 'true' : 'false');
+            $e->setAttribute('OK', $this->getOk()->getValue());
         }
 
         return $e;
