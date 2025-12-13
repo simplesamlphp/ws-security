@@ -37,7 +37,7 @@ abstract class AbstractIssuedTokenType extends AbstractSpElement
 
     /** The exclusions for the xs:anyAttribute element */
     public const XS_ANY_ATTR_EXCLUSIONS = [
-        [null, 'IncludeToken'],
+        ['http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702', 'IncludeToken'],
     ];
 
 

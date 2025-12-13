@@ -158,7 +158,9 @@ final class FaultToTest extends TestCase
         $this->assertCount(1, $faultToElements);
 
         // Test ordering of FaultTo contents
+        /** @var \DOMElement[] $faultToElements */
         $faultToElements = XPath::xpQuery($faultToElement, './wsa:Address/following-sibling::*', $xpCache);
+
         $this->assertCount(5, $faultToElements);
         $this->assertEquals('wsa:ReferenceProperties', $faultToElements[0]->tagName);
         $this->assertEquals('wsa:ReferenceParameters', $faultToElements[1]->tagName);

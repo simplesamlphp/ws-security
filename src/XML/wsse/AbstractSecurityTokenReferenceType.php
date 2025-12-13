@@ -44,7 +44,7 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
     /**
      * AbstractSecurityReferenceType constructor
      *
-     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $Id
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $Usage
      * @param array<\SimpleSAML\XML\SerializableElementInterface> $children
      * @param array<\SimpleSAML\XML\Attribute> $namespacedAttributes
@@ -62,7 +62,7 @@ abstract class AbstractSecurityTokenReferenceType extends AbstractWsseElement
 
 
     /**
-     * @return \SimpleSAML\XMLSchema\Type\IDValue|null
+     * @return \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null
      */
     public function getId(): ?IDValue
     {

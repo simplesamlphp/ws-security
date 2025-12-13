@@ -158,7 +158,9 @@ final class FromTest extends TestCase
         $this->assertCount(1, $fromElements);
 
         // Test ordering of From contents
+        /** @var \DOMElement[] $fromElements */
         $fromElements = XPath::xpQuery($fromElement, './wsa:Address/following-sibling::*', $xpCache);
+
         $this->assertCount(5, $fromElements);
         $this->assertEquals('wsa:ReferenceProperties', $fromElements[0]->tagName);
         $this->assertEquals('wsa:ReferenceParameters', $fromElements[1]->tagName);

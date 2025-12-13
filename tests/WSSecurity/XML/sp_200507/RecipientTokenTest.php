@@ -79,6 +79,6 @@ final class RecipientTokenTest extends TestCase
             AnyURIValue::fromString('phpunit'),
             IDValue::fromString('MyId'),
             [self::$attr],
-       );
+        );
     }
 }

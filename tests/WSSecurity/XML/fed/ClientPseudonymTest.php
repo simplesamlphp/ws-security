@@ -13,11 +13,13 @@ use SimpleSAML\WSSecurity\XML\fed\ClientPseudonym;
 use SimpleSAML\WSSecurity\XML\fed\DisplayName;
 use SimpleSAML\WSSecurity\XML\fed\EMail;
 use SimpleSAML\WSSecurity\XML\fed\PPID;
+use SimpleSAML\WSSecurity\XML\fed\Type\EmailAddressValue;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 use SimpleSAML\XPath\XPath;
 
 use function dirname;
@@ -58,19 +60,19 @@ final class ClientPseudonymTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', 'testval2');
-        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr3', 'testval3');
-        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', 'testval4');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', StringValue::fromString('testval2'));
+        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr3', StringValue::fromString('testval3'));
+        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', StringValue::fromString('testval4'));
 
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
         )->documentElement);
 
         $clientPseudonym = new ClientPseudonym(
-            new PPID('MyPPID', [$attr2]),
-            new DisplayName('MyDisplayName', [$attr3]),
-            new EMail('MyEMail', [$attr4]),
+            new PPID(StringValue::fromString('MyPPID'), [$attr2]),
+            new DisplayName(StringValue::fromString('MyDisplayName'), [$attr3]),
+            new EMail(EmailAddressValue::fromString('example@simplesamlphp.org'), [$attr4]),
             [$chunk],
             [$attr1],
         );
@@ -96,19 +98,19 @@ final class ClientPseudonymTest extends TestCase
      */
     public function testMarshallingElementOrdering(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', 'testval2');
-        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr3', 'testval3');
-        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', 'testval4');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', StringValue::fromString('testval2'));
+        $attr3 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr3', StringValue::fromString('testval3'));
+        $attr4 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr4', StringValue::fromString('testval4'));
 
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">Some</ssp:Chunk>',
         )->documentElement);
 
         $clientPseudonym = new ClientPseudonym(
-            new PPID('MyPPID', [$attr2]),
-            new DisplayName('MyDisplayName', [$attr3]),
-            new EMail('MyEMail', [$attr4]),
+            new PPID(StringValue::fromString('MyPPID'), [$attr2]),
+            new DisplayName(StringValue::fromString('MyDisplayName'), [$attr3]),
+            new EMail(EmailAddressValue::fromString('example@simplesamlphp.org'), [$attr4]),
             [$chunk],
             [$attr1],
         );

@@ -74,6 +74,7 @@ final class EncryptedElementsTest extends TestCase
         $this->assertCount(1, $encryptedElementsElements);
 
         // Test ordering of EncryptedElements contents
+        /** @var \DOMElement[] $encryptedElementsElements */
         $encryptedElementsElements = XMLXPath::xpQuery(
             $encryptedElementsElement,
             './sp:XPath/following-sibling::*',

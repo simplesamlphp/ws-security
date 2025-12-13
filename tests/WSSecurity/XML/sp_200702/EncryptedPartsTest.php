@@ -103,7 +103,11 @@ final class EncryptedPartsTest extends TestCase
     {
         $attr = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('value1'));
         $body = new Body();
-        $header = new Header(AnyURIValue::fromString('urn:x-simplesamlphp:namespace'), QNameValue::fromString('{urn:x-simplesamlphp:namespace}name'), [$attr]);
+        $header = new Header(
+            AnyURIValue::fromString('urn:x-simplesamlphp:namespace'),
+            QNameValue::fromString('{urn:x-simplesamlphp:namespace}name'),
+            [$attr],
+        );
         $attachments = new Attachments();
         $chunk = new Chunk(DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">some</ssp:Chunk>',

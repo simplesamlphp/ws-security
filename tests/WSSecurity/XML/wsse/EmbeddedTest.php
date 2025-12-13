@@ -62,7 +62,9 @@ final class EmbeddedTest extends TestCase
         );
 
         $embedded = new Embedded(
-            AnyURIValue::fromString('http://schemas.microsoft.com/5.0.0.0/ConfigurationManager/Enrollment/DeviceEnrollmentUserToken'),
+            AnyURIValue::fromString(
+                'http://schemas.microsoft.com/5.0.0.0/ConfigurationManager/Enrollment/DeviceEnrollmentUserToken',
+            ),
             [new Chunk($child->documentElement)],
             [$attr1],
         );

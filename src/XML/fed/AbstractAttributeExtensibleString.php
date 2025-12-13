@@ -5,10 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
-use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\TypedTextContentTrait;
-use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Type\StringValue;
 use SimpleSAML\XMLSchema\XML\Constants\NS;
 
@@ -34,28 +32,10 @@ abstract class AbstractAttributeExtensibleString extends AbstractFedElement
      * @param \SimpleSAML\XMLSchema\Type\StringValue $content
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
-    final public function __construct(StringValue $content, array $namespacedAttributes = [])
+    public function __construct(StringValue $content, array $namespacedAttributes = [])
     {
         $this->setContent($content);
         $this->setAttributesNS($namespacedAttributes);
-    }
-
-
-    /**
-     * Create a class from XML
-     *
-     * @param \DOMElement $xml
-     * @return static
-     */
-    public static function fromXML(DOMElement $xml): static
-    {
-        Assert::same($xml->localName, static::getLocalName(), InvalidDOMElementException::class);
-        Assert::same($xml->namespaceURI, static::NS, InvalidDOMElementException::class);
-
-        return new static(
-            StringValue::fromString($xml->textContent),
-            self::getAttributesNSFromXML($xml),
-        );
     }
 
 

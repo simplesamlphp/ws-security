@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200702\Type;
 
-use SimpleSAML\WSSecurity\Constants as C;
+use SimpleSAML\WSSecurity\XML\sp_200702\AbstractSpElement;
 use SimpleSAML\WSSecurity\XML\sp_200702\IncludeToken;
-use SimpleSAML\XML\Attribute;
+use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XMLSchema\Type\AnyURIValue as BaseAnyURIValue;
 
 /**
@@ -19,9 +19,9 @@ class IncludeTokenValue extends BaseAnyURIValue
      *
      * @return \SimpleSAML\XML\Attribute
      */
-    public function toAttribute(): Attribute
+    public function toAttribute(): XMLAttribute
     {
-        return new Attribute(null, null, 'IncludeToken', $this);
+        return new XMLAttribute(AbstractSpElement::NS, AbstractSpElement::NS_PREFIX, 'IncludeToken', $this);
     }
 
 

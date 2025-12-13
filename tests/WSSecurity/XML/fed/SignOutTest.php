@@ -12,11 +12,14 @@ use SimpleSAML\WSSecurity\XML\fed\AbstractSignOutType;
 use SimpleSAML\WSSecurity\XML\fed\Realm;
 use SimpleSAML\WSSecurity\XML\fed\SignOut;
 use SimpleSAML\WSSecurity\XML\fed\SignOutBasis;
+use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\AnyURIValue;
+use SimpleSAML\XMLSchema\Type\StringValue;
 use SimpleSAML\XPath\XPath;
 
 use function dirname;
@@ -72,20 +75,20 @@ final class SignOutTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', 'testval2');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', StringValue::fromString('testval2'));
 
         $signOutBasis = new SignOutBasis(
             [self::$basis],
             [$attr2],
         );
 
-        $realm = new Realm('urn:x-simplesamlphp:namespace');
+        $realm = new Realm(AnyURIValue::fromString('urn:x-simplesamlphp:namespace'));
 
         $signOut = new SignOut(
             $signOutBasis,
             $realm,
-            'phpunit',
+            IDValue::fromString('phpunit'),
             [self::$chunk],
             [$attr1],
         );
@@ -101,20 +104,20 @@ final class SignOutTest extends TestCase
      */
     public function testMarshallingElementOrder(): void
     {
-        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', 'testval1');
-        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', 'testval2');
+        $attr1 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $attr2 = new Attribute('urn:x-simplesamlphp:namespace', 'ssp', 'attr2', StringValue::fromString('testval2'));
 
         $signOutBasis = new SignOutBasis(
             [self::$basis],
             [$attr2],
         );
 
-        $realm = new Realm('urn:x-simplesamlphp:namespace');
+        $realm = new Realm(AnyURIValue::fromString('urn:x-simplesamlphp:namespace'));
 
         $signOut = new SignOut(
             $signOutBasis,
             $realm,
-            'phpunit',
+            IDValue::fromString('phpunit'),
             [self::$chunk],
             [$attr1],
         );

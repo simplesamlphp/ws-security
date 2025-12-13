@@ -67,8 +67,12 @@ final class BinarySecurityTokenTest extends TestCase
             StringValue::fromString($content),
             IDValue::fromString('SomeID'),
             [$attr1],
-            AnyURIValue::fromString('http://schemas.microsoft.com/5.0.0.0/ConfigurationManager/Enrollment/DeviceEnrollmentUserToken'),
-            AnyURIValue::fromString('http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd#base64binary'),
+            AnyURIValue::fromString(
+                'http://schemas.microsoft.com/5.0.0.0/ConfigurationManager/Enrollment/DeviceEnrollmentUserToken',
+            ),
+            AnyURIValue::fromString(
+                'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd#base64binary',
+            ),
         );
 
         $this->assertEquals(

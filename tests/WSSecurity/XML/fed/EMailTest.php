@@ -11,9 +11,11 @@ use SimpleSAML\Test\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\fed\AbstractAttributeExtensibleString;
 use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\EMail;
+use SimpleSAML\WSSecurity\XML\fed\Type\EmailAddressValue;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\StringValue;
 
 use function dirname;
 
@@ -51,8 +53,8 @@ final class EMailTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', 'testval1');
-        $EMail = new EMail('phpunit', [$attr1]);
+        $attr1 = new XMLAttribute(C::NAMESPACE, 'ssp', 'attr1', StringValue::fromString('testval1'));
+        $EMail = new EMail(EmailAddressValue::fromString('example@simplesamlphp.org'), [$attr1]);
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

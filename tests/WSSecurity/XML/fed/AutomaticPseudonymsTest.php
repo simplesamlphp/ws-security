@@ -12,6 +12,7 @@ use SimpleSAML\WSSecurity\XML\fed\AutomaticPseudonyms;
 use SimpleSAML\XML\DOMDocumentFactory;
 use SimpleSAML\XML\TestUtils\SchemaValidationTestTrait;
 use SimpleSAML\XML\TestUtils\SerializableElementTestTrait;
+use SimpleSAML\XMLSchema\Type\BooleanValue;
 
 use function dirname;
 
@@ -49,7 +50,7 @@ final class AutomaticPseudonymsTest extends TestCase
      */
     public function testMarshalling(): void
     {
-        $automaticPseudonyms = new AutomaticPseudonyms(true);
+        $automaticPseudonyms = new AutomaticPseudonyms(BooleanValue::fromBoolean(true));
 
         $this->assertEquals(
             self::$xmlRepresentation->saveXML(self::$xmlRepresentation->documentElement),

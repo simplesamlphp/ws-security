@@ -59,7 +59,9 @@ final class ReferenceTest extends TestCase
 
         $reference = new Reference(
             AnyURIValue::fromString('urn:some:uri'),
-            AnyURIValue::fromString('http://schemas.microsoft.com/5.0.0.0/ConfigurationManager/Enrollment/DeviceEnrollmentUserToken'),
+            AnyURIValue::fromString(
+                'http://schemas.microsoft.com/5.0.0.0/ConfigurationManager/Enrollment/DeviceEnrollmentUserToken',
+            ),
             [$attr1],
         );
 

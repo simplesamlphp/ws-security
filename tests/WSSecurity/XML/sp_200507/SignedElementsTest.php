@@ -74,6 +74,7 @@ final class SignedElementsTest extends TestCase
         $this->assertCount(1, $SignedElementsElements);
 
         // Test ordering of SignedElements contents
+        /** @var \DOMElement[] $signedElementsElements */
         $signedElementsElements = XMLXPath::xpQuery(
             $SignedElementsElement,
             './sp:XPath/following-sibling::*',

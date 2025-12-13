@@ -8,7 +8,6 @@ use DOMElement;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
 use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
-use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\ExtendableElementTrait;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
@@ -51,7 +50,7 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
      * AbstractUsernameTokenType constructor
      *
      * @param \SimpleSAML\WSSecurity\XML\wsse\Username $username
-     * @param \SimpleSAML\XMLSchema\Type\IDValue|null $Id
+     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
@@ -67,7 +66,7 @@ abstract class AbstractUsernameTokenType extends AbstractWsseElement
 
 
     /**
-     * @return \SimpleSAML\XMLSchema\Type\IDValue|null
+     * @return \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null
      */
     public function getId(): ?IDValue
     {
