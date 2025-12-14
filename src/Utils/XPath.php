@@ -28,8 +28,6 @@ class XPath extends \SimpleSAML\XMLSecurity\Utils\XPath
     {
         $xp = parent::getXPath($node, $autoregister);
 
-        $xp->registerNamespace('wsa', C::NS_ADDR_200508);
-        $xp->registerNamespace('wsa', C::NS_ADDR_200408);
         $xp->registerNamespace('auth', C::NS_AUTH);
         $xp->registerNamespace('fed', C::NS_FED);
         $xp->registerNamespace('t', C::NS_TRUST_200502);
@@ -37,7 +35,6 @@ class XPath extends \SimpleSAML\XMLSecurity\Utils\XPath
         $xp->registerNamespace('policy', C::NS_POLICY);
         $xp->registerNamespace('sp11', C::NS_SEC_POLICY_11);
         $xp->registerNamespace('sp12', C::NS_SEC_POLICY_12);
-        $xp->registerNamespace('wsdl', C::NS_WS_DESCRIPTION_LANGUAGE);
         $xp->registerNamespace('wsse', C::NS_SEC_EXT);
         $xp->registerNamespace('wsu', C::NS_SEC_UTIL);
 

@@ -8,14 +8,12 @@ use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200408\Address;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200408\PortType;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200408\ReferenceParameters;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200408\ReferenceProperties;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200408\ServiceName;
 use SimpleSAML\WSSecurity\XML\sp_200507\Issuer;
-use SimpleSAML\WSSecurity\XML\wsa_200408\AbstractEndpointReferenceType;
-use SimpleSAML\WSSecurity\XML\wsa_200408\AbstractWsaElement;
-use SimpleSAML\WSSecurity\XML\wsa_200408\Address;
-use SimpleSAML\WSSecurity\XML\wsa_200408\PortType;
-use SimpleSAML\WSSecurity\XML\wsa_200408\ReferenceParameters;
-use SimpleSAML\WSSecurity\XML\wsa_200408\ReferenceProperties;
-use SimpleSAML\WSSecurity\XML\wsa_200408\ServiceName;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -35,8 +33,6 @@ use function strval;
  */
 #[Group('sp')]
 #[CoversClass(Issuer::class)]
-#[CoversClass(AbstractEndpointReferenceType::class)]
-#[CoversClass(AbstractWsaElement::class)]
 final class IssuerTest extends TestCase
 {
     use SerializableElementTestTrait;

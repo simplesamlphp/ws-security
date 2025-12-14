@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\fed;
 
 use DOMElement;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\EndpointReference;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\WSSecurity\XML\wsa_200508\EndpointReference;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
 
@@ -20,7 +20,7 @@ abstract class AbstractEndpointType extends AbstractFedElement
     /**
      * ReferenceType constructor.
      *
-     * @param array<\SimpleSAML\WSSecurity\XML\wsa_200508\EndpointReference> $endpointReference
+     * @param array<\SimpleSAML\WebServices\Addressing\XML\wsa_200508\EndpointReference> $endpointReference
      */
     final public function __construct(
         protected array $endpointReference,
@@ -31,7 +31,7 @@ abstract class AbstractEndpointType extends AbstractFedElement
 
 
     /**
-     * @return array<\SimpleSAML\WSSecurity\XML\wsa_200508\EndpointReference>
+     * @return array<\SimpleSAML\WebServices\Addressing\XML\wsa_200508\EndpointReference>
      */
     public function getEndpointReference(): array
     {

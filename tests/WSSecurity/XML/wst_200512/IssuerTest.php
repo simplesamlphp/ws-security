@@ -8,11 +8,9 @@ use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
-use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
-use SimpleSAML\WSSecurity\XML\wsa_200508\Address;
-use SimpleSAML\WSSecurity\XML\wsa_200508\Metadata;
-use SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters;
-use SimpleSAML\WSSecurity\XML\wst_200512\AbstractWstElement;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\Address;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\Metadata;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\ReferenceParameters;
 use SimpleSAML\WSSecurity\XML\wst_200512\Issuer;
 use SimpleSAML\XML\Attribute;
 use SimpleSAML\XML\Chunk;
@@ -31,8 +29,6 @@ use function strval;
  */
 #[Group('wst')]
 #[CoversClass(Issuer::class)]
-#[CoversClass(AbstractEndpointReferenceType::class)]
-#[CoversClass(AbstractWstElement::class)]
 final class IssuerTest extends TestCase
 {
     use SerializableElementTestTrait;

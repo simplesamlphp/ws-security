@@ -8,13 +8,13 @@ use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\Address;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\EndpointReference;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\Metadata;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\ReferenceParameters;
 use SimpleSAML\WSSecurity\XML\fed\AbstractEndpointType;
 use SimpleSAML\WSSecurity\XML\fed\AbstractFedElement;
 use SimpleSAML\WSSecurity\XML\fed\AttributeServiceEndpoint;
-use SimpleSAML\WSSecurity\XML\wsa_200508\Address;
-use SimpleSAML\WSSecurity\XML\wsa_200508\EndpointReference;
-use SimpleSAML\WSSecurity\XML\wsa_200508\Metadata;
-use SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -43,9 +43,6 @@ final class AttributeServiceEndpointTest extends TestCase
     use SchemaValidationTestTrait;
     use SerializableElementTestTrait;
 
-
-    /** @var \DOMElement $endpointReference */
-    protected static DOMElement $endpointReference;
 
     /** @var \DOMElement $referenceParameters */
     protected static DOMElement $referenceParameters;
@@ -77,10 +74,6 @@ final class AttributeServiceEndpointTest extends TestCase
 
         self::$customContent = DOMDocumentFactory::fromString(
             '<ssp:Chunk xmlns:ssp="urn:x-simplesamlphp:namespace">SomeChunk</ssp:Chunk>',
-        )->documentElement;
-
-        self::$endpointReference = DOMDocumentFactory::fromFile(
-            dirname(__FILE__, 4) . '/resources/xml/wsa/200508/EndpointReference.xml',
         )->documentElement;
     }
 

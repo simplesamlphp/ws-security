@@ -9,7 +9,7 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\Type\MustUnderstandValue;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsa_200408\MessageID;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200408\MessageID;
 use SimpleSAML\WSSecurity\XML\wst_200502\AbstractClaimsType;
 use SimpleSAML\WSSecurity\XML\wst_200502\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst_200502\Claims;

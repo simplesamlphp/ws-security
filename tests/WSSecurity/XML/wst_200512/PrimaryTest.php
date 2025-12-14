@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\Type\MustUnderstandValue;
-use SimpleSAML\WSSecurity\XML\wsa_200508\MessageID;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\MessageID;
 use SimpleSAML\WSSecurity\XML\wst_200512\AbstractParticipantType;
 use SimpleSAML\WSSecurity\XML\wst_200512\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst_200512\Primary;

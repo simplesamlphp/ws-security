@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\sp_200702;
 
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\AbstractEndpointReferenceType;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
 
 /**
  * An Issuer element

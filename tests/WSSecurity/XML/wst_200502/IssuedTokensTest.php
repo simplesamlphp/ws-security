@@ -9,8 +9,8 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use SimpleSAML\SOAP11\Type\MustUnderstandValue;
 use SimpleSAML\Test\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsa_200408\AbstractEndpointReferenceType;
-use SimpleSAML\WSSecurity\XML\wsa_200408\MessageID;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200408\MessageID;
+use SimpleSAML\WSSecurity\XML\wst_200502\AbstractRequestSecurityTokenResponseCollectionType;
 use SimpleSAML\WSSecurity\XML\wst_200502\AbstractWstElement;
 use SimpleSAML\WSSecurity\XML\wst_200502\IssuedTokens;
 use SimpleSAML\WSSecurity\XML\wst_200502\RequestSecurityTokenResponse;
@@ -30,7 +30,7 @@ use function dirname;
  */
 #[Group('wst')]
 #[CoversClass(IssuedTokens::class)]
-#[CoversClass(AbstractEndpointReferenceType::class)]
+#[CoversClass(AbstractRequestSecurityTokenResponseCollectionType::class)]
 #[CoversClass(AbstractWstElement::class)]
 final class IssuedTokensTest extends TestCase
 {

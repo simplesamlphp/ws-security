@@ -8,12 +8,10 @@ use DOMElement;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\Address;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\Metadata;
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\ReferenceParameters;
 use SimpleSAML\WSSecurity\XML\fed\ReferenceEPR;
-use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
-use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractWsaElement;
-use SimpleSAML\WSSecurity\XML\wsa_200508\Address;
-use SimpleSAML\WSSecurity\XML\wsa_200508\Metadata;
-use SimpleSAML\WSSecurity\XML\wsa_200508\ReferenceParameters;
 use SimpleSAML\XML\Attribute as XMLAttribute;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\DOMDocumentFactory;
@@ -31,8 +29,6 @@ use function strval;
  */
 #[Group('fed')]
 #[CoversClass(ReferenceEPR::class)]
-#[CoversClass(AbstractEndpointReferenceType::class)]
-#[CoversClass(AbstractWsaElement::class)]
 final class ReferenceEPRTest extends TestCase
 {
     use SerializableElementTestTrait;

@@ -1,5 +1,0 @@
-<wsa:ReferenceParameters xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:m="https://www.w3schools.com/prices">
-  <m:GetPrice>
-    <m:Item>Apples</m:Item>
-  </m:GetPrice>
-</wsa:ReferenceParameters>

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
+use SimpleSAML\WebServices\Addressing\XML\wsa_200508\AbstractEndpointReferenceType;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsa_200508\AbstractEndpointReferenceType;
 use SimpleSAML\XML\SchemaValidatableElementInterface;
 use SimpleSAML\XML\SchemaValidatableElementTrait;
 

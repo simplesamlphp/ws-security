@@ -13,13 +13,6 @@ namespace SimpleSAML\WSSecurity;
 class Constants extends \SimpleSAML\SAML2\Constants
 {
     /**
-     * The namespace for WS-Addressing protocol.
-     */
-    public const NS_ADDR_200408 = 'http://schemas.xmlsoap.org/ws/2004/08/addressing';
-
-    public const NS_ADDR_200508 = 'http://www.w3.org/2005/08/addressing';
-
-    /**
      * The namespace for WS-Authorization protocol.
      */
     public const NS_AUTH = 'http://docs.oasis-open.org/wsfed/authorization/200706';
@@ -62,16 +55,6 @@ class Constants extends \SimpleSAML\SAML2\Constants
      * The namespace for the Metadata Exchange protocol.
      */
     public const NS_METADATA_EXCHANGE = 'http://schemas.xmlsoap.org/ws/2004/09/mex';
-
-    /**
-     * The namespace for the Web Service Description Language protocol.
-     */
-    public const NS_WS_DESCRIPTION_LANGUAGE = 'http://schemas.xmlsoap.org/wsdl/';
-
-    /**
-     * The namespace for the Web Service Addressing - WSDL Binding.
-     */
-    public const NS_WSDL_ADDR = 'http://www.w3.org/2006/05/addressing/wsdl';
 
     /**
      * The namespace for the Microsoft Security Policy protocol.
