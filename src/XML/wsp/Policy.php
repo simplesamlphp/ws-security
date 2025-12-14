@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wsp;
 
 use DOMElement;
+use SimpleSAML\WebServices\Security\Type\IDValue;
 use SimpleSAML\WSSecurity\Assert\Assert;
 use SimpleSAML\WSSecurity\Constants as C;
-use SimpleSAML\WSSecurity\XML\wsu\Type\IDValue;
 use SimpleSAML\XML\Chunk;
 use SimpleSAML\XML\ExtendableAttributesTrait;
 use SimpleSAML\XML\SchemaValidatableElementInterface;
@@ -40,7 +40,7 @@ final class Policy extends AbstractOperatorContentType implements SchemaValidata
      *         \SimpleSAML\WSSecurity\XML\wsp\PolicyReference)[] $operatorContent
      * @param \SimpleSAML\XML\SerializableElementInterface[] $children
      * @param \SimpleSAML\XMLSchema\Type\AnyURIValue|null $Name
-     * @param \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null $Id
+     * @param \SimpleSAML\WebServices\Security\Type\IDValue|null $Id
      * @param \SimpleSAML\XML\Attribute[] $namespacedAttributes
      */
     public function __construct(
@@ -57,7 +57,7 @@ final class Policy extends AbstractOperatorContentType implements SchemaValidata
 
 
     /**
-     * @return \SimpleSAML\WSSecurity\XML\wsu\Type\IDValue|null
+     * @return \SimpleSAML\WebServices\Security\Type\IDValue|null
      */
     public function getId(): ?IDValue
     {

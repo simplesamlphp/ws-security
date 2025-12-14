@@ -304,18 +304,6 @@ return [
         'PolicyAttachment' => '\SimpleSAML\WSSecurity\XML\wsp\PolicyAttachment',
         'PolicyReference' => '\SimpleSAML\WSSecurity\XML\wsp\PolicyReference',
     ],
-    'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd' => [
-        'BinarySecurityToken' => '\SimpleSAML\WSSecurity\XML\wsse\BinarySecurityToken',
-        'Embedded' => '\SimpleSAML\WSSecurity\XML\wsse\Embedded',
-        'KeyIdentifier' => '\SimpleSAML\WSSecurity\XML\wsse\KeyIdentifier',
-        'Nonce' => '\SimpleSAML\WSSecurity\XML\wsse\Nonce',
-        'Password' => '\SimpleSAML\WSSecurity\XML\wsse\Password',
-        'Reference' => '\SimpleSAML\WSSecurity\XML\wsse\Reference',
-        'Security' => '\SimpleSAML\WSSecurity\XML\wsse\Security',
-        'SecurityTokenReference' => '\SimpleSAML\WSSecurity\XML\wsse\SecurityTokenReference',
-        'TransformationParameters' => '\SimpleSAML\WSSecurity\XML\wsse\TransformationParameters',
-        'UsernameToken' => '\SimpleSAML\WSSecurity\XML\wsse\UsernameToken',
-    ],
     'http://schemas.xmlsoap.org/ws/2005/02/trust' => [
         'AllowPostdating' => '\SimpleSAML\WSSecurity\XML\wst_200502\AllowPostdating',
         'AuthenticationType' => '\SimpleSAML\WSSecurity\XML\wst_200502\AuthenticationType',
@@ -416,11 +404,6 @@ return [
         'TokenType' => '\SimpleSAML\WSSecurity\XML\wst_200512\TokenType',
         'UseKey' => '\SimpleSAML\WSSecurity\XML\wst_200512\UseKey',
         'ValidateTarget' => '\SimpleSAML\WSSecurity\XML\wst_200512\ValidateTarget',
-    ],
-    'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd' => [
-        'Created' => '\SimpleSAML\WSSecurity\XML\wsu\Created',
-        'Expires' => '\SimpleSAML\WSSecurity\XML\wsu\Expires',
-        'Timestamp' => '\SimpleSAML\WSSecurity\XML\wsu\Timestamp',
     ],
     'http://schemas.xmlsoap.org/ws/2004/09/mex' => [
         'Dialect' => '\SimpleSAML\WSSecurity\XML\wsx\Dialect',

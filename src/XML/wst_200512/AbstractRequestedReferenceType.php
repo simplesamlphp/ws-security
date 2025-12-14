@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wst_200512;
 
 use DOMElement;
+use SimpleSAML\WebServices\Security\XML\wsse\SecurityTokenReference;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\WSSecurity\XML\wsse\SecurityTokenReference;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\MissingElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
@@ -23,7 +23,7 @@ abstract class AbstractRequestedReferenceType extends AbstractWstElement
     /**
      * AbstractRequestedReferenceType constructor
      *
-     * @param \SimpleSAML\WSSecurity\XML\wsse\SecurityTokenReference $securityTokenReference
+     * @param \SimpleSAML\WebServices\Security\XML\wsse\SecurityTokenReference $securityTokenReference
      */
     final public function __construct(
         protected SecurityTokenReference $securityTokenReference,
@@ -34,7 +34,7 @@ abstract class AbstractRequestedReferenceType extends AbstractWstElement
     /**
      * Collect the value of the securityTokenReference property.
      *
-     * @return \SimpleSAML\WSSecurity\XML\wsse\SecurityTokenReference
+     * @return \SimpleSAML\WebServices\Security\XML\wsse\SecurityTokenReference
      */
     public function getSecurityTokenReference(): SecurityTokenReference
     {

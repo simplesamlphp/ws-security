@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace SimpleSAML\WSSecurity\XML\wst_200502;
 
 use DOMElement;
+use SimpleSAML\WebServices\Security\XML\wsu\Created;
+use SimpleSAML\WebServices\Security\XML\wsu\Expires;
 use SimpleSAML\WSSecurity\Assert\Assert;
-use SimpleSAML\WSSecurity\XML\wsu\Created;
-use SimpleSAML\WSSecurity\XML\wsu\Expires;
 use SimpleSAML\XMLSchema\Exception\InvalidDOMElementException;
 use SimpleSAML\XMLSchema\Exception\TooManyElementsException;
 
@@ -21,8 +21,8 @@ abstract class AbstractLifetimeType extends AbstractWstElement
     /**
      * AbstractLifetimeType constructor
      *
-     * @param \SimpleSAML\WSSecurity\XML\wsu\Created|null $created
-     * @param \SimpleSAML\WSSecurity\XML\wsu\Expires|null $expires
+     * @param \SimpleSAML\WebServices\Security\XML\wsu\Created|null $created
+     * @param \SimpleSAML\WebServices\Security\XML\wsu\Expires|null $expires
      */
     final public function __construct(
         protected ?Created $created = null,
@@ -32,7 +32,7 @@ abstract class AbstractLifetimeType extends AbstractWstElement
 
 
     /**
-     * @return \SimpleSAML\WSSecurity\XML\wsu\Created|null
+     * @return \SimpleSAML\WebServices\Security\XML\wsu\Created|null
      */
     public function getCreated(): ?Created
     {
@@ -41,7 +41,7 @@ abstract class AbstractLifetimeType extends AbstractWstElement
 
 
     /**
-     * @return \SimpleSAML\WSSecurity\XML\wsu\Expires|null
+     * @return \SimpleSAML\WebServices\Security\XML\wsu\Expires|null
      */
     public function getExpires(): ?Expires
     {
