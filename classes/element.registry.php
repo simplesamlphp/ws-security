@@ -296,14 +296,6 @@ return [
         'XPath10' => '\SimpleSAML\WSSecurity\XML\sp_200702\XPath10',
         'XPathFilter20' => '\SimpleSAML\WSSecurity\XML\sp_200702\XPathFilter20',
     ],
-    'http://schemas.xmlsoap.org/ws/2004/09/policy' => [
-        'All' => '\SimpleSAML\WSSecurity\XML\wsp\All',
-        'AppliesTo' => '\SimpleSAML\WSSecurity\XML\wsp\AppliesTo',
-        'ExactlyOne' => '\SimpleSAML\WSSecurity\XML\wsp\ExactlyOne',
-        'Policy' => '\SimpleSAML\WSSecurity\XML\wsp\Policy',
-        'PolicyAttachment' => '\SimpleSAML\WSSecurity\XML\wsp\PolicyAttachment',
-        'PolicyReference' => '\SimpleSAML\WSSecurity\XML\wsp\PolicyReference',
-    ],
     'http://schemas.xmlsoap.org/ws/2005/02/trust' => [
         'AllowPostdating' => '\SimpleSAML\WSSecurity\XML\wst_200502\AllowPostdating',
         'AuthenticationType' => '\SimpleSAML\WSSecurity\XML\wst_200502\AuthenticationType',
