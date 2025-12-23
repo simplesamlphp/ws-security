@@ -1,3 +1,0 @@
-<sp:SamlToken xmlns:sp="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702" xmlns:ssp="urn:x-simplesamlphp:namespace" sp:IncludeToken="http://docs.oasis-open.org/ws-sx/ws-securitypolicy/200702/IncludeToken/Always" ssp:attr1="value1">
-  <ssp:Chunk>some</ssp:Chunk>
-</sp:SamlToken>
